@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Usuario</title>
+
+    {% endblock head %}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleMenuUsuario.css">
+</head>
+<!--                            Zona de menú Horizontal header tamaño maximo 50px                  -->
+<header>
+</header>
+
+
+<body>
+    <div class="grid">
+        <!--          Creación del menú lateral        -->
+        <div class="nav">
+            <ul>
+                <!--           Zona de links de navegación     -->
+                <li class="list activar">
+                    <a href="#">
+                        <!--    Iconos sacados de fontawesome  -->
+                        <span class="icono"><i class="far fa-user-circle"></i></span>
+                        <span class="nombre">Perfil</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icono"><i class="fas fa-calendar-day"></i></span>
+                        <span class="nombre">Calendario</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icono"><i class="fas fa-user-shield"></i></i></span>
+                        <span class="nombre">Configuración</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icono"><i class="fas fa-user-friends"></i></span>
+                        <span class="nombre">Proveedores</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icono"><i class="fas fa-sign-out-alt"></i></span>
+                        <span class="nombre">Cerrar sesión</span>
+                    </a>
+                </li>
+                {% block li %} {% endblock li %}
+            </ul>
+        </div>
+        <div class="content">
+            <div class="menu">
+                <ul>
+                    <li><a href="#">Contactenos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Notificaciónes</a></li>
+                    <li><a href="#">Catalogo</a></li>
+                </ul>
+            </div>
+            <img class="Logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png" width="179" height="50">
+
+            <div id="div">
+                {% block Contenido %}
+                <div>
+                    <h1>Hola</h1>
+                </div>
+                <div>Hola 2</div>
+                {% endblock Contenido %}
+            </div>
+        </div>
+        <div class="toggle">
+            <i class="abrir fas fa-bars"></i>
+            <i class="cerrar fas fa-times"></i>
+        </div>
+    </div>
+</body>
+{%block scripts%}
+<script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
+{%endblock scripts%}
+
+</html>

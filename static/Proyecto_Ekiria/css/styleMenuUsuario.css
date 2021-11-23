@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #fff;
+}
+
+
+/* ajuste del contenedor de datos con el menu lateral */
+
+.grid {
+    position: fixed;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: initial;
+    background: linear-gradient( black, purple, black);
+    transition: 0.5s;
+    direction: rtl;
+}
+
+
+/*    Scrollbar menú lateral de usuario     */
+
+.nav.activar::-webkit-scrollbar {
+    width: 5px;
+    background: #ff4d89;
+}
+
+.nav.activar::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+
+/*        Estilos del menú lateral    */
+
+.nav {
+    display: none;
+    width: 200px;
+}
+
+.nav.activar {
+    display: block;
+}
+
+.nav ul {
+    position: absolute;
+    top: 0;
+    left: 5px;
+    width: 12%;
+    padding-left: 0px;
+    padding-top: 20px;
+    float: left;
+    text-align: left;
+}
+
+.nav ul li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    z-index: 1;
+}
+
+.nav ul li a {
+    top: 50px;
+    position: relative;
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #fff;
+    overflow: hidden;
+}
+
+
+/* Contenedor de contenido*/
+
+.content.activar {
+    position: relative;
+    background-color: #fff;
+    width: 85%;
+    height: 650px;
+    top: 70px;
+    margin-right: 0px;
+    padding: 10px;
+    border-radius: 20px 0 0 0;
+}
+
+.content {
+    top: 0;
+    background-color: #fff;
+    width: 100%;
+    height: 700px;
+    margin-right: 0px;
+    padding: 10px;
+    border-radius: 0 0 0 0;
+    overflow: auto;
+}
+
+
+/*    Scrollbar del contenedor    */
+
+.content::-webkit-scrollbar {
+    width: 7px;
+    background: #740257;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.content::-webkit-scrollbar-button:single-button {
+    background-color: antiquewhite;
+    display: block;
+    border-style: solid;
+    height: 13px;
+    width: 16px;
+}
+
+
+/*--------------------------------------------*/
+
+.Logo.activar {
+    position: fixed;
+    margin: 10px 40%;
+    top: 0px;
+    z-index: 10;
+}
+
+.Logo {
+    position: fixed;
+    top: 10px;
+    left: 70px;
+    z-index: 10;
+}
+
+.menu.activar {
+    position: sticky;
+    height: 50px;
+}
+
+.menu {
+    position: sticky;
+    top: -10px;
+    width: 100%;
+    height: 65px;
+    border-bottom: 2px solid black;
+    background-color: #fff;
+    margin-right: 0px;
+    z-index: 9;
+}
+
+.content.activar #div {
+    float: left;
+    width: 100%;
+    text-align: left;
+}
+
+.content #div {
+    position: relative;
+    top: 10px;
+    float: left;
+    width: 100%;
+    text-align: left;
+    overflow: auto;
+    margin-left: 10px;
+}
+
+.content ul {
+    position: static;
+    width: 40%;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 5px;
+    list-style: none;
+    z-index: 10;
+    margin-right: 10px;
+}
+
+.content ul li {
+    margin-top: 10px;
+}
+
+.content ul li a {
+    text-decoration: none;
+}
+
+.content .barra {
+    height: 40px;
+    background-color: #fff;
+}
+
+
+/*     Estilos del abridor del menú lateral      */
+
+.toggle {
+    position: fixed;
+    top: 10px;
+    bottom: 0px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background: #740257;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.toggle.activar {
+    background: #ff4d89;
+}
+
+.toggle i {
+    position: absolute;
+    color: #fff;
+    font-size: 25px;
+    display: none;
+}
+
+.toggle i.abrir {
+    display: block;
+}
+
+.toggle.activar i.abrir {
+    display: none;
+}
+
+.toggle.activar i.cerrar {
+    display: block;
+}
