@@ -5,39 +5,100 @@
 }
 .body{
     display: flex;
-    justify-content: center;
+    justify-content: left;
     flex-wrap: wrap;
-    align-items: top;
+    align-items: right;
     min-height: 100vh;
     margin-right: 3%;
     background-color: aliceblue;
+    flex-direction: row-reverse;
 }
 .card{
+    float: left;
     margin-left: 30px;
     margin-top: 30px;
     margin-right: 1%;
     position: relative;
     width: 250px;
-    height: 400px;
+    height: 420px;
     background: white;
     box-shadow: 0 25px 50px rgba(0,0,0,0.15);
     border-radius: 20px;
+    
 }
 .card i{
     position: absolute;
-    top: 40px;
+    top: 20px;
     left: -15px;
     width: 230px;
     height: 50px;
     background-color: rgb(85, 26, 139);
     border-radius: 30px;
+    border-bottom-left-radius: 0;
 }
 
 .card i::before{
     content: '';
     position: absolute;
-    top:30px;
+    left: 0;
+    top:50px;
     width: 15px;
     height: 30px;
-    background: red;
+    background:rgb(59, 12, 104) ;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    z-index: 2;
+}
+
+.card i::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top:50px;
+    width: 15px;
+    height: 15px;
+    background-color: rgb(85, 26, 139);
+}
+
+.img{
+    position: absolute;
+    width: 90%;
+    height: 180px;
+    left: 4.8%;
+    top: 80px;
+    background-color: transparent
+}
+
+.linea{
+    display: inline-block;
+    width: 204.06px;
+    height: 0px;
+    left: 934.82px;
+    top: 560px;
+    background-color: green;
+
+transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.precio{
+    font-family: sans-serif;
+    letter-spacing: 0.10rem;
+    color: white;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 80px;
+}
+
+.nombreP{
+    position: absolute;
+    top: 280px;
+    left: 28px;
+    justify-content: center;
+    padding: 5px;
+}
+
+.img img{
+    width: 100%;
+    height: 180px;
+    box-shadow: -1px 1px 25px 2px rgba(130,130,130,0.65)
 }
