@@ -21,9 +21,8 @@ body {
     width: 100%;
     height: 100%;
     box-sizing: initial;
-    background: linear-gradient( black, purple, black);
+    background: linear-gradient( black, #800080, black);
     transition: 0.5s;
-    direction: rtl;
 }
 
 
@@ -51,18 +50,16 @@ body {
 }
 
 .nav ul {
+    top: 70px;
     position: absolute;
-    top: 0;
     left: 5px;
     width: 12%;
     padding-left: 0px;
-    padding-top: 20px;
     float: left;
     text-align: left;
 }
 
 .nav ul li {
-    position: relative;
     list-style: none;
     width: 100%;
     color: #fff;
@@ -72,13 +69,17 @@ body {
 }
 
 .nav ul li a {
-    top: 50px;
     position: relative;
     display: block;
     width: 100%;
     text-decoration: none;
     color: #fff;
     overflow: hidden;
+    margin: 5px 0;
+}
+
+.nav ul li a {
+    z-index: 10;
 }
 
 
@@ -88,42 +89,53 @@ body {
     position: relative;
     background-color: #fff;
     width: 85%;
-    height: 650px;
+    height: 100%;
     top: 70px;
     margin-right: 0px;
     padding: 10px;
     border-radius: 20px 0 0 0;
+    animation-duration: 1s;
+    transition: 1s;
 }
 
 .content {
-    top: 0;
+    top: 0px;
     background-color: #fff;
     width: 100%;
-    height: 700px;
+    height: 100%;
     margin-right: 0px;
     padding: 10px;
     border-radius: 0 0 0 0;
     overflow: auto;
+    float: right;
+    animation-duration: 1s;
+    transition: 1s;
 }
 
 
 /*    Scrollbar del contenedor    */
 
-.content::-webkit-scrollbar {
-    width: 7px;
-    background: #740257;
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
-.content::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.7);
+ ::-webkit-scrollbar-thumb {
+    border: 3px outset #800080;
+    border-radius: 0px;
+    box-shadow: inset 10px 10px 30px 0px #000000;
 }
 
-.content::-webkit-scrollbar-button:single-button {
-    background-color: antiquewhite;
-    display: block;
-    border-style: solid;
-    height: 13px;
-    width: 16px;
+ ::-webkit-scrollbar-thumb:hover {
+    border: 3px outset #ff4d89;
+    border-radius: 0px;
+    box-shadow: inset 10px 10px 30px 0px #000000;
+}
+
+ ::-webkit-scrollbar-track {
+    background: #fff;
+    border-radius: 0px;
+    box-shadow: inset 10px 10px 0px 10px #000000;
 }
 
 
@@ -141,6 +153,8 @@ body {
     top: 10px;
     left: 70px;
     z-index: 10;
+    animation-duration: 2s;
+    transition: 2s;
 }
 
 .menu.activar {
@@ -155,8 +169,9 @@ body {
     height: 65px;
     border-bottom: 2px solid black;
     background-color: #fff;
-    margin-right: 0px;
     z-index: 9;
+    animation-duration: 2s;
+    transition: 2s;
 }
 
 .content.activar #div {
@@ -169,10 +184,12 @@ body {
     position: relative;
     top: 10px;
     float: left;
-    width: 100%;
+    width: 99.5%;
     text-align: left;
     overflow: auto;
     margin-left: 10px;
+    animation-duration: 2s;
+    transition: 2s;
 }
 
 .content ul {
@@ -182,6 +199,7 @@ body {
     grid-template-columns: repeat(4, auto);
     gap: 5px;
     list-style: none;
+    float: right;
     z-index: 10;
     margin-right: 10px;
 }
@@ -226,6 +244,8 @@ body {
     color: #fff;
     font-size: 25px;
     display: none;
+    animation-duration: 2s;
+    transition: 2s;
 }
 
 .toggle i.abrir {
