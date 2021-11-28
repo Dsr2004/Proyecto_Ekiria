@@ -1,4 +1,5 @@
 {%extends 'Menu_Usuario'}
+{% include 'modal_Prov.html' %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +12,7 @@
     <title>Proveedores</title>
 
     {% endblock head %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleMenuUsuario.css">
     <link rel="stylesheet" href="/static/Modulo_compras/css/style.css">
@@ -74,11 +76,14 @@
                 </ul>
             </div>
             <img class="Logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png" width="179" height="50">
+            
             <div id="div">
+         
                 {% block Contenido %}
-                  <div class="titulo" id="cont1" ><p> Proveedores</p></div>
+                 
                   <div class="container">
-                   <a href=""><img class="agre" src="/static/Modulo_compras/img/agregar.png" alt=""></a> 
+                    <div class="titulo" id="cont1" ><p> Proveedores</p></div>
+                    {%include 'agregar.html'%}
                   <table class="table table-striped">
                       <thead class="table-dark">
                         <tr>
@@ -137,18 +142,20 @@
                         </tr>
                       </tbody>
                     </table>
-                    <img src="/static/Modulo-compras/img/agregar.png" alt="">
                   </div>
                 {% endblock Contenido %}
+             
             </div>
         <div class="toggle">
             <i class="abrir fas fa-bars"></i>
             <i class="cerrar fas fa-times"></i>
         </div>
-    </div>
+    
 </body>
 {%block scripts%}
-<script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
+<script src="/static/Modulo_compras/js/js.js"></script>
+
 {%endblock scripts%}
 
 </html>
