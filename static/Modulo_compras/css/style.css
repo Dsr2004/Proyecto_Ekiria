@@ -1,0 +1,55 @@
+.table td img{
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+#b{
+    width: 60%;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+.titulo p{
+    font-size: 50px;
+    font-family: 'Vast Shadow', cursive;
+    color:rgb(67, 11, 126);
+    transition: all .1s;
+    animation: animar 6s infinite;
+    
+}
+
+#cont1{
+    width: 65%;
+    height: 120px;
+}
+
+@keyframes animar{
+    0%{
+        color: rgba(75, 28, 126, 0.562);
+        transform: translateY(0);
+        }  
+        25%{
+            color: rgba(76, 14, 143, 0.664);
+            transform: translateY(0);
+            margin-left: 5px;
+            text-shadow: 0 10px 5px rgba(118, 8, 190, 0.534);
+            }  
+            100%{
+                color: rgba(46, 12, 90, 0.637);
+                transform: translateY(0);
+                margin-right: 10px;
+            }
+    
+}
+
+.agre{
+    display: flex;
+    width: 6%;
+    height: 55x;
+}
+
+
+
