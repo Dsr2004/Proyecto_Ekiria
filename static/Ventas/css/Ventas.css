@@ -11,7 +11,7 @@
     min-height: 190vh;
     margin-right: 2%;
     background-color: aliceblue;
-    flex-direction: row-reverse; /*Pone las tarjetas del reves*/
+    /* flex-direction: row-reverse; Pone las tarjetas del reves */
 }  
 .card{
     float: center;
