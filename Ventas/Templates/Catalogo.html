@@ -8,24 +8,25 @@
    <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
 </head>
 {% endblock head %}
 
 {% block cambioP %}
-<li><a href="{% url 'carrito' %}"><i class="fas fa-shopping-cart"></i></a></li>
+<li><a href="{% url 'carrito' %}" type="button" class=" btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class=" fas fa-shopping-cart" style="color: #551A8B;"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a></li>
 {% endblock cambioP %}
-   
+
 <!--     Empieza el contenido del catalogo    -->
 {% block Contenido %}
 <h1>Catalogo</h1>
-<div class="container body ">
+<div class=" body ">
    <div class="card">
       <i>
          <h2 class="precio"></h2>
       </i>
       <div class="imgs"><a href="{%url 'personalizar'%}"><img class="Imas" src="/static/Ventas/img/masMorado.png" alt=""></a></div>
       <div class="contenedor-botones">
-         <a class="btn botonC Personalizar" href="{%url 'personalizar'%}"><span>Personalizar</span></a>
+         <a class="botonC Personalizar" href="{%url 'personalizar'%}"><span>Personalizar</span></a>
       </div>
    </div>
    <div class="card">
@@ -34,8 +35,9 @@
       </i>
       <div class="img"><img src="/static/Ventas/img/uña2.jfif" alt=""></div>
       <h2 class="nombreP">Uñas de Halloween</h2>
+      <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="btn botonC Comprar" href="{%url 'carrito'%}">
+         <a class="botonC Comprar" href="{%url 'carrito'%}">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -53,8 +55,9 @@
       </i>
       <div class="img"><img src="/static/Ventas/img/uña3.jfif" alt=""></div>
       <h2 class="nombreP">Uñas de flores</h2>
+      <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="btn botonC Comprar" href="{%url 'carrito'%}">
+         <a class="botonC Comprar" href="{%url 'carrito'%}">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -72,8 +75,9 @@
       </i>
       <div class="img"><img src="/static/Ventas/img/uña4.jfif" alt=""></div>
       <h2 class="nombreP">Uñas con puntos </h2>
+      <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="btn botonC Comprar" href="{%url 'carrito'%}">
+         <a class="botonC Comprar" href="{%url 'carrito'%}">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -91,9 +95,9 @@
       </i>
       <div class="img"><img src="/static/Ventas/img/uña1.jfif" alt=""></div>
       <h2 class="nombreP">Uñas sencillas</h2>
-      <p></p>
+      <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="btn botonC Comprar" href="{%url 'carrito'%}">
+         <a class="botonC Comprar" href="{%url 'carrito'%}">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -106,4 +110,18 @@
       </div>
    </div>
 </div>
+
+<div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+   <div class="offcanvas-header">
+     <h5 id="offcanvasTopLabel">Carrito de Compras</h5>
+     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+   </div>
+   <div class="offcanvas-body">
+    Holis guapo
+   </div>
+</div>
+<script src="/static/bootstrap/js/bootstrap.js"></script>
 {% endblock Contenido %}
+
+
+
