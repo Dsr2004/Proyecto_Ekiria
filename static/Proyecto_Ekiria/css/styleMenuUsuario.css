@@ -43,10 +43,12 @@ body {
 .nav {
     display: none;
     width: 200px;
+    transition: 2s;
 }
 
 .nav.activar {
     display: block;
+    transition: 2s;
 }
 
 .nav ul {
@@ -133,9 +135,9 @@ body {
 }
 
  ::-webkit-scrollbar-track {
-    background: #fff;
+    background: #800080;
     border-radius: 0px;
-    box-shadow: inset 10px 10px 0px 10px #000000;
+    box-shadow: inset 10px 0px 0px 10px rgb(226, 146, 206);
 }
 
 
