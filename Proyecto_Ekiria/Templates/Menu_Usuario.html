@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#cal">
+                    <a href="{% url 'calendario' %}">
                         <i class="fas fa-calendar-day"></i> Calendario
                     </a>
                 </li>
@@ -60,7 +60,7 @@
                     <li><a href="#">Contactenos</a></li>
                     <li><a href="#">Nosotros</a></li>
                     <li><a href="#">Notificaciónes</a></li>
-                    <li><a href="#"><i class="fas fa-shopping-cart"></i> Catalogo</a></li>
+                    {% block cambioP %}<li><a href="{% url 'catalogo' %}">Catalogo</a></li>{% endblock cambioP %}
                 </ul>
             </div>
             <img class="Logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png" width="179" height="50">
