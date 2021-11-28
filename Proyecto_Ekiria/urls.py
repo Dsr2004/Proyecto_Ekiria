@@ -21,5 +21,5 @@ urlpatterns = [
     path('Menu/', Menu),
     path('Inicio/', Inicio),
     path('Nada/', Nada),
-    path('Servicios/',include('Ventas.urls'))
+    path('Ventas/',include('Ventas.urls'))
 ]

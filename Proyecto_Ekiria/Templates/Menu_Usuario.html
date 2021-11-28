@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleMenuUsuario.css">
     <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 <!--                            Zona de menú Horizontal header tamaño maximo 50px                  -->
 <header>
@@ -33,7 +34,7 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="#">
+                    <a href="{% url 'calendario' %}">
                         <span class="icono"><i class="fas fa-calendar-day"></i></span>
                         <span class="nombre">Calendario</span>
                     </a>
@@ -62,11 +63,22 @@
         <div class="content">
             <div class="menu">
                 <ul>
+                    {% if request.path != '/Ventas/Catalogo/' %}
                     <li><a href="#">Contactenos</a></li>
                     <li><a href="#">Nosotros</a></li>
                     <li><a href="#">Notificaciónes</a></li>
-                    <li><a href="{% url 'catalogo' %}">Catalogo</a></li>
+                    <li><a href="{% url 'catalogo' %}"> Catalogo</a></li>
+                    {% else %}
+                    <li><a href="{% url 'carrito' %}"><i class="fas fa-shopping-cart"></i></a></li>
+                    <li><a href="#">Contactenos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Notificaciónes</a></li>
+                    
+                    {% endif %}
                 </ul>
+                
+                
+                    
             </div>
             <img class="Logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png" width="179" height="50">
 
