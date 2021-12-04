@@ -1,3 +1,5 @@
+
+/*size img*/
 .table td img{
     width: 50%;
     height: 30px;
@@ -5,13 +7,31 @@
     margin: 0;
 }
 
+/*Estilos de icono borrar*/
 #b{
     width: 60%;
     height: 30px;
     padding: 0;
     margin: 0;
+    border-radius: 10px;
 }
 
+#b:hover{
+    background-color:rgba(247, 8, 8, 0.205);
+
+}
+
+/*Estilos de icono editar*/
+#e{
+    
+    border-radius: 6px;
+}
+
+#e:hover{
+    background-color:rgba(231, 247, 8, 0.253);
+
+}
+/*titulo proveedor*/
 .titulo p{
     font-size: 50px;
     font-family: 'Vast Shadow', cursive;
@@ -19,11 +39,6 @@
     transition: all .10s;
     animation: animar 2s infinite;
     
-}
-
-#cont1{
-    width: 65%;
-    height: 120px;
 }
 
 @keyframes animar{
@@ -45,12 +60,11 @@
     
 }
 
-.agre{
-    display: flex;
-    width: 6%;
-    height: 55x;
+
+/*contenerdor*/
+#cont1{
+    width: 65%;
+    height: 120px;
 }
-
-
 
 

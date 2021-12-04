@@ -1,0 +1,204 @@
+<!---CREAR PROVEEDOR-->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="agregar_prov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ageLabel">Crear proveedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <form action="" class="form-p">
+            <label for="nombre" >Nombre</label>
+            <br>
+             <input type="text" name="nombre" id="nombre" placeholder="Nombre"class="form-control">
+              <br>
+             <label for="Tel" >Télefono</label>
+             <br>
+              <input type="tel" name="Telefono" id="Tel" placeholder="Télefono" class="form-control">
+              <br>
+              <label for="email" >E-mail</label>
+              <br>
+               <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
+                <br>
+               <label for="encargo" >Encargo</label>
+               <br>
+                <input type="text" name="Encargo" id="encargo" placeholder="Encargo" class="form-control">
+                <br>
+                <label for="descrip" >Descripción</label>
+                <br>
+                <textarea class="form-control" id="descrip" rows="3"></textarea>
+             </form>    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!---BORRAR PROVEEDOR-->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="borrar_prov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ageLabel">Borrar proveedor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       Si quiere borrar al proveedor dale al botón confirmar 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--EDITAR PROVEEDOR--->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="editar_prov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ageLabel">Editar proveedor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form action="" class="form-p">
+          <label for="nombre" >Nombre</label>
+          <br>
+           <input type="text" name="nombre" id="nombre" placeholder="Nombre"class="form-control">
+            <br>
+           <label for="Tel" >Télefono</label>
+           <br>
+            <input type="tel" name="Telefono" id="Tel" placeholder="Télefono" class="form-control">
+            <br>
+            <label for="email" >E-mail</label>
+            <br>
+             <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
+              <br>
+             <label for="encargo" >Encargo</label>
+             <br>
+              <input type="text" name="Encargo" id="encargo" placeholder="Encargo" class="form-control">
+              <br>
+              <label for="descrip" >Descripción</label>
+              <br>
+              <textarea class="form-control" id="descrip" rows="3"></textarea>
+           </form>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!---CREAR PRODUCTOS-->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="agregar_prod" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ageLabel">Crear producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form action="" class="form-p">
+          <label for="prov" >Proveedor</label>
+          <br>
+           <select name="prov" id="proveedor" class="form-control">
+             <option value="">jose</option>
+             <option value="">pablo</option>
+             <option value="">cesar</option>
+
+             
+           </select>
+            <br>
+           <label for="Tel" >Télefono</label>
+           <br>
+            <input type="tel" name="Telefono" id="Tel" placeholder="Télefono" class="form-control">
+            <br>
+            <label for="email" >E-mail</label>
+            <br>
+             <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
+              <br>
+             <label for="encargo" >Encargo</label>
+             <br>
+              <input type="text" name="Encargo" id="encargo" placeholder="Encargo" class="form-control">
+              <br>
+              <label for="descrip" >Descripción</label>
+              <br>
+              <textarea class="form-control" id="descrip" rows="3"></textarea>
+           </form>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!---BORRAR PRODUCTOS-->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="borrar_prod" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="ageLabel">Borrar producto</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+     Si quiere borrar un producto dale al botón confirmar 
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--EDITAR PRODUCTOS--->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="editar_prod" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="ageLabel">Editar producto</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+     <form action="" class="form-p">
+        <label for="nombre" >Nombre</label>
+        <br>
+         <input type="text" name="nombre" id="nombre" placeholder="Nombre"class="form-control">
+          <br>
+         <label for="Tel" >Télefono</label>
+         <br>
+          <input type="tel" name="Telefono" id="Tel" placeholder="Télefono" class="form-control">
+          <br>
+          <label for="email" >E-mail</label>
+          <br>
+           <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
+            <br>
+           <label for="encargo" >Encargo</label>
+           <br>
+            <input type="text" name="Encargo" id="encargo" placeholder="Encargo" class="form-control">
+            <br>
+            <label for="descrip" >Descripción</label>
+            <br>
+            <textarea class="form-control" id="descrip" rows="3"></textarea>
+         </form>    
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
