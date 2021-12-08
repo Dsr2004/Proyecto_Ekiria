@@ -41,25 +41,29 @@ body {
 /*        Estilos del menú lateral    */
 
 .nav {
-    display: none;
     width: 200px;
     transition: 2s;
 }
 
 .nav.activar {
-    display: block;
+    margin-left: 0px;
     transition: 2s;
 }
 
 .nav ul {
     top: 70px;
     position: absolute;
-    left: 5px;
+    margin-left: -300px;
     width: 12%;
     padding-left: 0px;
     float: left;
     text-align: left;
-    transition: 2s;
+    transition: 0s;
+}
+
+.nav.activar ul {
+    margin-left: 10px;
+    transition: 1s;
 }
 
 .nav ul li {
@@ -69,7 +73,6 @@ body {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     z-index: 1;
-    transition: 2s;
 }
 
 .nav ul li a {
@@ -99,8 +102,6 @@ body {
         margin-right: 0px;
         padding: 10px;
         border-radius: 20px 0 0 0;
-        animation: infinite;
-        animation-duration: 1s;
         transition: 1s;
     }
     .content {
@@ -113,8 +114,7 @@ body {
         border-radius: 0 0 0 0;
         overflow: auto;
         float: right;
-        animation-duration: 1s;
-        transition: 1s;
+        transition: 0s;
     }
 }
 
@@ -159,8 +159,8 @@ body {
     top: 10px;
     left: 70px;
     z-index: 10;
-    animation-duration: 2s;
-    transition: 2s;
+    animation-duration: 1s;
+    transition: 1s;
 }
 
 .menu.activar {
@@ -200,9 +200,9 @@ body {
 
 .content ul {
     position: static;
-    width: 25%;
+    width: 30%;
     display: grid;
-    grid-template-columns: repeat(2, auto);
+    grid-template-columns: repeat(3, auto);
     gap: 5px;
     list-style: none;
     float: right;
@@ -212,7 +212,7 @@ body {
 }
 
 .content.activar ul {
-    width: 30%;
+    width: 35%;
 }
 
 .content ul .links {
@@ -257,6 +257,26 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 10;
+    transition: 1s;
+    animation: 1s;
+    animation-name: toggle;
+}
+
+.toggle.activar {
+    animation: 1s;
+    animation-name: toggleA;
+}
+
+@keyframes toggle {
+    to {
+        transform: rotate3d(0, 3, 0, 180deg);
+    }
+}
+
+@keyframes toggleA {
+    to {
+        transform: rotate3d(3, 3, 0, 180deg);
+    }
 }
 
 .toggle i {
@@ -310,14 +330,14 @@ body {
         border-radius: 0 0 0 0;
         overflow: auto;
         float: right;
-        animation-duration: 1s;
-        transition: 1s;
+        animation-duration: 0s;
+        transition: 0s;
     }
     .content ul {
         position: static;
-        width: 35%;
+        width: 50%;
         display: grid;
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(3, auto);
         gap: 5px;
         list-style: none;
         float: right;
@@ -325,7 +345,7 @@ body {
         margin-right: 10px;
     }
     .content.activar ul {
-        width: 40%;
+        width: 55%;
     }
     .content ul .links {
         display: grid;
@@ -376,13 +396,13 @@ body {
         float: right;
         animation-duration: 1s;
         transition: 1s;
-        opacity: 10%;
+        opacity: 0%;
     }
     .content ul {
         position: static;
-        width: 10%;
+        width: 15%;
         display: grid;
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(3, auto);
         gap: 5px;
         list-style: none;
         float: right;
@@ -405,7 +425,10 @@ body {
     }
     .nav {
         display: none;
+        background: rgb(240, 240, 240);
+        background: linear-gradient(0deg, rgba(240, 240, 240, 1) 90%, rgba(128, 0, 128, 1) 94%);
         width: 100%;
+        height: 100%;
         transition: 2s;
     }
     .nav.activar {
@@ -414,9 +437,10 @@ body {
         transition: 2s;
     }
     .nav ul {
+        border-top: 1px solid black;
         top: 70px;
         position: absolute;
-        left: 5px;
+        left: -10px;
         width: 100%;
         padding-left: 0px;
         float: left;
@@ -424,9 +448,10 @@ body {
         transition: 2s;
     }
     .nav ul li {
+        margin-left: 10px;
         list-style: none;
         width: 100%;
-        color: #fff;
+        color: #000;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         z-index: 1;
@@ -437,10 +462,10 @@ body {
         display: block;
         width: 100%;
         text-decoration: none;
-        color: #fff;
+        color: #000;
         overflow: hidden;
-        margin: 10px 0;
-        font-size: 17px;
+        margin: 20px;
+        font-size: 24px;
     }
     .nav ul li a {
         z-index: 10;
@@ -458,5 +483,40 @@ body {
         z-index: 10;
         animation-duration: 2s;
         transition: 2s;
+    }
+    .toggle {
+        position: fixed;
+        top: 20px;
+        bottom: 0px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        transition: 1s;
+        animation: 1s;
+        animation-name: toggle;
+    }
+    .toggle.activar {
+        transition-delay: 0.5s;
+        transition-duration: 0.1s;
+        margin-left: 85%;
+        font-size: 25px;
+        animation: 2s;
+        animation-name: toggleA;
+    }
+    @keyframes toggleA {
+        from {
+            transform: rotate3d(3, 3, 0, 180deg);
+            opacity: 0;
+        }
+        to {
+            opacity: 1s;
+        }
+    }
+    .toggle.activar i.cerrar {
+        color: #000;
     }
 }

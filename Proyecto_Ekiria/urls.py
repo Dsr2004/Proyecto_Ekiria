@@ -15,10 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Proyecto_Ekiria.views import Menu, Inicio, Nada
+from Proyecto_Ekiria.views import Menu, Inicio
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Menu/', Menu),
     path('Inicio/', Inicio),
-    path('Nada/', Nada),
 ]
