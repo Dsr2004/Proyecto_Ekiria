@@ -17,7 +17,7 @@
 <!--                            Zona de menú Horizontal header tamaño maximo 50px                  -->
 <header>
 </header>
-
+<a href="/Ventas/Carrito/" type="button" class=" btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class=" fas fa-shopping-cart" style="color: #551A8B;"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a>
 
 <body>
     <div class="grid">
@@ -32,7 +32,9 @@
                     </a>
                 </li>
                 <li class="list">
-                    <a href="{% url 'calendario' %}">
+
+                    <a href="#cal">
+
                         <i class="fas fa-calendar-day"></i> Calendario
                     </a>
                 </li>
@@ -54,16 +56,17 @@
                 {% block li %} {% endblock li %}
             </ul>
         </div>
+        <img href="/Inicio/" class="Logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png" width="179" height="50">
         <div class="content">
             <div class="menu">
                 <ul>
-                    <li><a href="#">Contactenos</a></li>
-                    <li><a href="#">Nosotros</a></li>
-                    <li><a href="#">Notificaciónes</a></li>
-                    {% block cambioP %}<li><a href="{% url 'catalogo' %}">Catalogo</a></li>{% endblock cambioP %}
+
+                    <li><a class="links" href="#"><i class="fab fa-weixin"></i><p class="atext">Nosotros</p></a></li>
+                    <li><a class="links" href="#"><i class="fas fa-bell"></i><p class="atext">Notificaciónes</p></a></li>
+                    <li><a class="links" href="#"><i class="fas fa-shopping-cart"></i><p class="atext">Catalogo</p></a></li>
+
                 </ul>
             </div>
-            <img class="Logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png" width="179" height="50">
 
             <div id="div">
                 {% block Contenido %}
@@ -82,4 +85,5 @@
 </body>
 {%block scripts%} {%endblock scripts%}
 <script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
+
 </html>
