@@ -14,14 +14,13 @@
     background-color: aliceblue;
 }  
 .card{
-    float: center;
-    margin-left: 30px;
+    float: center;      
+    margin-left: 4%;
     margin-top: 10px;
-    margin-right: 1%;
     position:relative;
     width: 240px;
     height: 430px;
-    background: white;
+    background: red;
     box-shadow: 10px 10px 20px 2px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     margin-right: 25px;
@@ -196,7 +195,7 @@
 	z-index: 1;
 	top: 0;
 	left: calc(-100% - 80px);
-	border-bottom: 80px solid white;
+	border-bottom: 80px solid rgb(61, 61, 224);
 	border-right: 80px solid transparent;
 	transition: .4s ease-in-out all;
 }
