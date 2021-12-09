@@ -60,6 +60,9 @@
     height: 15px;
     background-color: rgb(85, 26, 139);
 }
+.card a{
+    color: white;
+}
 
 .img{
     position: absolute;
@@ -123,7 +126,7 @@
 	justify-content: center;
 	width: 100%;
 	height: 40px;
-	background: rgb(37,40,54);
+	background: white;
     background: linear-gradient(90deg, rgba(37,40,54,1) 7%, rgba(23,25,65,1) 21%, rgba(7,10,77,1) 41%, rgba(36,26,96,1) 58%, rgba(51,7,113,1) 78%, rgba(73,18,148,1) 100%);
 	color: #fff ;
 	font-family: 'Roboto', sans-serif;
@@ -143,6 +146,7 @@
 	position: relative;
 	z-index: 2;
 	transition: .3s ease all;
+    color: white;
     
     
 }
@@ -151,6 +155,7 @@
 	transition: .4s ease-in-out all;
 	position: absolute;
 	left: 30%;
+    color: white;
 }
 
 .botonC.Comprar .iconoC {
@@ -171,6 +176,7 @@
 
 .botonC.Comprar:hover {
 	background: #2f9b05;
+    color: white;
 }
 
 .botonC.Comprar:hover .iconoC {
@@ -180,6 +186,7 @@
 
 .botonC.Comprar:hover span {
 	left: 20px;
+    color: white;
 }
 
 .botonC.VerM::after {
@@ -189,7 +196,7 @@
 	z-index: 1;
 	top: 0;
 	left: calc(-100% - 80px);
-	border-bottom: 80px solid #286cff;
+	border-bottom: 80px solid white;
 	border-right: 80px solid transparent;
 	transition: .4s ease-in-out all;
 }
