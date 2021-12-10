@@ -15,12 +15,14 @@ let content = document.querySelector('.content');
 var nav = document.querySelector('.nav');
 var img = document.querySelector('.Logo');
 var menu = document.querySelector('.menu');
+var foot = document.querySelector('.footer');
 menuToggle.onclick = function() {
         menuToggle.classList.toggle('activar');
         nav.classList.toggle('activar');
         content.classList.toggle('activar');
         img.classList.toggle('activar');
         menu.classList.toggle('activar');
+        foot.classList.toggle('activar');
     }
     /**  Transformador scrollbar por tamaño de lista */
 window.onload = function() {

@@ -21,12 +21,54 @@ body {
     width: 100%;
     height: 100%;
     box-sizing: initial;
-    background: linear-gradient( black, #800080, black);
+    background-color: #000;
     transition: 2s;
 }
 
+.Perfil {
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin: 10px 0;
+    border-bottom: 1px solid white;
+}
 
-/*    Scrollbar menú lateral de usuario     */
+.Perfil a {
+    text-decoration: none;
+}
+
+.Perfil a p {
+    padding: 5px;
+}
+
+.Perfil a p sup {
+    color: red;
+}
+
+.Perfil button {
+    background: none;
+    color: #fff;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    float: right;
+    margin-top: -28px;
+    font-size: 20px;
+}
+
+.foto_perfil {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid #000;
+    outline: 1px solid #fff;
+    background-color: #adadad;
+}
+
+
+/*    Scrollbar menÃº lateral de usuario     */
 
 .nav.activar::-webkit-scrollbar {
     width: 5px;
@@ -38,7 +80,7 @@ body {
 }
 
 
-/*        Estilos del menú lateral    */
+/*        Estilos del menÃº lateral    */
 
 .nav {
     width: 200px;
@@ -54,7 +96,7 @@ body {
     top: 70px;
     position: absolute;
     margin-left: -300px;
-    width: 12%;
+    width: 18%;
     padding-left: 0px;
     float: left;
     text-align: left;
@@ -82,10 +124,8 @@ body {
     text-decoration: none;
     color: #fff;
     overflow: hidden;
-    margin: 5px 0;
-}
-
-.nav ul li a {
+    margin: 20px 5px;
+    font-size: 20px;
     z-index: 10;
 }
 
@@ -97,7 +137,7 @@ body {
     .content.activar {
         position: relative;
         background-color: #fff;
-        width: 85%;
+        width: 80%;
         height: 100%;
         top: 70px;
         margin-right: 0px;
@@ -115,7 +155,7 @@ body {
         border-radius: 0 0 0 0;
         overflow: auto;
         float: right;
-        transition: 0s;
+        transition: 0.2s;
     }
 
 }
@@ -222,9 +262,10 @@ body {
     grid-template-columns: 30% 60%;
 }
 
-.content ul .links i {
+.content ul i {
     margin-left: 40%;
     font-size: 20px;
+    color: rgb(0, 81, 255);
 }
 
 .content ul .links .atext {
@@ -245,7 +286,7 @@ body {
 }
 
 
-/*     Estilos del abridor del menú lateral      */
+/*     Estilos del abridor del menÃº lateral      */
 
 .toggle {
     position: fixed;
@@ -312,7 +353,7 @@ body {
     .content.activar {
         position: relative;
         background-color: #fff;
-        width: 80%;
+        width: 75%;
         height: 100%;
         top: 70px;
         margin-right: 0px;
@@ -347,7 +388,7 @@ body {
         margin-right: 10px;
     }
     .content.activar ul {
-        width: 55%;
+        width: 70%;
     }
     .content ul .links {
         display: grid;
@@ -364,7 +405,7 @@ body {
         top: 70px;
         position: absolute;
         left: 5px;
-        width: 20%;
+        width: 23%;
         padding-left: 0px;
         float: left;
         text-align: left;
@@ -373,6 +414,9 @@ body {
 }
 
 @media (max-width: 700px) {
+    .Perfil {
+        border: 0px solid black;
+    }
     .content {
         top: 0px;
         background-color: #fff;
@@ -385,6 +429,7 @@ body {
         float: right;
         animation-duration: 1s;
         transition: 1s;
+        z-index: 15;
     }
     .content.activar {
         top: 0px;
@@ -402,7 +447,7 @@ body {
     }
     .content ul {
         position: static;
-        width: 15%;
+        width: 30%;
         display: grid;
         grid-template-columns: repeat(3, auto);
         gap: 5px;
@@ -415,7 +460,7 @@ body {
     .content.activar ul {
         width: 60%;
     }
-    .content ul .links i {
+    .content ul i {
         margin-left: 40%;
         font-size: 20px;
     }
@@ -430,11 +475,11 @@ body {
         background: rgb(240, 240, 240);
         background: linear-gradient(0deg, rgba(240, 240, 240, 1) 90%, rgba(128, 0, 128, 1) 94%);
         width: 100%;
-        height: 100%;
         transition: 2s;
     }
     .nav.activar {
         display: block;
+        height: 100%;
         z-index: 11;
         transition: 2s;
     }
@@ -443,6 +488,7 @@ body {
         top: 70px;
         position: absolute;
         left: -10px;
+        margin-left: -1000px;
         width: 100%;
         padding-left: 0px;
         float: left;
@@ -520,5 +566,62 @@ body {
     }
     .toggle.activar i.cerrar {
         color: #000;
+    }
+}
+
+
+/* Footer*/
+
+footer {
+    width: 100%;
+    position: absolute;
+    background-color: #800080;
+    color: white;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    margin-top: 5%;
+    text-decoration: none;
+    z-index: 15;
+    bottom: 0;
+    padding: 5px;
+}
+
+footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0 20px;
+}
+
+footer ul li {
+    margin: 0 10px;
+}
+
+footer ul button {
+    position: absolute;
+    right: 10px;
+    margin-top: -5px;
+}
+
+@media (min-width: 950px) {
+    .footer.activar {
+        width: 80%;
+        right: 0;
+        transition: 1s;
+    }
+}
+
+@media (max-width: 950px) {
+    .footer.activar {
+        width: 75%;
+        right: 0;
+        transition: 1s;
+    }
+}
+
+@media (max-width: 700px) {
+    .footer.activar {
+        width: 100%;
+        transition: 1s;
     }
 }

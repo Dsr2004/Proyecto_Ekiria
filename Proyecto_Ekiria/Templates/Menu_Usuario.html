@@ -13,44 +13,45 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleMenuUsuario.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <!--                            Zona de menú Horizontal header tamaño maximo 50px                  -->
 <header>
 </header>
-<a href="/Ventas/Carrito/" type="button" class=" btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class=" fas fa-shopping-cart" style="color: #551A8B;"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a>
 
 <body>
     <div class="grid">
+        <div class="toggle">
+            <i class="abrir fas fa-bars"></i>
+            <i class="cerrar fas fa-times"></i>
+        </div>
         <!--          Creación del menú lateral        -->
         <div class="nav">
             <ul>
                 <!--           Zona de links de navegación     -->
-                <li class="list activar">
-                    <a href="#perfil">
-                        <!--    Iconos sacados de fontawesome  -->
-                        <i class="far fa-user-circle"></i> Perfil
+                <div class="Perfil list activar">
+                    <a href="InformacionDeUsuario/Perfil/">
+                        <img src="/static/Proyecto_Ekiria/Img/profile.png" class="foto_perfil">
+                        <p>Nombre Usuario <sup>Rol</sup></p>
                     </a>
-                </li>
+                    <button><i class="fas fa-sign-out-alt"></i></button>
+                </div>
                 <li class="list">
 
                     <a href="#cal">
 
-                        <i class="fas fa-calendar-day"></i> Calendario
+                        <!--    Iconos sacados de fontawesome  -->
+                        <i class="fas fa-calendar-day"></i> Configuración
                     </a>
                 </li>
                 <li class="list">
                     <a href="#con">
-                        <i class="fas fa-user-shield"></i> Configuración
+                        <i class="fas fa-user-shield"></i> Servicios
                     </a>
                 </li>
                 <li class="list">
                     <a href="#Proveedores">
-                        <i class="fas fa-user-friends"></i> Proveedores
-                    </a>
-                </li>
-                <li class="list">
-                    <a href="#cer">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+                        <i class="fas fa-user-friends"></i> Productos
                     </a>
                 </li>
                 {% block li %} {% endblock li %}
@@ -62,8 +63,10 @@
                 <ul>
 
                     <li><a class="links" href="#"><i class="fab fa-weixin"></i><p class="atext">Nosotros</p></a></li>
-                    <li><a class="links" href="#"><i class="fas fa-bell"></i><p class="atext">Notificaciónes</p></a></li>
-                    <li><a class="links" href="#"><i class="fas fa-shopping-cart"></i><p class="atext">Catalogo</p></a></li>
+
+                    <li><a href="#" type="button" class=" btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" style="margin-top: -7px;"><i class="fas fa-bell"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a>
+                    </li>
+                    <li><a href="/Ventas/Carrito/" type="button" class=" btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" style="margin-top: -7px;"><i class="fas fa-shopping-cart"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a></li>
 
                 </ul>
             </div>
@@ -77,13 +80,22 @@
                 {% endblock Contenido %}
             </div>
         </div>
-        <div class="toggle">
-            <i class="abrir fas fa-bars"></i>
-            <i class="cerrar fas fa-times"></i>
-        </div>
     </div>
+    <footer class="footer">
+        <p>
+            <ul>
+                <li>
+                    <small>
+                        <em>Todos los derechos reservados &copy </em> <strong>2021</strong>
+                    </small>
+                </li>
+                <button type="button" class="btn btn-info"> Contactenos </button>
+            </ul>
+        </p>
+    </footer>
 </body>
 {%block scripts%} {%endblock scripts%}
 <script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>
