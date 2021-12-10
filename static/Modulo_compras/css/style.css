@@ -31,40 +31,102 @@
     background-color:rgba(231, 247, 8, 0.253);
 
 }
-/*titulo proveedor*/
-.titulo p{
-    font-size: 50px;
-    font-family: 'Vast Shadow', cursive;
-    color:rgb(67, 11, 126);
-    transition: all .10s;
-    animation: animar 2s infinite;
-    
-}
-
-@keyframes animar{
-    0%{
-        color: rgba(75, 28, 126, 0.562);
-        transform: translateX(0);
-        }  
-        25%{
-            color: rgba(76, 14, 143, 0.664);
-            transform: translateY(0);
-            margin-left: 7px;
-            text-shadow: 0 6px 6px rgba(118, 8, 190, 0.534);
-            }  
-            100%{
-                color: rgba(46, 12, 90, 0.637);
-                transform: translateX(0);
-                margin-right: 10px;
-            }
-    
-}
 
 
 /*contenerdor*/
 #cont1{
     width: 65%;
     height: 120px;
+   
+}
+
+.contend{
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 
+/*TITULO ANIMADO*/
+
+:root {
+	--logotipo: #2b035fc4;
+	--profesion: #ffffff;
+	--primario: #480575;
+}
+
+main {
+	width: 90%;
+	max-width: 400px;
+	min-height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.logotipo {
+	padding: 10px;
+	color: var(--logotipo);
+}
+
+.logotipo .subtitulo {
+
+	color: var(--profesion);
+	background: var(--logotipo);
+	padding: 12px 20px;
+	transition: .5s ease all;
+	font-size: 15px;
+	font-family: 'Noto Sans', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.logotipo:hover .subtitulo {
+	background: var(--primario);
+}
+
+.texto-animado {
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.texto-animado > div {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	transition: .3s ease all;
+}
+
+.texto-animado > div.animacion {
+	transform: translateY(-100px);
+}
+
+.texto-animado > div span {
+	font-size:45px;
+	font-weight: normal;
+	line-height: 40px;
+}
+
+.texto-animado .segunda-linea {
+	position: absolute;
+	top: 100px;
+}
+
+@media screen and (max-width: 600px){
+	.texto-animado > div span {
+		font-size: 50px;
+		line-height: 50px;
+	}
+
+	.texto-animado .segunda-linea {
+		top: 50px;
+	}
+
+	.texto-animado > div.animacion {
+		transform: translateY(-50px);
+	}
+
+	.logotipo .subtitulo {
+		font-size: 20px;
+	}
+}
