@@ -21,9 +21,8 @@ body {
     width: 100%;
     height: 100%;
     box-sizing: initial;
-    background: linear-gradient( black, purple, black);
-    transition: 0.5s;
-    direction: rtl;
+    background: linear-gradient( black, #800080, black);
+    transition: 2s;
 }
 
 
@@ -42,27 +41,32 @@ body {
 /*        Estilos del menú lateral    */
 
 .nav {
-    display: none;
     width: 200px;
+    transition: 2s;
 }
 
 .nav.activar {
-    display: block;
+    margin-left: 0px;
+    transition: 2s;
 }
 
 .nav ul {
+    top: 70px;
     position: absolute;
-    top: 0;
-    left: 5px;
+    margin-left: -300px;
     width: 12%;
     padding-left: 0px;
-    padding-top: 20px;
     float: left;
     text-align: left;
+    transition: 0s;
+}
+
+.nav.activar ul {
+    margin-left: 10px;
+    transition: 1s;
 }
 
 .nav ul li {
-    position: relative;
     list-style: none;
     width: 100%;
     color: #fff;
@@ -72,58 +76,72 @@ body {
 }
 
 .nav ul li a {
-    top: 50px;
     position: relative;
     display: block;
     width: 100%;
     text-decoration: none;
     color: #fff;
     overflow: hidden;
+    margin: 5px 0;
+}
+
+.nav ul li a {
+    z-index: 10;
 }
 
 
 /* Contenedor de contenido*/
 
-.content.activar {
-    position: relative;
-    background-color: #fff;
-    width: 85%;
-    height: 650px;
-    top: 70px;
-    margin-right: 0px;
-    padding: 10px;
-    border-radius: 20px 0 0 0;
-}
-
-.content {
-    top: 0;
-    background-color: #fff;
-    width: 100%;
-    height: 700px;
-    margin-right: 0px;
-    padding: 10px;
-    border-radius: 0 0 0 0;
-    overflow: auto;
+@media (min-width: 950px) {
+    .content.activar {
+        position: relative;
+        background-color: #fff;
+        width: 85%;
+        height: 100%;
+        top: 70px;
+        margin-right: 0px;
+        padding: 10px;
+        border-radius: 20px 0 0 0;
+        transition: 1s;
+    }
+    .content {
+        top: 0px;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        margin-right: 0px;
+        padding: 10px;
+        border-radius: 0 0 0 0;
+        overflow: auto;
+        float: right;
+        transition: 0s;
+    }
 }
 
 
 /*    Scrollbar del contenedor    */
 
-.content::-webkit-scrollbar {
-    width: 7px;
-    background: #740257;
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
 }
 
-.content::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.7);
+ ::-webkit-scrollbar-thumb {
+    border: 3px outset #800080;
+    border-radius: 0px;
+    box-shadow: inset 10px 10px 30px 0px #000000;
 }
 
-.content::-webkit-scrollbar-button:single-button {
-    background-color: antiquewhite;
-    display: block;
-    border-style: solid;
-    height: 13px;
-    width: 16px;
+ ::-webkit-scrollbar-thumb:hover {
+    border: 3px outset #ff4d89;
+    border-radius: 0px;
+    box-shadow: inset 10px 10px 30px 0px #000000;
+}
+
+ ::-webkit-scrollbar-track {
+    background: #800080;
+    border-radius: 0px;
+    box-shadow: inset 10px 0px 0px 10px rgb(226, 146, 206);
 }
 
 
@@ -141,6 +159,8 @@ body {
     top: 10px;
     left: 70px;
     z-index: 10;
+    animation-duration: 1s;
+    transition: 1s;
 }
 
 .menu.activar {
@@ -155,8 +175,9 @@ body {
     height: 65px;
     border-bottom: 2px solid black;
     background-color: #fff;
-    margin-right: 0px;
     z-index: 9;
+    animation-duration: 2s;
+    transition: 2s;
 }
 
 .content.activar #div {
@@ -169,21 +190,43 @@ body {
     position: relative;
     top: 10px;
     float: left;
-    width: 100%;
+    width: 99.5%;
     text-align: left;
     overflow: auto;
     margin-left: 10px;
+    animation-duration: 2s;
+    transition: 2s;
 }
 
 .content ul {
     position: static;
-    width: 40%;
+    width: 30%;
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    grid-template-columns: repeat(3, auto);
     gap: 5px;
     list-style: none;
+    float: right;
     z-index: 10;
+    margin-top: 10px;
     margin-right: 10px;
+}
+
+.content.activar ul {
+    width: 35%;
+}
+
+.content ul .links {
+    display: grid;
+    grid-template-columns: 30% 60%;
+}
+
+.content ul .links i {
+    margin-left: 40%;
+    font-size: 20px;
+}
+
+.content ul .links .atext {
+    margin-left: 5px;
 }
 
 .content ul li {
@@ -204,21 +247,36 @@ body {
 
 .toggle {
     position: fixed;
-    top: 10px;
+    top: 20px;
     bottom: 0px;
     left: 10px;
     width: 40px;
     height: 40px;
-    background: #740257;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10;
+    transition: 1s;
+    animation: 1s;
+    animation-name: toggle;
 }
 
 .toggle.activar {
-    background: #ff4d89;
+    animation: 1s;
+    animation-name: toggleA;
+}
+
+@keyframes toggle {
+    to {
+        transform: rotate3d(0, 3, 0, 180deg);
+    }
+}
+
+@keyframes toggleA {
+    to {
+        transform: rotate3d(3, 3, 0, 180deg);
+    }
 }
 
 .toggle i {
@@ -226,16 +284,239 @@ body {
     color: #fff;
     font-size: 25px;
     display: none;
+    animation: alternate;
+    animation-duration: 2s;
+    transition: 2s;
 }
 
 .toggle i.abrir {
     display: block;
+    color: #000000;
 }
 
 .toggle.activar i.abrir {
     display: none;
+    color: #fff;
 }
 
 .toggle.activar i.cerrar {
     display: block;
+}
+
+
+/* Creacion del modo responsive */
+
+@media (max-width: 950px) {
+    .content.activar {
+        position: relative;
+        background-color: #fff;
+        width: 80%;
+        height: 100%;
+        top: 70px;
+        margin-right: 0px;
+        padding: 10px;
+        border-radius: 20px 0 0 0;
+        animation: infinite;
+        animation-duration: 1s;
+        transition: 1s;
+    }
+    .content {
+        top: 0px;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        margin-right: 0px;
+        padding: 10px;
+        border-radius: 0 0 0 0;
+        overflow: auto;
+        float: right;
+        animation-duration: 0s;
+        transition: 0s;
+    }
+    .content ul {
+        position: static;
+        width: 50%;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 5px;
+        list-style: none;
+        float: right;
+        z-index: 10;
+        margin-right: 10px;
+    }
+    .content.activar ul {
+        width: 55%;
+    }
+    .content ul .links {
+        display: grid;
+        grid-template-columns: 30% 60%;
+    }
+    .content ul .links i {
+        margin-left: 40%;
+        font-size: 20px;
+    }
+    .content ul .links .atext {
+        margin-left: 5px;
+    }
+    .nav ul {
+        top: 70px;
+        position: absolute;
+        left: 5px;
+        width: 20%;
+        padding-left: 0px;
+        float: left;
+        text-align: left;
+        transition: 2s;
+    }
+}
+
+@media (max-width: 700px) {
+    .content {
+        top: 0px;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        margin-right: 0px;
+        padding: 10px;
+        border-radius: 0 0 0 0;
+        overflow: auto;
+        float: right;
+        animation-duration: 1s;
+        transition: 1s;
+    }
+    .content.activar {
+        top: 0px;
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        margin-right: 0px;
+        padding: 10px;
+        border-radius: 0 0 0 0;
+        overflow: auto;
+        float: right;
+        animation-duration: 1s;
+        transition: 1s;
+        opacity: 0%;
+    }
+    .content ul {
+        position: static;
+        width: 15%;
+        display: grid;
+        grid-template-columns: repeat(3, auto);
+        gap: 5px;
+        list-style: none;
+        float: right;
+        z-index: 10;
+        margin-right: 20px;
+        transition: 2s;
+    }
+    .content.activar ul {
+        width: 60%;
+    }
+    .content ul .links i {
+        margin-left: 40%;
+        font-size: 20px;
+    }
+    .content ul .links .atext {
+        display: none;
+    }
+    .content.activar ul .links .atext {
+        display: block;
+    }
+    .nav {
+        display: none;
+        background: rgb(240, 240, 240);
+        background: linear-gradient(0deg, rgba(240, 240, 240, 1) 90%, rgba(128, 0, 128, 1) 94%);
+        width: 100%;
+        height: 100%;
+        transition: 2s;
+    }
+    .nav.activar {
+        display: block;
+        z-index: 11;
+        transition: 2s;
+    }
+    .nav ul {
+        border-top: 1px solid black;
+        top: 70px;
+        position: absolute;
+        left: -10px;
+        width: 100%;
+        padding-left: 0px;
+        float: left;
+        text-align: left;
+        transition: 2s;
+    }
+    .nav ul li {
+        margin-left: 10px;
+        list-style: none;
+        width: 100%;
+        color: #000;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        z-index: 1;
+        transition: 2s;
+    }
+    .nav ul li a {
+        position: relative;
+        display: block;
+        width: 100%;
+        text-decoration: none;
+        color: #000;
+        overflow: hidden;
+        margin: 20px;
+        font-size: 24px;
+    }
+    .nav ul li a {
+        z-index: 10;
+    }
+    .Logo.activar {
+        position: fixed;
+        margin: 10px 20%;
+        top: 0px;
+        z-index: 10;
+    }
+    .Logo {
+        position: fixed;
+        top: 10px;
+        left: 70px;
+        z-index: 10;
+        animation-duration: 2s;
+        transition: 2s;
+    }
+    .toggle {
+        position: fixed;
+        top: 20px;
+        bottom: 0px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        transition: 1s;
+        animation: 1s;
+        animation-name: toggle;
+    }
+    .toggle.activar {
+        transition-delay: 0.5s;
+        transition-duration: 0.1s;
+        margin-left: 85%;
+        font-size: 25px;
+        animation: 2s;
+        animation-name: toggleA;
+    }
+    @keyframes toggleA {
+        from {
+            transform: rotate3d(3, 3, 0, 180deg);
+            opacity: 0;
+        }
+        to {
+            opacity: 1s;
+        }
+    }
+    .toggle.activar i.cerrar {
+        color: #000;
+    }
 }
