@@ -211,3 +211,86 @@
   </div>
 </div>
 </div>
+
+
+<!---CREAR COMPRA-->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="agregar_compra" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ageLabel">Crear compra</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form action="" class="form-p">
+          <label for="encar" >Encargo</label>
+          <br>
+          <input type="text" name="encar" id="encar" placeholder="Encargo" class="form-control">
+            <br>
+            <!--posible buscador-->
+            <label for="prov" >Productos</label>
+              <input type="search" placeholder="Dato a buscar" name="prov" id="buscador" class="form-control">
+            <br>
+            <label for="prod">Total</label>
+            <br>
+             <input type="text" name="Prod" id="prod" placeholder="producto" class="form-control">
+              <br>
+              <label for="descrip" >Descripción</label>
+              <br>
+              <textarea class="form-control" id="descrip" rows="3"></textarea>
+           </form>    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!---BORRAR COMPRA-->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="borrar_compra" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="ageLabel">Borrar compra</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+     Si quiere borrar un producto dale al botón confirmar 
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!--EDITAR COMPRA--->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="editar_compra" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="ageLabel">Editar compra</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+     <form action="" class="form-p">
+        <label for="nombre" >Encargo</label>
+        <br>
+         <input type="text" name="nombre" id="nombre" placeholder="Nombre"class="form-control">
+          <br>
+            <label for="descrip" >Descripción</label>
+            <br>
+            <textarea class="form-control" id="descrip" rows="3"></textarea>
+         </form>    
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      <button type="button" class="btn btn-primary" data-bs-dismiss="">Confirmar</button>
+    </div>
+  </div>
+</div>
+</div>

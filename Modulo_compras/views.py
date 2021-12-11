@@ -6,3 +6,6 @@ def Proveedor (request):
 def Productos (request):
     return render(request,"Productos.html")
 
+def Compras (request):
+    return render(request,"conf_compra.html")
+

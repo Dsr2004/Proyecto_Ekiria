@@ -47,3 +47,8 @@ class TextoAnimado {
 }
 
 new TextoAnimado('logo', 'logotipo');
+
+function buscador_interno(){
+
+	filter = inputSearch.value.toUpperCase();
+}
