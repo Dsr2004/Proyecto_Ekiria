@@ -15,9 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Proyecto_Ekiria.views import Menu, Inicio
+from Proyecto_Ekiria.views import Menu, Inicio, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Inicio/', Inicio),
-    path('Menu/', Menu),
+    path('Usuario/', include("ModuloUsuarios.urls")),
 ]

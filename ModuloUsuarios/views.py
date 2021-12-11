@@ -5,4 +5,4 @@ from django.shortcuts import render
 
 #--------------------------------------Cargadores de templates------------------------------------
 def login(request):
-    return render(request, "InformacionUsuario/.html")
+    return render(request, "UserInformation/login.html")
