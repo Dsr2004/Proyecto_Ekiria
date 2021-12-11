@@ -505,7 +505,10 @@ body {
         transition: 2s;
     }
     .Logo.activar {
-        left: -100px;
+        left: 0;
+    }
+    .toggle.activar{
+        left: 25%;
     }
 }
 
