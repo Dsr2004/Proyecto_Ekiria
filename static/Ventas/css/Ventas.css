@@ -11,7 +11,7 @@
     align-items: right;
     min-height: 1vh;
     margin-right: 2%;
-    background-color: rgb(213, 228, 241);
+    background-color: rgb(213, 228, 241) ;
 }  
 .card{
     float: center;      
