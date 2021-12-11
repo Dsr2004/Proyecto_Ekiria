@@ -4,8 +4,8 @@ from django.http import HttpResponse
 def Catalogo(request):
     return render(request, "Catalogo.html")
 
-def Carrito(request):
-    return render(request, "Carrito.html")
+def TerminarPedido(request):
+    return render(request, "TerminarPedido.html")
 
 def Calendario(request):
     return render(request, "Calendario.html")

@@ -1,4 +1,5 @@
-{% extends "Menu_Usuario.html" %} 
+{% extends "Menu_Usuario.html" %}
+
 {% block head %}
 <head>
    <meta charset="UTF-8">
@@ -9,16 +10,14 @@
    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+   {% include "ComplementosVentas.html" %}
 </head>
 {% endblock head %}
-
-{% block cambioP %}
-<li><a href="{% url 'carrito' %}" type="button" class=" btn position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class=" fas fa-shopping-cart" style="color: #551A8B;"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a></li>
-{% endblock cambioP %}
 
 <!--     Empieza el contenido del catalogo    -->
 {% block Contenido %}
 <h1>Catalogo</h1>
+<!-- Servicios del catalogo -->
 <div class=" body ">
    <div class="card">
       <i>
@@ -37,7 +36,7 @@
       <h2 class="nombreP text-center">Uñas de Halloween</h2>
       <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="botonC Comprar" href="{%url 'carrito'%}">
+         <a class="botonC Comprar"type="button" data-bs-toggle="offcanvas" data-bs-target="#Carrito" aria-controls="offcanvasTop">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -46,7 +45,7 @@
             </div>
             <span>Comprar</span>
          </a>
-         <button class="botonC VerM"><span>Ver mas</span></button>
+         <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button>
       </div>
    </div>
    <div class="card">
@@ -57,7 +56,7 @@
       <h2 class="nombreP text-center">Uñas de flores</h2>
       <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="botonC Comprar" href="{%url 'carrito'%}">
+         <a class="botonC Comprar" type="button" data-bs-toggle="offcanvas" data-bs-target="#Carrito" aria-controls="offcanvasTop">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -66,7 +65,7 @@
             </div>
             <span>Comprar</span>
          </a>
-         <button class="botonC VerM"><span>Ver mas</span></button>
+         <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button>
       </div>
    </div>
    <div class="card">
@@ -77,7 +76,7 @@
       <h2 class="nombreP">Uñas con puntos </h2>
       <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="botonC Comprar" href="{%url 'carrito'%}">
+         <a class="botonC Comprar" type="button" data-bs-toggle="offcanvas" data-bs-target="#Carrito" aria-controls="offcanvasTop">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -86,7 +85,7 @@
             </div>
             <span>Comprar</span>
          </a>
-         <button class="botonC VerM"><span>Ver mas</span></button>
+         <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button>
       </div>
    </div>
    <div class="card">
@@ -97,7 +96,7 @@
       <h2 class="nombreP">Uñas sencillas</h2>
       <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="botonC Comprar" href="{%url 'carrito'%}">
+         <a class="botonC Comprar" type="button" data-bs-toggle="offcanvas" data-bs-target="#Carrito" aria-controls="offcanvasTop">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -106,58 +105,14 @@
             </div>
             <span>Comprar</span>
          </a>
-         <button class="botonC VerM"><span>Ver mas</span></button>
+         <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button>
       </div>
    </div>
 </div>
 
-<div class="offcanvas offcanvas-top carrito" tabindex="1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="height: auto; max-height: 500px;">
-   <div class="offcanvas-header">
-     <h5 id="offcanvasTopLabel">Carrito de Compras</h5>
-     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-   </div>
-   <div class="offcanvas-body">
-      <div class="d-flex position-relative container">
-         <img src="/static/Ventas/img/uña1.jfif" class="flex-shrink-0 me-3" alt="...">
-         <div>
-           <h5 class="mt-0">Uñas Sencillas</h5>
-           <p>This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-           <a href="#" class="stretched-link">Go somewhere</a>
-         </div>
-       </div><div class="d-flex position-relative container">
-         <img src="/static/Ventas/img/uña1.jfif" class="flex-shrink-0 me-3" alt="...">
-         <div>
-           <h5 class="mt-0">Uñas Sencillas</h5>
-           <p>This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-           <a href="#" class="stretched-link">Go somewhere</a>
-         </div>
-       </div><div class="d-flex position-relative container">
-         <img src="/static/Ventas/img/uña1.jfif" class="flex-shrink-0 me-3" alt="...">
-         <div>
-           <h5 class="mt-0">Uñas Sencillas</h5>
-           <p>This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-           <a href="#" class="stretched-link">Go somewhere</a>
-         </div>
-       </div><div class="d-flex position-relative container">
-         <img src="/static/Ventas/img/uña1.jfif" class="flex-shrink-0 me-3" alt="...">
-         <div>
-           <h5 class="mt-0">Uñas Sencillas</h5>
-           <p>This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-           <a href="#" class="stretched-link">Go somewhere</a>
-         </div>
-       </div>
-   </div>
-</div>
-<div class="d-flex position-relative container">
-   <img src="/static/Ventas/img/uña1.jfif" class="flex-shrink-0 me-3" alt="...">
-   <div>
-     <h5 class="mt-0">Uñas Sencillas</h5>
-     <p>This is some placeholder content for the custom component. It is intended to mimic what some real-world content would look like, and we're using it here to give the component a bit of body and size.</p>
-     <a href="#" class="stretched-link">Go somewhere</a>
-   </div>
- </div>
+ 
+ <br><br><br><br>
+
+<!-- scripts -->
 <script src="/static/bootstrap/js/bootstrap.js"></script>
 {% endblock Contenido %}
-
-
-
