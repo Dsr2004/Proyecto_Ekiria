@@ -84,38 +84,9 @@
                         </li>
                     </ul>
                 </div>
-                <li class="list">
-                    <a href="#cal">
-                        <!--    Iconos sacados de fontawesome  -->
-                        <i class="fas fa-calendar-day"></i> Configuración
-                    </a>
-                </li>
-                <li class="list">
-                    <a href="#con">
-                        <i class="fas fa-user-shield"></i> Servicios
-                    </a>
-                </li>
-                <li class="list">
-
-                    <a href="#proveedores">
-                        <i class="fas fa-user-friends"></i> Proveedores
-                    </a>
-                </li>
-                <li class="list">
-                    <a href="#cer">
-                        <i class="fas fa-sign-out-alt"></i> Cerrar sesión
-
-                    <a href="#Proveedores">
-                        <i class="fas fa-user-friends"></i> Productos
-                    </a>
-                </li>
-                {% block li %} {% endblock li %}
-            </ul>
-
                 {% endblock menu %}
 
             </nav>
-
         </div>
 
         <img href="/Inicio/" class="Logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png" width="179" height="50">
@@ -124,6 +95,7 @@
             <i class="cerrar fas fa-times"></i>
         </div>
         <div class="content">
+            <div class="fondo"></div>
             <div class="menu">
                 <ul>
                     <li><a class="links" href="#"><i class="mdi mdi-account-group" style="margin-top: -3px;"></i><p class="atext">Nosotros</p></a></li>
@@ -152,9 +124,6 @@
                 <div>Hola 2</div>
                 {% endblock Contenido %}
             </div>
-
-
-            <div class="fondo"></div>
         </div>
     </div>
     {%block scripts%} {%endblock scripts%}

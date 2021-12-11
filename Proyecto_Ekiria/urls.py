@@ -22,8 +22,5 @@ urlpatterns = [
     path('Inicio/', Inicio),
     path('compras/', include('Modulo_compras.urls')),
 
-
-
-
-
 ]
+

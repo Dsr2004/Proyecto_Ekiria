@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'Modulo_compras'
     
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,6 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['Proyecto_Ekiria/Templates','Modulo_compras/Templates'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
