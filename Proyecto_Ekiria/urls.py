@@ -20,13 +20,10 @@ from Modulo_compras.views import Productos,Proveedor
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Inicio/', Inicio),
-<<<<<<< HEAD
     path('compras/', include('Modulo_compras.urls')),
 
 
 
 
-=======
-    path('Menu/', Menu),
->>>>>>> 841f2dc9d880a8cde295993af142bc20bd7b5ef1
+
 ]
