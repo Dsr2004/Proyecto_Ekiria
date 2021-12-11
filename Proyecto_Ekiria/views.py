@@ -8,5 +8,3 @@ def Menu(request):
     return render(request, "Menu_Usuario.html")
 def Inicio(request):
     return render(request, "index.html")
-def Nada(request):
-    return render(request, "nada.html")
