@@ -9,18 +9,33 @@ for (let i = 0; i < list.length; i++) {
         list[i].className = 'list activar';
     }
 }
-/* Caja tipo togger encargada de desplegar el menú lateral */
+list.forEach(listElement => {
+        listElement.addEventListener('click', () => {
+
+            listElement.className = "list activar"
+            let height = 0;
+            let menu = listElement.nextElementSibling;
+            if (menu.clientHeight == "0") {
+                height = menu.scrollHeight;
+                listElement.classList.toggle('arrow');
+            }
+            menu.style.height = height + "px";
+        })
+    })
+    /* Caja tipo togger encargada de desplegar el menú lateral */
 let menuToggle = document.querySelector('.toggle');
 let content = document.querySelector('.content');
 var nav = document.querySelector('.nav');
+var grid = document.querySelector('.grid');
 var img = document.querySelector('.Logo');
 var menu = document.querySelector('.menu');
 menuToggle.onclick = function() {
         menuToggle.classList.toggle('activar');
         nav.classList.toggle('activar');
         content.classList.toggle('activar');
-        img.classList.toggle('activar');
+        grid.classList.toggle('activar');
         menu.classList.toggle('activar');
+        img.classList.toggle('activar');
     }
     /**  Transformador scrollbar por tamaño de lista */
 window.onload = function() {
@@ -29,3 +44,4 @@ window.onload = function() {
         nav.classList.add('notscrollbar')
     }
 };
+/** Submenu */
