@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Ventas',
+
+
 ]
 
 MIDDLEWARE = [
@@ -57,6 +59,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['Proyecto_Ekiria/Templates','Proyecto_Ekiria/Proyecto_Ekiria/Templates', 'Ventas/Templates', 'Proyecto_Ekiria/Ventas/Templates'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
