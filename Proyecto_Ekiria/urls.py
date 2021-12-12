@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('Inicio/', Inicio),
     path('IniciarSesion/', login),
+    path('InformacionUsuario/', include('ModuloUsuarios.urls')),
 ]

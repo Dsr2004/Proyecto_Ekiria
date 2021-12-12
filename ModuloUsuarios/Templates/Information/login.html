@@ -7,15 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Sesion</title>
     <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleLogin.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
 <body>
     <div class="fondo"></div>
+    <div class="difuminacion"></div>
     <div class="contenido">
         <div class="contLogo">
             <img class="logo" src="/static/ModuloUsuarios/img/Logo.png">
         </div>
+        <form id="FormularioInfo">
+            <h1>{% if request.path == '/IniciarSesion/'%}Iniciar Sesión{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Recuperar Contraseña{% endif %}</h1>
+            <div class="form">
+                <div class="flexbox">
+                    <input autocomplete="off" id="campoInfo1" type="text" required>
+                    <label class="lbl-nombre">
+                    <span class="text-nomb"><strong>{% if request.path == '/IniciarSesion/'%}Ingrese  Apodo  o  Correo  Electrónico{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Nueva Contraseña{% endif %}</strong></span>
+                </label>
+                </div> <br>
+                <div class="flexbox">
+                    <input id="campoInfo2" autocomplete="off" type="{% if request.path == '/IniciarSesion/'%}password{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}text{% endif %}" required>
+                    <label class="lbl-nombre">
+                    <span class="text-nomb"><strong>{% if request.path == '/IniciarSesion/'%}Contraseña{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Cofirmar Contraseña{% endif %}</strong></span>
+                </label>
+                </div>
+                <button type="submit" class="boton"><strong>{% if request.path == '/IniciarSesion/'%}Ingresar{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Confirmar{% endif %}</strong></button>
+                <div class="ayuda {% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}activar{% endif %}">
+                    {% if request.path == '/IniciarSesion/'%}<a href="../InformacionUsuario/RecuperarContraseña">!Olvide mi contraseña¡</a>
+                    <a href="">Registrame</a>{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}
+                    <a href="../../IniciarSesion/">Iniciar Sesión</a>{% endif %}
+
+                </div>
+            </div>
+        </form>
     </div>
+    <script src="{% if request.path == '/IniciarSesion/'%}/static/ModuloUsuarios/js/mainLogin.js{% endif %}"></script>
 </body>
 
 </html>

@@ -6,3 +6,5 @@ from django.shortcuts import render
 #--------------------------------------Cargadores de templates------------------------------------
 def login(request):
     return render(request, "Information/login.html")
+def PassR(request):
+    return render(request, "UserInformation/PasswordRecovery.html")
