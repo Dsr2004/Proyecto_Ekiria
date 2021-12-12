@@ -16,10 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Proyecto_Ekiria.views import Menu, Inicio
-from ModuloUsuarios.views import login
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Inicio/', Inicio),
-    path("InicioSesion/", login),
-    path('Usuario/', include("ModuloUsuarios.urls")),
 ]
