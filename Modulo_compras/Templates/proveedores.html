@@ -6,7 +6,6 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Proveedores</title>
-   {% include 'modals.html' %}
    <link rel="stylesheet" href="/static/Modulo_compras/css/style.css">
    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +37,13 @@
 </div>
 </body>
 {% endblock Contenido %}
+
+{% block modal %}
+
+{% include 'modals.html' %}
+
+{% endblock modal%}
+
 {%block scripts%}
 <script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
 <script src="/static/Modulo_compras/js/js.js"></script>
