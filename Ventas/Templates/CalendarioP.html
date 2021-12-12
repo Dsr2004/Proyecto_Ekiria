@@ -1,4 +1,4 @@
-{% include "ComplementosVentas.html" %}
+
 <!-- calendario -->
 <div class="content-page">
     <!-- Start content -->
@@ -6,20 +6,20 @@
         <div class="container-fluid">
  
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-8">
  
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="widget">
                                 <div class="widget-body">
                                     <div class="row">
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 nuevoEvento">
                                             <a href="#" data-toggle="modal" data-target="#add-category" class="btn btn-lg btn-success btn-block waves-effect waves-light">
-                                                <i class="fa fa-plus"></i> Create New
+                                                <i class="fa fa-plus"></i> Nuevo
                                             </a>
                                             <div id="external-events" class="m-t-20">
                                                 <br>
-                                                <p>Drag and drop your event or click in the calendar</p>
+                                                <p>Arrastra y suelta tu evento o haz clic en el calendario</p>
                                                 <div class="external-event bg-primary" data-class="bg-primary">
                                                     <i class="mdi mdi-checkbox-blank-circle mr-2 vertical-middle"></i>New Theme Release
                                                 </div>
@@ -38,7 +38,7 @@
                                             <div class="checkbox m-t-40">
                                                 <input id="drop-remove" type="checkbox">
                                                 <label for="drop-remove">
-                                                    Remove after drop
+                                                        Borrar despues de soltar
                                                 </label>
                                             </div>
  
@@ -64,3 +64,5 @@
     </div> <!-- content -->
  
  </div> 
+
+ {% include "ComplementosVentas.html" %}

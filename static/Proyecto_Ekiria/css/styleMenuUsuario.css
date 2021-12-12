@@ -250,30 +250,7 @@ body {
 }
 
 
-/*    Scrollbar del contenedor    */
 
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
- ::-webkit-scrollbar-thumb {
-    border: 3px outset #800080;
-    border-radius: 0px;
-    box-shadow: inset 10px 10px 30px 0px #000000;
-}
-
- ::-webkit-scrollbar-thumb:hover {
-    border: 3px outset #ff4d89;
-    border-radius: 0px;
-    box-shadow: inset 10px 10px 30px 0px #000000;
-}
-
- ::-webkit-scrollbar-track {
-    background: #800080;
-    border-radius: 0px;
-    box-shadow: inset 10px 0px 0px 10px rgb(226, 146, 206);
-}
 
 
 /*--------------------------------------------*/

@@ -6,5 +6,5 @@ urlpatterns = [
     path('TerminarPedido/', TerminarPedido, name="TerminarPedido"),
     path('Calendario/', Calendario, name="calendario"),
     path('PersonalizarSer/', ServiciosPersonalizados, name="personalizar"),
-
 ]
+

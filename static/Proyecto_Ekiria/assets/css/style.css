@@ -400,6 +400,10 @@ a:focus {
   border-radius: 5px;
   margin-bottom: 20px;
   background-color: #ffffff;
+  height: 540px;
+  overflow: auto;
+  position: relative;
+  margin-top: 80px;
 }
 
 .card-box .card-drop {
@@ -2654,7 +2658,7 @@ File: Pages
    Calendar
 ============= */
 .calendar {
-  float: left;
+  float: right;
   margin-bottom: 0px;
 }
 
@@ -2685,7 +2689,7 @@ File: Pages
 .fc-toolbar .fc-state-active, .fc-toolbar .ui-state-active,
 .fc-toolbar button:focus, .fc-toolbar button:hover,
 .fc-toolbar .ui-state-hover {
-  z-index: 0;
+  z-index: 1;
 }
 
 .fc-widget-header {
@@ -2747,6 +2751,7 @@ File: Pages
   cursor: move;
   margin: 10px 0;
   padding: 6px 10px;
+  z-index: 1000000;
 }
 
 .fc-basic-view td.fc-week-number span {
@@ -5662,8 +5667,10 @@ File: Menu
 }
 
 .content-page {
-  margin-left: 250px;
-  overflow: hidden;
+  /* margin-left: 250px; */
+  margin-top: -200px;
+  height: 80vh;
+
 }
 
 .content-page .content {
@@ -6356,3 +6363,8 @@ File: Responsive
   }
 }
 /*# sourceMappingURL=style.css.map */
+
+
+.nuevoEvento{
+  margin-top: 150px !important;
+}
