@@ -31,7 +31,6 @@
         <!--          Creación del menú lateral        -->
         <div class="backnav">
             <nav class="nav">
-                {% block menu %}
 
                 <div class="menul">
                     <!--Para usar los bloques li copiad y pegar toda la info, ademas agregad la clase activar a la parte donde esta parada-->
@@ -43,49 +42,60 @@
                             <p>Nombre Usuario <sup>Rol</sup></p>
                         </a>
                         <br>
-                        <button><i class="mdi mdi-power"></i></button>
+                        <button><a href="" style="color:#fff;"><i class="mdi mdi-power"></i></a></button>
                     </div>
                     <ul class="list_content">
                         <li class="list_item list_item--click">
-                            <div class="list ">
+
+                            <div class="list  {% if request.path == '/Inicio/'%}activar{% endif %}">
+                                <i class="mdi mdi-view-dashboard"></i>
+                                <a class="nav_link" href="../Inicio/"> Inicio</a>
+                            </div>
+                        </li>
+                        <li class="list_item list_item--click">
+                            <div class="list">
                                 <i class="mdi mdi-view-dashboard"></i>
                                 <a class="nav_link"> Configuración</a>
                                 <i class="list_arrow mdi mdi-chevron-right"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside">Nombre Direccion</li>
-                                <li class="nav_link--inside">Nombre Direccion</li>
-                                <li class="nav_link--inside">Nombre Direccion</li>
+                                <li class="nav_link--inside"><a>Nombre Direccion</a></li>
+                                <li class="nav_link--inside"><a>Nombre Direccion</a></li>
+                                <li class="nav_link--inside"><a>Nombre Direccion</a></li>
                             </ul>
                         </li>
                         <li class="list_item list_item--click">
-                            <div class="list list_button--click">
+                            <div class="list {% if request.path == '/compras/proveedores/'%}activar{% endif %} {% if request.path == '/compras/productos/'%}activar{% endif %}
+                            {% if request.path == '/compras/confcompra/'%}activar{% endif %}list_button--click">
                                 <i class="mdi mdi-archive"></i>
                                 <a class="nav_link"> Productos</a>
                                 <i class="list_arrow mdi mdi-chevron-right"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside">Nombre Direccion</li>
-                                <li class="nav_link--inside">Nombre Direccion</li>
-                                <li class="nav_link--inside">Nombre Direccion</li>
+                                <li class="nav_link--inside"><a>Proveedor</a></li>
+                                <li class="nav_link--inside"><a>Productos</a></li>
+                                <li class="nav_link--inside"><a>Compras</a></li>
                             </ul>
                         </li>
                        
                         <li class="list_item list_item--click">
-                            <div class="list {% if request.path == '/Ventas/Catalogo/'%}activar{% endif %} list_button--click">
+                            <div class="list {% if request.path == '/Ventas/Catalogo/'%}activar{% endif %} {% if request.path == '/Ventas/Calendario/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/TerminarPedido/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/PersonalizarSer/'%}activar{% endif %}list_button--click">
                                 <i class="mdi mdi-basket"></i>
                                 <a class="nav_link"> Servicios</a>
                                 <i class="list_arrow mdi mdi-chevron-right"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside">Nombre Direccion</li>
-                                <li class="nav_link--inside">Nombre Direccion</li>
-                                <li class="nav_link--inside">Nombre Direccion</li>
+                                <li class="nav_link--inside"><a>Catalogo</a></li>
+                                <li class="nav_link--inside"><a>Calendario</a></li>
+                                <li class="nav_link--inside"><a>Finalizar compra</a></li>
+                                <li class="nav_link--inside"><a>Servicios personalizados</a></li>
+                                <br>
                             </ul>
                         </li>
                     </ul>
                 </div>
-                {% endblock menu %}
 
             </nav>
         </div>
@@ -127,7 +137,8 @@
             </div>
         </div>
     </div>
-    {%block scripts%} {%endblock scripts%}
+    <!----->{% block modal %} {% endblock modal %}
+    <!---->{%block scripts%} {%endblock scripts%}
     <script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/static/Proyecto_Ekiria/assets/js/jquery.min.js"></script>

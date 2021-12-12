@@ -97,9 +97,9 @@ body {
 }
 
 .backnav {
-    background-color: #000;
     width: 100%;
     height: 100%;
+    background: linear-gradient(to bottom, #121212, #161616);
 }
 
 .nav.activar {
@@ -158,7 +158,7 @@ body {
     padding: 15px 0;
     text-align: center;
     margin-left: -20px;
-    border-radius: 6px;
+    border-radius: 6px 0 0 6px;
     color: #fff;
 }
 
@@ -205,6 +205,10 @@ body {
     color: #000;
 }
 
+.list.activar a {
+    color: #000;
+}
+
 
 /* Fin Estilos del menu*/
 
@@ -220,7 +224,6 @@ body {
     background: url("/static/Proyecto_Ekiria/Img/fondo.jpg") no-repeat center center;
     position: absolute;
     top: 0px;
-    margin-top: -75px;
     min-height: 100%;
     background-size: cover;
     z-index: 0;
@@ -252,6 +255,13 @@ body {
 
 
 
+ ::-webkit-scrollbar-thumb:hover {
+    border: 3px outset #800080;
+    border-radius: 0px;
+    box-shadow: inset 10px 10px 30px 0px #000000;
+}
+
+
 
 /*--------------------------------------------*/
 
@@ -280,10 +290,10 @@ body {
     position: sticky;
     top: 0px;
     margin: 0 auto;
-    width: 99%;
+    width: 100%;
     height: 65px;
     border-bottom: 2px solid black;
-    background-color: #572364;
+    background: linear-gradient(to bottom, #572364, #2f214a);
     z-index: 9;
     animation-duration: 2s;
     transition: 2s;
@@ -532,15 +542,18 @@ body {
         z-index: 1;
         transition: 2s;
     }
-    .nav .menul li a {
+    .nav .menul .list a {
         position: relative;
         display: block;
         width: 100%;
         text-decoration: none;
-        color: #000;
+        color: #fff;
         overflow: hidden;
         margin: 20px;
         font-size: 24px;
+    }
+    .nav .menul .list.activar a {
+        color: #000;
     }
     .nav .menul li a {
         z-index: 10;
@@ -640,7 +653,7 @@ body {
         transition: transform .3s;
     }
     .nav_link {
-        color: #000;
+        color: #fff;
         display: block;
         margin-top: 0;
         text-decoration: none;
@@ -650,6 +663,9 @@ body {
         text-align: initial;
         margin-left: -50;
         border-radius: 0px;
+        color: #fff;
+    }
+    .nav .menul .list_show a {
         color: #fff;
     }
     .nav_link--inside:hover {
@@ -662,7 +678,7 @@ body {
         font-size: 30px;
         list-style: none;
         width: 90%;
-        color: #000;
+        color: #fff;
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
         z-index: 1;
@@ -670,19 +686,23 @@ body {
     .list_show {
         list-style: none;
         margin-left: 20px;
-        border-left: 2px solid #000;
+        border-left: 2px solid #fff;
         list-style: none;
         transform-origin: height .4s;
         height: 0;
+        color: #fff;
     }
     .list i {
         margin-top: 13px;
+    }
+    .list_show a {
+        color: #fff;
     }
     .list a {
         display: block;
         width: 100%;
         text-decoration: none;
-        color: #000;
+        color: #fff;
         overflow: hidden;
         font-size: 0px;
         z-index: 10;
