@@ -11,7 +11,7 @@
     align-items: right;
     min-height: 1vh;
     margin-right: 2%;
-    background-color: rgb(213, 228, 241);
+    background-color: rgb(213, 228, 241) ;
 }  
 .card{
     float: center;      
@@ -246,3 +246,79 @@
     margin-right: 70px;
     padding: 20px;
 }
+
+
+/* servicios personalizados */
+
+.tituloServicioPersonalizadoComentario{
+    margin-top: 10px;
+    font-size: 30px;
+}
+.fileSerPersonalizado{
+    margin-top: -15px !important;
+}
+
+
+.AgregarServPersonCarrito{
+    margin-top: 50px;
+}
+
+
+/* CALENDARIO */
+
+.historialCitas{
+    margin-top: 100px;
+}
+
+.ContainerHistorialCitas{
+    background: rgba(255, 255, 255, 0.863);
+    width: auto;
+    max-height: 685px;
+    top: 10px;
+    overflow: auto;
+}
+
+
+.ContainerHistorialCitas legend{
+    margin-top: 30px;
+}
+.verMasDetalleCitaCalendario{
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+.containerEstadoCita{
+    width: 7vw;
+    height: 6vh;
+    background-color: white;
+    color: black;
+    
+}
+
+.EstadoCitaTextoCalendario{
+    text-align: center;
+    top: 13px;
+    position: relative;
+    font-size:12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.containerEstadoCita.EnEspera{
+    background-color: rgba(0, 0, 177, 0.562);
+    color: rgb(218, 195, 195);
+}
+
+.containerEstadoCita.Cancelado{
+    background-color: rgba(177, 0, 0, 0.562);
+    color: rgb(218, 195, 195);;
+}
+.containerEstadoCita.Realizado{
+    background-color: rgba(0, 177, 38, 0.562);
+    color: rgb(238, 235, 235);;
+}
+.LinkDetalleCita{
+    color: black;
+}
+
+/* DETALLES DE LA CITAS  */

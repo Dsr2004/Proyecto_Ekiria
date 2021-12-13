@@ -13,5 +13,26 @@
 
 {% block Contenido %}
 <h1>Agrega un servicio personalizado</h1>
-<img src="/static/Ventas/img/ENConstruccion.jpg" alt="">
+<div>
+    <div class="row">
+        <div class="col">
+            <select class="form-select form-select-lg " >
+                <option selected>Tipo de Servicio</option>
+                <option value="1">Manicure</option>
+                <option value="2">Pedicure</option>
+              </select>
+        </div>
+        <div class="col container">
+            <i class="fas fa-file-image" style="width: 50px; font-size: 60px;"></i>
+            <input type="file" class="fileSerPersonalizado">
+        </div>
+    </div>
+    <label class=" tituloServicioPersonalizadoComentario">Descríbanos lo que quiere</label>
+    <div class="form-floating container descripcion" style="width:90vw;">
+        
+        <textarea class="form-control personalizarServicio"></textarea>
+        <label>Comentario</label>
+      </div>
+      <a class="btn btn-block btn-success  AgregarServPersonCarrito"  type="button" data-bs-toggle="offcanvas" data-bs-target="#Carrito" aria-controls="offcanvasTop"> Agregar al Carrito</a>
+</div>
 {% endblock Contenido %}

@@ -1,5 +1,6 @@
+{% include "ComplementosVentas.html" %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     {% block head %}
@@ -41,11 +42,12 @@
                             <img src="/static/Proyecto_Ekiria/Img/profile.png" class="foto_perfil">
                             <p>Nombre Usuario <sup>Rol</sup></p>
                         </a>
-                        <br>
+                        <br><br><br>
                         <button><a href="{%url 'IniciarSesion'%}" style="color:#fff;"><i class="mdi mdi-power"></i></a></button>
                     </div>
                     <ul class="list_content">
                         <li class="list_item list_item--click">
+
                             <div class="list  {% if request.path == '/Inicio/'%}activar{% endif %}">
                                 <i class="mdi mdi-view-dashboard"></i>
                                 <a class="nav_link" href="{%url 'Inicio'%}"> Inicio</a>
@@ -76,6 +78,7 @@
                                 <li class="nav_link--inside"><a>Compras</a></li>
                             </ul>
                         </li>
+
                         <li class="list_item list_item--click">
                             <div class="list 
                             {% if request.path == '/Ventas/Catalogo/'%}activar{% endif %} 
@@ -104,8 +107,8 @@
                                 <li class="nav_link--inside"><a href="{%url 'listarServicios'%}">Servicios</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'listarCitas'%}">Citas</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'detalleCita'%}">Detalles de cita</a></li>
+                                <br>
                             </ul>
-                            <br>
                         </li>
                     </ul>
                 </div>
@@ -118,7 +121,6 @@
             <i class="abrir fas fa-bars"></i>
             <i class="cerrar fas fa-times"></i>
         </div>
-
         <div class="content">
             <div class="fondo"></div>
             <div class="menu">

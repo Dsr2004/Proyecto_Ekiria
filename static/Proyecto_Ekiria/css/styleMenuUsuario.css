@@ -100,6 +100,7 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(to bottom, #121212, #161616);
+    overflow: auto;
 }
 
 .nav.activar {
@@ -253,13 +254,14 @@ body {
 }
 
 
-/*    Scrollbar del contenedor    */
+
 
  ::-webkit-scrollbar-thumb:hover {
     border: 3px outset #800080;
     border-radius: 0px;
     box-shadow: inset 10px 10px 30px 0px #000000;
 }
+
 
 
 /*--------------------------------------------*/
@@ -616,6 +618,7 @@ body {
     }
     .backnav {
         background-color: #fff;
+        overflow: auto;
     }
     .nav .menul {
         margin-left: -1000px;
