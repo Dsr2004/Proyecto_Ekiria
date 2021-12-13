@@ -49,33 +49,35 @@
                         <li class="list_item list_item--click">
 
                             <div class="list  {% if request.path == '/Inicio/'%}activar{% endif %}">
-                                <i class="mdi mdi-view-dashboard"></i>
+                                <i class="mdi mdi-home"></i>
                                 <a class="nav_link" href="{%url 'Inicio'%}"> Inicio</a>
                             </div>
                         </li>
                         <li class="list_item list_item--click">
-                            <div class="list {%if request.path == '/InformacionUsuario/'%}">
+                            <div class="list {%if request.path == '/InformacionUsuario/Administracion/'%}activar{% endif %}">
                                 <i class="mdi mdi-view-dashboard"></i>
                                 <a class="nav_link"> Configuración</a>
                                 <i class="list_arrow mdi mdi-chevron-right"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside"><a>Administración de Usuarios</a></li>
-                                <li class="nav_link--inside"><a>Nombre Direccion</a></li>
-                                <li class="nav_link--inside"><a>Nombre Direccion</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'Administracion'%}">Administración de Usuarios</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;">Nombre Direccion</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;">Nombre Direccion</a></li>
                             </ul>
                         </li>
                         <li class="list_item list_item--click">
-                            <div class="list {% if request.path == '/compras/proveedores/'%}activar{% endif %} {% if request.path == '/compras/productos/'%}activar{% endif %}
+                            <div class="list 
+                            {% if request.path == '/compras/proveedores/'%}activar{% endif %} 
+                            {% if request.path == '/compras/productos/'%}activar{% endif %}
                             {% if request.path == '/compras/confcompra/'%}activar{% endif %}list_button--click">
                                 <i class="mdi mdi-archive"></i>
                                 <a class="nav_link"> Productos</a>
                                 <i class="list_arrow mdi mdi-chevron-right"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside"><a>Proveedor</a></li>
-                                <li class="nav_link--inside"><a>Productos</a></li>
-                                <li class="nav_link--inside"><a>Compras</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;">Proveedor</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;">Productos</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;">Compras</a></li>
                             </ul>
                         </li>
 
@@ -99,14 +101,14 @@
                                 <i class="list_arrow mdi mdi-chevron-right"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside"><a href="{%url 'catalogo'%}">Catalogo</a></li>
-                                <li class="nav_link--inside"><a href="{%url 'calendario'%}">Calendario</a></li>
-                                <li class="nav_link--inside"><a href="{%url 'TerminarPedido'%}">Finalizar compra</a></li>
-                                <li class="nav_link--inside"><a href="{%url 'personalizar'%}">Servicios personalizados</a></li>
-                                <li class="nav_link--inside"><a href="{%url 'adminVentas'%}">Administración de ventas</a></li>
-                                <li class="nav_link--inside"><a href="{%url 'listarServicios'%}">Servicios</a></li>
-                                <li class="nav_link--inside"><a href="{%url 'listarCitas'%}">Citas</a></li>
-                                <li class="nav_link--inside"><a href="{%url 'detalleCita'%}">Detalles de cita</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'catalogo'%}">Catalogo</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'calendario'%}">Calendario</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'TerminarPedido'%}">Finalizar compra</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'personalizar'%}">Servicios personalizados</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'adminVentas'%}">Administración de ventas</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'listarServicios'%}">Servicios</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'listarCitas'%}">Citas</a></li>
+                                <li class="nav_link--inside"><a style="color:#fff;" href="{%url 'detalleCita'%}">Detalles de cita</a></li>
                                 <br>
                             </ul>
                         </li>

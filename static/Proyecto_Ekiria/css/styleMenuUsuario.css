@@ -163,6 +163,10 @@ body {
     color: #fff;
 }
 
+.nav_link--inside a {
+    color: #fff;
+}
+
 .nav_link--inside:hover {
     background: #c9c9c9;
     color: #000;
@@ -237,7 +241,6 @@ body {
 
 /* Contenedor de contenido*/
 
-
 @media (min-width: 950px) {
     .content.activar {
         margin-right: 0px;
@@ -250,18 +253,13 @@ body {
         float: right;
         transition: 0.2s;
     }
-
 }
-
-
-
 
  ::-webkit-scrollbar-thumb:hover {
     border: 3px outset #800080;
     border-radius: 0px;
     box-shadow: inset 10px 10px 30px 0px #000000;
 }
-
 
 
 /*--------------------------------------------*/
