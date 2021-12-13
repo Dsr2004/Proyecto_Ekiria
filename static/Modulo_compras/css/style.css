@@ -136,3 +136,21 @@ main {
 		font-size: 20px;
 	}
 }
+
+
+/*contenerdor de la tabla en el modal*/
+
+.cont-tabl{
+
+	width:80%;
+
+}
+
+.cont-tabl td{
+ justify-items: center;
+}
+
+.modal-content{
+	width: 145% !important;
+    right: 22% !important;
+}
