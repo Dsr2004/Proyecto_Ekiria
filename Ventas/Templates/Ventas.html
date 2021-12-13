@@ -1,0 +1,82 @@
+{% extends "Menu_Usuario.html" %} 
+
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administracion Ventas</title>
+    <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
+    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>{% endblock head %}
+
+{% block Contenido %}
+<h1>Administracion Ventas</h1>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+           <tr>
+              <th scope="col">#</th>
+              <th scope="col">Foto</th>
+              <th scope="col">Servicio</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Acciones</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr>
+              <th scope="row">1</th>
+              <td><img src="/static/Ventas/img/uña1.jfif" class="" width="150" height="100"></td>
+              <td>Uñas Sencillas</td>
+              <td>$15000</td>
+              <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
+                  </div>
+              </td>
+           </tr>
+           <tr>
+              <th scope="row">2</th>
+              <td><img src="/static/Ventas/img/uña1.jfif" class="" width="150" height="100"></td>
+              <td>Uñas Sencillas</td>
+              <td>$15000</td>
+              <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Habilitar para el catalogo</label>
+                  </div>
+              </td>
+           </tr>
+           <tr>
+              <th scope="row">3</th>
+              <td><img src="/static/Ventas/img/uña1.jfif" class="" width="150" height="100"></td>
+              <td>Uñas Sencillas</td>
+              <td>$15000</td>
+              <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
+                  </div>
+              </td>
+           </tr>
+           <tr>
+              <th scope="row">4</th>
+              <td><img src="/static/Ventas/img/uña1.jfif" class="" width="150" height="100"></td>
+              <td>Uñas Sencillas</td>
+              <td>$15000</td>
+              <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
+                  </div>
+              </td>
+           </tr>
+        </tbody>
+     </table>
+     
+</div>
+
+
+{% endblock Contenido %}

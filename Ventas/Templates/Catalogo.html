@@ -10,7 +10,7 @@
    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
-   {% include "ComplementosVentas.html" %}
+  
 </head>
 {% endblock head %}
 
@@ -110,9 +110,23 @@
    </div>
 </div>
 
- 
  <br><br><br><br>
 
+
+{% block modal %}
+ 
+
+
+{% endblock modal %}
+
+
+
+
+
+
 <!-- scripts -->
+{% block scripts %}
 <script src="/static/bootstrap/js/bootstrap.js"></script>
+{% endblock scripts %}
+
 {% endblock Contenido %}

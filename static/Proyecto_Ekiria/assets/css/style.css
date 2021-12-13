@@ -394,16 +394,15 @@ a:focus {
 
 /* Card Box */
 .card-box {
-  padding: 20px;
+  padding: 10px;
   -webkit-box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
           box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
   border-radius: 5px;
   margin-bottom: 20px;
   background-color: #ffffff;
-  height: 540px;
   overflow: auto;
   position: relative;
-  margin-top: 80px;
+  margin-top: 140px;
 }
 
 .card-box .card-drop {
@@ -5675,7 +5674,7 @@ File: Menu
 
 .content-page .content {
   padding: 0 10px;
-  margin-top: 75px;
+  margin-top: 70px;
 }
 
 .button-menu-mobile {
