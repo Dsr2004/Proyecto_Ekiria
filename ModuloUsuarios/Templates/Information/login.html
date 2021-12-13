@@ -34,9 +34,9 @@
                 </div>
                 <button type="submit" class="boton"><strong>{% if request.path == '/IniciarSesion/'%}Ingresar{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Confirmar{% endif %}</strong></button>
                 <div class="ayuda {% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}activar{% endif %}">
-                    {% if request.path == '/IniciarSesion/'%}<a href="../InformacionUsuario/RecuperarContraseña">!Olvide mi contraseña¡</a>
-                    <a href="">Registrame</a>{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}
-                    <a href="../../IniciarSesion/">Iniciar Sesión</a>{% endif %}
+                    {% if request.path == '/IniciarSesion/'%}<a href="{%url 'RecuperarContraseña'%}}">!Olvide mi contraseña¡</a>
+                    <a href="{%url 'Registro'%}">Registrame</a>{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}
+                    <a href="{%url 'IniciarSesion'%}">Iniciar Sesión</a>{% endif %}
 
                 </div>
             </div>
