@@ -53,7 +53,7 @@
 .flexbox {
     position: relative;
     width: 90%;
-    height: 45px;
+    height: 55px;
     margin: 0 0%;
     display: flex;
     justify-content: center;
@@ -138,7 +138,7 @@ form h1 {
 
 .flexbox input:focus+.lbl-nombre .text-nomb,
 .flexbox input:valid+.lbl-nombre .text-nomb {
-    transform: translateY(-150%);
+    transform: translateY(-100%);
     font-size: 14px;
     color: #2ecece;
 }
