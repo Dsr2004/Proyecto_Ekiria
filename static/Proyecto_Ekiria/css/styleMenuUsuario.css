@@ -236,6 +236,7 @@ body {
 
 /* Contenedor de contenido*/
 
+
 @media (min-width: 950px) {
     .content.activar {
         margin-right: 0px;
@@ -248,6 +249,7 @@ body {
         float: right;
         transition: 0.2s;
     }
+
 }
 
 

@@ -1,0 +1,38 @@
+{% extends "Menu_Usuario.html" %} 
+
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario</title>
+    <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
+    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="/static/Ventas/css/bootstrap.min.css">
+   <!-- calendario -->
+   <link rel="stylesheet" href="/static/Ventas/plugins/fullcalendar/css/fullcalendar.min.css">
+   <link rel="stylesheet" href="/static/Ventas/css/style.css">
+
+   <!-- jquery  -->
+   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
+
+
+ 
+</head>
+{% endblock head %}
+
+{% block Contenido %}
+<h1>Calendario</h1>
+{% include "CalendarioP.html" %}
+<!-- scripts -->
+<script src="/static/Ventas/js/bootstrap.min.js"></script>
+<script src="/static/Ventas/plugins/jquery-ui/jquery-ui.min.js"></script>
+<script src="/static/Ventas/plugins/moment/moment.js"></script>
+<script src="/static/Ventas/plugins/fullcalendar/js/fullcalendar.min.js"></script>
+<script src="/static/Ventas/js/jquery.fullcalendar.js"></script>
+
+
+{% endblock Contenido %}
