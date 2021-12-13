@@ -14,5 +14,5 @@ urlpatterns = [
     path('AgregarCita/', AgregarCita, name="agregarCita"),
     path('ListadoCitas/', ListarCita, name="listarCitas"),
     path('EditarCita/', EditarCita, name="editarCita"),
-]
+]  
 
