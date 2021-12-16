@@ -25,6 +25,8 @@ urlpatterns = [
     path('Ventas/',include('Ventas.urls')),
     path('InformacionUsuario/', include('ModuloUsuarios.urls')),
     path('compras/', include('Modulo_compras.urls')),
+    path('config/', include('ModuloConfig.urls')),
+
 
 ]
 

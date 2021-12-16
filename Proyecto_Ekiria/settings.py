@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ModuloUsuarios',
     'Ventas',
-    'Modulo_compras'
+    'Modulo_compras',
+    'ModuloConfig'
 ]    
 
 
@@ -59,7 +60,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Proyecto_Ekiria/Templates', 'ModuloUsuarios/Templates','Ventas/Templates', 'Proyecto_Ekiria/Ventas/Templates','Modulo_compras/Templates'],
+        'DIRS': ['Proyecto_Ekiria/Templates', 'ModuloUsuarios/Templates','Ventas/Templates', 'Proyecto_Ekiria/Ventas/Templates','Modulo_compras/Templates','ModuloConfig/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
