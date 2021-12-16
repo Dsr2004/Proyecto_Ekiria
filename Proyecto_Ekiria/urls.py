@@ -21,7 +21,10 @@ urlpatterns = [
     path('Inicio/', Inicio, name="Inicio"),
     path('IniciarSesion/', login, name="IniciarSesion"),
     path('Registro/', Register, name="Registro"),
-    path('InformacionUsuario/', include('ModuloUsuarios.urls')),
-    path('Ventas/',include('Ventas.urls')),
     path('Menu/', Menu),
+    path('Ventas/',include('Ventas.urls')),
+    path('InformacionUsuario/', include('ModuloUsuarios.urls')),
+    path('compras/', include('Modulo_compras.urls')),
+
 ]
+

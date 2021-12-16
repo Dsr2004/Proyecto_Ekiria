@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ModuloUsuarios',
     'Ventas',
-]
+    'Modulo_compras'
+]    
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Proyecto_Ekiria/Templates', 'ModuloUsuarios/Templates','Ventas/Templates', 'Proyecto_Ekiria/Ventas/Templates'],
+        'DIRS': ['Proyecto_Ekiria/Templates', 'ModuloUsuarios/Templates','Ventas/Templates', 'Proyecto_Ekiria/Ventas/Templates','Modulo_compras/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
