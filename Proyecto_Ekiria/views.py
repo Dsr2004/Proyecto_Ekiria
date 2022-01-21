@@ -7,8 +7,7 @@ from ModuloUsuarios.models import *
 
 #--------------------------------------Cargadores de templates------------------------------------
 def Menu(request):
-    usuario = Usuario.objects.filter(id_usuario=1)
-    return render(request, "Menu_Usuario.html", {'user':usuario})
+    return render(request, "Menu_Usuario.html")
 def Inicio(request):
     usuarios = Usuario.objects.filter()
     return render(request, "index.html", {"usuarios":usuarios})
