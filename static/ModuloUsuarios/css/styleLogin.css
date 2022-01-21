@@ -1,3 +1,33 @@
+.mensajes {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 15;
+    background-color: #c7c7c7;
+    width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.mensajes li {
+    list-style: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.mensajes li::before {
+    content: '';
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    background-size: 15px;
+    background-image: url(/static/ModuloUsuarios/img/alert.png);
+    background-repeat: no-repeat;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: -3px;
+}
+
 .fondo {
     background: url("/static/ModuloUsuarios/img/Fondo.png") no-repeat center center;
     position: absolute;
@@ -16,7 +46,7 @@
     position: absolute;
     border-radius: 20px;
     width: 73%;
-    height: 416px;
+    height: 53%;
     left: 14%;
     top: 19%;
     background: rgba(83, 6, 119, 0.8);
@@ -27,7 +57,7 @@
     position: absolute;
     border-radius: 20px;
     width: 71%;
-    height: 400px;
+    height: 52%;
     left: 15%;
     top: 20%;
     background: rgba(83, 6, 119, 0.6);
@@ -77,6 +107,7 @@ form h1 {
 
 .form {
     margin-top: 50px;
+    height: 50%;
 }
 
 .flexbox input {

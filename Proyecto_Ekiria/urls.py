@@ -23,5 +23,4 @@ urlpatterns = [
     path('Registro/', Register, name="Registro"),
     path('InformacionUsuario/', include('ModuloUsuarios.urls')),
     path('Ventas/',include('Ventas.urls')),
-    path('Menu/', Menu),
 ]
