@@ -22,15 +22,15 @@
             <h1>{% if request.path == '/IniciarSesion/'%}Iniciar Sesión{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Recuperar Contraseña{% endif %}</h1>
             <div class="form">
                 <div class="flexbox">
-                    <input autocomplete="off" id="apodo" name="apodo" type="text" required>
+                    <input autocomplete="off" id="username" name="username" type="text" required>
                     <label class="lbl-nombre">
-                    <span class="text-nomb"><strong>{% if request.path == '/IniciarSesion/'%}Ingrese  Apodo  o  Correo  Electrónico{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Nueva Contraseña{% endif %}</strong></span>
+                    <span class="text-nomb"><strong>Ingrese El Nombre De Usuario</strong></span>
                 </label>
                 </div> <br>
                 <div class="flexbox">
                     <input id="password" name="password" autocomplete="off" type="{% if request.path == '/IniciarSesion/'%}password{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}text{% endif %}" required>
                     <label class="lbl-nombre">
-                    <span class="text-nomb"><strong>{% if request.path == '/IniciarSesion/'%}Contraseña{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Cofirmar Contraseña{% endif %}</strong></span>
+                    <span class="text-nomb"><strong>Contraseña</strong></span>
                 </label>
                 </div>
             </div><br>

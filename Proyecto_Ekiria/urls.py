@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Proyecto_Ekiria.views import Menu, Inicio
-from ModuloUsuarios.views import login, Register
+from ModuloUsuarios.views import Login, Register
 from rest_framework.authtoken import views
 urlpatterns = [
     path('', Inicio, name="Inicio"),
-    path('IniciarSesion/', login, name="IniciarSesion"),
+    path('IniciarSesion/', Login.as_view(), name="IniciarSesion"),
     path('Registro/', Register, name="Registro"),
     path('InformacionUsuario/', include('ModuloUsuarios.urls')),
     path('Ventas/',include('Ventas.urls')),
