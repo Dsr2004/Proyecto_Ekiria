@@ -9,5 +9,4 @@ from ModuloUsuarios.models import *
 def Menu(request):
     return render(request, "Menu_Usuario.html")
 def Inicio(request):
-    usuarios = Usuario.objects.filter()
-    return render(request, "index.html", {"usuarios":usuarios})
+    return render(request, "index.html")

@@ -38,7 +38,7 @@
                     <div class="Perfil">
                         <a href="{%url 'Perfil'%}">
                             <img src="/static/Proyecto_Ekiria/Img/profile.png" class="foto_perfil">
-                            <p class="escon">{%for c in usuarios%} {{c.nombres}} <sup>{{c.rol}}</sup> {% endfor %}</p>
+                            <p class="escon">Nombre de Usuario <sup>Rol</sup> </p>
                         </a>
                     </div>
                     <ul class="list_content">
@@ -126,42 +126,44 @@
             <i class="abrir fas fa-bars "></i>
             <i class="cerrar fas fa-times "></i>
         </div>
+
         <div class="content ">
 
-            <div class="menu ">
-
-                <ul>
-                    <li><a class="links " href="# "><i class="mdi mdi-account-group " style="margin-top: -3px; "></i><p class="atext ">Nosotros</p></a></li>
-                    <div class="notification-box ">
-                        <ul class="list-inline mb-0 ">
-                            <li>
-                                <a href="javascript:void(0); " class="right-bar-toggle ">
-                                    <i class="mdi mdi-bell noti-icon "></i>
-                                </a>
-                                <div class="noti-dot " style="margin-left: -6px; ">
-                                    <span class="dot "></span>
-                                    <span class="pulse "></span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <li><a href="/Ventas/Carrito/ " type="button " class=" btn position-relative " data-bs-toggle="offcanvas " data-bs-target="#Carrito " aria-controls="offcanvasTop " style="margin-top: -7px; "><i class="fas fa-shopping-cart
-                            "></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">0</span></a></li>
-                </ul>
-            </div>
-
-            <div id="div ">
-
-                {% block Contenido %}
-                <div>
-                    <input type="search ">
-                </div>
-                <div>Hola 2</div>
-                {% endblock Contenido %}
-
-            </div>
-
             <div class="fondo "></div>
+            <div class="relle">
+                <div class="menu ">
+
+                    <ul>
+                        <li><a class="links " href="# "><i class="mdi mdi-account-group " style="margin-top: -3px; "></i><p class="atext ">Nosotros</p></a></li>
+                        <div class="notification-box ">
+                            <ul class="list-inline mb-0 ">
+                                <li>
+                                    <a href="javascript:void(0); " class="right-bar-toggle ">
+                                        <i class="mdi mdi-bell noti-icon "></i>
+                                    </a>
+                                    <div class="noti-dot " style="margin-left: -6px; ">
+                                        <span class="dot "></span>
+                                        <span class="pulse "></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <li><a href="/Ventas/Carrito/ " type="button " class=" btn position-relative " data-bs-toggle="offcanvas " data-bs-target="#Carrito " aria-controls="offcanvasTop " style="margin-top: -7px; "><i class="fas fa-shopping-cart
+                            "></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">0</span></a></li>
+                    </ul>
+                </div>
+
+                <div id="div ">
+
+                    {% block Contenido %}
+                    <div>
+                        <input type="search ">
+                    </div>
+                    <div>Hola 2</div>
+                    {% endblock Contenido %}
+
+                </div>
+            </div>
         </div>
 
     </div>

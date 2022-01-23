@@ -17,10 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from Proyecto_Ekiria.views import Menu, Inicio
 from ModuloUsuarios.views import login, Register
+from rest_framework.authtoken import views
 urlpatterns = [
-    path('Inicio/', Inicio, name="Inicio"),
+    path('', Inicio, name="Inicio"),
     path('IniciarSesion/', login, name="IniciarSesion"),
     path('Registro/', Register, name="Registro"),
     path('InformacionUsuario/', include('ModuloUsuarios.urls')),
     path('Ventas/',include('Ventas.urls')),
+    path('admin/', admin.site.urls),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
 ]

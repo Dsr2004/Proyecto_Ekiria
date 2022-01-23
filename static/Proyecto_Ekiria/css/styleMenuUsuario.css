@@ -20,12 +20,7 @@ body {
     bottom: 0;
     width: 100%;
     box-sizing: initial;
-    transition: 2s;
     display: flex;
-}
-
-.grid.activar {
-    transition: 2s;
 }
 
 .nav .Perfil {
@@ -141,12 +136,16 @@ body {
 
 .nav .escon {
     display: none;
-    transition: 1s;
+    transition: 0.5s;
     animation-name: escon;
     animation-duration: 1s;
 }
 
 .nav.activar .escon {
+    display: inline-flex;
+}
+
+.nav .asoma::hover .escon {
     display: inline-flex;
 }
 
@@ -188,7 +187,6 @@ body {
     width: 5%;
     height: 100%;
     background: linear-gradient(to bottom, #121212, #161616);
-    overflow: auto;
     transition: 0.5s;
 }
 
@@ -299,7 +297,6 @@ body {
     width: 100%;
     text-decoration: none;
     color: #fff;
-    overflow: hidden;
     font-size: 20px;
     z-index: 10;
 }
@@ -324,17 +321,27 @@ body {
     box-sizing: border-box;
 }
 
-.content .fondo {
+.fondo {
     background: url("/static/Proyecto_Ekiria/Img/fondo.jpg") no-repeat center center;
-    position: absolute;
+    position: relative;
     top: 0px;
     min-height: 100%;
     background-size: cover;
-    z-index: 0;
     opacity: 0.15;
     padding: 0;
     width: 100%;
     height: 100%;
+}
+
+.content .relle {
+    position: absolute;
+    top: 0;
+    width: 95%;
+    transition: 0.5s;
+}
+
+.content.activar .relle {
+    width: 77%;
 }
 
 
@@ -586,6 +593,9 @@ body {
     .nav.activar .menul {
         width: 32%;
     }
+    .content.activar .relle {
+        width: 68%;
+    }
     .Logo.activar {
         left: 0;
     }
@@ -599,12 +609,27 @@ body {
     .nav_link--inside a {
         font-size: 12px;
     }
+    .nav .foto_perfil {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        outline: 1px solid #fff;
+        background-color: #cecece;
+    }
+    .nav.activar .foto_perfil {
+        width: 50px;
+        height: 50px;
+    }
 }
 
 
 /**/
 
 @media (max-width: 700px) {
+    .content .relle {
+        width: 100%;
+    }
     .nav .Perfil {
         width: 103%;
         margin-top: 0px;

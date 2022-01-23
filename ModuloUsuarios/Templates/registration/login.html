@@ -17,7 +17,7 @@
         <div class="contLogo">
             <img class="logo" src="/static/ModuloUsuarios/img/Logo.png">
         </div>
-        <form action="" method="post">
+        <form method="post">
             {%csrf_token%}
             <h1>{% if request.path == '/IniciarSesion/'%}Iniciar Sesión{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Recuperar Contraseña{% endif %}</h1>
             <div class="form">
@@ -33,7 +33,7 @@
                     <span class="text-nomb"><strong>{% if request.path == '/IniciarSesion/'%}Contraseña{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Cofirmar Contraseña{% endif %}</strong></span>
                 </label>
                 </div>
-            </div>
+            </div><br>
             <button type="submit" class="boton"><strong>{% if request.path == '/IniciarSesion/'%}Ingresar{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Confirmar{% endif %}</strong></button>
             <div class="ayuda {% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}activar{% endif %}">
                 {% if request.path == '/IniciarSesion/'%}<a href="{%url 'RecuperarContraseña'%}}">!Olvide mi contraseña¡</a>
