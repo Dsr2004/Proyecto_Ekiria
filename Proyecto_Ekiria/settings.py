@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'ModuloUsuarios',
     'rest_framework', 
     'rest_framework.authtoken',
-    'Ventas',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +58,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Proyecto_Ekiria/Templates', 'ModuloUsuarios/Templates','Ventas/Templates'],
+        'DIRS': ['Proyecto_Ekiria/Templates', 'ModuloUsuarios/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

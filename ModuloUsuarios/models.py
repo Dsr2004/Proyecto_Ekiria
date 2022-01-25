@@ -9,8 +9,6 @@ class TipoDocumento(models.Model):
 
     class Meta:
         db_table = 'tipo_documento'
-        verbose_name ='tipo_documento'
-        verbose_name_plural='tipos_documentos'
         
     def __str__(self) :
         return self.nom_tipo_documento
@@ -22,8 +20,6 @@ class Municipio(models.Model):
 
     class Meta:
         db_table = 'municipios'
-        verbose_name ='municipio'
-        verbose_name_plural='municipios'
 class Rol(models.Model):
     id_rol = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=40)
@@ -36,7 +32,6 @@ class Rol(models.Model):
         verbose_name_plural='roles'
     def __str__(self):
         return '{}'.format(self.nombre)
-
 class UsuarioManager(BaseUserManager):
     def create_user(self,email,username,nombres,apellidos,celular,fec_nac,num_documento,direccion, cod_postal,password=None):
         if  not email:
@@ -96,8 +91,6 @@ class Usuario(AbstractBaseUser):
     
     class Meta:
         db_table = 'usuarios'
-        verbose_name ='usuario'
-        verbose_name_plural='usuarios'
     def __str__(self):
         return f'{self.nombres}, {self.apellidos}'
     def has_perm(self,perm,obj=None):
