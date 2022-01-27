@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from ModuloUsuarios.models import Usuario
 
+
 class UsuarioTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario

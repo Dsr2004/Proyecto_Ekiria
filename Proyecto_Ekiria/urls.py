@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from Proyecto_Ekiria.views import Menu, Inicio
+from Proyecto_Ekiria.views import Inicio
 from ModuloUsuarios.views import Login, Register, Loguot
 from rest_framework.authtoken import views
 urlpatterns = [
-    path('', Inicio, name="Inicio"),
+    path('', Inicio.as_view(), name="Inicio"),
     path('IniciarSesion/', Login.as_view(), name="IniciarSesion"),
     path('CerrarSesion/', Loguot.as_view(), name="CerrarSesion"),
     path('Registro/', Register, name="Registro"),

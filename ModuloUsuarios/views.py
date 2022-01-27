@@ -1,17 +1,31 @@
 #-----------------------------------------Importaciones---------------------------------------------------
-from urllib import response
+from django.http import HttpResponseRedirect, request
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
-from rest_framework import generics
+from ModuloUsuarios.authentication_mixins import Authentication
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from ModuloUsuarios.serializers import UsuarioTokenSerializer
+from ModuloUsuarios.Serializers.general_serializers import UsuarioTokenSerializer
 from django.contrib.sessions.models import Session
 from datetime import datetime
 from rest_framework.views import APIView
+from ModuloUsuarios.Serializers.general_serializers import UsuarioTokenSerializer
 #--------------------------------------Cargadores de templates------------------------------------
+# class Usertoken(APIView):
+#     def post(self, request, *args, **kwargs):
+#         username = request.POST.get('username')
+#         print(username)
+#         try:
+#             user_token = Token.objects.get(
+#                 user = UsuarioTokenSerializer().Meta.model.objects.filter(username = username).first()
+#             )
+#             return Response({
+#                 'token': user_token.key
+#             })
+#         except:
+#             return Response({'error': 'No se han enviado las credenciales.'}, status=status.HTTP_400_BAD_REQUEST)
 
 class Login(ObtainAuthToken, TemplateView):
     template_name = "registration/login.html"
@@ -22,8 +36,14 @@ class Login(ObtainAuthToken, TemplateView):
             if user.is_active:
                 token,created = Token.objects.get_or_create(user=user)
                 user_serializer = UsuarioTokenSerializer(user)
+                
                 if created:
-                    return redirect("/")
+                    # return HttpResponseRedirect('/')
+                    return Response({
+                        'token': token.key,
+                        'user': user_serializer.data,
+                        'massage': 'Inicio de Sesión Exitoso.',
+                    }, status = status.HTTP_201_CREATED)
                 else:
                     all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
                     if all_sessions.exists():
@@ -33,7 +53,12 @@ class Login(ObtainAuthToken, TemplateView):
                                 session.delete()
                     token.delete()
                     token = Token.objects.create(user = user)
-                    return redirect("/")
+                    return Response(headers={'Authorization':'Token '+token.key})
+                    # return Response({
+                    #     'token': token.key,
+                    #     'user': user_serializer.data,
+                    #     'massage': 'Inicio de Sesión Exitoso.',
+                    # }, status = status.HTTP_201_CREATED)
                     # return Response({
                     #     'error': 'Ya se ha iniciado sesión con este usuario, ¡intentalo de nuevo!'
                     # })
@@ -43,7 +68,7 @@ class Login(ObtainAuthToken, TemplateView):
         else:
             return Response({'error':'Nombre de usuario o contraseña incorrectos.'}, status=status.HTTP_400_BAD_REQUEST)
 
-class Loguot(ObtainAuthToken, APIView):
+class Loguot(Authentication, ObtainAuthToken, APIView):
     def post(self,request,*args,**kwargs):
         try:    
             token = Token.objects.filter(key = request.POST.get('token')).first()
@@ -52,8 +77,9 @@ class Loguot(ObtainAuthToken, APIView):
                 
                 user = token.user
                 
-                all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
-                if all_sessions.exists():
+                for i in range(2):
+                    all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
+                    if all_sessions.exists():
                         for session in all_sessions:
                             session_data = session.get_decoded()
                             if user.id_usuario == int(session_data.get('_auth_user_id')):
