@@ -19,4 +19,5 @@ from Proyecto_Ekiria.views import Menu, Inicio
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Inicio/', Inicio),
+    path('Configuracion/', include ('Configuracion.urls')),
 ]

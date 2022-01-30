@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/Configuracion/css/estilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Configuracion</title>
+    {% endblock head %}
+</head>
+<body>
+    {% block Contenido %}
+    <div class="contPrincipal" >
+        <div class="contImagen">
+            <img class="imagenLogo" src="/static/Configuracion/img/LogoEkiria.png" alt="">
+        </div>
+        <div class="contLetra">
+            <p class="LetraBienvenida">Bienvenido Al Administrador</p>
+        </div>
+    </div>
+    <div class="contenedor">
+        <div class="contRoles">
+            <a class="Letracont" href="{% url 'Roles' %}" >Roles</a>
+        </div>
+
+        <div class="contCambios">
+            <a class="Letracont2" href="{% url 'Cambios' %}" >Cambios de Pagina</a>
+        </div>
+
+        <div class="contPermisos">
+            <a class="Letracont2" href="{% url 'Permisos' %}">Lista de Permisos</a>
+        </div>
+        {% endblock Contenido %}
+    </div>
+    {%block scripts%}
+    <script src="/static/Configuracion/js/main.js"></script>
+    {%endblock scripts%}
+</body>
+</html>
