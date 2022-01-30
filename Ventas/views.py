@@ -1,38 +1,47 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import TemplateView, ListView
 
-def Catalogo(request):
-    return render(request, "Catalogo.html")
+from Ventas.models import Servicio
 
-def TerminarPedido(request):
-    return render(request, "TerminarPedido.html")
-
-def Calendario(request):
-    return render(request, "Calendario.html")
-
-def ServiciosPersonalizados(request):
-    return render(request, "AddservicioPer.html")
-
-def DetalleCita(request):
-    return render(request, "DetalleCita.html")
-
-def AdminVentas(request):
-    return render(request, "Ventas.html")
-
-def AgregarServicio(request):
-    return render(request, "AgregarServicio.html")
-
-def ListarServicio(request):
-    return render(request, "ListarServicios.html")
+class Catalogo(ListView):
+    queryset=Servicio.objects.filter(estado=True)
+    context_object_name="servicios"
+    template_name="Catalogo.html"
     
-def EditarServicio(request):
-    return render(request, "EditarServicio.html")
 
-def AgregarCita(request):
-    return render(request, "AgregarCita.html")
+class Carrito(TemplateView):
+    template_name="Carrito.html"
 
-def ListarCita(request):
-    return render(request, "ListarCitas.html")
+class TerminarPedido(TemplateView):
+    template_name="TerminarPedido.html"
+
+class Calendario(TemplateView):
+    template_name="Calendario.html"
+
+class ServiciosPersonalizados(TemplateView):
+   template_name="AddservicioPer.html"
+
+class DetalleCita(TemplateView):
+   template_name="DetalleCita.html"
+
+class AdminVentas(TemplateView):
+    template_name="Ventas.html"
+
+class AgregarServicio(TemplateView):
+    template_name="AgregarServicio.html"
+
+class ListarServicio(TemplateView):
+    template_name="ListarServicios.html"
     
-def EditarCita(request):
-    return render(request, "EditarCita.html")
+class EditarServicio(TemplateView):
+    template_name="EditarServicio.html"
+
+class AgregarCita(TemplateView):
+    template_name="AgregarCita.html"
+
+class ListarCita(TemplateView):
+    template_name="ListarCitas.html"
+    
+class EditarCita(TemplateView):
+    template_name="EditarCita.html"

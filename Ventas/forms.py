@@ -1,13 +1,4 @@
 from django import forms
 
-class UsuariosForm(forms.Form):
-    fields=[
-        'sds',
-        'sds',
-        'sds',
-        'sds',
-    ]
-    labels
-    widgets
-
+# tengo crispy_forms instalado busque en internet y el video donde lo vi se llama Ecomerce con django y es de Eric el nomada
 

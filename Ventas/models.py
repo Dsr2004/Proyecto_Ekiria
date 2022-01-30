@@ -1,4 +1,8 @@
+
 from django.db import models
+
+
+
 
 # modelo para administrar los tipos de servicios
 class Tipo_servicio(models.Model):
@@ -21,7 +25,7 @@ class Servicio(models.Model):
     id_servicio=models.AutoField("Id del Servicio", primary_key=True, unique=True)
     nombre=models.CharField("Nombre", max_length=40, null=False, blank=False, unique=True)
     descripcion=models.TextField("Descripcion",null=True,blank=True)
-    img_servicio=models.ImageField("Imagen del Servicio", upload_to="Ventas/servicios",null=False, blank=False)
+    img_servicio=models.ImageField("Imagen del Servicio", upload_to='Ventas/servicios',null=False, blank=False)
     precio=models.IntegerField("Precio",null=False, blank=False)
     tipo_servicio_id=models.ForeignKey(Tipo_servicio, verbose_name="Tipo de Servicio", on_delete=models.CASCADE,null=True, blank=True, db_column="tipo_servicio_id")
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
