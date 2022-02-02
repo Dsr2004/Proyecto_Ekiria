@@ -1,3 +1,5 @@
+
+
 #-----------------------------------------Importaciones---------------------------------------------------
 from urllib import response
 from django.views.generic import TemplateView
@@ -15,33 +17,34 @@ from rest_framework.views import APIView
 
 class Login(ObtainAuthToken, TemplateView):
     template_name = "registration/login.html"
-    def post(self,request,*arg, **kwargs):
-        login_serializer = self.serializer_class(data = request.data, context={'request':request})
-        if login_serializer.is_valid():
-            user=login_serializer.validated_data['user']
-            if user.is_active:
-                token,created = Token.objects.get_or_create(user=user)
-                user_serializer = UsuarioTokenSerializer(user)
-                if created:
-                    return redirect("/")
+    if request:
+        def post(self,request,*arg, **kwargs):
+            login_serializer = self.serializer_class(data = request.data, context={'request':request})
+            if login_serializer.is_valid():
+                user=login_serializer.validated_data['user']
+                if user.is_active:
+                    token,created = Token.objects.get_or_create(user=user)
+                    user_serializer = UsuarioTokenSerializer(user)
+                    if created:
+                        return redirect("/")
+                    else:
+                        all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
+                        if all_sessions.exists():
+                            for session in all_sessions:
+                                session_data = session.get_decoded()
+                                if user.id_usuario == int(session_data.get('_auth_user_id')):
+                                    session.delete()
+                        token.delete()
+                        token = Token.objects.create(user = user)
+                        return redirect("/")
+                        # return Response({
+                        #     'error': 'Ya se ha iniciado sesión con este usuario, ¡intentalo de nuevo!'
+                        # })
                 else:
-                    all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
-                    if all_sessions.exists():
-                        for session in all_sessions:
-                            session_data = session.get_decoded()
-                            if user.id_usuario == int(session_data.get('_auth_user_id')):
-                                session.delete()
-                    token.delete()
-                    token = Token.objects.create(user = user)
-                    return redirect("/")
-                    # return Response({
-                    #     'error': 'Ya se ha iniciado sesión con este usuario, ¡intentalo de nuevo!'
-                    # })
+                    return Response({'error':'Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
+                return redirect("/")
             else:
-                return Response({'error':'Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
-            return redirect("/")
-        else:
-            return Response({'error':'Nombre de usuario o contraseña incorrectos.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'error':'Nombre de usuario o contraseña incorrectos.'}, status=status.HTTP_400_BAD_REQUEST)
 
 class Loguot(ObtainAuthToken, APIView):
     def post(self,request,*args,**kwargs):
