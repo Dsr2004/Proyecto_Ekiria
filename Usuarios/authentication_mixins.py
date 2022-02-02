@@ -1,5 +1,5 @@
 from email import message
-from ModuloUsuarios.authentication import ExpiringTokenAuthentication
+from Usuarios.authentication import ExpiringTokenAuthentication
 from rest_framework.authentication import get_authorization_header
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
@@ -39,7 +39,10 @@ class Authentication(object):
                 return response
             if not self.user_token_expired:
                 return super().dispatch(request, *args, **kwargs)
-        response = Response({'error': 'No se han enviado las credenciales.', 'expired':self.user_token_expired}, status=status.HTTP_400_BAD_REQUEST)
+        if self.user_token_expired == True:
+            response = Response({'error': 'El token ha expirado.', 'expired':self.user_token_expired}, status=status.HTTP_401_UNAUTHORIZED)
+        else:
+            response = Response({'error': 'No se han enviado las credenciales.', 'expired':self.user_token_expired}, status=status.HTTP_400_BAD_REQUEST)
         response.accepted_renderer = JSONRenderer()
         response.accepted_media_type = 'application/json'
         response.renderer_context = {}

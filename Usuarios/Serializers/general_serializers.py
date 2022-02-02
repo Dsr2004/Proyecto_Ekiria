@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ModuloUsuarios.models import Usuario
+from Usuarios.models import Usuario
 
 
 class UsuarioTokenSerializer(serializers.ModelSerializer):

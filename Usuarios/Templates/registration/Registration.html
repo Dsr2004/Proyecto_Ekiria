@@ -17,9 +17,10 @@
         <div class="contLogo">
             <img class="logo" src="/static/ModuloUsuarios/img/Logo.png">
         </div>
-        <form id="FormularioInfo">
+        <form>
             <h1>Registro</h1>
-            <div class="form">
+            {{form}}
+            <!-- <div class="form">
                 <div class="frid">
                     <div class="flexbox">
                         <input autocomplete="off" id="nombre" type="text" required>
@@ -122,24 +123,24 @@
                         <span class="text-nomb"><strong>Confirmar Contraseña</strong></span>
                         </label>
                     </div>
-                </div>
-                <br>
-                <div>
-                    <div class="flexbox" style="width: 95%;">
-                        <input id="apodo" autocomplete="off" type="text" required>
-                        <label class="lbl-nombre">
+                </div> -->
+            <br>
+            <div>
+                <div class="flexbox" style="width: 95%;">
+                    <input id="apodo" autocomplete="off" type="text" required>
+                    <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Apodo</strong></span>
                         </label>
-                    </div>
-                </div>
-                <button type="submit" class="boton"><strong>Registrarme</strong></button>
-
-                <div class="ayuda">
-                    <a href="{%url 'RecuperarContraseña'%}">Registrame</a>
                 </div>
             </div>
-            <br><br>
-        </form>
+            <button type="submit" class="boton"><strong>Registrarme</strong></button>
+
+            <div class="ayuda">
+                <a href="{%url 'RecuperarContraseña'%}">Registrame</a>
+            </div>
+    </div>
+    <br><br>
+    </form>
     </div>
     <script src="/static/ModuloUsuarios/js/mainRegistration.js"></script>
 </body>

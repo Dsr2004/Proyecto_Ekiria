@@ -16,14 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Proyecto_Ekiria.views import Inicio
-from ModuloUsuarios.views import Login, Register, Loguot
+from Usuarios.views import Login, Register, Loguot
 from rest_framework.authtoken import views
 urlpatterns = [
     path('', Inicio.as_view(), name="Inicio"),
     path('IniciarSesion/', Login.as_view(), name="IniciarSesion"),
     path('CerrarSesion/', Loguot.as_view(), name="CerrarSesion"),
-    path('Registro/', Register, name="Registro"),
-    path('InformacionUsuario/', include('ModuloUsuarios.urls')),
+    path('Registro/', Register.as_view(), name="Registro"),
+    path('InformacionUsuario/', include('Usuarios.urls')),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
