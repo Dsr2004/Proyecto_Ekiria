@@ -1,4 +1,4 @@
 from django.contrib import admin
-from ModuloUsuarios.models import Usuario
+from Usuarios.models import Usuario
 
 admin.site.register(Usuario) 

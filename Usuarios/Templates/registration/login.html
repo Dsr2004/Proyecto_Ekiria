@@ -42,12 +42,12 @@
 
             </div>
         </form>
-
+        {{token}}
     </div>
 
-    {% if messages %}
-    <div class="mensajes"> {% for msg in messages %}
-        <li>{{msg}}</li> {% endfor %}
+    {% if random %}
+    <div class="mensajes">
+        <li>{{random}}<br></li>
     </div> {% endif %}
     <script src="{% if request.path == '/IniciarSesion/'%}/static/ModuloUsuarios/js/mainLogin.js{% endif %}"></script>
 </body>

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ModuloUsuarios',
+    'Usuarios',
     'rest_framework', 
     'rest_framework.authtoken',
 ]
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Proyecto_Ekiria/Templates', 'ModuloUsuarios/Templates'],
+        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'ModuloUsuarios.Usuario'
+AUTH_USER_MODEL = 'Usuarios.Usuario'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 

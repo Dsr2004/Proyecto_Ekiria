@@ -92,7 +92,7 @@ class Usuario(AbstractBaseUser):
     class Meta:
         db_table = 'usuarios'
     def __str__(self):
-        return f'{self.nombres}, {self.apellidos}'
+        return '{}'.format(self.nombres+' '+self.apellidos)
     def has_perm(self,perm,obj=None):
         return True
     def has_module_perms(self,app_label):
