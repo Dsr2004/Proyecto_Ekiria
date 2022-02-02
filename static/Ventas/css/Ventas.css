@@ -90,7 +90,7 @@
     margin-left: 70px;
 }
 
-.nombreP{
+/* .nombreP{
     position: absolute;
     top: 280px;
     left: 28px;
@@ -98,6 +98,7 @@
     padding: 5px;
     font-size: 18px;
 }
+    /* margin-bottom: 150px; */
 
 .img img{
     width: 100%;
@@ -317,7 +318,7 @@
     background-color: rgba(0, 177, 38, 0.562);
     color: rgb(238, 235, 235);;
 }
-.LinkDetalleCita{
+.LinkDetalleCita{ 
     color: black;
 }
 

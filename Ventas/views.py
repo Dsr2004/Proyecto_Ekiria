@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import TemplateView, ListView
+from django.views.generic import View, TemplateView, ListView, DetailView
 
 from Ventas.models import Servicio
 
@@ -9,6 +9,10 @@ class Catalogo(ListView):
     context_object_name="servicios"
     template_name="Catalogo.html"
     
+def ServicioDetalle(request, servicio):
+    servicio=Servicio.objects.filter(slug=servicio)
+    return render(request, "Catalogo.html",{"servicio":servicio})
+
 
 class Carrito(TemplateView):
     template_name="Carrito.html"

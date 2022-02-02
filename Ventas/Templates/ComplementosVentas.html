@@ -72,8 +72,8 @@
        </table>
        <div class="botonesCarrito container">
           <div class="row">
-             <div class="col"><a href="{% if request.path != 'catalogo' %}{% url 'catalogo' %}{% endif %}" type="button" class="d-grid gap-2 btn btn-outline-secondary" data-bs-dismiss="offcanvas" aria-label="Close">Seguir Comprando</a></div>
-             <div class="col"><a href="{% url 'TerminarPedido' %}" type="button" class="d-grid gap-2 btn btn-success">Terminar Pedido</a></div>
+             <div class="col"><a href="{% if request.path != 'Ventas:catalogo' %}{% url 'Ventas:catalogo' %}{% endif %}" type="button" class="d-grid gap-2 btn btn-outline-secondary" data-bs-dismiss="offcanvas" aria-label="Close">Seguir Comprando</a></div>
+             <div class="col"><a href="{% url 'Ventas:TerminarPedido' %}" type="button" class="d-grid gap-2 btn btn-success">Terminar Pedido</a></div>
           </div>
        </div>
     </div>

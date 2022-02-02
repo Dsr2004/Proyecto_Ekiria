@@ -1,6 +1,7 @@
-
 from django.db import models
-
+from django.db.models.signals import pre_save
+from django.utils.text import slugify
+from django.shortcuts import reverse
 
 
 
@@ -23,6 +24,7 @@ class Tipo_servicio(models.Model):
 # modelo para administrar los servicios
 class Servicio(models.Model):
     id_servicio=models.AutoField("Id del Servicio", primary_key=True, unique=True)
+    slug=models.SlugField("Slug", unique=True)
     nombre=models.CharField("Nombre", max_length=40, null=False, blank=False, unique=True)
     descripcion=models.TextField("Descripcion",null=True,blank=True)
     img_servicio=models.ImageField("Imagen del Servicio", upload_to='Ventas/servicios',null=False, blank=False)
@@ -40,6 +42,10 @@ class Servicio(models.Model):
     def __str__(self):
         c_servicio="{} cuesta ${}".format(self.nombre, self.precio)
         return c_servicio
+
+    def get_absolute_url(self):
+        return reverse("Ventas:detalleSer", kwargs={"slug": self.slug})
+    
 
 # modelo para administrar el catalogo
 class Catalogo(models.Model):
@@ -134,3 +140,9 @@ class Cita(models.Model):
 
     def __str__(self):
         return f"el cliente de esta cita es: {self.cliente_id}"
+
+def pre_save_servicio_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug=slugify(instance.title)
+
+pre_save.connect(pre_save_servicio_receiver,sender=Servicio)

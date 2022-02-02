@@ -88,9 +88,9 @@
                                 <i class="list_arrow mdi mdi-chevron-right"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside"><a href="{% url 'catalogo' %}">Catalogo</a></li>
-                                <li class="nav_link--inside"><a href="{% url 'calendario' %}">Calendario</a></li>
-                                <li class="nav_link--inside"><a href="{% url 'adminVentas' %}">Pagina Principal</a></li>
+                                <li class="nav_link--inside"><a href="{% url 'Ventas:catalogo' %}">Catalogo</a></li>
+                                <li class="nav_link--inside"><a href="{% url 'Ventas:calendario' %}">Calendario</a></li>
+                                <li class="nav_link--inside"><a href="{% url 'Ventas:adminVentas' %}">Pagina Principal</a></li>
                                 <li class="list_item list_item--click">
                                     <div class="list">
                                         <i class="mdi mdi-view-dashboard"></i>
@@ -98,8 +98,8 @@
                                         <i class="list_arrow mdi mdi-chevron-right"></i>
                                     </div>
                                     <ul class="list_show">
-                                        <li class="nav_link--inside"><a href="{% url 'agregarServicio' %}">Agregar</a></li>
-                                        <li class="nav_link--inside"><a href="{% url 'listarServicios' %}">listar</a></li>
+                                        <li class="nav_link--inside"><a href="{% url 'Ventas:agregarServicio' %}">Agregar</a></li>
+                                        <li class="nav_link--inside"><a href="{% url 'Ventas:listarServicios' %}">listar</a></li>
                                     </ul>
                                 </li>
                                 <li class="list_item list_item--click">
@@ -109,8 +109,8 @@
                                         <i class="list_arrow mdi mdi-chevron-right"></i>
                                     </div>
                                     <ul class="list_show">
-                                        <li class="nav_link--inside"><a href="{% url 'agregarCita' %}">Agregar</a></li>
-                                        <li class="nav_link--inside"><a href="{% url 'listarCitas' %}">listar</a></li>
+                                        <li class="nav_link--inside"><a href="{% url 'Ventas:agregarCita' %}">Agregar</a></li>
+                                        <li class="nav_link--inside"><a href="{% url 'Ventas:listarCitas' %}">listar</a></li>
                                     </ul>
                                 </li>
                                 <br>
@@ -145,7 +145,7 @@
                             </li>
                         </ul>
                     </div>
-                    <li><a href="{% url 'carrito' %}" type="button" class=" btn position-relative" style="margin-top: -7px;"><i class="fas fa-shopping-cart"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a></li>
+                    <li><a href="{% url 'Ventas:carrito' %}" type="button" class=" btn position-relative" style="margin-top: -7px;"><i class="fas fa-shopping-cart"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a></li>
                 </ul>
             </div>
 

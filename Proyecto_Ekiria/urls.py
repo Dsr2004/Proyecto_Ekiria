@@ -22,7 +22,7 @@ from Proyecto_Ekiria.views import Menu, Inicio
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('Inicio/', Inicio),
-    path('Ventas/',include('Ventas.urls'), name="Ventas"),
+    path('Ventas/',include('Ventas.urls')),
     path('Menu/', Menu),
 
 ]

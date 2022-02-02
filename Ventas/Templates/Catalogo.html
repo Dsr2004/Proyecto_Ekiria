@@ -10,7 +10,7 @@
    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
-  
+   
 </head>
 {% endblock head %}
 
@@ -23,9 +23,9 @@
       <i>
          <h2 class="precio"></h2>
       </i>
-      <div class="imgs"><a href="{%url 'personalizar'%}"><img class="Imas" src="/static/Ventas/img/masMorado.png" alt=""></a></div>
+      <div class="imgs"><a href="{%url 'Ventas:personalizar'%}"><img class="Imas" src="/static/Ventas/img/masMorado.png" alt=""></a></div>
       <div class="contenedor-botones">
-         <a class="botonC Personalizar" href="{%url 'personalizar'%}"><span>Personalizar</span></a><!--sI EL AZUL PERSISTE COLOCAR EL COLOR AQUI -->
+         <a class="botonC Personalizar" href="{%url 'Ventas:personalizar'%}"><span>Personalizar</span></a><!--sI EL AZUL PERSISTE COLOCAR EL COLOR AQUI -->
       </div>
    </div>
    {% if servicios %}
@@ -38,7 +38,7 @@
       <h2 class="nombreP text-center">{{servicio.nombre}}</h2>
       <p class="linea"></p>
       <div class="contenedor-botones">
-         <a class="botonC Comprar"href="{% url 'carrito' %}">
+         <a class="botonC Comprar"href="{% url 'Ventas:carrito' %}">
             <div  class="iconoC">
                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
                   <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
@@ -47,7 +47,8 @@
             </div>
             <span>Comprar</span>
          </a>
-         <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button>
+         <a href="{% url 'Ventas:detalleSer' servicio.slug %}"  class="botonC VerM"><span>Ver mas</span></a>
+         <!-- <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button> -->
       </div>
    </div>
    {% endfor %}

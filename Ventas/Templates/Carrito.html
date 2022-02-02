@@ -72,8 +72,8 @@
                         <h5 class="ml-2 mb-8 shoppingCartTotal">15000$</h5>
                         <div class="botonesCarrito container-fluid">
                             <div class="row">
-                               <div class="col"><a href="{% if request.path != 'catalogo' %}{% url 'catalogo' %}{% endif %}"  class="float-right btn btn-outline-secondary" >Seguir Comprando</a></div>
-                               <div class="col"><a href="{% url 'TerminarPedido' %}"  class="d-grid gap-2 btn btn-success">Terminar Pedido</a></div>
+                               <div class="col"><a href="{% if request.path != 'catalogo' %}{% url 'Ventas:catalogo' %}{% endif %}"  class="float-right btn btn-outline-secondary" >Seguir Comprando</a></div>
+                               <div class="col"><a href="{% url 'Ventas:TerminarPedido' %}"  class="d-grid gap-2 btn btn-success">Terminar Pedido</a></div>
                             </div>
                          </div>
                     </div>

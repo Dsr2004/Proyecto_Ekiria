@@ -1,6 +1,6 @@
 from django.urls import path
-from Ventas.views import Catalogo, TerminarPedido, Calendario, ServiciosPersonalizados,DetalleCita, AdminVentas,AgregarServicio,ListarServicio, EditarServicio, AgregarCita,ListarCita, EditarCita, Carrito
-
+from Ventas.views import Catalogo, TerminarPedido, Calendario, ServiciosPersonalizados,DetalleCita, AdminVentas,AgregarServicio,ListarServicio, EditarServicio, AgregarCita,ListarCita, EditarCita, Carrito,ServicioDetalle
+app_name="Ventas"
 urlpatterns = [
     path('Catalogo/', Catalogo.as_view(), name="catalogo"),
     path('Carrito/', Carrito.as_view(), name="carrito"),
@@ -15,5 +15,6 @@ urlpatterns = [
     path('AgregarCita/', AgregarCita.as_view(), name="agregarCita"),
     path('ListadoCitas/', ListarCita.as_view(), name="listarCitas"),
     path('EditarCita/', EditarCita.as_view(), name="editarCita"),
+    path('<slug>/', ServicioDetalle.as_view(), name="detalleSer"),                      
 ]
 
