@@ -1,33 +1,252 @@
-.Admin-Contenedor {
-    width: 97%;
-    height: 100%;
-    margin: 1%;
-    padding: 20px;
-    background: #fff;
+/*-------------------------DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o del search--------------------*/
+
+.Admin.Header-table {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 95%;
+    margin: 0 -1%;
 }
 
-.input {
-    width: 30%;
-    margin: 10px 0;
-    margin-left: 35%;
+.Admin.AddUser {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: end;
+}
+
+.Admin.search {
+    display: flex;
+    width: 40%;
+    margin: 10px 50%;
+    justify-content: center;
+}
+
+.Admin.search label {
+    position: relative;
+    width: 100%;
+}
+
+@media (max-width: 700px) {
+    .Admin.search {
+        width: 90%;
+        margin: 10px 5%;
+    }
+}
+
+.Admin.search label input {
+    position: relative;
+    border-radius: 40px;
+    padding: 5px 20px;
+    padding-left: 35px;
+    font-size: 18px;
+    width: 100%;
+    outline: none;
     border: none;
-    border-bottom: 2px solid black;
-    padding-left: 5px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18);
 }
 
-.agregar {
+.Admin.search label i {
+    position: absolute;
+    top: 11px;
+    left: 10px;
+    font-size: 1.2em;
+}
+
+
+/*----------------------- FIn DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o del search-----------------*/
+
+
+/*-------------------------DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o bloques de informaciÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³n--------------------*/
+
+.Admin.Events {
+    margin: 10px 5%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Admin.Events .Information {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 700px) {
+    .Admin.Events .Information {
+        margin: 0 40%;
+    }
+}
+
+.Admin.AddUser .Add.img {
+    background: none;
+    color: inherit;
+    border: 2px solid;
+    padding: 1px 15px;
+    font: inherit;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.Admin.Events .Information .cardbox {
+    position: relative;
+    width: 200px;
+    height: 100%;
+    margin: 15px;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18);
+}
+
+.Admin.Events .Information .cardbox .Card {
+    width: 100%;
+    display: grid;
+    cursor: pointer;
+    grid-template-columns: 75% 25%;
+}
+
+.Admin.Events .Information .cardbox .Card .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: #a200ff;
+}
+
+.Admin.Events .Information .cardbox .Card .cardName {
+    color: #3d3d3d;
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.Admin.Events .Information .cardbox .iconA {
+    font-size: 3.5em;
+    color: #3d3d3d;
+}
+
+.Admin.Events .Information .cardbox:hover {
+    background-color: #a200ff;
+}
+
+.Admin.Events .Information .cardbox:hover .Card .numbers,
+.Admin.Events .Information .cardbox:hover .iconA,
+.Admin.Events .Information .cardbox:hover .Card .cardName {
+    color: #fff;
+}
+
+
+/*-------------------------Fin DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o bloques de informaciÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³n--------------------*/
+
+
+/*---------------------------DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o Tabla de usuarios-------------------------*/
+
+.Admin.Table {
+    position: relative;
+    width: 90%;
+    height: 500px;
+    padding: 20px;
+    margin: 20px 5%;
+    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.28);
+    overflow: auto;
+}
+
+.Admin.Table .userInformation .cardHeader {
+    position: sticky;
+    top: 0;
+    left: 0;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Admin.Table .userInformation .cardHeader h2 {
+    margin-top: 0;
+    font-weight: 600;
+    color: #a200ff;
+}
+
+.Admin.Table .userInformation .cardHeader i {
+    font-weight: 600;
+    color: #a200ff;
+    font-size: 32px;
+}
+
+.Admin.Table .userInformation table {
+    width: 100%;
+    border-color: collapse;
+    margin-top: 10px;
+}
+
+.Admin.Table .userInformation table thead td {
+    font-weight: 600;
+}
+
+.Admin.Table .userInformation table tr {
+    color: #000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.Admin.Table .userInformation table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.Admin.Table .userInformation table tr:hover {
+    background-color: rgba(162, 0, 255, 0.1)
+}
+
+.Admin.Table .userInformation table tr td {
+    padding: 0 10px;
+}
+
+.Admin.Table .userInformation table tr td:nth-child(15) {
+    text-align: center;
+}
+
+.Admin.Table .userInformation table tr .Edit.User {
     background: none;
     color: inherit;
     border: none;
+    padding: 0;
     font: inherit;
     cursor: pointer;
     outline: inherit;
-    border-radius: 50%;
-    border: 2px solid black;
-    padding: 1px 5px;
-    font-size: 17px;
-    float: right;
 }
+
+.Admin.Table .userInformation table tr .Edit.User i {
+    font-size: 25px;
+}
+
+.Admin.Table .userInformation table tr td:nth-child(14) {
+    text-align: center;
+}
+
+.Admin.Table .userInformation table tr td:nth-child(7) {
+    text-align: center;
+}
+
+.Admin.Table .userInformation table tr td:nth-child(6) {
+    text-align: center;
+}
+
+.Admin.Table .userInformation table tr td:nth-child(5) {
+    text-align: center;
+}
+
+.Admin.Table .userInformation table tr td:nth-child(12) {
+    text-align: center;
+}
+
+.Admin.Table .userInformation table tr td:nth-child(1) {
+    text-align: center;
+}
+
+
+/*--------------------------Fin DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o Tabla de usuarios-------------------------*/
 
 .Perfil_modificar {
     -moz-box-shadow: none;
@@ -145,7 +364,6 @@
     justify-content: center;
     align-items: center;
     background-color: none;
-    overflow: hidden;
 }
 
 .flexbox .putamierda {

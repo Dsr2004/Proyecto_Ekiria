@@ -6,66 +6,129 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administracion de usuarios</title>
-    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleAdministration.css">
+    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleAdministration.css"> {% endblock head %} {% block Contenido %}
 </head>
-{% endblock head %} {% block Contenido %}
-<div class="Admin-Contenedor">
-    <input class="input" type="search" placeholder="Buscar">
-    <button type="button" class="agregar" data-bs-toggle="modal" data-bs-target="#agregar">
-    <i class="mdi mdi-plus"></i>
-  </button>
-    <table class="table " style="border: 1px solid #212529; padding:2px;">
-        <thead class="table-dark">
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Apodo</th>
-                <th scope="col">Rol</th>
-                <th scope="col">Nombres</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Tipo de Documento</th>
-                <th scope="col">Número Documento</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="col">01</th>
-                <th scope="col">Marquitos</th>
-                <th scope="col">Cliente 1</th>
-                <th scope="col">Marcos</th>
-                <th scope="col">Mark12@gmail.com</th>
-                <th scope="col">C.C</th>
-                <td scope="col">2789431836</td>
-                <td><i class="mdi mdi-table-edit" data-bs-toggle="modal" data-bs-target="#editar" style="cursor:pointer"></i></td>
-                <td>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label>Estado</label>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th scope="col">02</th>
-                <th scope="col">Bibi26</th>
-                <th scope="col">Administrador</th>
-                <th scope="col">Bibiana María</th>
-                <th scope="col">bibi15@gmail.com</th>
-                <th scope="col">C.C</th>
-                <td scope="col">2883475348</td>
-                <td><i class="mdi mdi-table-edit" data-bs-toggle="modal" data-bs-target="#editar" style="cursor:pointer"></i></td>
-                <td>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                        <label>Estado</label>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<!----------------------------------------Dashborad Usuarios---------------------------------------->
+
+<div class="Admin Events">
+    <div class="Information">
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="numbers">1506</div>
+                    <div class="cardName">Usuarios</div>
+                </div>
+                <div class="iconA">
+                    <i class="mdi mdi-account-multiple"></i>
+                </div>
+            </div>
+        </div>
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="numbers">2019</div>
+                    <div class="cardName">Servicios</div>
+                </div>
+                <div class="iconA">
+                    <i class="mdi mdi-basket centrado"></i>
+                </div>
+            </div>
+        </div>
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="numbers">1235</div>
+                    <div class="cardName">Visitas Diarias</div>
+                </div>
+                <div class="iconA">
+                    <i class="far fa-eye"></i>
+                </div>
+            </div>
+        </div>
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="numbers">127</div>
+                    <div class="cardName">Comentarios</div>
+                </div>
+                <div class="iconA">
+                    <i class="mdi mdi-comment"></i>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="Admin Header-table">
+    <div class="Admin search">
+        <label>
+            <input type="text" placeholder="Search here">
+            <i class="fas fa-search"></i>
+        </label>
+    </div>
+    <div class="Admin AddUser">
+        <button type="button" class="Add img" data-bs-toggle="modal" data-bs-target="#add">
+            <i class="fas fa-user-plus"></i>
+        </button>
+    </div>
+</div>
+
+<div class="Admin Table">
+    <div class="userInformation">
+        <div class="cardHeader">
+            <i class="fas fa-angle-left"></i>
+            <h2>Usuarios Registrados</h2>
+            <i class="fas fa-angle-right"></i>
+
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Apodo</td>
+                    <td>Nombres</td>
+                    <td>Apellidos</td>
+                    <td>Télefono</td>
+                    <td>Celular</td>
+                    <td>E-mail</td>
+                    <td>Tipo De Documento</td>
+                    <td>Número De Documento</td>
+                    <td>Dirección</td>
+                    <td>Código Postal</td>
+                    <td>Municipio</td>
+                    <td>Rol</td>
+                    <td>Último Inicio</td>
+                    <td>Estado</td>
+                    <td>Editar</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hoodinii890</td>
+                    <td>Jhorman</td>
+                    <td>Gallego Gallego</td>
+                    <td>No Aplica</td>
+                    <td>3145359545</td>
+                    <td>j@gmail.com</td>
+                    <td>C.C</td>
+                    <td>1000661096</td>
+                    <td>No Aplica</td>
+                    <td>050002</td>
+                    <td>Medellín</td>
+                    <td>Administrador</td>
+                    <td>2022-02-01 02:20</td>
+                    <td>Activo</td>
+                    <td>
+                        <button type="button" class="Edit User" data-bs-toggle="modal" data-bs-target="#edit">
+                            <i class="mdi mdi-account-edit"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--------------------------------------Fin Dashborad Usuarios-------------------------------------->
 {% endblock Contenido %} {% block modal %}
-<div class="modal fade" id="agregar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="Perfil_modificar">
             <div class="Perfil_modificar-header">
@@ -198,7 +261,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="Perfil_modificar">
             <div class="Perfil_modificar-header">

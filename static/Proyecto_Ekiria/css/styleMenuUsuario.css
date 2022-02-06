@@ -83,7 +83,7 @@ body {
 
 #salir {
     padding-left: 25%;
-    margin-top: 300px;
+    margin-top: 500px;
     position: sticky;
     bottom: 0;
     width: 100%;
@@ -169,7 +169,7 @@ body {
     top: 0px;
     left: 0;
     position: absolute;
-    margin-left: 320px;
+    margin-left: -320px;
     animation-duration: 1s;
 }
 
@@ -184,7 +184,7 @@ body {
 }
 
 .grid .backnav {
-    width: 5%;
+    width: 0%;
     height: 100%;
     background: linear-gradient(to bottom, #121212, #161616);
     transition: 0.5s;
@@ -203,7 +203,7 @@ body {
 
 .nav .menul {
     margin-left: -300px;
-    width: 5%;
+    width: 0%;
     height: 100%;
     padding-left: 0px;
     float: left;
@@ -221,6 +221,7 @@ body {
     width: 100%;
     height: 60vh;
     margin-left: -20px;
+    overflow: auto;
 }
 
 .list_item {
@@ -322,12 +323,12 @@ body {
 }
 
 .fondo {
-    background: url("/static/Proyecto_Ekiria/Img/fondo.jpg") no-repeat center center;
+    background-color: #fff;
     position: relative;
     top: 0px;
     min-height: 100%;
     background-size: cover;
-    opacity: 0.15;
+    opacity: 1;
     padding: 0;
     width: 100%;
     height: 100%;
@@ -336,7 +337,7 @@ body {
 .content .relle {
     position: absolute;
     top: 0;
-    width: 95%;
+    width: 100%;
     transition: 0.5s;
 }
 
@@ -354,7 +355,7 @@ body {
         width: 77%;
     }
     .content {
-        width: 95%;
+        width: 100%;
         top: 0px;
         margin-right: 0px;
         overflow: auto;
@@ -411,23 +412,18 @@ body {
     height: 20px;
 }
 
-.content.activar #div {
+.content.activar .contentDiv {
     float: left;
     width: 100%;
     text-align: left;
 }
 
-.content #div {
+.content .contentDiv {
     position: relative;
-    top: 10px;
-    float: left;
-    width: 99.5%;
-    text-align: left;
+    top: -1vh;
+    width: 100%;
+    height: 90vh;
     overflow: auto;
-    margin-left: 10px;
-    animation-duration: 2s;
-    transition: 2s;
-    opacity: 1;
     padding: 0;
 }
 
@@ -492,7 +488,7 @@ body {
     position: fixed;
     top: 12px;
     bottom: 0px;
-    left: 6%;
+    left: 1%;
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -546,7 +542,7 @@ body {
 
 @media (max-width: 950px) {
     .content {
-        width: 94%;
+        width: 100%;
     }
     .content.activar {
         width: 68%;
@@ -577,7 +573,7 @@ body {
         margin-left: 5px;
     }
     .grid .backnav {
-        width: 6%;
+        width: 0%;
     }
     .grid.activar .backnav {
         width: 32%;
@@ -586,7 +582,7 @@ body {
         width: 100%;
     }
     .nav .menul {
-        width: 6%;
+        width: 0%;
         text-align: left;
         transition: 0;
     }
