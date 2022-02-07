@@ -95,6 +95,7 @@ DATABASES = {
     }
 }
 
+TOKEN_EXPIRED_AFTER_SECONDS = 900
 
 
 

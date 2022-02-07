@@ -1,33 +1,74 @@
-.Admin-Contenedor {
-    width: 97%;
+/*-------------------------DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o bloques de informaciÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³n--------------------*/
+
+.Admin.Events {
+    margin: 10px 5%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Admin.Events .Information {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 700px) {
+    .Admin.Events .Information {
+        margin: 0 40%;
+    }
+}
+
+.Admin.Events .Information .cardbox {
+    position: relative;
+    width: 200px;
     height: 100%;
-    margin: 1%;
-    padding: 20px;
-    background: #fff;
+    margin: 15px;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18);
 }
 
-.input {
-    width: 30%;
-    margin: 10px 0;
-    margin-left: 35%;
-    border: none;
-    border-bottom: 2px solid black;
-    padding-left: 5px;
-}
-
-.agregar {
-    background: none;
-    color: inherit;
-    border: none;
-    font: inherit;
+.Admin.Events .Information .cardbox .Card {
+    width: 100%;
+    display: grid;
     cursor: pointer;
-    outline: inherit;
-    border-radius: 50%;
-    border: 2px solid black;
-    padding: 1px 5px;
-    font-size: 17px;
-    float: right;
+    grid-template-columns: 75% 25%;
 }
+
+.Admin.Events .Information .cardbox .Card .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: #a200ff;
+}
+
+.Admin.Events .Information .cardbox .Card .cardName {
+    color: #3d3d3d;
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.Admin.Events .Information .cardbox .iconA {
+    font-size: 3.5em;
+    color: #3d3d3d;
+}
+
+.Admin.Events .Information .cardbox:hover {
+    background-color: #a200ff;
+}
+
+.Admin.Events .Information .cardbox:hover .Card .numbers,
+.Admin.Events .Information .cardbox:hover .iconA,
+.Admin.Events .Information .cardbox:hover .Card .cardName {
+    color: #fff;
+}
+
+
+/*-------------------------Fin DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o bloques de informaciÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³n--------------------*/
 
 .Perfil_modificar {
     -moz-box-shadow: none;
@@ -88,7 +129,66 @@
     border-top-right-radius: calc(0.3rem - 1px);
 }
 
-.flexbox .putamierda {
+.Perfil_modificar-header h5 {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.Perfil_modificar-titulo {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.Perfil_modificar-header .btn-close {
+    padding: 0;
+    margin: -0.5rem -0.5rem -0.5rem auto;
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: #000;
+    border: 0;
+    border-radius: 0.25rem;
+    opacity: 1;
+}
+
+.Perfil_modificar-footer {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    border-top: 2px solid #dee2e6;
+    border-bottom-right-radius: calc(0.3rem - 1px);
+    border-bottom-left-radius: calc(0.3rem - 1px);
+}
+
+.Perfil_modificar-footer button {
+    margin: 0 10px;
+}
+
+.flexbox {
+    position: relative;
+    width: 90%;
+    height: 55px;
+    margin: 0 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: none;
+}
+
+.flexbox .pinput {
     width: 100%;
     height: 100%;
     color: #000;
