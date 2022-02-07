@@ -10,8 +10,10 @@ class Catalogo(ListView):
     template_name="Catalogo.html"
     
 def ServicioDetalle(request, servicio):
-    servicio=Servicio.objects.filter(slug=servicio)
+    servicio=Servicio.objects.filter(slug=servicio) 
     return render(request, "Catalogo.html",{"servicio":servicio})
+
+
 
 
 class Carrito(TemplateView):
