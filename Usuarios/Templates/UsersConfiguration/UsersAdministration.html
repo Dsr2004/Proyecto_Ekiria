@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administracion de usuarios</title>
-    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleAdministration.css"> {% endblock head %} {% block Contenido %}
+    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleAdministration.css">
+    <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleTablesInformations.css"> {% endblock head %} {% block Contenido %}
 </head>
 <!----------------------------------------Dashborad Usuarios---------------------------------------->
 
@@ -58,25 +59,27 @@
         </div>
     </div>
 </div>
-<div class="Admin Header-table">
-    <div class="Admin search">
+
+
+<div class="Table Header-table">
+    <div class="Table search">
         <label>
-            <input type="text" placeholder="Search here">
-            <i class="fas fa-search"></i>
-        </label>
+        <input type="text" placeholder="Search here">
+        <i class="fas fa-search"></i>
+    </label>
     </div>
-    <div class="Admin AddUser">
+    <div class="Table Add">
         <button type="button" class="Add img" data-bs-toggle="modal" data-bs-target="#add">
-            <i class="fas fa-user-plus"></i>
-        </button>
+        <i class="fas fa-user-plus"></i>
+    </button>
     </div>
 </div>
 
-<div class="Admin Table">
-    <div class="userInformation">
+<div class="Table Content-table">
+    <div class="Information">
         <div class="cardHeader">
             <i class="fas fa-angle-left"></i>
-            <h2>Usuarios Registrados</h2>
+            <h2> Usuarios Registrados </h2>
             <i class="fas fa-angle-right"></i>
 
         </div>
@@ -117,7 +120,7 @@
                     <td>2022-02-01 02:20</td>
                     <td>Activo</td>
                     <td>
-                        <button type="button" class="Edit User" data-bs-toggle="modal" data-bs-target="#edit">
+                        <button type="button" class="Edit" data-bs-toggle="modal" data-bs-target="#edit">
                             <i class="mdi mdi-account-edit"></i>
                         </button>
                     </td>
@@ -126,6 +129,10 @@
         </table>
     </div>
 </div>
+
+
+
+
 <!--------------------------------------Fin Dashborad Usuarios-------------------------------------->
 {% endblock Contenido %} {% block modal %}
 <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
