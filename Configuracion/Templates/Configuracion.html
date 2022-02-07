@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+{%extends 'Menu_Usuario.html'%}
 <head>
     {% block head %}
     <meta charset="UTF-8">
@@ -10,8 +9,12 @@
     <title>Configuracion</title>
     {% endblock head %}
 </head>
-<body>
     {% block Contenido %}
+    <style>
+        .modal-backdrop {
+              z-index: -1 !important;
+                  }
+      </style>
     <div class="contPrincipal" >
         <div class="contImagen">
             <img class="imagenLogo" src="/static/Configuracion/img/LogoEkiria.png" alt="">
@@ -37,5 +40,3 @@
     {%block scripts%}
     <script src="/static/Configuracion/js/main.js"></script>
     {%endblock scripts%}
-</body>
-</html>
