@@ -30,7 +30,6 @@ from rest_framework.authentication import get_authorization_header
 #             })
 #         except:
 #             return Response({'error': 'No se han enviado las credenciales.'}, status=status.HTTP_400_BAD_REQUEST)
-
 class Login(ObtainAuthToken, TemplateView):
     template_name = 'registration/login.html'
     def post(self,request,*arg, **kwargs):
@@ -109,7 +108,7 @@ def PassR(request):
 # def Register(request):
 #     return render(request, "registration/Registration.html")
 
-class Register(CreateView):
+class Register(TemplateView):
     model = Usuario
     template_name = 'registration/Registration.html'
     form_class = UserCreationForm
@@ -118,3 +117,8 @@ def Perfil(request):
     return render(request, "UserInformation/Perfil.html")
 def Admin(request):
     return render(request, "UsersConfiguration/UsersAdministration.html")
+
+# class Notification(TemplateView):
+#     template_name = 'UserInformation/Notification.html'
+def Notification(request):
+    return render(request, "UserInformation/Notification.html")
