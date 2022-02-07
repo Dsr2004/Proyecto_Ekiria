@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    'crispy_forms',
+    # 'crispy_forms',
 
     'Ventas',
 ]
@@ -109,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CRISPY_TEMPLATE_PACK='bootstrap5'
+# CRISPY_TEMPLATE_PACK='bootstrap5'
 
 
 # Internationalization
