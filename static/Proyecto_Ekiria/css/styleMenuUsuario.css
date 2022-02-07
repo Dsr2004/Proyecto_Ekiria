@@ -4,10 +4,6 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-.modal-backdrop{
-    z-index: -1 !important;
-    opacity: 0.5 !important;
-}
 
 body {
     min-height: 100vh;
@@ -597,7 +593,7 @@ body {
         width: 68%;
     }
     .Logo.activar {
-        margin-left: 30%
+        margin-left: 30%;
         margin-top: 7px;
     }
     .toggle.activar {
