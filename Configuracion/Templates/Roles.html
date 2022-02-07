@@ -11,14 +11,7 @@
     <title>Roles</title>
   </head>
     {% endblock head %}
-      
-        {% block Contenido %}
-        <style>
-          .modal-backdrop {
-                z-index: -1 !important;
-                opacity:0.5 !important;
-                    }
-        </style>
+    {%block Contenido%}
     <h1 class="titulo">Listado De Roles</h1>
     <div class="tabla">
       <table class="table table-striped">
@@ -68,19 +61,27 @@
                 <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
               </tr>
             </tbody>
-            
       </table>
-          <!-- Button trigger modal -->
-          {% block modal %} 
       <div class="contNuevoRol">
         
         <button class="nuevoRol" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol">
          Crear Nuevo Rol</button>
         <img class="imgAgregar" src="/static/Configuracion/img/Agregar.png" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol">
+      </div>
     </div>
+      
+          {% endblock Contenido %}
 
+         
+{%block scripts%} 
+<script src="/static/Configuracion/js/main.js"></script>
+<script src="/static/Configuracion/js/habilitar.js"></script>
+<script src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+{%endblock scripts%}
+{% block modal %} 
 <!-- Modal Crear Rol -->
-<div class="modal fade " id="CrearRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<div class="modal fade" id="CrearRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -175,11 +176,5 @@
     </div>
   </div>
 </div>
+
 {% endblock modal %}
-{%block scripts%} 
-<script src="/static/Configuracion/js/main.js"></script>
-<script src="/static/Configuracion/js/habilitar.js"></script>
-<script src="/static/bootstrap/js/bootstrap.js"></script>
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-{%endblock scripts%}
-{% endblock Contenido %}

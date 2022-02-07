@@ -350,6 +350,8 @@ a {
   border-radius: 5px;
   margin-bottom: 20px;
   background-color: $white;
+  height: 440px;
+  overflow: auto;
 
   .card-drop {
     color: $muted;
