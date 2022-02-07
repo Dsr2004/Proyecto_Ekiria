@@ -167,12 +167,9 @@
     position: relative;
     width: 90%;
     height: 75px;
-    margin: -2px 2.5%;
     display: flex;
     justify-content: center;
-    align-items: center;
     background-color: none;
-    overflow: hidden;
 }
 
 .flexbox input {
