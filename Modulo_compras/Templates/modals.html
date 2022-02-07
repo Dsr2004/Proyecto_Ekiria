@@ -1,3 +1,5 @@
+{% load crispy_forms_tags  %} 
+
 <!---CREAR PROVEEDOR-->
 <div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="agregar_prov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -7,31 +9,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         <form action="" class="form-p">
-            <label for="nombre" >Nombre</label>
-            <br>
-             <input type="text" name="nombre" id="nombre" placeholder="Nombre"class="form-control">
-              <br>
-             <label for="Tel" >Télefono</label>
-             <br>
-              <input type="tel" name="Telefono" id="Tel" placeholder="Télefono" class="form-control">
-              <br>
-              <label for="email" >E-mail</label>
-              <br>
-               <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
-                <br>
-               <label for="encargo" >Encargo</label>
-               <br>
-                <input type="text" name="Encargo" id="encargo" placeholder="Encargo" class="form-control">
-                <br>
-                <label for="descrip" >Descripción</label>
-                <br>
-                <textarea class="form-control" id="descrip" rows="3"></textarea>
-             </form>    
+         <form action="" class="form-p" method="POST">
+           {%csrf_token%}
+            {{ prov_form|crispy}}
+          </form>    
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
         </div>
       </div>
     </div>
@@ -132,10 +117,6 @@
               <option value="">corta uñas</option>
             </select>
             <br>
-            <label for="prod" >Producto</label>
-            <br>
-             <input type="text" name="Prod" id="prod" placeholder="producto" class="form-control">
-              <br>
              <label for="pre" >precio</label>
              <br>
               <input type="text" name="prec" id="pre" placeholder="Precio" class="form-control">
@@ -203,11 +184,13 @@
           <br>
             <label for="cant" >Cantidad</label>
             <br>
-             <input type="text" name="Encargo" id="cant" placeholder="Cantidad" class="form-control">
+             <input type="number" name="Encargo" id="cant" placeholder="Cantidad" class="form-control">
             <br>
             <label for="descrip" >Descripción</label>
             <br>
             <textarea class="form-control" id="descrip" rows="3"></textarea>
+            <br>
+            
             
          </form>    
     </div>
