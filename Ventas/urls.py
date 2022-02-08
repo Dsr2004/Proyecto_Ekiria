@@ -15,6 +15,6 @@ urlpatterns = [
     path('AgregarCita/', AgregarCita.as_view(), name="agregarCita"),
     path('ListadoCitas/', ListarCita.as_view(), name="listarCitas"),
     path('EditarCita/', EditarCita.as_view(), name="editarCita"),
-    path('<slug>/', ServicioDetalle, name="detalleSer"),                      
+    path('<slug>/', ServicioDetalle.as_view(), name="detalleSer"),                      
 ]
 

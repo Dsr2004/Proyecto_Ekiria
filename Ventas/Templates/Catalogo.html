@@ -22,7 +22,7 @@
             opacity:0.5 !important
                 }
 </style>
-
+<div class="fondiu">
 <h1>Catalogo</h1>
 <!-- Servicios del catalogo -->
 <div class=" body ">
@@ -54,7 +54,7 @@
             </div>
             <span>Comprar</span>
          </a>
-         <a href="{% url 'Ventas:detalleSer' servicio.slug %}"  class="botonC VerM"><span>Ver mas</span></a>
+         <a href="{{servicio.get_absolute_url}}"  class="botonC VerM"><span>Ver mas</span></a>
          <!-- <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button> -->
       </div>
    </div>
@@ -66,9 +66,10 @@
    
   
    
-  
+</div>
 </div>
 
+{% endblock Contenido %}
  <br><br><br><br>
 
 
@@ -90,5 +91,3 @@
 {% block scripts %}
 <script src="/static/bootstrap/js/bootstrap.js"></script>
 {% endblock scripts %}
-
-{% endblock Contenido %}

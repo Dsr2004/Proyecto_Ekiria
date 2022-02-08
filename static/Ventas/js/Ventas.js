@@ -123,3 +123,6 @@ function CancelarCita2(){
       }
     });
 }
+
+// ajax detalle de servicio 
+

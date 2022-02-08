@@ -9,9 +9,14 @@ class Catalogo(ListView):
     context_object_name="servicios"
     template_name="Catalogo.html"
     
-def ServicioDetalle(request, servicio):
-    servicio=Servicio.objects.filter(slug=servicio) 
-    return render(request, "Catalogo.html",{"servicio":servicio})
+# def ServicioDetalle(request, servicio):
+#     servicio=Servicio.objects.filter(slug=servicio) 
+#     return render(request, "Catalogo.html",{"servicio":servicio})
+
+class ServicioDetalle(DetailView):
+    queryset=Servicio.objects.all()
+    context_object_name="DetailSs"
+    template_name="Catalogo.html"
 
 
 
