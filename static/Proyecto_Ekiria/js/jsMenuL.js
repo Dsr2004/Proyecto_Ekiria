@@ -11,13 +11,16 @@ for (let i = 0; i < list.length; i++) {
 }
 list.forEach(listElement => {
         listElement.addEventListener('click', () => {
-
             listElement.className = "list activar"
             let height = 0;
             let menu = listElement.nextElementSibling;
             if (menu.clientHeight == "0") {
                 height = menu.scrollHeight;
                 listElement.classList.toggle('arrow');
+                let list = document.querySelectorAll(".list_show")
+                for (let i = 0; i < list.length; i++) {
+                    list[i].style.height = 0;
+                }
             }
             menu.style.height = height + "px";
         })
@@ -38,10 +41,5 @@ menuToggle.onclick = function() {
         img.classList.toggle('activar');
     }
     /**  Transformador scrollbar por tamaño de lista */
-window.onload = function() {
-    let listas = document.getElementsByClassName("list");
-    if (listas.length < 11) {
-        nav.classList.add('notscrollbar')
-    }
-};
+
 /** Submenu */

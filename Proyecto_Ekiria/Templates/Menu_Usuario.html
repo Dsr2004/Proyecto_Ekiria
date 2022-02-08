@@ -1,4 +1,3 @@
-{% include "ComplementosVentas.html" %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -27,67 +26,80 @@
 </header>
 
 <body>
-
+    {%csrf_token%}
     <div class="grid">
         <!--          Creación del menú lateral        -->
         <div class="backnav">
             <nav class="nav">
-
                 <div class="menul">
                     <!--Para usar los bloques li copiad y pegar toda la info, ademas agregad la clase activar a la parte donde esta parada-->
 
                     <!--           Zona de links de navegación     -->
                     <div class="Perfil">
-                        <a href="InformacionDeUsuario/Perfil/">
+                        <a href="{%url 'Perfil'%}">
                             <img src="/static/Proyecto_Ekiria/Img/profile.png" class="foto_perfil">
-                            <p>Nombre Usuario <sup>Rol</sup></p>
+                            <p class="escon">Nombre de Usuario <sup>Rol</sup> </p>
                         </a>
-                        <br>
-                        <button><a href="../IniciarSesion/" style="color:#fff;"><i class="mdi mdi-power"></i></a></button>
                     </div>
                     <ul class="list_content">
                         <li class="list_item list_item--click">
 
                             <div class="list  {% if request.path == '/Inicio/'%}activar{% endif %}">
-                                <i class="mdi mdi-view-dashboard"></i>
-                                <a class="nav_link" href="../Inicio/"> Inicio</a>
+                                <i class="mdi mdi-home centrado"></i>
+                                <a class="nav_link escon" href="{%url 'Inicio'%}"> Inicio</a>
                             </div>
                         </li>
                         <li class="list_item list_item--click">
-                            <div class="list">
-                                <i class="mdi mdi-view-dashboard"></i>
-                                <a class="nav_link"> Configuración</a>
-                                <i class="list_arrow mdi mdi-chevron-right"></i>
+                            <div class="list {%if request.path == '/InformacionUsuario/Administracion/'%}activar{% endif %}">
+                                <i class="mdi mdi-view-dashboard centrado"></i>
+                                <a class="nav_link escon"> Configuración</a>
+                                <i class="list_arrow mdi mdi-chevron-right escon"></i>
                             </div>
                             <ul class="list_show">
+                                <li class="nav_link--inside"><a href="{%url 'Administracion'%}">Administración de Usuarios</a></li>
                                 <li class="nav_link--inside"><a>Nombre Direccion</a></li>
                                 <li class="nav_link--inside"><a>Nombre Direccion</a></li>
-                                <li class="nav_link--inside"><a>Nombre Direccion</a></li>
+                                <br>
                             </ul>
                         </li>
                         <li class="list_item list_item--click">
-                            <div class="list {% if request.path == '/compras/proveedores/'%}activar{% endif %} {% if request.path == '/compras/productos/'%}activar{% endif %}
-                            {% if request.path == '/compras/confcompra/'%}activar{% endif %}list_button--click">
-                                <i class="mdi mdi-archive"></i>
-                                <a class="nav_link"> Productos</a>
-                                <i class="list_arrow mdi mdi-chevron-right"></i>
+                            <div class="list 
+                                {% if request.path == '/compras/proveedores/'%}activar{% endif %} 
+                                {% if request.path == '/compras/productos/'%}activar{% endif %}
+                                {% if request.path == '/compras/confcompra/'%}activar{% endif %}list_button--click">
+                                <i class="mdi mdi-archive centrado"></i>
+                                <a class="nav_link escon"> Productos</a>
+                                <i class="list_arrow mdi mdi-chevron-right escon"></i>
                             </div>
                             <ul class="list_show">
                                 <li class="nav_link--inside"><a>Proveedor</a></li>
                                 <li class="nav_link--inside"><a>Productos</a></li>
                                 <li class="nav_link--inside"><a>Compras</a></li>
+                                <br>
                             </ul>
                         </li>
-                       
+
                         <li class="list_item list_item--click">
-                            <div class="list {% if request.path == '/Ventas/Catalogo/'%}activar{% endif %} {% if request.path == '/Ventas/Calendario/'%}activar{% endif %}
+                            <div class="list 
+                            {% if request.path == '/Ventas/Catalogo/'%}activar{% endif %} 
+                            {% if request.path == '/Ventas/Calendario/'%}activar{% endif %}
                             {% if request.path == '/Ventas/TerminarPedido/'%}activar{% endif %}
-                            {% if request.path == '/Ventas/PersonalizarSer/'%}activar{% endif %}list_button--click">
-                                <i class="mdi mdi-basket"></i>
-                                <a class="nav_link"> Servicios</a>
-                                <i class="list_arrow mdi mdi-chevron-right"></i>
+                            {% if request.path == '/Ventas/PersonalizarSer/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/DetalleCita/'%}activar{% endif %} 
+                            {% if request.path == '/Ventas/AdminVentas/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/AgregarServicio/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/ListadoServicios/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/EditarServicio/'%}activar{% endif %} 
+                            {% if request.path == '/Ventas/AgregarCita/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/ListadoCitas/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/EditarCita/'%}activar{% endif %}
+                            list_button--click">
+                                <i class="mdi mdi-basket centrado"></i>
+                                <a class="nav_link escon"> Servicios</a>
+                                <i class="list_arrow mdi mdi-chevron-right escon"></i>
                             </div>
                             <ul class="list_show">
+<<<<<<< HEAD
                                 <li class="nav_link--inside"><a href="{% url 'Ventas:catalogo' %}">Catalogo</a></li>
                                 <li class="nav_link--inside"><a href="{% url 'Ventas:calendario' %}">Calendario</a></li>
                                 <li class="nav_link--inside"><a href="{% url 'Ventas:adminVentas' %}">Pagina Principal</a></li>
@@ -113,72 +125,105 @@
                                         <li class="nav_link--inside"><a href="{% url 'Ventas:listarCitas' %}">listar</a></li>
                                     </ul>
                                 </li>
+=======
+                                <li class="nav_link--inside"><a href="">Catalogo</a></li>
+                                <li class="nav_link--inside"><a href="">Calendario</a></li>
+                                <li class="nav_link--inside"><a href="">Finalizar compra</a></li>
+                                <li class="nav_link--inside"><a href="">Servicios personalizados</a></li>
+                                <li class="nav_link--inside"><a href="">Administración de ventas</a></li>
+                                <li class="nav_link--inside"><a href="">Servicios</a></li>
+                                <li class="nav_link--inside"><a href="">Citas</a></li>
+                                <li class="nav_link--inside"><a href="">Detalles de cita</a></li>
+>>>>>>> origin/ModUsuarios
                                 <br>
                             </ul>
                         </li>
                     </ul>
+                    <li class="salir" id="salir">
+                        <div class="cerrar">
+                            <a href="{% url 'IniciarSesion' %}" class="icon"><i class="mdi mdi-power centrado"></i> </a>
+                            <a href="{% url 'IniciarSesion' %}" class="escon text"> Cerrar Sesión</a>
+                        </div>
+                    </li>
                 </div>
-
             </nav>
         </div>
 
-        <img href="/Inicio/" class="Logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png" width="179" height="50">
-        <div class="toggle">
-            <i class="abrir fas fa-bars"></i>
-            <i class="cerrar fas fa-times"></i>
+        <div class="toggle ">
+            <i class="abrir fas fa-bars "></i>
+            <i class="cerrar fas fa-times "></i>
         </div>
-        <div class="content">
-            <div class="fondo"></div>
-            <div class="menu">
-                <ul>
-                    <li><a class="links" href="#"><i class="mdi mdi-account-group" style="margin-top: -3px;"></i><p class="atext">Nosotros</p></a></li>
-                    <div class="notification-box">
-                        <ul class="list-inline mb-0">
-                            <li>
-                                <a href="javascript:void(0);" class="right-bar-toggle">
-                                    <i class="mdi mdi-bell noti-icon"></i>
-                                </a>
-                                <div class="noti-dot">
-                                    <span class="dot"></span>
-                                    <span class="pulse"></span>
-                                </div>
-                            </li>
-                        </ul>
+
+        <div class="content ">
+
+            <div class="fondo "></div>
+            <div class="relle">
+                
+            <img href="{%url 'Inicio'%} " class="Logo " src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png " width="179 " height="50 ">
+                <div class="menu ">
+
+                    <ul>
+                        <li><a class="links " href="# "><i class="mdi mdi-account-group " style="margin-top: -3px; "></i><p class="atext ">Nosotros</p></a></li>
+                        <div class="notification-box ">
+                            <ul class="list-inline mb-0 ">
+                                <li>
+                                    <a href="{%url 'Notify'%}" class="right-bar-toggle ">
+                                        <i class="mdi mdi-bell noti-icon "></i>
+                                    </a>
+                                    <div class="noti-dot " style="margin-left: -6px; ">
+                                        <span class="dot "></span>
+                                        <span class="pulse "></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <li><a href="/Ventas/Carrito/ " type="button " class=" btn position-relative " data-bs-toggle="offcanvas " data-bs-target="#Carrito " aria-controls="offcanvasTop " style="margin-top: -7px; "><i class="fas fa-shopping-cart
+                            "></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">0</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="contentDiv" id="div">
+
+                    {% block Contenido %}
+                    <div>
+                        <input type="search ">
                     </div>
+<<<<<<< HEAD
                     <li><a href="{% url 'Ventas:carrito' %}" type="button" class=" btn position-relative" style="margin-top: -7px;"><i class="fas fa-shopping-cart"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a></li>
                 </ul>
             </div>
+=======
+                    <div>Hola 2</div>
+                    {% endblock Contenido %}
+>>>>>>> origin/ModUsuarios
 
-            <div id="div">
-                {% block Contenido %}
-                <div>
-                    <input type="search">
                 </div>
-                <div>Hola 2</div>
-                {% endblock Contenido %}
             </div>
         </div>
+
     </div>
     <!----->{% block modal %} {% endblock modal %}
     <!---->{%block scripts%} {%endblock scripts%}
-    <script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/jquery.min.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/popper.min.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/bootstrap.min.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/detect.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/fastclick.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/jquery.blockUI.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/waves.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/jquery.nicescroll.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/jquery.slimscroll.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/jquery.scrollTo.min.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/jquery.core.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/js/jquery.app.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <script src="/static/Proyecto_Ekiria/assets/plugins/moment/moment.js"></script>
+    <script src="/static/Proyecto_Ekiria/js/jsMenuL.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/jquery.min.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/popper.min.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/bootstrap.min.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/detect.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/fastclick.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/jquery.blockUI.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/waves.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/jquery.nicescroll.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/jquery.slimscroll.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/jquery.scrollTo.min.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/jquery.core.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/js/jquery.app.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/plugins/jquery-ui/jquery-ui.min.js "></script>
+    <script src="/static/Proyecto_Ekiria/assets/plugins/moment/moment.js "></script>
     <script src='/static/Proyecto_Ekiria/assets/plugins/fullcalendar/js/fullcalendar.min.js'></script>
-    <script src="/static/Proyecto_Ekiria/assets/pages/jquery.fullcalendar.js"></script>
+    <script src="/static/Proyecto_Ekiria/assets/pages/jquery.fullcalendar.js "></script>
+    <script src="/static/Proyecto_Ekiria/js/jsMenuL.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js "></script>
 </body>
 
 </html>

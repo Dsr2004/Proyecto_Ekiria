@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleRegistration.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</head>
+
+<body>
+    <div class="fondo"></div>
+    <div class="difuminacion"></div>
+    <div class="contenido">
+        <div class="contLogo">
+            <img class="logo" src="/static/ModuloUsuarios/img/Logo.png">
+        </div>
+        <form>
+            <h1>Registro</h1>
+            {{form}}
+            <!-- <div class="form">
+                <div class="frid">
+                    <div class="flexbox">
+                        <input autocomplete="off" id="nombre" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Nombres</strong></span>
+                        </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        <input id="apellido" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Apellidos</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <div class="frid">
+                    <div class="flexbox">
+                        <input id="email" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>E-mail</strong></span>
+                        </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        <input id="direccion" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Dirección</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <div class="frid">
+                    <div class="flexbox">
+                        <input id="tel" autocomplete="off" type="text">
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Telefono</strong></span>
+                        </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        <input id="cel" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Celular</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <div class="frid">
+                    <div class="flexbox">
+                        <input id="municipio" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Municicpio</strong></span>
+                        </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        <input id="codpostal" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Código Postal</strong></span>
+                        </label>
+                    </div>
+                </div>
+                <br>
+                <div class="frid">
+                    <div class="flexbox">
+                        <input id="documento" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Documento</strong></span>
+                        </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        <input id="tipo" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Tipo de documento</strong></span>
+                        </label>
+                    </div>
+                </div><br>
+                <div class="frid">
+                    <div class="flexbox">
+                        <input id="fecnac" autocomplete="off" type="date" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb" style="transform: translateY(-150%);
+                        font-size: 14px;"><strong>Fecha de nacimiento</strong></span>
+                        </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        <input id="codpostal" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Código Postal</strong></span>
+                        </label>
+                    </div>
+                </div><br>
+                <div class="frid">
+                    <div class="flexbox">
+                        <input id="password" autocomplete="off" type="password" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Contraseña</strong></span>
+                        </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        <input id="confpassword" autocomplete="off" type="text" required>
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Confirmar Contraseña</strong></span>
+                        </label>
+                    </div>
+                </div> -->
+            <br>
+            <div>
+                <div class="flexbox" style="width: 95%;">
+                    <input id="apodo" autocomplete="off" type="text" required>
+                    <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Apodo</strong></span>
+                        </label>
+                </div>
+            </div>
+            <button type="submit" class="boton"><strong>Registrarme</strong></button>
+
+            <div class="ayuda">
+                <a href="{%url 'RecuperarContraseña'%}">Registrame</a>
+            </div>
+    </div>
+    <br><br>
+    </form>
+    </div>
+    <script src="/static/ModuloUsuarios/js/mainRegistration.js"></script>
+</body>
+
+</html>

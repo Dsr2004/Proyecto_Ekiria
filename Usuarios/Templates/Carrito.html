@@ -1,0 +1,101 @@
+{% extends "Menu_Usuario.html" %}
+
+{% block head %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Carrito</title>
+   <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
+   <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+   <link rel="stylesheet" href="/static/Ventas/css/Ventas-carrito.css">
+  
+</head>
+{% endblock head %}
+
+<!-- empieza el contenido del carrito  -->
+{% block Contenido %}
+
+<section class="shopping-cart" style="background-color: white; padding: 25px;" >
+            <h1 class="text-center">CARRITO</h1>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <div class="shopping-cart-header">
+                        <h4>Producto</h4>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="shopping-cart-header">
+                        <h4 class="text-truncate">Precio</h4>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="shopping-cart-header">
+                        <h4>Acciones</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- ? empieza listado de items -->
+            <div class="shopping-cart-items shoppingCartItemsContainer" >
+                <!-- servicio-->
+                <div class="row shoppingCartItem">
+                    <div class="col-6">
+                        <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+                            <img src='/static/Ventas/img/uña2.jfif' class="shopping-cart-image">
+                            <h4 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">Uñas de Halloween</h4>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="shopping-cart-price d-flex align-items-center h-100 border-bottom pb-2 pt-3">
+                            <p class="item-price mb-0 shoppingCartItemPrice">$15000</p>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
+                            
+                            <button class="btn btn-danger buttonDelete" type="button"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- fin servicio -->
+               
+                
+                
+                <!-- START TOTAL -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="shopping-cart-total d-flex align-items-center">
+                        <h4 class="mb-0">Total:</h4>
+                        <h5 class="ml-2 mb-8 shoppingCartTotal">15000$</h5>
+                        <div class="botonesCarrito container-fluid">
+                            <div class="row">
+                               <div class="col"><a href="{% if request.path != 'catalogo' %}{% url 'Ventas:catalogo' %}{% endif %}"  class="float-right btn btn-outline-secondary" >Seguir Comprando</a></div>
+                               <div class="col"><a href="{% url 'Ventas:TerminarPedido' %}"  class="d-grid gap-2 btn btn-success">Terminar Pedido</a></div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- END TOTAL -->
+                
+            </div>
+            <!-- ? finaliza listado de items -->
+    </section>
+
+
+{% endblock Contenido %}
+
+
+
+{% block modal %}
+{% endblock modal %}
+
+
+<!-- scripts -->
+{% block scripts %}
+<script src="/static/bootstrap/js/bootstrap.js"></script>
+{% endblock scripts %}

@@ -19,41 +19,39 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 100%;
     box-sizing: initial;
-    transition: 2s;
-    display: grid;
-    grid-template-columns: 0% 100%;
+    display: flex;
 }
 
-.grid.activar {
-    grid-template-columns: 20% 80%;
-}
-
-.Perfil {
+.nav .Perfil {
     width: 100%;
-    padding-top: 15px;
+    padding: 7px;
     margin-left: -20px;
-    text-align: center;
-    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 2px outset #adadad;
+    background: linear-gradient(to bottom, #0c0c0c, #0f0f0f);
 }
 
 .Perfil a {
     text-decoration: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .Perfil a p {
     padding-top: 5px;
-    font-size: 20px;
-    margin-bottom: -10px;
+    font-size: 15px;
+    margin-top: 15px;
+    margin-left: 10px;
 }
 
 .Perfil a p sup {
     color: red;
+    font-size: 11px;
 }
 
-.Perfil button {
-    margin-top: -50px;
+.salir {
     background: none;
     color: #fff;
     border: none;
@@ -62,15 +60,51 @@ body {
     cursor: pointer;
     outline: inherit;
     font-size: 25px;
+    margin-left: -25px;
 }
 
-.foto_perfil {
-    width: 90px;
-    height: 90px;
+.cerrar {
+    display: flex;
+}
+
+.cerrar a {
+    color: #fff;
+}
+
+.cerrar .icon {
+    margin-left: -20px;
+}
+
+.cerrar .text {
+    padding-left: 10px;
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+#salir {
+    padding-left: 25%;
+    margin-top: 500px;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background-color: #161616;
+    box-shadow: 0px -5px 5px 2px #0f0f0f;
+    border-radius: 0;
+    z-index: 15;
+}
+
+.nav .foto_perfil {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: 2px solid #fff;
     outline: 1px solid #fff;
     background-color: #cecece;
+}
+
+.nav.activar .foto_perfil {
+    width: 60px;
+    height: 60px;
 }
 
 
@@ -88,30 +122,89 @@ body {
 
 /*        Estilos del menu lateral    */
 
+.nav .centrado {
+    display: flex;
+    text-align: center;
+    margin-left: 100%;
+}
+
+.nav.activar .centrado {
+    display: flex;
+    text-align: center;
+    margin-left: 0%;
+}
+
+.nav .escon {
+    display: none;
+    transition: 0.5s;
+    animation-name: escon;
+    animation-duration: 1s;
+}
+
+.nav.activar .escon {
+    display: inline-flex;
+}
+
+.nav .asoma::hover .escon {
+    display: inline-flex;
+}
+
+@keyframes escon {
+    from {
+        font-size: 0px;
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.nav .list.activar .nosepo {
+    width: 200px;
+    background-color: #161616;
+}
+
 .nav {
     width: 100%;
     top: 0px;
-    transition: 1s;
+    left: 0;
     position: absolute;
-    margin-left: -400px;
+    margin-left: -320px;
+    animation-duration: 1s;
 }
 
-.backnav {
-    width: 100%;
+@keyframes nav {
+    from {
+        width: 35%;
+        opacity: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.grid .backnav {
+    width: 0%;
     height: 100%;
     background: linear-gradient(to bottom, #121212, #161616);
-    overflow: auto;
+    transition: 0.5s;
+}
+
+.grid.activar .backnav {
+    width: 23%;
 }
 
 .nav.activar {
+    width: 100%;
     margin-left: 10px;
-    transition: 1s;
+    transition: 0s;
+    animation-name: nav;
 }
 
 .nav .menul {
-    margin-left: -300px;
-    width: 20%;
-    height: 90%;
+    margin-left: -500px;
+    width: 0%;
+    height: 100%;
     padding-left: 0px;
     float: left;
     text-align: left;
@@ -120,7 +213,8 @@ body {
 
 .nav.activar .menul {
     margin-left: 10px;
-    transition: 1s;
+    transition: 0s;
+    width: 23%;
 }
 
 .list_content {
@@ -163,8 +257,16 @@ body {
     color: #fff;
 }
 
+.nav_link--inside a {
+    color: #fff;
+}
+
 .nav_link--inside:hover {
     background: #c9c9c9;
+    color: #000;
+}
+
+.nav_link--inside:hover a {
     color: #000;
 }
 
@@ -196,7 +298,6 @@ body {
     width: 100%;
     text-decoration: none;
     color: #fff;
-    overflow: hidden;
     font-size: 20px;
     z-index: 10;
 }
@@ -215,46 +316,53 @@ body {
 
 .content {
     display: block;
-    background-color: while;
+    background-color: transparent;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.content .fondo {
-    background: url("/static/Proyecto_Ekiria/Img/fondo.jpg") no-repeat center center;
-    position: absolute;
+.fondo {
+    background-color: #fff;
+    position: relative;
     top: 0px;
     min-height: 100%;
     background-size: cover;
-    z-index: 0;
-    opacity: 0.1;
+    opacity: 1;
     padding: 0;
     width: 100%;
     height: 100%;
 }
 
+.content .relle {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    transition: 0.5s;
+}
+
+.content.activar .relle {
+    width: 77%;
+}
+
 
 /* Contenedor de contenido*/
-
 
 @media (min-width: 950px) {
     .content.activar {
         margin-right: 0px;
         transition: 1s;
+        width: 77%;
     }
     .content {
+        width: 100%;
         top: 0px;
         margin-right: 0px;
         overflow: auto;
         float: right;
         transition: 0.2s;
     }
-
 }
-
-
-
 
  ::-webkit-scrollbar-thumb:hover {
     border: 3px outset #800080;
@@ -263,23 +371,22 @@ body {
 }
 
 
-
 /*--------------------------------------------*/
 
 .Logo.activar {
     position: fixed;
-    margin: 10px 40%;
-    top: 0px;
+    top: 7px;
     z-index: 10;
+    margin-left: 30%;
 }
 
 .Logo {
+    width: 6%;
+    height: 6%;
     position: fixed;
-    top: 10px;
-    left: 70px;
+    top: 7px;
     z-index: 10;
-    animation-duration: 1s;
-    transition: 0.5s;
+    margin: 0 47%;
 }
 
 .menu.activar {
@@ -292,7 +399,7 @@ body {
     top: 0px;
     margin: 0 auto;
     width: 100%;
-    height: 65px;
+    height: 7vh;
     border-bottom: 2px solid black;
     background: linear-gradient(to bottom, #572364, #2f214a);
     z-index: 9;
@@ -305,23 +412,18 @@ body {
     height: 20px;
 }
 
-.content.activar #div {
+.content.activar .contentDiv {
     float: left;
     width: 100%;
     text-align: left;
 }
 
-.content #div {
+.content .contentDiv {
     position: relative;
-    top: 10px;
-    float: left;
-    width: 99.5%;
-    text-align: left;
+    top: -1vh;
+    width: 100%;
+    height: 90vh;
     overflow: auto;
-    margin-left: 10px;
-    animation-duration: 2s;
-    transition: 2s;
-    opacity: 1;
     padding: 0;
 }
 
@@ -384,9 +486,9 @@ body {
 
 .toggle {
     position: fixed;
-    top: 20px;
+    top: 12px;
     bottom: 0px;
-    left: 10px;
+    left: 1%;
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -395,20 +497,14 @@ body {
     align-items: center;
     z-index: 10;
     transition: 0.5s;
-    animation: 1s;
+    animation: 0.3s;
     animation-name: toggle;
 }
 
 .toggle.activar {
-    animation: 0.5s;
-    left: 21%;
+    animation: 0.3s;
+    left: 24%;
     animation-name: toggleA;
-}
-
-@keyframes toggle {
-    to {
-        transform: rotate3d(0, 3, 0, 180deg);
-    }
 }
 
 @keyframes toggleA {
@@ -445,20 +541,11 @@ body {
 /* Creacion del modo responsive */
 
 @media (max-width: 950px) {
-    .grid {
-        position: fixed;
-        top: 0px;
-        left: 0;
-        bottom: 0;
+    .content {
         width: 100%;
-        height: 100%;
-        box-sizing: initial;
-        transition: 2s;
-        display: grid;
-        grid-template-columns: 0% 100%;
     }
-    .grid.activar {
-        grid-template-columns: 25% 75%;
+    .content.activar {
+        width: 68%;
     }
     .content ul {
         position: static;
@@ -485,21 +572,51 @@ body {
     .content ul .links .atext {
         margin-left: 5px;
     }
+    .grid .backnav {
+        width: 0%;
+    }
+    .grid.activar .backnav {
+        width: 32%;
+    }
+    .nav {
+        width: 100%;
+    }
     .nav .menul {
-        top: 70px;
-        position: absolute;
-        left: 5px;
-        width: 23.2%;
-        padding-left: 0px;
-        float: left;
+        width: 0%;
         text-align: left;
-        transition: 2s;
+        transition: 0;
+    }
+    .nav.activar .menul {
+        width: 32%;
+    }
+    .content.activar .relle {
+        width: 68%;
     }
     .Logo.activar {
-        left: 0;
+        margin-left: 30%;
+        margin-top: 7px;
     }
     .toggle.activar {
-        left: 25%;
+        left: 33%;
+    }
+    .list a {
+        margin-top: 5px;
+        font-size: 15px;
+    }
+    .nav_link--inside a {
+        font-size: 12px;
+    }
+    .nav .foto_perfil {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        outline: 1px solid #fff;
+        background-color: #cecece;
+    }
+    .nav.activar .foto_perfil {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -507,25 +624,42 @@ body {
 /**/
 
 @media (max-width: 700px) {
-    .grid.activar {
-        grid-template-columns: auto;
+    .content .relle {
+        width: 100%;
     }
-    .Perfil {
-        margin-left: 0;
+    .nav .Perfil {
+        width: 103%;
+        margin-top: 0px;
+        padding-top: 10px;
+        text-align: center;
+        align-items: center;
+    }
+    .Perfil a {
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center;
+    }
+    .grid .backnav {
+        width: 0%;
+    }
+    .grid.activar .backnav {
+        width: 100%;
     }
     .foto_perfil {
         border: 1.9px solid black;
     }
-    .Perfil button {
-        color: #000;
+    .content {
+        width: 100%;
     }
     .content.activar {
         display: none;
     }
+    .nav {
+        width: 100%;
+        height: 10px;
+    }
     .nav .menul {
         border-top: 1px solid black;
-        top: 70px;
-        left: -10px;
         margin-left: -1000px;
         width: 100%;
         padding-left: 0px;
@@ -533,15 +667,17 @@ body {
         text-align: left;
         transition: 2s;
     }
+    .nav.activar .menul {
+        width: 100%;
+    }
     .nav .menul li {
         margin-left: 10px;
         list-style: none;
-        width: 100%;
         color: #000;
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
         z-index: 1;
-        transition: 2s;
+        transition: 0;
     }
     .nav .menul .list a {
         position: relative;
@@ -563,12 +699,10 @@ body {
         width: 70%;
     }
     .Logo.activar {
-        position: fixed;
-        margin: 10px 20%;
-        top: 0px;
+        display: flex;
+        margin-left: 35%;
         z-index: 10;
-        left: 15%;
-        width: 100px;
+        width: 0px;
         height: 45px;
     }
     .Logo {
@@ -599,7 +733,7 @@ body {
     .toggle.activar {
         transition-delay: 0.5s;
         transition-duration: 0.1s;
-        margin-left: 65%;
+        margin-left: 55%;
         font-size: 25px;
         animation: 2s;
         animation-name: toggleA;
@@ -614,7 +748,7 @@ body {
         }
     }
     .toggle.activar i.cerrar {
-        color: #000;
+        color: #fff;
     }
     .backnav {
         background-color: #fff;
@@ -623,7 +757,7 @@ body {
     .nav .menul {
         margin-left: -1000px;
         width: 100%;
-        height: 90%;
+        height: 100%;
         padding-left: 0px;
         float: left;
         text-align: left;
@@ -661,7 +795,7 @@ body {
         text-decoration: none;
     }
     .nav_link--inside {
-        padding: 10px 0;
+        padding: 10px 10px;
         text-align: initial;
         margin-left: -50;
         border-radius: 0px;
@@ -672,7 +806,12 @@ body {
     }
     .nav_link--inside:hover {
         background: #c9c9c9;
+    }
+    .nav_link--inside:hover a {
         color: #000;
+    }
+    .nav_link--inside a {
+        font-size: 20px;
     }
     .list {
         display: grid;
@@ -693,6 +832,7 @@ body {
         transform-origin: height .4s;
         height: 0;
         color: #fff;
+        transition: 1s;
     }
     .list i {
         margin-top: 13px;
@@ -712,6 +852,11 @@ body {
     .list.activar {
         background-color: #572364;
         color: #000;
+    }
+    #salir {
+        position: sticky;
+        margin-left: -10px;
+        bottom: 0px;
     }
 }
 

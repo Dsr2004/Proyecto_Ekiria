@@ -1,0 +1,47 @@
+<!--Link de los estilos de la tabla-->
+
+<link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleTablesInformations.css">
+
+    <div class="Table Header-table">
+        <div class="Table search">
+            <label>
+                <input type="text" placeholder="Search here">
+                <i class="fas fa-search"></i>
+            </label>
+        </div> 
+
+        <div class="Table Add">
+            <button type="button" class="Add img" data-bs-toggle="modal" data-bs-target="#add">
+                <i class="fas fa-user-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="Table Content-table">
+        <div class="Information">
+            <div class="cardHeader">
+                <i class="fas fa-angle-left"></i>
+                <h2> <!--Titulo--></h2>
+                <i class="fas fa-angle-right"></i>
+            </div>
+            <table>
+                <thead>
+                    <tr>         
+                        <!--Ubicación de los td--->
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <!--Ubicación de los td--->
+                        <td>
+                            <!--Ejemplo botón de editar--->
+                            <button type="button" class="Edit" data-bs-toggle="modal" data-bs-target="#edit">
+                                <i class="mdi mdi-account-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>

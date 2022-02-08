@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'crispy_forms',
-
     'Ventas',
+    'Usuarios',
+    'rest_framework', 
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE = [
@@ -57,8 +60,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Proyecto_Ekiria/Templates','Proyecto_Ekiria/Proyecto_Ekiria/Templates', 'Ventas/Templates', 'Proyecto_Ekiria/Ventas/Templates'],
-
+        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,6 +91,16 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+TOKEN_EXPIRED_AFTER_SECONDS = 900
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -108,13 +120,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# CRISPY_TEMPLATE_PACK='bootstrap5'
-
-
+AUTH_USER_MODEL = 'Usuarios.Usuario'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'es-es'
+
 
 TIME_ZONE = 'UTC'
 
@@ -133,8 +144,22 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+LOGIN_REDIRECT_URL = 'Inicio'
+LOGOUT_REDIRECT_URL = '/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
