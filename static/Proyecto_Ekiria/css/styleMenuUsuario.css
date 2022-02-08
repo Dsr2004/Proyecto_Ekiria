@@ -381,12 +381,12 @@ body {
 }
 
 .Logo {
-    width: 8%;
-    height: 8%;
+    width: 6%;
+    height: 6%;
     position: fixed;
     top: 7px;
     z-index: 10;
-    margin: 0 45%;
+    margin: 0 47%;
 }
 
 .menu.activar {
@@ -399,7 +399,7 @@ body {
     top: 0px;
     margin: 0 auto;
     width: 100%;
-    height: 10vh;
+    height: 7vh;
     border-bottom: 2px solid black;
     background: linear-gradient(to bottom, #572364, #2f214a);
     z-index: 9;
