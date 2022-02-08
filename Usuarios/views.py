@@ -1,6 +1,8 @@
 #-----------------------------------------Importaciones---------------------------------------------------
 from re import template
-from django.http import HttpResponseRedirect, request, HttpResponse
+from wsgiref import headers
+from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
+import json
 from django.views.generic import TemplateView, CreateView
 from django.shortcuts import render, redirect
 from Usuarios.authentication_mixins import Authentication
@@ -40,14 +42,14 @@ class Login(ObtainAuthToken, TemplateView):
                 if user.is_active:
                     token,created = Token.objects.get_or_create(user=user)
                     user_serializer = UsuarioTokenSerializer(user)
+                    Headers = {
+                        "Authorization" : "Token "+token.key
+                    }
+                    response = render(request, "/")
                     
                     if created:
                         # return HttpResponseRedirect('/')
-                        return Response({
-                            'token': token.key,
-                            'user': user_serializer.data,
-                            'massage': 'Inicio de Sesión Exitoso.',
-                        }, status = status.HTTP_201_CREATED)
+                        return response
                     else:
                         all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
                         if all_sessions.exists():
@@ -57,14 +59,9 @@ class Login(ObtainAuthToken, TemplateView):
                                     session.delete()
                         token.delete()
                         token = Token.objects.create(user = user)
-                        response = HttpResponse(headers={'Authorization':'Token '+token.key})
                         # return response
                         # return Response(headers={'Authorization':'Token '+token.key})
-                        return Response({
-                            'token': token.key,
-                            'user': user_serializer.data,
-                            'massage': 'Inicio de Sesión Exitoso.',
-                        }, status = status.HTTP_201_CREATED)
+                        return response
                         # return Response({
                         #     'error': 'Ya se ha iniciado sesión con este usuario, ¡intentalo de nuevo!'
                         # })
