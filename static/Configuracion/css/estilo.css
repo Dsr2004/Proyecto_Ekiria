@@ -132,8 +132,6 @@
 
 #CrearRol,#EditarRol{
     height: 80vh;
-    width: 45ch;
-    left: 55ch;
 }
 #boton{
     justify-content: center;
@@ -152,6 +150,7 @@
     border-radius: 7%;
     margin-bottom: 5%;
     background: #AF8DBB;
+    overflow:auto;
 }
 .text{
     color: white;
@@ -190,6 +189,7 @@
     align-items: center;
     margin-left: 16%;
     width: 70%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -215,3 +215,53 @@
     margin: 3%;
     margin-left: 80%;
 }
+.PermiAdmin{
+    width: 50%;
+    height:auto;
+    margin-top: 5%; 
+    padding: 3%;
+    text-align: center; 
+
+    border-color:#000;
+    border-radius: 30px;
+    box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem rgb(240, 240, 247);
+    background: #AF8DBB;
+    color: #000000;
+}
+.PermiAdmin:hover{
+    box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #AF8DBB;
+    background-color: rgb(240, 240, 247);
+    
+    animation-iteration-count: infinite;
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: steps(5, jump-both);
+}ñ
+.PermiAdmin{
+    margin: auto;
+    margin-top: 3%;
+}
+.PermiAdmin2 .custom-control{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.PermiAdmin2 .custom-control div{
+    margin: 50px;
+    width: 20%;
+    padding: 3%;
+    border-width: 3px;
+    border-style: solid;
+    border-color: white;
+}
+.PermiAdmin2:hover .custom-control:hover div{
+    
+    border-color: black;
+}
+
+/* .form-check-input:checked{
+    width: 7%;
+}
+.input#flexSwitchCheckChecked{
+    width: 7%;
+} */

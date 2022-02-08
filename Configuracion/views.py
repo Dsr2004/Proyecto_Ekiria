@@ -18,3 +18,12 @@ def Cambios(request):
 
 def Permisos(request):
     return render(request, "Permisos.html")
+
+def Admin(request):
+    return render(request, "Administrador.html")
+
+def Empleado(request):
+    return render(request, "Empleado.html")
+
+def Cliente(request):
+    return render(request, "Cliente.html")
