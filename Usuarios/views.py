@@ -1,6 +1,6 @@
 #-----------------------------------------Importaciones---------------------------------------------------
 from re import template
-from django.http import HttpResponseRedirect, request, HttpResponse
+from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
 from django.views.generic import TemplateView, CreateView
 from django.shortcuts import render, redirect
 from Usuarios.authentication_mixins import Authentication
@@ -40,14 +40,14 @@ class Login(ObtainAuthToken, TemplateView):
                 if user.is_active:
                     token,created = Token.objects.get_or_create(user=user)
                     user_serializer = UsuarioTokenSerializer(user)
+                    # Headers = {
+                    #     "Authorization" : "Token "+token.key
+                    # }
+                    # Jhorman = request.post(headers=Headers)
                     
                     if created:
-                        # return HttpResponseRedirect('/')
-                        return Response({
-                            'token': token.key,
-                            'user': user_serializer.data,
-                            'massage': 'Inicio de Sesión Exitoso.',
-                        }, status = status.HTTP_201_CREATED)
+                        return HttpResponseRedirect('/')
+                        # return Jhorman
                     else:
                         all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
                         if all_sessions.exists():
@@ -57,23 +57,18 @@ class Login(ObtainAuthToken, TemplateView):
                                     session.delete()
                         token.delete()
                         token = Token.objects.create(user = user)
-                        response = HttpResponse(headers={'Authorization':'Token '+token.key})
                         # return response
-                        # return Response(headers={'Authorization':'Token '+token.key})
-                        return Response({
-                            'token': token.key,
-                            'user': user_serializer.data,
-                            'massage': 'Inicio de Sesión Exitoso.',
-                        }, status = status.HTTP_201_CREATED)
+                        header = headers={'Authorization':'Token '+token.key}
+                        return Response(template_name="index.html", headers=header)
+                        
+                        # return Jhorman
                         # return Response({
                         #     'error': 'Ya se ha iniciado sesión con este usuario, ¡intentalo de nuevo!'
                         # })
                 else:
                     return Response({'error':'Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
-                return redirect("/")
             else:
                 return Response({'error':'Nombre de usuario o contraseña incorrectos.'}, status=status.HTTP_400_BAD_REQUEST)
-
 class Loguot(ObtainAuthToken, APIView):
     def post(self,request,*args,**kwargs):
         try:    

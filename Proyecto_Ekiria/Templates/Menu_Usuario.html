@@ -26,7 +26,7 @@
 </header>
 
 <body>
-
+    {%csrf_token%}
     <div class="grid">
         <!--          Creación del menú lateral        -->
         <div class="backnav">
@@ -121,7 +121,6 @@
             </nav>
         </div>
 
-        <img href="{%url 'Inicio'%} " class="Logo " src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png " width="179 " height="50 ">
         <div class="toggle ">
             <i class="abrir fas fa-bars "></i>
             <i class="cerrar fas fa-times "></i>
@@ -131,6 +130,8 @@
 
             <div class="fondo "></div>
             <div class="relle">
+                
+            <img href="{%url 'Inicio'%} " class="Logo " src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png " width="179 " height="50 ">
                 <div class="menu ">
 
                     <ul>
