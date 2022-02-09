@@ -277,8 +277,7 @@ File: Menu
 
 
 .content-page {
-  margin-left: 250px;
-  overflow: hidden;
+  margin-left: 0px;
 
   .content {
     padding: 0 10px;
@@ -618,7 +617,8 @@ File: Menu
     }
   }
   .content-page {
-    margin-left: 70px;
+    margin-left: 0px;
+    height: 600px;
   }
   .footer {
     left: 70px;

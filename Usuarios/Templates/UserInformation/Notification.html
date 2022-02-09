@@ -1,0 +1,47 @@
+{% extends "Menu_Usuario.html" %} {% block head %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificaciones</title>
+    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleNotifications.css">
+    <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleTablesInformations.css"> {% endblock head %}
+</head>
+{% block Contenido %}
+
+<div class="Table Content-table" style="height: 83vh;">
+    <div class="Information">
+        <div class="cardHeader">
+            <i class="fas fa-angle-left"></i>
+            <h2>
+                Notificaciones
+            </h2>
+            <i class="fas fa-angle-right"></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Leido</td>
+                    <td>Descripción</td>
+                    <td>Fecha</td>
+                    <td>Eliminar</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <i class="mdi mdi-eye-off"></i>
+                    </td>
+                    <td>Tu Información de Usuario ha sido actualizada correctamente</td>
+                    <td>2022-10-07 2:02</td>
+                    <td>
+                        <i class="mdi mdi-delete"></i>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock Contenido %}
