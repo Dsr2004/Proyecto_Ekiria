@@ -9,14 +9,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         <form action="" class="form-p" method="POST">
+         <form action="{% url 'crear'%}" class="form-p" method="POST">
            {%csrf_token%}
             {{ prov_form|crispy}}
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
+            </div>
           </form>    
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
         </div>
       </div>
     </div>
