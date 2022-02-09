@@ -155,10 +155,7 @@ main {
     right: 22% !important;
 }
 
-/* .cont-fondo{
-	width: 100%;
-	height: 100%;
-	background-color: white;
-	padding: 15px;
-	border-radius: 5px;
-} */
+.Table.Content-table .Information table tr td {
+    padding: 0 5px !important;
+    text-align: start !important; 
+}
