@@ -1,11 +1,13 @@
 from django.urls import path
-from Modulo_compras.views import Proveedor, Productos, Conf_compra,Crearprov
+from Modulo_compras.views import Productos, Conf_compra,Listarprov, Crearprov
 
 urlpatterns = [
-    path ("proveedor/", Proveedor, name="proveedor"),
     path ("productos/", Productos, name="productos"),
     path ("confcompra/", Conf_compra, name="confcompra"),
-    path ("p/", Crearprov, name="crear"),
+    path ("crearprov/", Crearprov, name="crearprov"),
+    path ("listarprov/", Listarprov, name="listarprov"),
+
+    
 
     
 
