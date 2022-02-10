@@ -1,4 +1,6 @@
 {% extends "Menu_Usuario.html" %}
+{% load static %}
+
 
 {% block head %}
 <head>
@@ -6,31 +8,25 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Catalogo</title>
-   <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
-   <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+   <link rel="stylesheet" href="{% static 'Ventas/css/Ventas.css' %}">
+   <link rel="icon" href="{% static 'Proyecto_Ekiria/Img/Logo Ekiria.png' %}">
+   <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
    
 </head>
 {% endblock head %}
 
 <!--     Empieza el contenido del catalogo    -->
 {% block Contenido %}
-<style>
-   .modal-backdrop {
-            z-index: -1 !important;
-            opacity:0.5 !important
-                }
-</style>
 <div class="fondiu">
-<h1>Catalogo</h1>
+<h1 class="tittleCatalogo">Catalogo</h1>
 <!-- Servicios del catalogo -->
 <div class=" body ">
    <div class="card">
       <i>
          <h2 class="precio"></h2>
       </i>
-      <div class="imgs"><a href="{%url 'Ventas:personalizar'%}"><img class="Imas" src="/static/Ventas/img/masMorado.png" alt=""></a></div>
+      <div class="imgs"><a href="{%url 'Ventas:personalizar'%}"><img class="img-fluid Imas" src="{% static 'Ventas/img/masMorado.png' %} " alt=""></a></div>
       <div class="contenedor-botones">
          <a class="botonC Personalizar" href="{%url 'Ventas:personalizar'%}"><span>Personalizar</span></a><!--sI EL AZUL PERSISTE COLOCAR EL COLOR AQUI -->
       </div>
@@ -54,8 +50,12 @@
             </div>
             <span>Comprar</span>
          </a>
-         <a href="{{servicio.get_absolute_url}}"  class="botonC VerM"><span>Ver mas</span></a>
+         <form  id="FormVerM">
+         <a  type="submit" href="{{servicio.get_absolute_url}}" class="botonC VerM" onclick="DetalleServicio()" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></a>
+         <!-- " -->
          <!-- <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button> -->
+      </form>
+      
       </div>
    </div>
    {% endfor %}
@@ -64,7 +64,7 @@
    <h1>No hay registros </h1>
 {% endif %}
    
-  
+  {{DetailSs}}
    
 </div>
 </div>
@@ -77,8 +77,28 @@
 
 
 {% block modal %}
- 
-
+   <!-- Modal para ver detalle del servicio -->
+   <div class="modal fade" id="VerMasServivios" tabindex="5" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Uñas sencillas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col"><img src="" alt=""></div>
+              <div class="col"><h5>Te presentamos un estilo coqueto donde cada uña de tu mano podrá tener un estilo único podrás elegir donde 2 uñas tendrán un color sólido, dos uñas tendrán dibujos, y una uña tendrá un color brillante </h5></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark d-grid gap-2" data-bs-dismiss="modal">Cerrar</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- fin de la modal para ver detalle del servicio  -->
 
 {% endblock modal %}
 
@@ -89,5 +109,6 @@
 
 <!-- scripts -->
 {% block scripts %}
-<script src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+<script src="{%static 'Ventas/js/Ventas.js'%}"></script>
 {% endblock scripts %}

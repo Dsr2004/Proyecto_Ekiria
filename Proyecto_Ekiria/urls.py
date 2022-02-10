@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from Proyecto_Ekiria.views import Inicio, Menu
+from Proyecto_Ekiria.views import Inicio
 from Usuarios.views import Login, Register, Loguot
 from rest_framework.authtoken import views
 
@@ -30,7 +30,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('Inicio/', Inicio),
     path('Ventas/',include('Ventas.urls')),
-    path('Menu/', Menu),
     path('api-auth/', include('rest_framework.urls')),
     path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
 

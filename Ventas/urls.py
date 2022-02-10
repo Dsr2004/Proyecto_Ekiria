@@ -1,5 +1,5 @@
-from django.urls import path
-from Ventas.views import Catalogo, TerminarPedido, Calendario, ServiciosPersonalizados,DetalleCita, AdminVentas,AgregarServicio,ListarServicio, EditarServicio, AgregarCita,ListarCita, EditarCita, Carrito,ServicioDetalle
+from django.urls import path 
+from Ventas.views import Catalogo, TerminarPedido, Calendario, ServiciosPersonalizados,DetalleCita, AdminVentas,AgregarServicio,ListarServicio, EditarServicio, AgregarCita,ListarCita, EditarCita, Carrito,ServicioDetalle, pruebas
 app_name="Ventas"
 urlpatterns = [
     path('Catalogo/', Catalogo.as_view(), name="catalogo"),
@@ -11,10 +11,11 @@ urlpatterns = [
     path('AdminVentas/', AdminVentas.as_view(), name="adminVentas"),
     path('AgregarServicio/', AgregarServicio.as_view(), name="agregarServicio"),
     path('ListadoServicios/', ListarServicio.as_view(), name="listarServicios"),
-    path('EditarServicio/', EditarServicio.as_view(), name="editarServicio"),
+    path('EditarServicio/<int:pk>', EditarServicio.as_view(), name="editarServicio"),
     path('AgregarCita/', AgregarCita.as_view(), name="agregarCita"),
     path('ListadoCitas/', ListarCita.as_view(), name="listarCitas"),
-    path('EditarCita/', EditarCita.as_view(), name="editarCita"),
+    path('EditarCita/<int:pk>', EditarCita.as_view(), name="editarCita"),
+    path('pruebas/', pruebas, name="pruebas"), 
     path('<slug>/', ServicioDetalle.as_view(), name="detalleSer"),                      
 ]
 

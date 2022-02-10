@@ -48,6 +48,7 @@ function CambioEstadoServicio(){
 
 
 function ConfirmacionEditarServicio(){
+  event.preventDefault();
   swal({
     title: "Estas seguro?",
     text: "Se modificaran los datos del servicio",
@@ -60,12 +61,15 @@ function ConfirmacionEditarServicio(){
         icon: "success",
       }).then(function() {
       window.location.href = "/Ventas/ListadoServicios/";
+      document.EditarServicioForm.submit();
    });
     } else {
       swal("OK! Ningun dato del servicio ha sido modificado");
     }
   });
+  return false;
 }
+
 
 function ConfirmarNoGuardarCita(){
   swal({
@@ -124,5 +128,5 @@ function CancelarCita2(){
     });
 }
 
-// ajax detalle de servicio 
+
 

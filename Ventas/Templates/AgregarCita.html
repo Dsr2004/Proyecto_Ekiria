@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Citas</title>
-    <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
-    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="{% static 'Ventas/css/Ventas.css' %}">
+   <link rel="icon" href="{% static 'Proyecto_Ekiria/Img/Logo Ekiria.png' %}">
+   <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
 </head>{% endblock head %}
 
 {% block Contenido %}
@@ -98,7 +99,8 @@
 </div>
 
 {% block scripts %}
-<script src="/static/Ventas/js/Ventas.js"></script>
+<script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+<script src="{%static 'Ventas/js/Ventas.js'%}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {% endblock scripts %}
 {% endblock Contenido %}

@@ -1,10 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import View, TemplateView, ListView, DetailView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from .forms import ServicioForm
 
 from Ventas.models import Servicio
 
-class Catalogo(ListView):
+def pruebas(request):
+    query=Servicio.objects.values_list("descripcion")
+    
+    print(query)
+    return render(request, "prueba.html", {"form":ServicioForm})
+
+
+class Catalogo(ListView): 
     queryset=Servicio.objects.filter(estado=True)
     context_object_name="servicios"
     template_name="Catalogo.html"
@@ -17,9 +26,6 @@ class ServicioDetalle(DetailView):
     queryset=Servicio.objects.all()
     context_object_name="DetailSs"
     template_name="Catalogo.html"
-
-
-
 
 class Carrito(TemplateView):
     template_name="Carrito.html"
@@ -39,14 +45,23 @@ class DetalleCita(TemplateView):
 class AdminVentas(TemplateView):
     template_name="Ventas.html"
 
-class AgregarServicio(TemplateView):
+class AgregarServicio(CreateView):
+    model=Servicio
+    form_class=ServicioForm
     template_name="AgregarServicio.html"
+    success_url=reverse_lazy('Ventas:listarServicios')
 
-class ListarServicio(TemplateView):
+class ListarServicio(ListView):
+    queryset=Servicio.objects.all()
+    context_object_name="servicios"
     template_name="ListarServicios.html"
     
-class EditarServicio(TemplateView):
+class EditarServicio(UpdateView):
+    model=Servicio
+    form_class=ServicioForm
     template_name="EditarServicio.html"
+    success_url=reverse_lazy('Ventas:listarServicios')
+
 
 class AgregarCita(TemplateView):
     template_name="AgregarCita.html"
@@ -56,3 +71,4 @@ class ListarCita(TemplateView):
     
 class EditarCita(TemplateView):
     template_name="EditarCita.html"
+

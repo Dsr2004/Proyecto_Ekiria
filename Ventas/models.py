@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
-from django.shortcuts import reverse
+from django.shortcuts import reverse 
 
 
 
@@ -26,7 +26,7 @@ class Servicio(models.Model):
     id_servicio=models.AutoField("Id del Servicio", primary_key=True, unique=True)
     slug=models.SlugField("Slug", unique=True)
     nombre=models.CharField("Nombre", max_length=40, null=False, blank=False, unique=True)
-    descripcion=models.TextField("Descripcion",null=True,blank=True)
+    descripcion=models.TextField("Descripcion",null=False,blank=False)
     img_servicio=models.ImageField("Imagen del Servicio", upload_to='Ventas/servicios',null=False, blank=False)
     precio=models.IntegerField("Precio",null=False, blank=False)
     tipo_servicio_id=models.ForeignKey(Tipo_servicio, verbose_name="Tipo de Servicio", on_delete=models.CASCADE,null=True, blank=True, db_column="tipo_servicio_id")
@@ -45,6 +45,10 @@ class Servicio(models.Model):
 
     def get_absolute_url(self):
         return reverse("Ventas:detalleSer", kwargs={"slug": self.slug})
+    
+    # def ComentarioMin(self):
+    #     query=Servicio.objects.all()
+    #     return 
     
 
 # modelo para administrar el catalogo

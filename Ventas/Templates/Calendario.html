@@ -1,14 +1,15 @@
 {% extends "Menu_Usuario.html" %} 
-
+{% load static %}
 {% block head %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendario</title>
-    <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
-    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="{% static 'Ventas/css/Ventas.css' %}">
+   <link rel="icon" href="{% static 'Proyecto_Ekiria/Img/Logo Ekiria.png' %}">
+   <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
    <link rel="stylesheet" href="/static/Ventas/css/bootstrap.min.css">
    <!-- calendario -->
    <!-- <link rel="stylesheet" href="/static/Ventas/plugins/fullcalendar/css/fullcalendar.min.css">

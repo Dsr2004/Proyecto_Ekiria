@@ -1,24 +1,21 @@
 {% extends "Menu_Usuario.html" %} 
 
-{% load static %}
 {% block head %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Servicios</title>
-    <link rel="stylesheet" href="{% static 'Ventas/css/Ventas.css' %}">
-    <link rel="icon" href="{% static 'Proyecto_Ekiria/Img/Logo Ekiria.png' %}">
-    <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <title>Editar Servicio</title>
+    <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
+    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>{% endblock head %}
 
-
 {% block Contenido %}
-<h1>Agregar un Servicio</h1>
+<h1>Editar Servicio</h1>
 <div class="container">
-    <form action="." method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+    <form id="EditarServicioForm" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
     <div class="row" style="margin-top: 20px;">
         <div class="col">
             <Label><strong>Nombre:   </strong></Label>
@@ -46,25 +43,24 @@
         {{form.img_servicio}}
     </div>
     <div class="col">
-        <Label><strong>Slug:   </strong></Label>
+        <Label><strong>Slug: </strong></Label>
             {{form.slug}}
     </div>
     <div style="margin-top: 30px;">
         <Label><strong>Descripcion: </strong></Label>
         <div class="form-floating  descripcion">
             {{form.descripcion}}
-            <!-- <textarea class="form-control personalizarServicio"></textarea> -->
+    
             <label style="font-size: 20px;">Descripcion</label>
         </div>
         <br><br>
-        <button type="submit"  class="btn btn-block btn-success">Agregar Servicio</button>
-        <!-- href="{% url 'Ventas:listarServicios' %}" -->
+        <button type="submit" class="btn btn-block btn-success" onclick="ConfirmacionEditarServicio()">Agregar Servicio</button>
     </form>
 </div>
 
-{% if form.errors %}
-    {% for errores in form.errors %}
-        {{form.errors}}
-    {% endfor %}
-{% endif %}
+{% block scripts %}
+<script src="/static/Ventas/js/Ventas.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% endblock scripts %}
+
 {% endblock Contenido %}
