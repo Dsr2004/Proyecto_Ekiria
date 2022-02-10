@@ -1,5 +1,5 @@
 {% extends "Menu_Usuario.html" %} 
-
+{%load static%}
 {% block head %}
 <head>
     <meta charset="UTF-8">
@@ -56,14 +56,14 @@
                     <tbody>
                         <tr>
                             <th scope="row">1</th>
-                            <td><img src="/static/Ventas/img/uña1.jfif" class="" width="150" height="100"></td>
+                            <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
                             <td>Uñas Sencillas</td>
                             <td>$15000</td>
             
                         </tr>
                         <tr>
                             <th scope="row">2</th>
-                            <td><img src="/static/Ventas/img/uña1.jfif" class="" width="150" height="100"></td>
+                            <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
                             <td>Uñas Sencillas</td>
                             <td>$15000</td>
             

@@ -18,7 +18,9 @@
 <h1>Agregar un Servicio</h1>
 <div class="container">
     {% if form.errors %}
-        <h1>hay errores</h1>
+       <script>  
+       ErroresEditarServicio({})
+       </script>
     {% endif %}
     <form action="." method="post" enctype="multipart/form-data">
         {% csrf_token %}
@@ -64,7 +66,5 @@
         <!-- href="{% url 'Ventas:listarServicios' %}" -->
     </form>
 </div>
-{% if form.errors %}
-        <h1>kiwi</h1>
-    {% endif %}
+
 {% endblock Contenido %}

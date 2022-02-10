@@ -13,7 +13,7 @@ class ServicioForm(forms.ModelForm):
             "img_servicio":"Imagen del Servicio ",
             "slug":"Slug: ",
             "descripcion":"Descripcion ",
-            "estado":"Estado "
+            "estado":"Estado ",
 
         }
         widgets={

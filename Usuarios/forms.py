@@ -1,14 +1,5 @@
 from django import forms
-<<<<<<< HEAD
 
-# from .models import Servicio
-
-# tengo crispy_forms instalado busque en internet y el video donde lo vi se llama Ecomerce con django y es de Eric el nomada
-
-# class ServicioForm(forms.form):
-   
-
-=======
 from Usuarios.models import Usuario
 class Regitro(forms.ModelForm):
     
@@ -135,4 +126,3 @@ class Regitro(forms.ModelForm):
         if commit:
             user.save()
         return user
->>>>>>> f3f3a3353040b3b355e73813294a96d0057ca688
