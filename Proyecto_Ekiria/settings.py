@@ -69,7 +69,11 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+<<<<<<< HEAD
                 # 'Ventas.Procesos.context_processor.total_carrito',
+=======
+                'Usuarios.context_processors.registro_form',
+>>>>>>> f3f3a3353040b3b355e73813294a96d0057ca688
             ],
         },
     },
@@ -143,6 +147,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
+=======
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+>>>>>>> f3f3a3353040b3b355e73813294a96d0057ca688
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
 MEDIA_URL = '/media/'

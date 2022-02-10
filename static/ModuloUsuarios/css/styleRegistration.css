@@ -1,5 +1,5 @@
 .fondo {
-    background: url("/static/ModuloUsuarios/img/Fondo.png") no-repeat center center;
+    background-color: #fff;
     position: absolute;
     top: 0px;
     min-height: 100%;
@@ -42,12 +42,13 @@
     width: 100%;
     height: 50%;
     background: linear-gradient(180deg, rgba(44, 19, 106, 0.588041) 35.94%, rgba(124, 24, 171, 0.12) 100%);
+    display:flex;
+    justify-content:center;
 }
 
 .logo {
-    margin: 0 30%;
-    width: 45%;
-    height: 100%;
+    width: 125px;
+    height: 100px;
 }
 
 .flexbox {
@@ -81,8 +82,7 @@ form::-webkit-scrollbar {
 }
 
 form::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, rgba(44, 19, 106, 1) 35.94%, rgba(124, 24, 171, 1) 100%);
-    border-radius: 5px;
+    background: transparent;
 }
 
 form h1 {
@@ -96,9 +96,58 @@ form h1 {
     background: none;
     color: #fff;
     padding: 10px 20px 0px 20px;
-    margin-bottom: -10px;
+    margin-bottom: -15px;
     border: none;
     outline: 0px;
+}
+.flexbox.lbl-select{
+    position:relative;
+    display:flex;
+    flex-direction: column;
+}
+.flexbox.lbl-select label {
+    position: relative;
+    width:100%;
+    margin-bottom: -20px;
+    padding: 0px;
+}
+
+.flexbox.lbl-select select {
+    position: relative;
+    width: 100%;
+    font-family: 'Tahoma';
+    background-color: rgba(254, 254, 254, 1);
+    border-color: -internal-light-dark(rgb(212, 212, 212), rgb(255, 255, 255));
+    border-image: none;
+    border-radius: 5px;
+    margin-bottom: -35px;
+}
+@media (max-width:700px){
+    .flexbox.lbl-select label {
+    position: relative;
+    width:100%;
+    margin-bottom: -25px;
+    padding: 0px;
+}
+
+.flexbox.lbl-select select {
+    position: relative;
+    width: 100%;
+    font-family: 'Tahoma';
+    background-color: rgba(254, 254, 254, 1);
+    border-color: -internal-light-dark(rgb(212, 212, 212), rgb(255, 255, 255));
+    border-image: none;
+    border-radius: 5px;
+    margin-bottom: -45px;
+}
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  font-size:20px;
+  border-radius: 6px;
+  margin-right: 4px;
+  opacity: 1;
+  filter: invert(0.8);
 }
 
 .flexbox .lbl-nombre {
@@ -138,7 +187,7 @@ form h1 {
 
 .flexbox input:focus+.lbl-nombre .text-nomb,
 .flexbox input:valid+.lbl-nombre .text-nomb {
-    transform: translateY(-100%);
+    transform: translateY(-120%);
     font-size: 14px;
     color: #2ecece;
 }

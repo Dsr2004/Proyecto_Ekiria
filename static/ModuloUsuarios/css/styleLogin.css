@@ -29,7 +29,7 @@
 }
 
 .fondo {
-    background: url("/static/ModuloUsuarios/img/Fondo.png") no-repeat center center;
+    background-color: #fff;
     position: absolute;
     top: 0px;
     min-height: 100%;

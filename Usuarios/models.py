@@ -1,4 +1,5 @@
 
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -20,11 +21,14 @@ class Municipio(models.Model):
 
     class Meta:
         db_table = 'municipios'
+        
+    def __str__(self) :
+        return self.nom_municipio
 class Rol(models.Model):
     id_rol = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=40)
     descripcion = models.CharField(max_length=500)
-    permiso_id = models.IntegerField()
+    permiso_id = models.IntegerField(default=1)
     estado =  models.BooleanField(default=True)   # This field type is a guess.
     class Meta:
         db_table = 'roles'
@@ -75,13 +79,18 @@ class Usuario(AbstractBaseUser):
     celular = models.CharField('Número De Celular',max_length=10, blank=False, null=False)
     email = models.EmailField('Correo Electrónico', unique=True)
     fec_nac = models.DateField('Fecha De Nacimiento')
-    tipo_documento = models.OneToOneField(TipoDocumento, null=True, blank=True, on_delete=models.CASCADE)
+    tipo_documento = models.ForeignKey(TipoDocumento, null=True, blank=True, on_delete=models.CASCADE)
     num_documento = models.CharField('Número De Identificación',max_length=10)
-    img_usuario = models.ImageField('Imagen De Perfil', upload_to='perfil/', max_length=200, blank=True, null=True)
-    municipio = models.OneToOneField(Municipio, null=True, blank=True, on_delete=models.CASCADE)
+    img_usuario = models.ImageField(
+        'Imagen De Perfil', 
+        upload_to='perfil/', 
+        default="perfil/profile.jpg",
+        max_length=200, blank=True, null=True
+        )
+    municipio = models.ForeignKey(Municipio, null=True, blank=True, on_delete=models.CASCADE)
     direccion = models.CharField(blank=True, null=True, max_length=250)
-    cod_postal = models.IntegerField(null=True)
-    rol = models.OneToOneField(Rol, null=True, blank=True, on_delete=models.CASCADE)
+    cod_postal = models.CharField(max_length=20, null=True)
+    rol = models.ForeignKey(Rol, default=1, null=True, blank=True, on_delete=models.CASCADE)
     estado = models.BooleanField(default = True) 
     administrador = models.BooleanField(default=False)
     objects = UsuarioManager()
