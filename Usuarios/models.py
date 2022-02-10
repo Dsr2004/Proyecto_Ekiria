@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from Configuracion.models import Rol
 
 
 class TipoDocumento(models.Model):
@@ -20,18 +21,19 @@ class Municipio(models.Model):
 
     class Meta:
         db_table = 'municipios'
-class Rol(models.Model):
-    id_rol = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=40)
-    descripcion = models.CharField(max_length=500)
-    permiso_id = models.IntegerField()
-    estado =  models.BooleanField(default=True)   # This field type is a guess.
-    class Meta:
-        db_table = 'roles'
-        verbose_name ='rol'
-        verbose_name_plural='roles'
-    def __str__(self):
-        return '{}'.format(self.nombre)
+
+# class Rol(models.Model):
+#     id_rol = models.AutoField(primary_key=True)
+#     nombre = models.CharField(max_length=40)
+#     descripcion = models.CharField(max_length=500)
+#     permiso_id = models.IntegerField()
+#     estado =  models.BooleanField(default=True)   # This field type is a guess.
+#     class Meta:
+#         db_table = 'roles'
+#         verbose_name ='rol'
+#         verbose_name_plural='roles'
+#     def __str__(self):
+#         return '{}'.format(self.nombre)
 class UsuarioManager(BaseUserManager):
     def create_user(self,email,username,nombres,apellidos,celular,fec_nac,num_documento,direccion, cod_postal,password=None):
         if  not email:
@@ -81,7 +83,7 @@ class Usuario(AbstractBaseUser):
     municipio = models.OneToOneField(Municipio, null=True, blank=True, on_delete=models.CASCADE)
     direccion = models.CharField(blank=True, null=True, max_length=250)
     cod_postal = models.IntegerField(null=True)
-    rol = models.OneToOneField(Rol, null=True, blank=True, on_delete=models.CASCADE)
+    Rol = models.OneToOneField(Rol, null=True, blank=True, on_delete=models.CASCADE)
     estado = models.BooleanField(default = True) 
     administrador = models.BooleanField(default=False)
     objects = UsuarioManager()

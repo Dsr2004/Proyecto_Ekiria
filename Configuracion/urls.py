@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns=[
     path("", views.Configuracion, name="Configuracion"),
-    path("Roles/", views.Roles, name="Roles"),
+    path("Roles/", views.ListarRol, name="Roles"),
     path("Cambios/", views.Cambios, name="Cambios"),
     path("Permisos/", views.Permisos, name="Permisos"),
     path("Admin/", views.Admin, name="Admin"),

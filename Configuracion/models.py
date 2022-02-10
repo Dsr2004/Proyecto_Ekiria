@@ -1,22 +1,24 @@
-from tabnanny import verbose
 from django.db import models
-
-  
 # # declare a new model with a name "GeeksModel"
-class Permisos(models.Model):
-
+class Permiso(models.Model):
     id_permiso =  models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=40)
     descripcion = models.TextField(max_length=250)
     estado= models.BooleanField()
+    
+    class Meta:
+        db_table = "permisos"
  
-class roles(models.Model):
-    id_rol =  models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=40)
+class Rol(models.Model):
+    id_rol =  models.AutoField(primary_key=True, unique=True)
+    nombre = models.CharField(max_length=40, unique=True)
     descripcion= models.CharField(max_length=500)
-    permisos_id = models.ForeignKey(Permisos, on_delete=models.CASCADE)
+    permiso_id=models.ManyToManyField(Permiso, db_column="permiso_id")
     estado = models.BooleanField()
- 
+
+    class Meta:
+        db_table = "roles"
+
 #     # renames the instances of the model
 #     # with their title name
     def __str__(self):

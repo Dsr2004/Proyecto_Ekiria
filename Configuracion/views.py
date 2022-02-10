@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 
-from .models import roles
+from .models import Rol
 
 def Configuracion(request):
     return render(request, "Configuracion.html")
@@ -31,7 +31,8 @@ def Cliente(request):
     return render(request, "Cliente.html")
 
 
-def Roles(request):
-    Roles = roles.objects.all()
-    contexto= {'roles':roles}
+def ListarRol(request):
+    query = Rol.objects.all()
+    print(query)
+    contexto= {'roles':query}
     return render(request, "Roles.html", contexto)
