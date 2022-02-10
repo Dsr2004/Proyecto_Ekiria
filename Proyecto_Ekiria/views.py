@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 #--------------------------------------Cargadores de templates------------------------------------
 
 
-class Inicio(View):
+class Inicio(Authentication,View):
     def get(self, request, *args, **kwargs):
         mensaje = {
         "data" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],

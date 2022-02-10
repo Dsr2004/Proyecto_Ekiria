@@ -1,12 +1,11 @@
 #-----------------------------------------Import's---------------------------------------------------
 from asyncio import transports
-import requests, coreapi
+from email import header
+from html.entities import html5
 from re import template
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
 from django.views.generic import TemplateView, CreateView
 from django.urls import reverse_lazy
-from coreapi import Client
-from coreapi.transports import HTTPTransport, BaseTransport
 from rest_framework.decorators import api_view
 from django.shortcuts import render, redirect
 from Usuarios.authentication_mixins import Authentication
@@ -55,7 +54,8 @@ class Login(ObtainAuthToken, TemplateView):
                         # client = Client(transports=transport)
                         # print(transport)
                         # return Response(client)
-                        return HttpResponseRedirect("/")
+                        header = {'Authorization':'Token '+token.key}
+                        return Response(headers=header)
                         # header = {'Authorization':'Token '+token.key}
                         # return Response(headers=header, template_name="index.html")
                     
@@ -63,6 +63,9 @@ class Login(ObtainAuthToken, TemplateView):
                     return Response({'error':'Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
             else:
                 return Response({'error':'Nombre de usuario o contraseña incorrectos.'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+                
 class Loguot(ObtainAuthToken, APIView):
     def post(self,request,*args,**kwargs):
         try:    
@@ -79,7 +82,7 @@ class Loguot(ObtainAuthToken, APIView):
                             session_data = session.get_decoded()
                             if user.id_usuario == int(session_data.get('_auth_user_id')):
                                 session.delete()
-                            
+                                        
                 token.delete()
                     
                 session_message = 'Sesiones de usuario eliminadas.'

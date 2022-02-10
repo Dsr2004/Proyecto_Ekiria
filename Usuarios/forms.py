@@ -59,7 +59,6 @@ class Regitro(forms.ModelForm):
             ),
             'telefono': forms.TextInput(
                 attrs={
-                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
@@ -71,8 +70,10 @@ class Regitro(forms.ModelForm):
             ),
             'fec_nac': forms.DateInput(
                 attrs={
+                    'type':'date',
                     'required':'requerid',
                     'autocomplete':'off',
+                    'style':'color:#fff;'
                 }
             ),
             'tipo_documento': forms.Select(
@@ -85,6 +86,7 @@ class Regitro(forms.ModelForm):
                 attrs={
                     'required':'requerid',
                     'autocomplete':'off',
+                    'type':'number',
                 }
             ),
             'municipio': forms.Select(
@@ -95,13 +97,11 @@ class Regitro(forms.ModelForm):
             ),
             'direccion': forms.TextInput(
                 attrs={
-                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
             'cod_postal': forms.TextInput(
                 attrs={
-                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),

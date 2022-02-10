@@ -15,7 +15,7 @@
     <div class="difuminacion"></div>
     <div class="contenido">
         <div class="contLogo">
-            <img class="logo" src="/static/ModuloUsuarios/img/Logo.png">
+            <img class="logo" src="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
         </div>
         <form method="POST">
             <h1>Registro</h1>
@@ -127,7 +127,11 @@
                 </div>
                 <br>
                 <button type="submit" class="boton"><strong>Registrarme</strong></button>
-
+                <br>
+                <div style="text-align: center; margin-left: -60px;">
+                    <a href="{% url 'IniciarSesion'%}" style="color: aliceblue;">¿Ya tienes cuenta?</a>
+                </div>
+                <p>{{ form.errors}}</p>
             </div>
             <br><br>
         </form>
@@ -135,4 +139,6 @@
     <script src="/static/ModuloUsuarios/js/mainRegistration.js"></script>
 </body>
 
+<script>
+</script>
 </html>
