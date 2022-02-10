@@ -7,7 +7,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 # Create your views here.
 
-def index(request):
+from .models import roles
+
+def Configuracion(request):
     return render(request, "Configuracion.html")
 
 def Roles(request):
@@ -18,3 +20,8 @@ def Cambios(request):
 
 def Permisos(request):
     return render(request, "Permisos.html")
+
+def Roles(request):
+    Roles = roles.objects.all()
+    contexto= {'roles':roles}
+    return render(request, "Roles.html", contexto)

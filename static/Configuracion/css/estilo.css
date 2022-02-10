@@ -190,6 +190,7 @@
     align-items: center;
     margin-left: 16%;
     width: 70%;
+    height: auto;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
