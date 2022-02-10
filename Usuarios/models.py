@@ -1,4 +1,5 @@
 
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -20,6 +21,9 @@ class Municipio(models.Model):
 
     class Meta:
         db_table = 'municipios'
+        
+    def __str__(self) :
+        return self.nom_municipio
 class Rol(models.Model):
     id_rol = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=40)
@@ -77,10 +81,15 @@ class Usuario(AbstractBaseUser):
     fec_nac = models.DateField('Fecha De Nacimiento')
     tipo_documento = models.OneToOneField(TipoDocumento, null=True, blank=True, on_delete=models.CASCADE)
     num_documento = models.CharField('Número De Identificación',max_length=10)
-    img_usuario = models.ImageField('Imagen De Perfil', upload_to='perfil/', max_length=200, blank=True, null=True)
+    img_usuario = models.ImageField(
+        'Imagen De Perfil', 
+        upload_to='perfil/', 
+        default="perfil/profile.jpg",
+        max_length=200, blank=True, null=True
+        )
     municipio = models.OneToOneField(Municipio, null=True, blank=True, on_delete=models.CASCADE)
     direccion = models.CharField(blank=True, null=True, max_length=250)
-    cod_postal = models.IntegerField(null=True)
+    cod_postal = models.CharField(max_length=20, null=True)
     rol = models.OneToOneField(Rol, null=True, blank=True, on_delete=models.CASCADE)
     estado = models.BooleanField(default = True) 
     administrador = models.BooleanField(default=False)

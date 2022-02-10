@@ -17,19 +17,19 @@
         <div class="contLogo">
             <img class="logo" src="/static/ModuloUsuarios/img/Logo.png">
         </div>
-        <form>
+        <form method="POST">
             <h1>Registro</h1>
-            {{form}}
-            <!-- <div class="form">
+            <div class="form">
+                {% csrf_token %}
                 <div class="frid">
                     <div class="flexbox">
-                        <input autocomplete="off" id="nombre" type="text" required>
+                        {{form.nombres}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Nombres</strong></span>
                         </label>
                     </div> <br>
                     <div class="flexbox">
-                        <input id="apellido" autocomplete="off" type="text" required>
+                        {{form.apellidos}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Apellidos</strong></span>
                         </label>
@@ -38,13 +38,13 @@
                 <br>
                 <div class="frid">
                     <div class="flexbox">
-                        <input id="email" autocomplete="off" type="text" required>
+                        {{form.email}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>E-mail</strong></span>
                         </label>
                     </div> <br>
                     <div class="flexbox">
-                        <input id="direccion" autocomplete="off" type="text" required>
+                        {{form.direccion}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Dirección</strong></span>
                         </label>
@@ -53,13 +53,13 @@
                 <br>
                 <div class="frid">
                     <div class="flexbox">
-                        <input id="tel" autocomplete="off" type="text">
+                        {{form.telefono}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Telefono</strong></span>
                         </label>
                     </div> <br>
                     <div class="flexbox">
-                        <input id="cel" autocomplete="off" type="text" required>
+                        {{form.celular}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Celular</strong></span>
                         </label>
@@ -67,14 +67,13 @@
                 </div>
                 <br>
                 <div class="frid">
-                    <div class="flexbox">
-                        <input id="municipio" autocomplete="off" type="text" required>
-                        <label class="lbl-nombre">
-                        <span class="text-nomb"><strong>Municicpio</strong></span>
-                        </label>
+                    <div class="flexbox lbl-select">
+                        <label>
+                        <span class="text-nomb"><strong>Municipio</strong></span>
+                        </label> <br>{{form.municipio}}
                     </div> <br>
                     <div class="flexbox">
-                        <input id="codpostal" autocomplete="off" type="text" required>
+                        {{form.cod_postal}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Código Postal</strong></span>
                         </label>
@@ -82,65 +81,56 @@
                 </div>
                 <br>
                 <div class="frid">
-                    <div class="flexbox">
-                        <input id="documento" autocomplete="off" type="text" required>
-                        <label class="lbl-nombre">
-                        <span class="text-nomb"><strong>Documento</strong></span>
-                        </label>
-                    </div> <br>
-                    <div class="flexbox">
-                        <input id="tipo" autocomplete="off" type="text" required>
-                        <label class="lbl-nombre">
+                    <div class="flexbox lbl-select">
+                        <label>
                         <span class="text-nomb"><strong>Tipo de documento</strong></span>
+                        </label> <br>{{form.tipo_documento}}
+                    </div><br>
+                    <div class="flexbox">
+                        {{form.num_documento}}
+                        <label class="lbl-nombre">
+                        <span class="text-nomb"><strong>Número de Documento</strong></span>
                         </label>
                     </div>
                 </div><br>
-                <div class="frid">
-                    <div class="flexbox">
-                        <input id="fecnac" autocomplete="off" type="date" required>
+                <div>
+                    <div class="flexbox" style="width: 95%;">
+                        {{form.fec_nac}}
                         <label class="lbl-nombre">
                         <span class="text-nomb" style="transform: translateY(-150%);
                         font-size: 14px;"><strong>Fecha de nacimiento</strong></span>
                         </label>
                     </div> <br>
-                    <div class="flexbox">
-                        <input id="codpostal" autocomplete="off" type="text" required>
-                        <label class="lbl-nombre">
-                        <span class="text-nomb"><strong>Código Postal</strong></span>
-                        </label>
-                    </div>
-                </div><br>
+                </div>
                 <div class="frid">
                     <div class="flexbox">
-                        <input id="password" autocomplete="off" type="password" required>
+                        {{form.password1}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Contraseña</strong></span>
                         </label>
                     </div> <br>
                     <div class="flexbox">
-                        <input id="confpassword" autocomplete="off" type="text" required>
+                        {{form.password2}}
                         <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Confirmar Contraseña</strong></span>
                         </label>
                     </div>
-                </div> -->
-            <br>
-            <div>
-                <div class="flexbox" style="width: 95%;">
-                    <input id="apodo" autocomplete="off" type="text" required>
-                    <label class="lbl-nombre">
+                </div>
+                <br>
+                <div>
+                    <div class="flexbox" style="width: 95%;">
+                        {{form.username}}
+                        <label class="lbl-nombre">
                         <span class="text-nomb"><strong>Apodo</strong></span>
                         </label>
+                    </div>
                 </div>
-            </div>
-            <button type="submit" class="boton"><strong>Registrarme</strong></button>
+                <br>
+                <button type="submit" class="boton"><strong>Registrarme</strong></button>
 
-            <div class="ayuda">
-                <a href="{%url 'RecuperarContraseña'%}">Registrame</a>
             </div>
-    </div>
-    <br><br>
-    </form>
+            <br><br>
+        </form>
     </div>
     <script src="/static/ModuloUsuarios/js/mainRegistration.js"></script>
 </body>

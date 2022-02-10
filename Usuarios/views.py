@@ -1,7 +1,13 @@
-#-----------------------------------------Importaciones---------------------------------------------------
+#-----------------------------------------Import's---------------------------------------------------
+from asyncio import transports
+import requests, coreapi
 from re import template
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
 from django.views.generic import TemplateView, CreateView
+from django.urls import reverse_lazy
+from coreapi import Client
+from coreapi.transports import HTTPTransport, BaseTransport
+from rest_framework.decorators import api_view
 from django.shortcuts import render, redirect
 from Usuarios.authentication_mixins import Authentication
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -13,41 +19,28 @@ from django.contrib.sessions.models import Session
 from datetime import datetime
 from rest_framework.views import APIView
 from Usuarios.models import Usuario
-from django.contrib.auth.forms import UserCreationForm
+from Usuarios.forms import Regitro
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
-from rest_framework.authentication import get_authorization_header
-#--------------------------------------Cargadores de templates------------------------------------
-# class Usertoken(APIView):
-#     def post(self, request, *args, **kwargs):
-#         username = request.POST.get('username')
-#         print(username)
-#         try:
-#             user_token = Token.objects.get(
-#                 user = UsuarioTokenSerializer().Meta.model.objects.filter(username = username).first()
-#             )
-#             return Response({
-#                 'token': user_token.key
-#             })
-#         except:
-#             return Response({'error': 'No se han enviado las credenciales.'}, status=status.HTTP_400_BAD_REQUEST)
+from rest_framework.renderers import TemplateHTMLRenderer
+
+#--------------------------------------Templates Loaders------------------------------------
 class Login(ObtainAuthToken, TemplateView):
     template_name = 'registration/login.html'
     def post(self,request,*arg, **kwargs):
         if request:
             login_serializer = self.serializer_class(data = request.data, context={'request':request})
+            print(request)
             if login_serializer.is_valid():
                 user=login_serializer.validated_data['user']
                 if user.is_active:
                     token,created = Token.objects.get_or_create(user=user)
                     user_serializer = UsuarioTokenSerializer(user)
-                    # Headers = {
-                    #     "Authorization" : "Token "+token.key
-                    # }
-                    # Jhorman = request.post(headers=Headers)
-                    
+                    Client = "http://127.0.0.1:8000/"
                     if created:
-                        return HttpResponseRedirect('/')
-                        # return Jhorman
+                        token = Token.objects.create(user = user)
+                        # header = {'Authorization':'Token '+token.key}
+                        # return Response(headers=header)
+                        return HttpResponseRedirect("/")
                     else:
                         all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
                         if all_sessions.exists():
@@ -57,14 +50,15 @@ class Login(ObtainAuthToken, TemplateView):
                                     session.delete()
                         token.delete()
                         token = Token.objects.create(user = user)
-                        # return response
-                        header = headers={'Authorization':'Token '+token.key}
-                        return Response(template_name="index.html", headers=header)
-                        
-                        # return Jhorman
-                        # return Response({
-                        #     'error': 'Ya se ha iniciado sesión con este usuario, ¡intentalo de nuevo!'
-                        # })
+                        # credentials = 'http://127.0.0.1:8000'
+                        # transport = HTTPTransport(credentials=credentials)
+                        # client = Client(transports=transport)
+                        # print(transport)
+                        # return Response(client)
+                        return HttpResponseRedirect("/")
+                        # header = {'Authorization':'Token '+token.key}
+                        # return Response(headers=header, template_name="index.html")
+                    
                 else:
                     return Response({'error':'Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
             else:
@@ -100,13 +94,11 @@ class Loguot(ObtainAuthToken, APIView):
 def PassR(request):
     return render(request, "UserInformation/PasswordRecovery.html")
 
-# def Register(request):
-#     return render(request, "registration/Registration.html")
-
-class Register(TemplateView):
+class Register(CreateView):
     model = Usuario
+    form_class = Regitro
     template_name = 'registration/Registration.html'
-    form_class = UserCreationForm
+    success_url = reverse_lazy("Inicio")
     
 def Perfil(request):
     return render(request, "UserInformation/Perfil.html")
