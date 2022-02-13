@@ -1,6 +1,7 @@
 {%extends 'Menu_Usuario.html'%}
 {% load crispy_forms_tags  %} 
 
+
 {% block head %}
 <head>
    <meta charset="UTF-8">
@@ -14,8 +15,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleTablesInformations.css">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">  
+   <link rel="stylesheet" href="sweetalert2.min.css">
    <script src="/static/bootstrap/js/bootstrap.js"></script>
+
+ 
 </head>
 {% endblock head %}
 
@@ -29,7 +33,16 @@
   </button>
   </div>
 
-     
+  <div class="Table Header-table">
+    <div class="Table search">
+        <label>
+        <input type="text" placeholder="Search here">
+        <i class="fas fa-search"></i>
+    </label>
+    </div>
+  </div>     
+
+
 
 <div class="Table Content-table">
   <div class="Information">
@@ -44,7 +57,6 @@
             <th scope="col">Nombre</th>
             <th scope="col">Télefono</th>
             <th scope="col">Celular</th>
-            <th scope="col">Encargado</th>
             <th scope="col">Descripción</th>
             <th scope="col">Estado</th>
             <th scope="col">Borrar</th>
@@ -60,14 +72,16 @@
           <td>{{prov.nombre}}</td>
           <td>{{prov.telefono}}</td>
           <td>{{prov.celular}}</td>
-          <td>{{prov.encargado}}</td>
           <td>{{prov.descripcion}}</td>
           <td><div class="form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
                 <label class="form-check-label" for="flexSwitchCheckChecked"></label>
             </div>
           </td>
-          <td><img type="button" id="b" data-bs-toggle="modal" data-bs-target="#borrar_prov"src="/static/Modulo_compras/img/borrar.png" title="Borrar proveeedor"></td>
+          <td>
+            <button onclick="eliminarprov({{ prov.id_proveedor }})" class='btn btn-success'>Eliminar</button>
+    
+          </td>
           <td>
             <button type="button" class="Edit" data-bs-target="#editar_prov" data-bs-toggle="modal" data-bs-target="#edit">
               <i class="mdi mdi-account-edit"></i>
@@ -118,26 +132,6 @@
   </div>
 </div>
 
-
-<!---BORRAR PROVEEDOR-->
-<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="borrar_prov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
-<div class="modal-dialog">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="ageLabel">Borrar proveedor</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-     Si quiere borrar al proveedor dale al botón confirmar 
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
-    </div>
-  </div>
-</div>
-</div>
-
 <!--EDITAR PROVEEDOR--->
 <div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="editar_prov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
 <div class="modal-dialog">
@@ -180,8 +174,10 @@
 {% endblock modal%}
 
 {%block scripts%}
+
 <script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
 <script src="/static/Modulo_compras/js/js.js"></script>
-
+<script src="sweetalert2.all.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {%endblock scripts%}
 </html>
