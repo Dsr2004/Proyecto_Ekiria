@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Configuracion',
     'Usuarios',
     'rest_framework', 
     'rest_framework.authtoken',
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates'],
+        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates', 'Configuracion/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,6 +79,7 @@ WSGI_APPLICATION = 'Proyecto_Ekiria.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# esta es para mysql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -88,6 +90,14 @@ DATABASES = {
         'PORT': ''
     }
 }
+# para sqlite
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 
 # DATABASES = {
 #     'default': {
