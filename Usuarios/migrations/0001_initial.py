@@ -10,6 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('Configuracion', '0001_initial'),
     ]
 
     operations = [
@@ -22,21 +23,6 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'municipios',
-            },
-        ),
-        migrations.CreateModel(
-            name='Rol',
-            fields=[
-                ('id_rol', models.AutoField(primary_key=True, serialize=False)),
-                ('nombre', models.CharField(max_length=40)),
-                ('descripcion', models.CharField(max_length=500)),
-                ('permiso_id', models.IntegerField(default=1)),
-                ('estado', models.BooleanField(default=True)),
-            ],
-            options={
-                'verbose_name': 'rol',
-                'verbose_name_plural': 'roles',
-                'db_table': 'roles',
             },
         ),
         migrations.CreateModel(
@@ -69,7 +55,7 @@ class Migration(migrations.Migration):
                 ('estado', models.BooleanField(default=True)),
                 ('administrador', models.BooleanField(default=False)),
                 ('municipio', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='Usuarios.municipio')),
-                ('rol', models.ForeignKey(blank=True, default=1, null=True, on_delete=django.db.models.deletion.CASCADE, to='Usuarios.rol')),
+                ('rol', models.ForeignKey(blank=True, default=1, null=True, on_delete=django.db.models.deletion.CASCADE, to='Configuracion.rol')),
                 ('tipo_documento', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='Usuarios.tipodocumento')),
             ],
             options={

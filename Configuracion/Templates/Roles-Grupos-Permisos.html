@@ -1,0 +1,180 @@
+{%extends 'Menu_Usuario.html'%}
+  {% block head %}
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="/static/Configuracion/css/estilo.css">
+    
+    <title>Roles</title>
+  </head>
+    {% endblock head %}
+    {%block Contenido%}
+    <h1 class="titulo">Listado De Roles</h1>
+    <div class="tabla">
+      <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Permiso</th>
+                <th scope="col">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Administracion</td>
+                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
+                <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#PermisosRol">Permisos</button></td>
+                <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Empleado</td>
+                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
+                <td><button type="button" class="btn btn-outline-primary">Permisos</button></td>
+                <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Cliente</td>
+                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
+                <td><button type="button" class="btn btn-outline-primary">Permisos</button></td>
+                <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Stive</td>
+                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
+                <td><button type="button" class="btn btn-outline-primary">Permisos</button></td>
+                <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>Jose</td>
+                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
+                <td><button type="button" class="btn btn-outline-primary">Permisos</button></td>
+                <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
+              </tr>
+            </tbody>
+      </table>
+      <div class="contNuevoRol">
+        
+        <button class="nuevoRol" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol">
+         Crear Nuevo Rol</button>
+        <img class="imgAgregar" src="/static/Configuracion/img/Agregar.png" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol">
+      </div>
+    </div>
+      
+          {% endblock Contenido %}
+
+         
+{%block scripts%} 
+<script src="/static/Configuracion/js/main.js"></script>
+<script src="/static/Configuracion/js/habilitar.js"></script>
+<script src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+{%endblock scripts%}
+{% block modal %} 
+<!-- Modal Crear Rol -->
+<div class="modal fade" id="CrearRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Rol</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <label for="nombreRol">Nombre</label>
+        <input type="text" name="nombreRol" id="nombreRol"><br>
+        <label for="descripRol">Descripcion</label><br>
+        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
+        <br>
+        
+      </div>
+      <div class="modal-footer" id="botones">
+        <button type="button" class="btn btn-warning">Confirmar</button>
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Editar Rol -->
+<div class="modal fade " id="EditarRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Rol</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <label for="nombreRolEdi">Nombre</label>
+        <input type="text" name="nombreRolEdi" id="nombreRolEdi">
+        <label for="descripRol">Descripcion</label><br>
+        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
+      </div>
+      <div class="modal-footer" id="botones">
+        <button type="button" class="btn btn-warning">Editar</button>
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Permisos del Rol -->
+<div class="modal fade " id="PermisosRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Permisos del Rol</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-fade">
+        <div class="custom-control custom-switch "style="display: flexbox; flex-wrap: wrap; justify-content: space-around;" >
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Permiso 1</label>
+          </div>
+          <br>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Permiso 2</label>
+          </div>
+          <br>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Permiso 3</label>
+          </div>
+          <br>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Permiso 4</label>
+          </div>
+          <br>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Permiso 5</label>
+          </div>
+          <br>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label" for="flexSwitchCheckChecked">Permiso 6</label>
+          </div>
+          <br>
+      </div>
+      </div>
+      <div class="modal-footer" id="botones">
+        <button type="button" class="btn btn-warning">Confirmar</button>
+        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock modal %}

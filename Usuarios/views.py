@@ -106,7 +106,8 @@ class Register(CreateView):
 def Perfil(request):
     return render(request, "UserInformation/Perfil.html")
 def Admin(request):
-    return render(request, "UsersConfiguration/UsersAdministration.html")
+    context = {1,2,3,3,4,5,6,7,8,9,10}
+    return render(request, "UsersConfiguration/UsersAdministration.html",{'rep':context})
 
 # class Notification(TemplateView):
 #     template_name = 'UserInformation/Notification.html'
