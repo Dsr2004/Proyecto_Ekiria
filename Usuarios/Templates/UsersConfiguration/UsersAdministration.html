@@ -82,56 +82,72 @@
             <h2> Usuarios Registrados </h2>
             <i class="fas fa-angle-right"></i>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <td>Apodo</td>
-                    <td>Nombres</td>
-                    <td>Apellidos</td>
-                    <td>Télefono</td>
-                    <td>Celular</td>
-                    <td>E-mail</td>
-                    <td>Tipo De Documento</td>
-                    <td>Número De Documento</td>
-                    <td>Dirección</td>
-                    <td>Código Postal</td>
-                    <td>Municipio</td>
-                    <td>Rol</td>
-                    <td>Último Inicio</td>
-                    <td>Estado</td>
-                    <td>Editar</td>
-                    <td class="ver_mas">Ver más</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for a in rep%}
-                <tr>
-                    <td>Hoodinii890</td>
-                    <td>Jhorman</td>
-                    <td>Gallego Gallego</td>
-                    <td>No Aplica</td>
-                    <td>3145359545</td>
-                    <td>j@gmail.com</td>
-                    <td>C.C</td>
-                    <td>1000661096</td>
-                    <td>No Aplica</td>
-                    <td>050002</td>
-                    <td>Medellín</td>
-                    <td>Administrador</td>
-                    <td>2022-02-01 02:20</td>
-                    <td>Activo</td>
-                    <td>
-                        <button type="button" class="Edit" data-bs-toggle="modal" data-bs-target="#edit">
-                            <i class="mdi mdi-account-edit"></i>
-                        </button>
-                    </td>
-                    <td class="ver_mas">
-                        <div><i class="fas fa-angle-down"></i></div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="over">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Apodo</td>
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                        <td>Télefono</td>
+                        <td>Celular</td>
+                        <td>E-mail</td>
+                        <td>Tipo De Documento</td>
+                        <td>Número De Documento</td>
+                        <td>Dirección</td>
+                        <td>Código Postal</td>
+                        <td>Municipio</td>
+                        <td>Rol</td>
+                        <td>Último Inicio</td>
+                        <td>Estado</td>
+                        <td>Editar</td>
+                        <td class="ver_mas">Ver más</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%if object_list%}
+                    {% for Usuario in object_list%}
+                    <tr>
+                        <td>{{Usuario.username}}</td>
+                        <td>{{Usuario.nombres}}</td>
+                        <td>{{Usuario.apellidos}}</td>
+                        <td>{%if Usuario.telefono%}
+                            {{Usuario.telefono}}
+                            {%else%}
+                                No Aplica
+                            {%endif%}</td>
+                        <td>{{Usuario.celular}}</td>
+                        <td>{{Usuario.email}}</td>
+                        <td>{{Usuario.tipo_documento}}</td>
+                        <td>{{Usuario.num_documento}}</td>
+                        <td>{%if Usuario.direccion%}
+                            {{Usuario.direccion}}
+                            {%else%}
+                                No Aplica
+                            {%endif%}</td>
+                        <td>{{Usuario.cod_postal}}</td>
+                        <td>{{Usuario.municipio}}</td>
+                        <td>{{Usuario.rol}}</td>
+                        <td>{%if Usuario.last_login%}
+                            {{Usuario.last_login}}
+                            {%else%}
+                                No Ha iniciado
+                            {%endif%}</td>
+                        <td>{{Usuario.estado}}</td>
+                        <td>
+                            <button type="button" class="Edit" data-bs-toggle="modal" data-bs-target="#edit">
+                                <i class="mdi mdi-account-edit"></i>
+                            </button>
+                        </td>
+                        <td class="ver_mas">
+                            <div><i class="fas fa-angle-down"></i></div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {%endif%}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -140,6 +156,8 @@
 
 <!--------------------------------------Fin Dashborad Usuarios-------------------------------------->
 {% endblock Contenido %} {% block modal %}
+
+<!--------------------------------------Add User ---------------------------------------------------->
 <div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="Perfil_modificar">
@@ -149,6 +167,7 @@
             </div>
             <div class="Perfil_modificar-body">
                 <form id="FormularioInfo">
+                
                     <h1>Registro</h1>
                     <div class="form">
                         <div class="frid">
@@ -273,6 +292,10 @@
         </div>
     </div>
 </div>
+
+
+
+
 <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="Perfil_modificar">

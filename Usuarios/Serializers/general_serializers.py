@@ -23,7 +23,6 @@ class UsuarioSerializer(serializers. ModelSerializer):
         updated_usuario.set_password(validated_data['password'])
         updated_usuario.save()
         return updated_usuario
-    def delete()
 
 
 class UserListSerializer(serializers.ModelSerializer):
