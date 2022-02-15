@@ -19,12 +19,13 @@
     background: none;
     color: inherit;
     border: 2px solid;
-    padding: 1px 15px;
+    padding: 10px 15px;
     font: inherit;
     font-size: 20px;
     border-radius: 50%;
     cursor: pointer;
     outline: inherit;
+    margin-top: 10px;
 }
 
 .Table.search {
