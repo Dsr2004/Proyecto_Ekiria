@@ -9,7 +9,6 @@ class Proveedor(models.Model):
     nombre=models.CharField(max_length=20,blank=False, null=False)
     telefono=models.CharField(max_length=10,blank=True, null=True)
     celular=models.CharField(max_length=10,blank=False, null=False)
-    encargado=models.CharField(max_length=15,blank=False, null=False)
     descripcion=models.TextField(max_length=200,blank=True, null=True)
     estado=models.BooleanField('estado', default=True)
 

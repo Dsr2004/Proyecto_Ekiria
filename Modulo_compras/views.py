@@ -1,6 +1,11 @@
+import json
 from django.shortcuts import render, redirect
 from Modulo_compras.forms import ProveedorForm
 from .models import Proveedor
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 def Productos (request):
     return render(request,"Productos.html")
@@ -8,10 +13,16 @@ def Productos (request):
 def Conf_compra (request):
     return render(request,"conf_compra.html")
 
+@csrf_exempt
 def Listarprov(request):
     Proveedores=Proveedor.objects.all()
     prov_form=ProveedorForm()
-    return render(request,'proveedores.html',{'prov_form':prov_form , 'proveedores': Proveedores})
+    context = None
+    if request.method=='POST':
+        print("lo que se envio:"+str(request.POST))
+        context=request.POST
+    return render(request,'proveedores.html',{'prov_form':prov_form , 'proveedores': Proveedores, 'contexto':context})
+    # return redirect('proveedor')
 
 
 def Crearprov(request):
@@ -26,3 +37,21 @@ def Crearprov(request):
 
         prov_form=ProveedorForm()
     return render(request,'proveedores.html',{'prov_form':prov_form})
+
+def Eliminarprov(request, id_proveedor):
+    prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
+    prov_form.delete()
+    return redirect('listarprov')
+    # return render(request,'proveedores.html',{'prov_form':prov_form})
+
+
+def Modificarprov(request, id_proveedor):
+    prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
+    prov_form.update(request.POST)
+    
+
+    if prov_form.is_valid():
+      prov_form.save()
+    return redirect('listarprov')
+  
+   

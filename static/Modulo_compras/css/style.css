@@ -159,3 +159,18 @@ main {
     padding: 0 5px !important;
     text-align: start !important; 
 }
+
+.Table.Add .Add.img {
+    padding: 10px 15px !important;
+ 
+}
+.buttonEliminar{
+	background: #e93737;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius:50%;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
