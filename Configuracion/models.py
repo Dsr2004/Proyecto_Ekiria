@@ -4,7 +4,7 @@ class Permiso(models.Model):
     id_permiso =  models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=40)
     descripcion = models.TextField(max_length=250)
-    estado= models.BooleanField()
+    estado= models.BooleanField(default=True)
     
     class Meta:
         db_table = "permisos"
@@ -14,7 +14,7 @@ class Rol(models.Model):
     nombre = models.CharField(max_length=40, unique=True)
     descripcion= models.CharField(max_length=500)
     permiso_id=models.ManyToManyField(Permiso, db_column="permiso_id")
-    estado = models.BooleanField()
+    estado = models.BooleanField(default=True)
 
     class Meta:
         db_table = "roles"

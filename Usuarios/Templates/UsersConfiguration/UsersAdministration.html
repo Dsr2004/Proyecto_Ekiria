@@ -81,7 +81,6 @@
             <i class="fas fa-angle-left"></i>
             <h2> Usuarios Registrados </h2>
             <i class="fas fa-angle-right"></i>
-
         </div>
         <table>
             <thead>
@@ -101,9 +100,11 @@
                     <td>Último Inicio</td>
                     <td>Estado</td>
                     <td>Editar</td>
+                    <td class="ver_mas">Ver más</td>
                 </tr>
             </thead>
             <tbody>
+                {% for a in rep%}
                 <tr>
                     <td>Hoodinii890</td>
                     <td>Jhorman</td>
@@ -124,7 +125,11 @@
                             <i class="mdi mdi-account-edit"></i>
                         </button>
                     </td>
+                    <td class="ver_mas">
+                        <div><i class="fas fa-angle-down"></i></div>
+                    </td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
@@ -401,4 +406,6 @@
         </div>
     </div>
 </div>
-{% endblock modal %}
+{% endblock modal %} {% block scripts %}
+<script src="/static/Proyecto_Ekiria/js/jsTablesInformations.js"></script>
+{% endblock scripts %}
