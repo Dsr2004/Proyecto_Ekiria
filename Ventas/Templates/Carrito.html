@@ -1,5 +1,5 @@
 {% extends "Menu_Usuario.html" %}
-
+{%load static%}
 {% block head %}
 <head>
    <meta charset="UTF-8">
@@ -44,7 +44,7 @@
                 <div class="row shoppingCartItem">
                     <div class="col-6">
                         <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
-                            <img src='/static/Ventas/img/uña2.jfif' class="shopping-cart-image">
+                            <img src="{%static 'Ventas/img/arociris.jpg'%}" class="shopping-cart-image">
                             <h4 class="shopping-cart-item-title shoppingCartItemTitle text-truncate ml-3 mb-0">Uñas de Halloween</h4>
                         </div>
                     </div>
