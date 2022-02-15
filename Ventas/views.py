@@ -60,6 +60,8 @@ class EditarServicio(UpdateView):
     model=Servicio
     form_class=ServicioForm
     template_name="EditarServicio.html"
+    print("kiwi")
+    print(form_class.errors) 
     success_url=reverse_lazy('Ventas:listarServicios')
 
 
@@ -71,4 +73,5 @@ class ListarCita(TemplateView):
     
 class EditarCita(TemplateView):
     template_name="EditarCita.html"
+
 

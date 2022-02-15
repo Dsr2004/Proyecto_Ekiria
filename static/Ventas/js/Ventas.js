@@ -61,7 +61,7 @@ function ConfirmacionEditarServicio(){
         icon: "success",
       }).then(function() {
       window.location.href = "/Ventas/ListadoServicios/";
-      document.EditarServicioForm.submit();
+      document.forms['EditarServicioForm'].submit();
    });
     } else {
       swal("OK! Ningun dato del servicio ha sido modificado");
@@ -129,4 +129,10 @@ function CancelarCita2(){
 }
 
 
+// ERRORES
 
+// EDITAR SERVICIO 
+function mostrarErroresEditar(){
+  console.log(errores)
+  alert("kiwi")
+}

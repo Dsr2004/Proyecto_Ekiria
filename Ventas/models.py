@@ -45,6 +45,16 @@ class Servicio(models.Model):
 
     def get_absolute_url(self):
         return reverse("Ventas:detalleSer", kwargs={"slug": self.slug})
+
+    # def clean(self): 
+    #     somefield = self.cleaned_data.get('somefield') 
+    #     if not somefield: 
+    #         if not self._errors.has_key('somefield'): 
+    #             from django.forms.util import ErrorList 
+    #             self._errors['somefield'] = ErrorList() 
+    #             self._errors['somefield'].append('Some field is blank')
+
+    
     
     # def ComentarioMin(self):
     #     query=Servicio.objects.all()
