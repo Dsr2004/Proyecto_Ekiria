@@ -1,60 +1,39 @@
-.fondo {
-    background-color: #fff;
-    position: absolute;
-    top: 0px;
-    min-height: 100%;
-    background-size: cover;
-    z-index: 0;
-    padding: 0;
-    margin: 0;
+.CreateUsers {
+    position: relative;
+    width: 98%;
+    margin: 20px 1%;
+    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.28);
+}
+
+.CreateUsers .title {
+    margin-top: 10px;
+    border-radius: 10px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.28);
+}
+
+.CreateUsers form {
+    position: relative;
     width: 100%;
-    left: 0;
-    height: 100%;
-}
-
-.difuminacion {
-    position: absolute;
-    border-radius: 20px;
-    width: 73%;
-    height: 98%;
-    left: 14%;
-    top: 1%;
-    background: rgba(83, 6, 119, 0.8);
-    filter: blur(10px);
-}
-
-.contenido {
-    position: absolute;
-    border-radius: 20px;
-    width: 71%;
-    height: 96%;
-    left: 15%;
-    top: 2%;
-    background: rgba(83, 6, 119, 0.6);
-    box-shadow: inset 4px 4px 4px 4px rgba(255, 255, 255, 0.25);
+    font-family: Ginto, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: relative;
+    overflow: auto;
+    top: 0;
+    margin-top: -100px;
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 200px auto;
+    grid-template-columns: 1fr;
+    margin-top: 20px;
+    color: black !important;
 }
 
-.contLogo {
-    border-radius: 20px 20px 0 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(180deg, rgba(44, 19, 106, 0.588041) 35.94%, rgba(124, 24, 171, 0.12) 100%);
-    display: flex;
-    justify-content: center;
-}
-
-.logo {
-    width: 125px;
-    height: 100px;
+.CreateUsers .form {
+    padding: 0 0px 0px 5%;
 }
 
 .flexbox {
     position: relative;
     width: 90%;
-    height: 55px;
+    height: 65px;
     margin: 0 0%;
     display: flex;
     justify-content: center;
@@ -63,40 +42,17 @@
     overflow: hidden;
 }
 
-form {
-    position: relative;
-    width: 100%;
-    font-family: Ginto, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    color: #fff;
-    position: relative;
-    overflow: auto;
-    top: 0;
-    margin-top: -100px;
-    margin-left: 2.5%;
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-form::-webkit-scrollbar {
-    width: 5px;
-}
-
-form::-webkit-scrollbar-thumb {
-    background: transparent;
-}
-
 form h1 {
     text-align: center;
-    margin-left: -5%;
 }
 
 .flexbox input {
     width: 100%;
     height: 100%;
     background: none;
-    color: #fff;
+    color: #000;
     padding: 10px 20px 0px 20px;
-    margin-bottom: -15px;
+    margin-bottom: -1px;
     border: none;
     outline: 0px;
 }
@@ -122,7 +78,19 @@ form h1 {
     border-color: -internal-light-dark(rgb(212, 212, 212), rgb(255, 255, 255));
     border-image: none;
     border-radius: 5px;
-    margin-bottom: -35px;
+    margin-bottom: -30px;
+}
+
+.flexbox.lbl-date {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+}
+
+.flexbox.lbl-date input {
+    color: #000 !important;
+    padding-top: -10px;
 }
 
 @media (max-width:700px) {
@@ -140,7 +108,7 @@ form h1 {
         border-color: -internal-light-dark(rgb(212, 212, 212), rgb(255, 255, 255));
         border-image: none;
         border-radius: 5px;
-        margin-bottom: -45px;
+        margin-bottom: -35px;
     }
 }
 
@@ -150,7 +118,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     border-radius: 6px;
     margin-right: 4px;
     opacity: 1;
-    filter: invert(1);
 }
 
 .flexbox .lbl-nombre {
@@ -185,19 +152,38 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     bottom: 5px;
     left: 0;
     transition: 0.1s ease;
-    color: #fff;
+    color: #000;
 }
 
-.flexbox input:focus+.lbl-nombre .text-nomb,
-.flexbox input:valid+.lbl-nombre .text-nomb {
+.flexbox input:focus+.lbl-nombre.validated .text-nomb,
+.flexbox input:valid+.lbl-nombre.validated .text-nomb {
     transform: translateY(-120%);
     font-size: 14px;
     color: #2ecece;
 }
 
-.flexbox input:focus+.lbl-nombre::after,
-.flexbox input:valid+.lbl-nombre::after {
+.flexbox input:focus+.lbl-nombre.invalidate .text-nomb,
+.flexbox input:target+.lbl-nombre.invalidate .text-nomb {
+    transform: translateY(-120%);
+    font-size: 14px;
+    color: #2ecece;
+}
+
+.flexbox input:focus+.lbl-nombre.invalidate::after,
+.flexbox input:valid+.lbl-nombre.invalidate::after {
     transform: translateX(0%);
+}
+
+.flexbox input:focus+.lbl-nombre.validated::after,
+.flexbox input:valid+.lbl-nombre.validated::after {
+    transform: translateX(0%);
+}
+
+.btm {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: -3%;
 }
 
 .boton {
@@ -208,8 +194,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     font: inherit;
     cursor: pointer;
     outline: inherit;
-    border: 2px solid #fff;
-    width: 80%;
+    border: 2px solid #000;
+    width: 50%;
     height: 50px;
     margin: 60px 7.5%;
     font-size: 20px;
@@ -219,7 +205,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .boton:hover {
     border: 2px solid #2ecece;
     color: #2ecece;
-    text-shadow: 0.4px 0.4px #fff;
 }
 
 .ayuda {
@@ -230,7 +215,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .ayuda a {
-    color: #fff;
+    color: #000;
     text-align: center;
     text-decoration: none;
     font-weight: bold;

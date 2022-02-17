@@ -35,6 +35,7 @@ class Regitro(forms.ModelForm):
         widgets = {
             'email': forms.EmailInput(
                 attrs={
+                    'id':'Idate',
                     'required':'requerid',
                     'autocomplete':'off',
                 }
@@ -59,6 +60,7 @@ class Regitro(forms.ModelForm):
             ),
             'telefono': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
@@ -97,11 +99,13 @@ class Regitro(forms.ModelForm):
             ),
             'direccion': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
             'cod_postal': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
