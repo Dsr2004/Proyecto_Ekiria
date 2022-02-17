@@ -38,11 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'Modulo_compras',
     'Configuracion',
     'Usuarios',
     'rest_framework', 
     'rest_framework.authtoken',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +62,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates', 'Configuracion/Templates'],
+        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates','Modulo_compras/Templates','Configuracion/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,7 +90,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': ''
+        'PORT': '3306'
     }
 }
 # para sqlite
@@ -128,7 +131,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
 AUTH_USER_MODEL = 'Usuarios.Usuario'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 

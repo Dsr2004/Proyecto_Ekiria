@@ -19,6 +19,7 @@ from django.urls import path, include
 from Proyecto_Ekiria.views import Inicio
 from Usuarios.views import Login, Register, Loguot
 from rest_framework.authtoken import views
+
 urlpatterns = [
     path('', Inicio.as_view(), name="Inicio"),
     path('IniciarSesion/', Login.as_view(), name="IniciarSesion"),
@@ -26,7 +27,9 @@ urlpatterns = [
     path('Registro/', Register.as_view(), name="Registro"),
     path('InformacionUsuario/', include('Usuarios.urls')),
     path('admin/', admin.site.urls),
+    path('compras/', include('Modulo_compras.urls')),
     path('Configuracion/', include ('Configuracion.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
 ]
+

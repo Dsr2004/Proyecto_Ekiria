@@ -1,0 +1,157 @@
+{%extends 'Menu_Usuario.html'%}
+{% load crispy_forms_tags  %} 
+
+
+{% block head %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Proveedores</title>
+   <link rel="stylesheet" href="/static/Modulo_compras/css/style.css">
+   <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleTablesInformations.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">  
+   <link rel="stylesheet" href="sweetalert2.min.css">
+   <script src="/static/bootstrap/js/bootstrap.js"></script>
+
+ 
+</head>
+{% endblock head %}
+
+
+<div>
+  <p>   
+{% if form.errors %}
+    {% for field in errors %}
+        {{errors}}
+    {% endfor %}
+{% endif %}</p>
+  </div>
+
+{% block Contenido %}
+
+
+
+<div class="container">
+  <div class="Table Add">
+    <button type="button" class="Add img" data-bs-toggle="modal" data-bs-target="#agregar_prov">
+      <i class="fas fa-user-plus"></i>
+  </button>
+  </div>
+
+  <div class="Table Header-table">
+    <div class="Table search">
+        <label>
+        <input type="text" placeholder="Search here">
+        <i class="fas fa-search"></i>
+    </label>
+    </div>
+  </div>     
+
+
+
+<div class="Table Content-table">
+  <div class="Information">
+      <div class="cardHeader">
+          <i class="fas fa-angle-left"></i>
+          <h2>Proveedores</h2>
+          <i class="fas fa-angle-right"></i>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Télefono</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Borrar</th>
+            <th scope="col">Editar</th>
+          </tr>
+        </thead>
+  <tbody>
+    {%if proveedores%}
+
+      {%for prov in proveedores%}
+
+        <tr>
+          <td>{{prov.nombre}}</td>
+          <td>{{prov.telefono}}</td>
+          <td>{{prov.celular}}</td>
+          <td>{{prov.descripcion}}</td>
+          <td><div class="form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+            </div>
+          </td>
+          <td>
+            <button onclick="eliminarprov('{{ prov.id_proveedor }}')" class='buttonEliminar'><i class="mdi mdi-close" style="font-size: 17px;"></i></button>
+    
+          </td>
+          <td>
+               <form action="{% url 'modificarprov'%}" method="post"> 
+                {%csrf_token%}
+                <input type="text" name="id_proveedor" value="{{prov.id_proveedor}}"style="display:none;"> <button type="submit" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"><i class="mdi mdi-account-edit"></i> </button></form>
+          </td>
+        </tr>
+
+    {%endfor%} 
+
+    {% else %}
+
+      <h1>No hay registros</h1>
+
+    {% endif %}
+        
+         
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+
+
+
+{% endblock Contenido %}
+
+{% block modal %}
+
+
+<!---CREAR PROVEEDOR-->
+<div class="modal fade"  class="modal-dialog modal-dialog-scrollable" id="agregar_prov" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="agregarLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ageLabel">Crear proveedor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <form action="{% url 'crearprov'%}" class="form-p" method="POST">
+         {%csrf_token%}
+          {{ prov_form|crispy}}
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
+          </div>
+        </form>    
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock modal%}
+
+{%block scripts%}
+
+<script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
+<script src="/static/Modulo_compras/js/js.js"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{%endblock scripts%}
+</html>
+

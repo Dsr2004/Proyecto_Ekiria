@@ -71,7 +71,7 @@
                         </li>
                         <li class="list_item list_item--click">
                             <div class="list 
-                                {% if request.path == '/compras/proveedores/'%}activar{% endif %} 
+                                {% if request.path == '/compras/listarprov/'%}activar{% endif %} 
                                 {% if request.path == '/compras/productos/'%}activar{% endif %}
                                 {% if request.path == '/compras/confcompra/'%}activar{% endif %}list_button--click">
                                 <i class="mdi mdi-archive centrado"></i>
@@ -79,7 +79,7 @@
                                 <i class="list_arrow mdi mdi-chevron-right escon"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside"><a>Proveedor</a></li>
+                                <li class="nav_link--inside"><a href="{%url 'listarprov'%}">Proveedor</a></li>
                                 <li class="nav_link--inside"><a>Productos</a></li>
                                 <li class="nav_link--inside"><a>Compras</a></li>
                                 <br>
