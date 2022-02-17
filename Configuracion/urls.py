@@ -9,5 +9,7 @@ urlpatterns=[
     path("Permisos/", views.Permisos, name="Permisos"),
     path("Admin/", views.Admin, name="Admin"),
     path("Empleado/", views.Empleado, name="Empleado"),
-    path("Cliente/", views.Cliente, name="Cliente")
+    path("Cliente/", views.Cliente, name="Cliente"),
+    path("CrearRol/", views.CreateRolView.as_view(), name="CreateRol"),
+    # path("EditarRol/",views.EditarRoles, name="updateRol")
 ]

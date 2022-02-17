@@ -32,7 +32,7 @@
                 <th scope="row">{{Rol.id_rol}}</th>
                 <td>{{Rol.nombre}}</td>
                 <td>{{Rol.descripcion}}</td>
-                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
+                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol" id="editaroles">Editar</button></td>
                 <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
                 <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
               </tr>
@@ -55,11 +55,13 @@
       
 {% endblock Contenido %}
 
-          {%block scripts%} 
+{%block scripts%} 
 <script src="/static/Configuracion/js/main.js"></script>
 <script src="/static/Configuracion/js/habilitar.js"></script>
 <script src="/static/bootstrap/js/bootstrap.js"></script>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/Configuracion/js/editarRol.js"></script>
+
 {%endblock scripts%}
 {% block modal %} 
 <!-- Modal Crear Rol -->
@@ -71,17 +73,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
+        <form method='POST' id=CrearRoles action="{%url 'CreateRol'%}" enctype="multipart/form-data">
+        {% csrf_token %}
         <label for="nombreRol">Nombre</label>
-        <input type="text" name="nombreRol" id="nombreRol"><br>
+        {{createform.nombre}}
+        {% comment %} <input type="text" name="nombreRol" id="nombreRol"><br> {% endcomment %}
         <label for="descripRol">Descripcion</label><br>
-        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
-        <br>
+        {{createform.descripcion}}
+        {% comment %} <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="60">¡Describe el rol!</textarea> {% endcomment %}
         
-      </div>
-      <div class="modal-footer" id="botones">
-        <button type="button" class="btn btn-warning">Confirmar</button>
+        <br>
+         <div class="modal-footer" id="botones">
+        <button type="submit" class="btn btn-warning">Confirmar</button>
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
+      </div>
+        </form>
       </div>
     </div>
   </div>
@@ -95,16 +101,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
+        <form method="POST" action="{%url 'updateRol'%}">
+         {% csrf_token %}
         <label for="nombreRolEdi">Nombre</label>
-        <input type="text" name="nombreRolEdi" id="nombreRolEdi">
+        {{updateForm.nombre}}
         <label for="descripRol">Descripcion</label><br>
-        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
+        {{updateForm.descripcion}}
       </div>
       <div class="modal-footer" id="botones">
         <button type="button" class="btn btn-warning">Editar</button>
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
       </div>
+        </form>
     </div>
   </div>
 </div>
@@ -122,7 +130,7 @@
         <label for="nombreRol">Nombre</label>
         <input type="text" name="nombreRol" id="nombreRol"><br>
         <label for="descripRol">Descripcion</label><br>
-        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
+        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="60">¡Describe el rol!</textarea>
         <br>
         
       </div>
