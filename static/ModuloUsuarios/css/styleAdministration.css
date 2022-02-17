@@ -58,7 +58,7 @@
 }
 
 .Admin.Events .Information .cardbox:hover {
-    background-color: #a200ff;
+    background-color: #a200ff; 
 }
 
 .Admin.Events .Information .cardbox:hover .Card .numbers,

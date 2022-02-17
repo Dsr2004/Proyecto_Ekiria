@@ -1,5 +1,5 @@
 from django.urls import path 
-from Ventas.views import Catalogo, TerminarPedido, Calendario, ServiciosPersonalizados,DetalleCita, AdminVentas,AgregarServicio,ListarServicio, EditarServicio, AgregarCita,ListarCita, EditarCita, Carrito,ServicioDetalle, pruebas
+from Ventas.views import Catalogo, TerminarPedido, Calendario, ServiciosPersonalizados,DetalleCita, AdminVentas,AgregarServicio,ListarServicio, EditarServicio, AgregarCita,ListarCita, EditarCita, Carrito,ServicioDetalle, pruebas, EditarTipo_Servicio
 app_name="Ventas"
 urlpatterns = [
     path('Catalogo/', Catalogo.as_view(), name="catalogo"),
@@ -9,6 +9,7 @@ urlpatterns = [
     path('PersonalizarSer/', ServiciosPersonalizados.as_view(), name="personalizar"),
     path('DetalleCita/', DetalleCita.as_view(), name="detalleCita"),
     path('AdminVentas/', AdminVentas.as_view(), name="adminVentas"),
+     path('EditarTipoServicio/<int:pk>', EditarTipo_Servicio.as_view(), name="editarTipoServicio"),
     path('AgregarServicio/', AgregarServicio.as_view(), name="agregarServicio"),
     path('ListadoServicios/', ListarServicio.as_view(), name="listarServicios"),
     path('EditarServicio/<int:pk>', EditarServicio.as_view(), name="editarServicio"),

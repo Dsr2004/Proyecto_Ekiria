@@ -8,12 +8,20 @@
     <title>Listar Servicios</title>
     <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
     <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"> -->
 </head>{% endblock head %}
 
 {% block Contenido %}
-<h1>Listar Servicios</h1>
 <div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Listar Servicios</h1>
+    </div>
+    <div class="col">
+      <a href="{% url 'Ventas:agregarServicio' %}"><span class=" float-end" style="font-size: 48px; margin-right: 80px; margin-top: 10px;"><i class="fa-solid fa-circle-plus"></i></span></a>
+    </div>
+  </div>
     <table class="table table-striped">
         <thead>
            <tr>
@@ -35,7 +43,7 @@
             {% for servicio in servicios %}
             <tr>
               <th scope="row">{{servicio.nombre}}</th>
-              <td><img src="/media/{{servicio.img_servicio}}" class="" width="150" height="100"></td>
+              <td><img src="/media/{{servicio.img_servicio}}" style="border-radius: 15px;" width="150" height="100"></td>
               <td>${{servicio.precio}}</td>
               <td>{{servicio.tipo_servicio_id}}</td>
               <td>{{servicio.descripcion}}</td>
@@ -56,14 +64,16 @@
           {% endif %}
         </tbody>
      </table>
-     
+     <br><br>
 </div>
 
+
+
+
+
+{% endblock Contenido %}
 
 {% block scripts %}
 <script src="/static/Ventas/js/Ventas.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {% endblock scripts %}
-    
-
-{% endblock Contenido %}
