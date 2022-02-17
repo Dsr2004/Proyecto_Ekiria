@@ -127,6 +127,19 @@ function CancelarCita2(){
       }
     });
 }
+// MODALES
+// tipo de servicio 
+function abrir_modal_editar(url){
+   $("#EditarTipoServicio").load(url, function (){ 
+      $(this).appendTo("body").modal('show');
+    });
+}
+
+function abrir_modal_crear(url){
+   $("#AgregarTipoServicio").load(url, function (){ 
+      $(this).appendTo("body").modal('show');
+    });
+}
 
 
 // ERRORES
@@ -151,5 +164,21 @@ function mostrarErroresAgregarServicio(errores){
        for(let e in errorsd){
             $("span[data-key='"+e+"']").text(errorsd[e])
        }
+  });
+}
+
+// AJAX
+
+function registrar(){
+  $.ajax({
+    data: $("#formCrearTipo_Servicio").serialize(),
+    url: $("#formCrearTipo_Servicio").attr('action'),
+    type: $("#formCrearTipo_Servicio").attr('method'),
+    success: function(response){
+
+    },
+    error: function(error){
+
+    }
   });
 }

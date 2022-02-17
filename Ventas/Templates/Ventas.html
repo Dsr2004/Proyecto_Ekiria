@@ -85,7 +85,7 @@
       <h2>Tipos de Servicio</h2>
     </div>
     <div class="col">
-      <a href="{% url 'Ventas:agregarServicio' %}"><span class=" float-end" style="font-size: 48px; margin-right: 80px; margin-top: 10px;"><i class="fa-solid fa-circle-plus"></i></span></a>
+      <button class="btn" onclick="abrir_modal_crear('{% url 'Ventas:agregarTipoServicio' %}')"><span class=" float-end" style="font-size: 48px; margin-right: 80px; margin-top: 10px;"><i class="fa-solid fa-circle-plus"></i></span></button>
     </div>
   </div>
      <div class="Admin Events">
@@ -95,7 +95,7 @@
                
                   <div class="cardbox">
                      <div class="Card">
-                        <button class="btn" onclick="abrir_modal_editar_tipoServicio('{% url 'Ventas:editarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
+                        <button class="btn" onclick="abrir_modal_editar('{% url 'Ventas:editarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
                            <div class="cardName">{{tipo_servicio.nombre}}</div>
                      </button>
                         <div class="iconA">
@@ -115,17 +115,18 @@
   <div class="modal fade" id="EditarTipoServicio" role="dialog">
    
  </div>
+ <div class="modal fade" id="AgregarTipoServicio" role="dialog">
+   
+</div>
 </div>
 {% endblock Contenido %}
 
+{% block modals %}
+ 
+{% endblock modals %}
+
 
 {% block scripts %}
-   <script type="text/javascript">
-      function abrir_modal_editar_tipoServicio(url){
-         $("#EditarTipoServicio").load(url, function (){ 
-            $(this).appendTo("body").modal('show');
-          });
-      }
-   </script>
+<script src="/static/Ventas/js/Ventas.js"></script>   
 {% endblock scripts %}
    

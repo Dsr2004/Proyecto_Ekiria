@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from .forms import ServicioForm, Tipo_servicioForm
@@ -51,6 +51,25 @@ class AdminVentas(TemplateView):
         context['form_Tipo_Servicio'] = formTipo_Servicio
         return context
 
+class AgregarTipo_Servicio(CreateView):
+    model=Tipo_servicio
+    form_class=Tipo_servicioForm
+    template_name="Tipo_servicioAdd.html"
+    success_url = reverse_lazy("Ventas:adminVentas")
+    def post(self, request, *args, **kwargs):
+        form=self.form_class(request.POST)
+        if form.is_valid():
+            nuevo_TipoServicio=Tipo_servicio(
+                nombre=form.cleaned_data.get('nombre'),
+                estado=form.cleaned_data.get('estado')
+            )
+            nuevo_TipoServicio.save()
+            return redirect("Ventas:adminVentas")
+        else:
+            error=form.errors
+            print(error)
+            return JsonResponse(error)
+
 class EditarTipo_Servicio(UpdateView):
     model=Tipo_servicio
     form_class=Tipo_servicioForm
@@ -73,16 +92,9 @@ class ListarServicio(ListView):
 class EditarServicio(UpdateView):
     model=Servicio
     form_class=ServicioForm
-<<<<<<< HEAD
-    template_name="EditarServicio.html"
-    # print("kiwi")
-    # print(form_class.errors) 
-=======
     template_name="EditarServicio.html" 
->>>>>>> 152248616fcd3321cd5b0719c0155632ff9e226d
     success_url=reverse_lazy('Ventas:listarServicios')
-
-     
+    
 
 
 class AgregarCita(TemplateView):
@@ -95,3 +107,7 @@ class EditarCita(TemplateView):
     template_name="EditarCita.html"
 
 
+
+
+def ejemplo(request, id):
+    consuta=Servicio.objects.filter(id_servicio=id)
