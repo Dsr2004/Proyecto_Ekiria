@@ -1,10 +1,12 @@
 #-----------------------------------------Import's---------------------------------------------------
+from ast import Return
 from asyncio import transports
 from email import header
 from html.entities import html5
+from pyexpat import model
 from re import template
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
-from django.views.generic import TemplateView, CreateView, UpdateView, DeleteView, ListView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView
 from django.urls import reverse_lazy
 from rest_framework.decorators import api_view
 from django.shortcuts import render, redirect
@@ -111,11 +113,21 @@ def Perfil(request):
 
 class Admin(ListView):
     model = Usuario
-    context_object_name='Usuario'
-    template_name="UsersConfiguration/UsersAdministration.html"
-    queryset = Usuario.objects.all()
+    context_object_name="Usuario"
+    template_name = "UsersConfiguration/UsersAdministration.html"
+    queryset=Usuario.objects.all()
+    
+class CreateUser(CreateView):
+    model = Usuario
+    form_class = Regitro
+    template_name = 'UsersConfiguration/CreateUsers.html'
+    success_url = reverse_lazy("Administracion")
 
-# def UpdateAdmin(request)
+class UpdateUser(UpdateView):
+    model = Usuario    
+    template_name = 'UsersConfiguration/CreateUsers.html'
+    form_class = Regitro
+    success_url=reverse_lazy("Administracion")   
     
 
 # class Notification(TemplateView):

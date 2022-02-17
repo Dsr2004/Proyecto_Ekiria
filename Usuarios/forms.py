@@ -35,6 +35,7 @@ class Regitro(forms.ModelForm):
         widgets = {
             'email': forms.EmailInput(
                 attrs={
+                    'id':'Idate',
                     'required':'requerid',
                     'autocomplete':'off',
                 }
@@ -59,6 +60,7 @@ class Regitro(forms.ModelForm):
             ),
             'telefono': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
@@ -97,15 +99,18 @@ class Regitro(forms.ModelForm):
             ),
             'direccion': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
             'cod_postal': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
         }
+        
     def clean_password2(self):
         """Validación de contraseña
         
@@ -116,7 +121,7 @@ class Regitro(forms.ModelForm):
         password2 = self.cleaned_data.get('password2')
         
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError('Contraseña no coinciden')
+            raise forms.ValidationError('La Contraseña no coincide')
         return password2
     
     def save(self,commit = True):

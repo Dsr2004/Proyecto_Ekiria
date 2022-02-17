@@ -1,0 +1,173 @@
+{% extends 'Menu_Usuario.html' %} {% block head %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Usuario</title>
+    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleCreateUsers.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>{% endblock head %} {% block Contenido %}
+
+    <div class="CreateUsers">
+        <form method="POST" >
+            <div class="title">
+                <h1>Crear Usuario</h1>
+                <p id="valueInput"></p>
+            </div>
+            <div class="form">
+                {% csrf_token %}
+                <div class="frid">
+                    <div class="flexbox">
+                        {{form.nombres}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb"><strong>Nombres</strong></span>
+                </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        {{form.apellidos}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb"><strong>Apellidos</strong></span>
+                </label>
+                    </div>
+                </div>
+                <br>
+                <div class="frid">
+                    <div class="flexbox">
+                        {{form.email}}
+                        <label class="lbl-nombre invalidate">
+                <span class="text-nomb"><strong>E-mail</strong></span>
+                </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        {{form.direccion}}
+                        <label class="lbl-nombre validated">
+                    <span class="text-nomb"><strong>Dirección</strong></span>
+                </label>
+                    </div>
+                </div>
+                <br>
+                <div class="frid">
+                    <div class="flexbox">
+                        {{form.telefono}}
+                        <label class="lbl-nombre validated">
+                    <span class="text-nomb"><strong>Telefono</strong></span>
+                </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        {{form.celular}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb"><strong>Celular</strong></span>
+                </label>
+                    </div>
+                </div>
+                <br>
+                <div class="frid">
+                    <div class="flexbox lbl-select">
+                        <label>
+                            <span class="text-nomb"><strong>Municipio</strong></span>
+                        </label> <br>{{form.municipio}}
+                    </div> <br>
+                    <div class="flexbox">
+                        {{form.cod_postal}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb"><strong>Código Postal</strong></span>
+                </label>
+                    </div>
+                </div>
+                <br>
+                <div class="frid">
+                    <div class="flexbox lbl-select">
+                        <label>
+                <span class="text-nomb"><strong>Tipo de documento</strong></span>
+                </label> <br>{{form.tipo_documento}}
+                    </div><br>
+                    <div class="flexbox">
+                        {{form.num_documento}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb"><strong>Número de Documento</strong></span>
+                </label>
+                    </div>
+                </div><br>
+                <div>
+                    <div class="flexbox lbl-date" style="width: 95%;">
+                        {{form.fec_nac}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb" style="transform: translateY(-150%);
+                font-size: 14px;"><strong>Fecha de nacimiento</strong></span>
+                </label>
+                    </div> <br>
+                </div>
+                <div class="frid">
+                    <div class="flexbox">
+                        {{form.password1}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb"><strong>Contraseña</strong></span>
+                </label>
+                    </div> <br>
+                    <div class="flexbox">
+                        {{form.password2}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb"><strong>Confirmar Contraseña</strong></span>
+                </label>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <div class="flexbox" style="width: 95%;">
+                        {{form.username}}
+                        <label class="lbl-nombre validated">
+                <span class="text-nomb"><strong>Apodo</strong></span>
+                </label>
+                    </div>
+                </div>
+                <br>
+                <div class="btm">
+                    <button type="button" onclick="cancelCreate()" class="boton"><strong>Cancelar</strong></button>
+                    <button type="submit" class="boton"><strong>Crear</strong></button>
+                </div>
+                <br>
+            </div>
+            <script>
+            </script>
+            <div type="button" id="errores"></div> {% if form.errors %} {% for field in form %}
+
+            <div>
+                {% if field.errors %} {% for error in field.errors %}
+                <script>
+                    var error = "{{error}}"
+                    document.getElementById("errores").innerHTML = error
+                </script>
+                {% endfor %}
+                <script>
+                    alert()
+
+                    function alert() {
+                    Swal.fire({
+                            position: 'top-end',
+                            text: error,
+                            title: "Errores",
+                            icon: "error",
+                            closeOnEsc: false,
+                            closeOnClickOutside: true,
+                            timer: 25000,
+                            buttons: {
+                                cancel: {
+                                    text: "Cerrar",
+                                    value: false,
+                                    visible: true,
+                                    className: "",
+                                    closeModal: true,
+                                },
+                            }
+                        })
+                    }
+                </script>
+                {% endif %}
+            </div>
+            {% endfor %} {% endif %}
+
+            <br><br>
+        </form>
+    </div> {% endblock Contenido %} {% block scripts %}
+    <script src="/static/ModuloUsuarios/js/mainAdministration.js"></script>
+    {% endblock scripts %}

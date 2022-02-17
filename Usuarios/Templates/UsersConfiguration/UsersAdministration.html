@@ -69,9 +69,9 @@
     </label>
     </div>
     <div class="Table Add">
-        <button type="button" class="Add img" data-bs-toggle="modal" data-bs-target="#add">
-        <i class="fas fa-user-plus"></i>
-    </button>
+        <button type="button" onclick="añadirUsuario()" class="Add img">
+            <i class="fas fa-user-plus"></i>
+        </button>
     </div>
 </div>
 
@@ -82,72 +82,70 @@
             <h2> Usuarios Registrados </h2>
             <i class="fas fa-angle-right"></i>
         </div>
-        <div class="over">
-            <table>
-                <thead>
-                    <tr>
-                        <td>Apodo</td>
-                        <td>Nombres</td>
-                        <td>Apellidos</td>
-                        <td>Télefono</td>
-                        <td>Celular</td>
-                        <td>E-mail</td>
-                        <td>Tipo De Documento</td>
-                        <td>Número De Documento</td>
-                        <td>Dirección</td>
-                        <td>Código Postal</td>
-                        <td>Municipio</td>
-                        <td>Rol</td>
-                        <td>Último Inicio</td>
-                        <td>Estado</td>
-                        <td>Editar</td>
-                        <td class="ver_mas">Ver más</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {%if object_list%}
-                    {% for Usuario in object_list%}
-                    <tr>
-                        <td>{{Usuario.username}}</td>
-                        <td>{{Usuario.nombres}}</td>
-                        <td>{{Usuario.apellidos}}</td>
-                        <td>{%if Usuario.telefono%}
-                            {{Usuario.telefono}}
-                            {%else%}
-                                No Aplica
-                            {%endif%}</td>
-                        <td>{{Usuario.celular}}</td>
-                        <td>{{Usuario.email}}</td>
-                        <td>{{Usuario.tipo_documento}}</td>
-                        <td>{{Usuario.num_documento}}</td>
-                        <td>{%if Usuario.direccion%}
-                            {{Usuario.direccion}}
-                            {%else%}
-                                No Aplica
-                            {%endif%}</td>
-                        <td>{{Usuario.cod_postal}}</td>
-                        <td>{{Usuario.municipio}}</td>
-                        <td>{{Usuario.rol}}</td>
-                        <td>{%if Usuario.last_login%}
-                            {{Usuario.last_login}}
-                            {%else%}
-                                No Ha iniciado
-                            {%endif%}</td>
-                        <td>{{Usuario.estado}}</td>
-                        <td>
-                            <button type="button" class="Edit" data-bs-toggle="modal" data-bs-target="#edit">
+        <table>
+            <thead>
+                <tr>
+                    <td>Apodo</td>
+                    <td>Nombres</td>
+                    <td>Apellidos</td>
+                    <td>Télefono</td>
+                    <td>Celular</td>
+                    <td>E-mail</td>
+                    <td>Tipo De Documento</td>
+                    <td>Número De Documento</td>
+                    <td>Dirección</td>
+                    <td>Código Postal</td>
+                    <td>Municipio</td>
+                    <td>Rol</td>
+                    <td>Último Inicio</td>
+                    <td>Estado</td>
+                    <td>Editar</td>
+                    <td class="ver_mas">Ver más</td>
+                </tr>
+            </thead>
+            <tbody>
+                {%if Usuario%}
+                {% for User in Usuario%}
+                <tr>
+                    <td>{{User.username}}</td>
+                    <td>{{User.nombres}}</td>
+                    <td>{{User.apellidos}}</td>
+                    <td>
+                        {% if User.telefono %} {{User.telefono}} {%else%} No Aplica {% endif %}
+                    </td>
+                    <td>{{User.celular}}</td>
+                    <td>{{User.email}}</td>
+                    <td>{{User.tipo_documento}}</td>
+                    <td>{{User.num_documento}}</td>
+                    <td>{% if User.direccion %} {{User.direccion}} {%else%} No Aplica {% endif %}</td>
+                    <td>{{User.cod_postal}}</td>
+                    <td>{{User.municipio}}</td>
+                    <td>{{User.rol}}</td>
+                    <td>{% if User.last_login %} {{User.last_login}} {%else%} No ha iniciado sesión {% endif %}</td>
+                    <td>{{User.estado}}</td>
+                    <td>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="pk" value="{{User.id_usuario}}" style="display:none;">
+                            <button type="submit" class="Edit">
                                 <i class="mdi mdi-account-edit"></i>
                             </button>
-                        </td>
-                        <td class="ver_mas">
-                            <div><i class="fas fa-angle-down"></i></div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    {%endif%}
-                </tbody>
-            </table>
-        </div>
+                        </form>
+                    </td>
+                    <td class="ver_mas">
+                        <div><i class="fas fa-angle-down"></i></div>
+                    </td>
+                </tr>
+                {% endfor %}
+                {%else%}
+                <tr>
+                    <td>
+                    No hay usuarios Registrados
+                    </td>
+                </tr>
+                {%endif%}
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -155,280 +153,8 @@
 
 
 <!--------------------------------------Fin Dashborad Usuarios-------------------------------------->
-{% endblock Contenido %} {% block modal %}
 
-<!--------------------------------------Add User ---------------------------------------------------->
-<div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="Perfil_modificar">
-            <div class="Perfil_modificar-header">
-                <h5 class="Perfil_modificar-titulo">Agregar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="Perfil_modificar-body">
-                <form id="FormularioInfo">
-                
-                    <h1>Registro</h1>
-                    <div class="form">
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" autocomplete="off" id="nombre" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Nombres</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="apellido" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Apellidos</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="email" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>E-mail</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="direccion" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Dirección</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="tel" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Telefono</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="cel" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Celular</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="municipio" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Municicpio</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="codpostal" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Código Postal</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="documento" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Documento</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="tipo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Tipo de documento</strong></span>
-                                </label>
-                            </div>
-                        </div><br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="fecnac" autocomplete="off" type="date" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb" style="transform: translateY(-100%);
-                                font-size: 14px;"><strong>Fecha de nacimiento</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="codpostal" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Código Postal</strong></span>
-                                </label>
-                            </div>
-                        </div><br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="password" autocomplete="off" type="password" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Contraseña</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="confpassword" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Confirmar Contraseña</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div>
-                            <div class="flexbox" style="width: 95%;">
-                                <input class="pinput" id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Apodo</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="Perfil_modificar-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="Perfil_modificar">
-            <div class="Perfil_modificar-header">
-                <h5 class="Perfil_modificar-titulo">Editar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="Perfil_modificar-body">
-                <form id="FormularioInfo">
-                    <h1>Información de usuario</h1>
-                    <div class="form">
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" autocomplete="off" id="nombre" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Nombres</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="apellido" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Apellidos</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="email" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>E-mail</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="direccion" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Dirección</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="tel" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Telefono</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="cel" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Celular</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="municipio" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Municicpio</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="codpostal" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Código Postal</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="documento" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Documento</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="tipo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Tipo de documento</strong></span>
-                                </label>
-                            </div>
-                        </div><br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="fecnac" autocomplete="off" type="date" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb" style="transform: translateY(-100%);
-                                font-size: 14px;"><strong>Fecha de nacimiento</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="codpostal" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Código Postal</strong></span>
-                                </label>
-                            </div>
-                        </div><br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="password" autocomplete="off" type="password" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Contraseña</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="confpassword" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Confirmar Contraseña</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div>
-                            <div class="flexbox" style="width: 95%;">
-                                <input class="pinput" id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Apodo</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="Perfil_modificar-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock modal %} {% block scripts %}
+{% endblock Contenido %} {% block modal %} {% endblock modal %} {% block scripts %}
 <script src="/static/Proyecto_Ekiria/js/jsTablesInformations.js"></script>
+<script src="/static/ModuloUsuarios/js/mainAdministration.js"></script>
 {% endblock scripts %}

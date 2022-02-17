@@ -131,7 +131,9 @@
                 <div style="text-align: center; margin-left: -60px;">
                     <a href="{% url 'IniciarSesion'%}" style="color: aliceblue;">¿Ya tienes cuenta?</a>
                 </div>
-                <p>{{ form.errors}}</p>
+                <p>
+                    {%for field in form%}{%for error in field.errors%}{{error}}<br> {%endfor%}{%endfor%}
+                </p>
             </div>
             <br><br>
         </form>
