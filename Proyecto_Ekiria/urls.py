@@ -33,6 +33,8 @@ urlpatterns = [
     path('Configuracion/', include ('Configuracion.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
+    path('Ventas/',include('Ventas.urls')),
+
 ]
 
 if settings.DEBUG:
