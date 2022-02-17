@@ -13,15 +13,11 @@ def Productos (request):
 def Conf_compra (request):
     return render(request,"conf_compra.html")
 
-@csrf_exempt
+
 def Listarprov(request):
     Proveedores=Proveedor.objects.all()
     prov_form=ProveedorForm()
-    context = None
-    if request.method=='POST':
-        print("lo que se envio:"+str(request.POST))
-        context=request.POST
-    return render(request,'proveedores.html',{'prov_form':prov_form , 'proveedores': Proveedores, 'contexto':context})
+    return render(request,'proveedores.html',{'prov_form':prov_form , 'proveedores': Proveedores})
     # return redirect('proveedor')
 
 
@@ -46,12 +42,14 @@ def Eliminarprov(request, id_proveedor):
 
 
 def Modificarprov(request, id_proveedor):
-    prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
-    prov_form.update(request.POST)
-    
+    form=Proveedor.objects.filter(id_proveedor=id_proveedor).first()
+    Proveedores=ProveedorForm(instance=form)
+    return render(request,'modificarprov.html',{'proveedores': Proveedores , 'Form':form})
 
-    if prov_form.is_valid():
-      prov_form.save()
+def Actprov (request, id_proveedor):
+    prov_form=Proveedor.objects.get(id_proveedor=id_proveedor)
+    Proveedores=ProveedorForm(request.POST, instance=prov_form)
+    if Proveedores.is_valid():
+       Proveedores.save()
     return redirect('listarprov')
-  
    
