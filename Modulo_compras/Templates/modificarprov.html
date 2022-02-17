@@ -27,25 +27,28 @@
 
 
 
- {%for prov in proveedores%}
  
         <div class="modal-body">
-         <form action="{% url 'actprov' prov.id_proveedor%}" class="form-p" method="POST">
+         <form action="{% url 'actprov'%}" class="form-p" method="POST" >
            {%csrf_token%}
             {{ proveedores|crispy}}
+            <input type="text" name="id_proveedor" style="display: none;"  value="{{id}}">
             <div class="modal-footer">
-              <a href="{% url 'listarprov' %} " class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</a>
+              <button onclick="cancelUpdate()" class="btn btn-secondary"  data-bs-dismiss="modal">Cancelar</button>
               <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Confirmar</button>
             </div>
           </form>    
         </div>
 
-    {%endfor%} 
 {% endblock Contenido %}
 
 
 {%block scripts%}
-
+<script>
+  function cancelUpdate() {
+      window.location.href("../listarprov/")
+  }
+</script>
 <script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
 <script src="/static/Modulo_compras/js/js.js"></script>
 <script src="sweetalert2.all.min.js"></script>

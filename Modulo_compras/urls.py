@@ -8,8 +8,8 @@ urlpatterns = [
     path ("crearprov/", Crearprov, name="crearprov"),
     path ("listarprov/", Listarprov, name="listarprov"),
     path ("eliminarprov/<int:id_proveedor>", Eliminarprov, name="eliminarprov"),
-    path ("modificarprov/<int:id_proveedor>", Modificarprov, name="modificarprov"),
-    path ("actprov/<int:id_proveedor>", Actprov, name="actprov"),
+    path ("modificarprov/", Modificarprov, name="modificarprov"),
+    path ("actprov/", Actprov, name="actprov"),
 
 
 

@@ -31,8 +31,9 @@ def Crearprov(request):
 
     else:
 
-        prov_form=ProveedorForm()
-    return render(request,'proveedores.html',{'prov_form':prov_form})
+         
+        messages.error(request, "Error")
+    return render(request, 'page.html', {'form':form_class()})
 
 def Eliminarprov(request, id_proveedor):
     prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
@@ -41,13 +42,15 @@ def Eliminarprov(request, id_proveedor):
     # return render(request,'proveedores.html',{'prov_form':prov_form})
 
 
-def Modificarprov(request, id_proveedor):
+def Modificarprov(request):
+    id_proveedor= request.POST.get("id_proveedor")
     form=Proveedor.objects.filter(id_proveedor=id_proveedor).first()
     Proveedores=ProveedorForm(instance=form)
-    return render(request,'modificarprov.html',{'proveedores': Proveedores , 'Form':form})
+    return render(request,'modificarprov.html',{'proveedores': Proveedores , 'Form':form, 'id':id_proveedor})
 
-def Actprov (request, id_proveedor):
-    prov_form=Proveedor.objects.get(id_proveedor=id_proveedor)
+def Actprov (request):
+    pk = request.POST.get("id_proveedor")
+    prov_form=Proveedor.objects.get(id_proveedor=pk)
     Proveedores=ProveedorForm(request.POST, instance=prov_form)
     if Proveedores.is_valid():
        Proveedores.save()

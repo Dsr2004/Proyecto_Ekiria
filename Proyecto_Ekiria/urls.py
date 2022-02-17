@@ -27,11 +27,8 @@ urlpatterns = [
     path('Registro/', Register.as_view(), name="Registro"),
     path('InformacionUsuario/', include('Usuarios.urls')),
     path('admin/', admin.site.urls),
-<<<<<<< HEAD
     path('compras/', include('Modulo_compras.urls')),
-=======
     path('Configuracion/', include ('Configuracion.urls')),
->>>>>>> 38f6f9dd4c0e12ab68efb131ca10207c9018fa2f
     path('api-auth/', include('rest_framework.urls')),
     path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
 ]

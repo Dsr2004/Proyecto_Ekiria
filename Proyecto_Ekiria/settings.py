@@ -38,12 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-<<<<<<< HEAD
     'crispy_forms',
     'Modulo_compras',
-=======
     'Configuracion',
->>>>>>> 38f6f9dd4c0e12ab68efb131ca10207c9018fa2f
     'Usuarios',
     'rest_framework', 
     'rest_framework.authtoken',
@@ -65,12 +62,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates','Modulo_compras/Templates'],
-
-=======
-        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates', 'Configuracion/Templates'],
->>>>>>> 38f6f9dd4c0e12ab68efb131ca10207c9018fa2f
+        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates','Modulo_compras/Templates','Configuracion/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
