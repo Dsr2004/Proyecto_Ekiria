@@ -112,12 +112,12 @@ function eliminarprov(id_proveedor) {
       })
 }
 
-function pasarPost(id_proveedor) {
-    $.ajax({
-      data: id_proveedor,
-      url: '/compras/listarprov/',
-      type: "POST",
-      success: function(data) {
-    }
-    })
-}
+// function pasarPost(id_proveedor) {
+//     $.ajax({
+//       data: id_proveedor,
+//       url: '/compras/listarprov/',
+//       type: "POST",
+//       success: function(data) {
+//     }
+//     })
+// }
