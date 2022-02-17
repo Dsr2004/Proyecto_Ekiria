@@ -128,8 +128,7 @@
                 <br>
             </div>
             <script>
-            </script>
-            <div type="button" id="errores"></div> {% if form.errors %} {% for field in form %}
+            </script> {% if form.errors %} {% for field in form %}
 
             <div>
                 {% if field.errors %} {% for error in field.errors %}
