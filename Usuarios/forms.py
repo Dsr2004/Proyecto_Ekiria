@@ -1,4 +1,5 @@
 from django import forms
+
 from Usuarios.models import Usuario
 class Regitro(forms.ModelForm):
     

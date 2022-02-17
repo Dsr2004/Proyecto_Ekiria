@@ -106,14 +106,14 @@
                                 <i class="list_arrow mdi mdi-chevron-right escon"></i>
                             </div>
                             <ul class="list_show">
-                                <li class="nav_link--inside"><a href="">Catalogo</a></li>
-                                <li class="nav_link--inside"><a href="">Calendario</a></li>
-                                <li class="nav_link--inside"><a href="">Finalizar compra</a></li>
-                                <li class="nav_link--inside"><a href="">Servicios personalizados</a></li>
-                                <li class="nav_link--inside"><a href="">Administración de ventas</a></li>
-                                <li class="nav_link--inside"><a href="">Servicios</a></li>
-                                <li class="nav_link--inside"><a href="">Citas</a></li>
-                                <li class="nav_link--inside"><a href="">Detalles de cita</a></li>
+
+                                <li class="nav_link--inside"><a href="{%url 'Ventas:catalogo'%}">Catalogo</a></li>
+                                <li class="nav_link--inside"><a href="{%url 'Ventas:calendario'%}">Calendario</a></li>
+                                <li class="nav_link--inside"><a href="{%url 'Ventas:adminVentas'%}">Administración de ventas</a></li>
+                                <li class="nav_link--inside"><a href="{%url 'Ventas:listarServicios'%}">Servicios</a></li> 
+                                <li class="nav_link--inside"><a href="{%url 'Ventas:listarCitas'%}">Citas</a></li>
+                                <li class="nav_link--inside"><a href="{%url 'Ventas:agregarCita'%}">Agregar cita</a></li>
+                                <li class="nav_link--inside"><a href="{%url 'Ventas:agregarServicio'%}">Agregar Servicios</a></li>
                                 <br>
                             </ul>
                         </li>
@@ -167,6 +167,11 @@
                     <div>
                         <input type="search ">
                     </div>
+
+                    <li><a href="{% url 'Ventas:carrito' %}" type="button" class=" btn position-relative" style="margin-top: -7px;"><i class="fas fa-shopping-cart"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a></li>
+                </ul>
+            </div>
+
                     <div>Hola 2</div>
                     {% endblock Contenido %}
 

@@ -1,0 +1,61 @@
+/*-------------------------DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o bloques de informaciÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³n--------------------*/
+
+.Admin.Events {
+    margin: 10px 5%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Admin.Events .Information {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 700px) {
+    .Admin.Events .Information {
+        margin: 0 40%;
+    }
+}
+
+.Admin.Events .Information .cardbox {
+    position: relative;
+    width: 200px;
+    height: 100%;
+    margin: 15px;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 7px 2px 16px 12px rgba(0, 0, 0, 0.18);
+}
+
+.Admin.Events .Information .cardbox .Card {
+    width: 100%;
+    display: grid;
+    cursor: pointer;
+    grid-template-columns: 75% 25%;
+}
+
+.Admin.Events .Information .cardbox .Card .numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: #a200ff;
+}
+
+.Admin.Events .Information .cardbox .Card .cardName {
+    color: #3d3d3d;
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.Admin.Events .Information .cardbox .iconA {
+    font-size: 3.5em;
+    color: #3d3d3d;
+}
+
+
+

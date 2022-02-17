@@ -1,0 +1,26 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar Tipo de Servicio</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <form  action="{%url 'Ventas:agregarTipoServicio'%}" method="post">
+            {% csrf_token %}
+        <Label><strong>Nombre:   </strong></Label>
+        {{form.nombre}}
+        <br>
+        <Label><strong>Estado: </strong></Label>
+        <div class="form-check form-switch">
+            {{form.estado}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+  
