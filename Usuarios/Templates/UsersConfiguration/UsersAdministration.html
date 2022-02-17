@@ -1,0 +1,151 @@
+{% extends "Menu_Usuario.html" %}
+<!---->{% block head %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administracion de usuarios</title>
+    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleAdministration.css">
+    <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleTablesInformations.css"> {% endblock head %} {% block Contenido %}
+</head>
+<!----------------------------------------Dashborad Usuarios---------------------------------------->
+
+<div class="Admin Events">
+    <div class="Information">
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="numbers">1506</div>
+                    <div class="cardName">Usuarios</div>
+                </div>
+                <div class="iconA">
+                    <i class="mdi mdi-account-multiple"></i>
+                </div>
+            </div>
+        </div>
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="numbers">2019</div>
+                    <div class="cardName">Servicios</div>
+                </div>
+                <div class="iconA">
+                    <i class="mdi mdi-basket centrado"></i>
+                </div>
+            </div>
+        </div>
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="numbers">1235</div>
+                    <div class="cardName">Visitas Diarias</div>
+                </div>
+                <div class="iconA">
+                    <i class="far fa-eye"></i>
+                </div>
+            </div>
+        </div>
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="numbers">127</div>
+                    <div class="cardName">Comentarios</div>
+                </div>
+                <div class="iconA">
+                    <i class="mdi mdi-comment"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="Table Header-table">
+    <div class="Table search">
+        <label>
+        <input type="text" placeholder="Search here">
+        <i class="fas fa-search"></i>
+    </label>
+    </div>
+    <div class="Table Add">
+        <button type="button" onclick="añadirUsuario()" class="Add img">
+            <i class="fas fa-user-plus"></i>
+        </button>
+    </div>
+</div>
+
+<div class="Table Content-table">
+    <div class="Information">
+        <div class="cardHeader">
+            <i class="fas fa-angle-left"></i>
+            <h2> Usuarios Registrados </h2>
+            <i class="fas fa-angle-right"></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Apodo</td>
+                    <td>Nombres</td>
+                    <td>Apellidos</td>
+                    <td>Télefono</td>
+                    <td>Celular</td>
+                    <td>E-mail</td>
+                    <td>Tipo De Documento</td>
+                    <td>Número De Documento</td>
+                    <td>Dirección</td>
+                    <td>Código Postal</td>
+                    <td>Municipio</td>
+                    <td>Rol</td>
+                    <td>Último Inicio</td>
+                    <td>Estado</td>
+                    <td>Editar</td>
+                    <td class="ver_mas">Ver más</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for User in Usuario%}
+                <tr>
+                    <td>{{User.username}}</td>
+                    <td>{{User.nombres}}</td>
+                    <td>{{User.apellidos}}</td>
+                    <td>
+                        {% if User.telefono %} {{User.telefono}} {%else%} No Aplica {% endif %}
+                    </td>
+                    <td>{{User.celular}}</td>
+                    <td>{{User.email}}</td>
+                    <td>{{User.tipo_documento}}</td>
+                    <td>{{User.num_documento}}</td>
+                    <td>{% if User.direccion %} {{User.direccion}} {%else%} No Aplica {% endif %}</td>
+                    <td>{{User.cod_postal}}</td>
+                    <td>{{User.municipio}}</td>
+                    <td>{{User.rol}}</td>
+                    <td>{% if User.last_login %} {{User.last_login}} {%else%} No ha iniciado sesión {% endif %}</td>
+                    <td>{{User.estado}}</td>
+                    <td>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input type="text" name="pk" value="{{User.id_usuario}}" style="display:none;">
+                            <button type="submit" class="Edit">
+                                <i class="mdi mdi-account-edit"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td class="ver_mas">
+                        <div><i class="fas fa-angle-down"></i></div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+<!--------------------------------------Fin Dashborad Usuarios-------------------------------------->
+{% endblock Contenido %} {% block modal %} {% endblock modal %} {% block scripts %}
+<script src="/static/Proyecto_Ekiria/js/jsTablesInformations.js"></script>
+<script src="/static/ModuloUsuarios/js/mainAdministration.js"></script>
+{% endblock scripts %}

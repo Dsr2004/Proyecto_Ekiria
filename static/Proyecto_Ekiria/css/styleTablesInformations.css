@@ -1,0 +1,163 @@
+/*-------------------------Desing of search--------------------*/
+
+.Table.Header-table {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 95%;
+    margin: 0 -1%;
+}
+
+.Table.Add {
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: end;
+}
+
+.Table.Add .Add.img {
+    background: none;
+    color: inherit;
+    border: 2px solid;
+    padding: 1px 15px;
+    font: inherit;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.Table.search {
+    display: flex;
+    width: 40%;
+    margin: 10px 50%;
+    justify-content: center;
+}
+
+.Table.search label {
+    position: relative;
+    width: 100%;
+}
+
+@media (max-width: 700px) {
+    .Table.search {
+        width: 90%;
+        margin: 10px 5%;
+    }
+}
+
+.Table.search label input {
+    position: relative;
+    border-radius: 40px;
+    padding: 5px 20px;
+    padding-left: 35px;
+    font-size: 18px;
+    width: 100%;
+    outline: none;
+    border: none;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18);
+}
+
+.Table.search label i {
+    position: absolute;
+    top: 11px;
+    left: 10px;
+    font-size: 1.2em;
+}
+
+
+/*-----------------------End of design search-----------------*/
+
+
+/*---------------------------Users table layout-------------------------*/
+
+.Table.Content-table {
+    position: relative;
+    width: 90%;
+    height: 500px;
+    padding: 20px;
+    margin: 20px 5%;
+    border-radius: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.28);
+    overflow: auto;
+}
+
+.Table.Content-table .Information .cardHeader {
+    position: sticky;
+    top: -20px;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    padding-top: 20px;
+    margin-left: -10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.Table.Content-table .Information .cardHeader h2 {
+    margin-top: 0;
+    font-weight: 600;
+    color: #a200ff;
+}
+
+.Table.Content-table .Information .cardHeader i {
+    font-weight: 600;
+    color: #a200ff;
+    font-size: 32px;
+}
+
+.Table.Content-table .Information table {
+    width: 100%;
+    border-color: collapse;
+    margin-top: 10px;
+}
+
+.Table.Content-table .Information table thead td {
+    font-weight: 600;
+}
+
+.Table.Content-table .Information table tr {
+    color: #000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+
+/* .Table.Content-table .Information table tr {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+} */
+
+.Table.Content-table .Information table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.Table.Content-table .Information table tbody tr:hover {
+    background-color: rgba(162, 0, 255, 0.1)
+}
+
+.Table.Content-table .Information table tr td {
+    padding: 0 10px;
+    text-align: center;
+}
+
+.Table.Content-table .Information table tr td.ver_mas {
+    display: none;
+}
+
+.Table.Content-table .Information table tr .Edit {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.Table.Content-table .Information table tr td i {
+    font-size: 25px;
+}
+
+
+/*--------------------------Users table layout-------------------------*/

@@ -1,0 +1,136 @@
+{%extends 'Menu_Usuario.html'%}
+<head>
+  {% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="/static/Configuracion/css/estilo.css">
+    
+    <title>Cambios-Pagina</title>
+    {% endblock head %}
+</head>
+  {% block Contenido %}
+    <style>
+      .modal-backdrop {
+            z-index: -1 !important;
+                }
+    </style>
+    <h3 class="tituloCambios" >Cambios de pagina</h3>
+    <div class="contenedorcambios">
+      <div class="ContenedorMision">
+        <div class="ContMision">
+          <div class="recuadro" >
+            <h4>MISIÓN</h4>
+            <p class="text" >La Misión de EKIRIA es  ofrecer  a mujeres, hombres y niñ@s de Medellin, <br>
+              servicios de belleza para la presentación personal a través de servicios <br>
+              como manicura, pedicura, aplanchados, masajes, etc.</p>
+            <h4>VISIÓN</h4>
+            <p class="text" >Tener y/o poseer un mejor establecimiento para dar al cliente los mejores <br>
+                servicios de calidad. Y garantía. Ser reconocida por muchos más clientes <br>
+                y satisfacer sus necesidades.</p>
+          </div>
+          <div class="seleccionar">
+            <select name="select1" class="selecionarcambios" id="Colorletra">
+              <option value="value1" selected>Color de Letra</option>
+              <option value="value2" >Color de Fondo</option>
+              <option value="value3">Sangria de Letra</option>
+              <option value="value3">Tamaño de Letra</option>
+              <option value="value3">Tipo de Letra</option>
+            </select>
+            <select name="select2" id="ColorFondo">
+              <option value="value2" selected>Color de Fondo</option>
+              <option value="value3">Sangria de Letra</option>
+              <option value="value3">Tamaño de Letra</option>
+              <option value="value3">Tipo de Letra</option>
+            </select>
+            <br><br>
+            <select name="select3" id="SangriaLetra">
+              <option value="value3" selected>Sangria de Letra</option>
+              <option value="value3"> Letra</option>
+              <option value="value3">Tamaño de Letra</option>
+              <option value="value3">Tipo de Letra</option>
+            </select>
+            <select name="select4" id="TamañoLetra">
+              <option value="value3">Tamaño de Letra</option>
+              <option value="value3">Tipo de Letra</option>
+            </select>
+            <br><br>
+            <select name="select5" id="TipoLetra">
+              <option value="value2" >Color de Fondo</option>
+              <option value="value3">Sangria de Letra</option>
+              <option value="value3">Tamaño de Letra</option>
+            </select>
+            <input type="file" name="imgmv" id="imgmv" placeholder="Insertar imagen" ><label for="">insertar imagen</label>
+          </div>
+          <br>
+          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CrearConfirmacion">Editar Texto</button>
+        </div>
+      </div>
+      <!-- foteeer -->
+        <div class="contactenos" >
+          <h3 class="tituloCambios">Contactenos</h3>
+          <div class="contfooter">
+            <img src="/static/Configuracion/img/footer.png" alt="#">
+          <div class="seleccionar2">
+            <select name="select1" class="selecionarcambios" id="Colorletra">
+              <option value="value1" selected>Color de Letra</option>
+              <option value="value2" >Color de Fondo</option>
+              <option value="value3">Sangria de Letra</option>
+              <option value="value3">Tamaño de Letra</option>
+              <option value="value3">Tipo de Letra</option>
+            </select>
+            <select name="select2" id="ColorFondo">
+              <option value="value2" selected>Color de Fondo</option>
+              <option value="value3">Sangria de Letra</option>
+              <option value="value3">Tamaño de Letra</option>
+              <option value="value3">Tipo de Letra</option>
+            </select>
+            <br><br>
+            <select name="select3" id="SangriaLetra">
+              <option value="value3" selected>Sangria de Letra</option>
+              <option value="value3"> Letra</option>
+              <option value="value3">Tamaño de Letra</option>
+              <option value="value3">Tipo de Letra</option>
+            </select>
+            <select name="select4" id="TamañoLetra">
+              <option value="value3">Tamaño de Letra</option>
+              <option value="value3">Tipo de Letra</option>
+            </select>
+            <br><br>
+            <select name="select5" id="TipoLetra">
+              <option value="value2" >Color de Fondo</option>
+              <option value="value3">Sangria de Letra</option>
+              <option value="value3">Tamaño de Letra</option>
+            </select>
+            <input type="file" name="imgmv" id="imgmv" placeholder="Insertar imagen" ><label for="">insertar imagen</label>
+        <br>
+        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CrearConfirmacion">Editar Texto</button>
+        
+      </div>
+    </div>
+  </div>
+    <!--Boton de la modal confirmar-->
+ 
+    {% block modal %} 
+    <!-- Modal Cambios de pagina Confirmacion -->
+<div class="modal fade bd-example-modal-sm " id="CrearConfirmacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-sm" >
+      <div class="modal-content">
+        <div class="modal-header">  
+          <p class="modal-title" id="exampleModalLabel">Cambios Guardados</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer" id="boton">
+          <button type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" >Aceptar</button>
+        </div>
+    </div>
+  </div>
+  {% endblock modal %}
+  {%block scripts%} 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="/static/Configuracion/js/main.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.js"></script>
+  {%endblock scripts%}
+  {% endblock Contenido %}
