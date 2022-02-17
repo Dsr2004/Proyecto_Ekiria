@@ -1,5 +1,5 @@
-{% extends "Menu_Usuario.html" %} 
-
+{% extends "Menu_Usuario.html" %}
+{% load jsonify %}
 {% block head %}
 <head>
     <meta charset="UTF-8">
@@ -21,7 +21,7 @@
         <div class="col">
             <Label><strong>Nombre:   </strong></Label>
                 {{form.nombre}}
-                <span data-key="nombre" class="badge bg-danger">kiwi</span>
+                <span data-key="nombre" class="badge bg-danger"></span>
         </div>
         <div class="col" >
             <Label><strong>Tipo de Servicio:  </strong></Label>
@@ -58,32 +58,22 @@
         <div class="form-floating  descripcion">
             {{form.descripcion}}
             <span data-key="descripcion" class="badge bg-danger"></span>
-    
-            <label style="font-size: 20px;">Descripcion</label>
         </div>
         <br><br>
         <button type="submit" class="btn btn-block btn-success" onclick="ConfirmacionEditarServicio()">Editar Servicio</button>
     </form>
 </div>
-
+<br><br>    
+{% endblock Contenido %}
 
 {% block scripts %}
 <script src="/static/Ventas/js/Ventas.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script></script>
-{% if  form.errors%}
-    <script>
-        let formulario= $("#EditarServicioForm")
-        formulario.find('.bg-danger').text('');
-        let errores='{{form.errors}}'
-        for(let e in errores){
-            $("span[data-key='"+e+"']").text(errores[e])
-        }
-        alert(errores)
-    </script>
-    
-{% endif %}
 
+{% if form.errors %}
+   <script>
+       let errorsd='{{form.errors|jsonify}}'
+       mostrarErroresEditarServicio(errorsd)
+   </script>
+    {% endif %}
 {% endblock scripts %}
-
-{% endblock Contenido %}

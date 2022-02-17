@@ -132,7 +132,24 @@ function CancelarCita2(){
 // ERRORES
 
 // EDITAR SERVICIO 
-function mostrarErroresEditar(){
-  console.log(errores)
-  alert("kiwi")
+function mostrarErroresEditarServicio(errores){
+  errorsd=JSON.parse(errores)
+  $(document).ready(function(){
+      let formulario = $("#EditarServicioForm")
+      formulario.find('.bg-danger').text('');
+       for(let e in errorsd){
+            $("span[data-key='"+e+"']").text(errorsd[e])
+       }
+  });
+}
+// AGREGAR SERVICIO 
+function mostrarErroresAgregarServicio(errores){
+  errorsd=JSON.parse(errores)
+  $(document).ready(function(){
+      let formulario = $("#AgregarServicioForm")
+      formulario.find('.bg-danger').text('');
+       for(let e in errorsd){
+            $("span[data-key='"+e+"']").text(errorsd[e])
+       }
+  });
 }
