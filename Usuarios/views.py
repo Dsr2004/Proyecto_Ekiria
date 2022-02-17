@@ -29,7 +29,7 @@ class Login(ObtainAuthToken, TemplateView):
     template_name = 'registration/login.html'
     def post(self,request,*arg, **kwargs):
         if request:
-            login_serializer = self.serializer_class(data = request.data, context={'request':request})
+            login_serializer = self.serializer_class(data = request. b , context={'request':request})
             print(request)
             if login_serializer.is_valid():
                 user=login_serializer.validated_data['user']
@@ -122,7 +122,12 @@ class CreateUser(CreateView):
     form_class = Regitro
     template_name = 'UsersConfiguration/CreateUsers.html'
     success_url = reverse_lazy("Administracion")
-        
+
+class UpdateUser(UpdateView):
+    model = Usuario    
+    template_name = 'UsersConfiguration/CreateUsers.html'
+    form_class = Regitro
+    success_url=reverse_lazy("Administracion")   
     
 
 # class Notification(TemplateView):

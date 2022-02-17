@@ -1,3 +1,4 @@
+from ast import Delete
 from rest_framework import serializers
 from Usuarios.models import Usuario
 
@@ -6,6 +7,7 @@ class UsuarioTokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields=("username",'email','nombres','apellidos', 'id_usuario')
+        
 class UsuarioSerializer(serializers. ModelSerializer):
     class Meta:
         model = Usuario
@@ -21,6 +23,7 @@ class UsuarioSerializer(serializers. ModelSerializer):
         updated_usuario.set_password(validated_data['password'])
         updated_usuario.save()
         return updated_usuario
+
 
 class UserListSerializer(serializers.ModelSerializer):
     class Meta:
