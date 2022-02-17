@@ -4,7 +4,13 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-
+.modal-backdrop {
+    z-index: 1 !important;
+    opacity: 0.5 !important;
+        }
+.modal-content{
+    z-index: 15 !important;
+}
 body {
     min-height: 100vh;
 }
@@ -375,18 +381,18 @@ body {
 
 .Logo.activar {
     position: fixed;
-    top: 7px;
+    top: 5px;
     z-index: 10;
-    margin-left: 30%;
+    margin-left: 37.3%;
 }
 
 .Logo {
-    width: 6%;
-    height: 6%;
+    width: 40px;
+    height: 50px;
     position: fixed;
-    top: 7px;
+    top: 5px;
     z-index: 10;
-    margin: 0 47%;
+    margin: 0 49%;
 }
 
 .menu.activar {
@@ -399,7 +405,7 @@ body {
     top: 0px;
     margin: 0 auto;
     width: 100%;
-    height: 7vh;
+    height: 60px;
     border-bottom: 2px solid black;
     background: linear-gradient(to bottom, #572364, #2f214a);
     z-index: 9;

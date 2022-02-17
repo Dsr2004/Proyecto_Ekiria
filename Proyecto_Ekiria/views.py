@@ -6,11 +6,12 @@ from django.shortcuts import render
 from Usuarios.models import *
 from Usuarios.authentication_mixins import Authentication
 from django.views.generic import View
+from rest_framework.views import APIView
 
 
 #--------------------------------------Cargadores de templates------------------------------------
 
-class Inicio(Authentication, View):
+class Inicio(Authentication,View):
     def get(self, request, *args, **kwargs):
         mensaje = {
         "data" : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],

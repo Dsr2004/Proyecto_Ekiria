@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from argparse import Namespace
 from django.contrib import admin
 from django.urls import path, include
 from Proyecto_Ekiria.views import Inicio
@@ -26,7 +27,11 @@ urlpatterns = [
     path('Registro/', Register.as_view(), name="Registro"),
     path('InformacionUsuario/', include('Usuarios.urls')),
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
     path('compras/', include('Modulo_compras.urls')),
+=======
+    path('Configuracion/', include ('Configuracion.urls')),
+>>>>>>> 38f6f9dd4c0e12ab68efb131ca10207c9018fa2f
     path('api-auth/', include('rest_framework.urls')),
     path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
 ]

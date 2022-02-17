@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'crispy_forms',
     'Modulo_compras',
+=======
+    'Configuracion',
+>>>>>>> 38f6f9dd4c0e12ab68efb131ca10207c9018fa2f
     'Usuarios',
     'rest_framework', 
     'rest_framework.authtoken',
@@ -61,15 +65,20 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+<<<<<<< HEAD
         'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates','Modulo_compras/Templates'],
 
+=======
+        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates', 'Configuracion/Templates'],
+>>>>>>> 38f6f9dd4c0e12ab68efb131ca10207c9018fa2f
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages'
+                'django.contrib.messages.context_processors.messages',
+                'Usuarios.context_processors.registro_form',
             ],
         },
     },
@@ -81,6 +90,7 @@ WSGI_APPLICATION = 'Proyecto_Ekiria.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# esta es para mysql
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -91,6 +101,14 @@ DATABASES = {
         'PORT': '3306'
     }
 }
+# para sqlite
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 
 # DATABASES = {
 #     'default': {
@@ -143,6 +161,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 

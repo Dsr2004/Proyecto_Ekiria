@@ -1,4 +1,4 @@
-/*-------------------------DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o del search--------------------*/
+/*-------------------------Desing of search--------------------*/
 
 .Table.Header-table {
     position: relative;
@@ -67,10 +67,10 @@
 }
 
 
-/*----------------------- FIn DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o del search-----------------*/
+/*-----------------------End of design search-----------------*/
 
 
-/*---------------------------DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o Tabla de usuarios-------------------------*/
+/*---------------------------Users table layout-------------------------*/
 
 .Table.Content-table {
     position: relative;
@@ -85,11 +85,15 @@
 
 .Table.Content-table .Information .cardHeader {
     position: sticky;
-    top: 0;
+    top: -20px;
     left: 0;
-    margin-bottom: 40px;
+    background-color: #fff;
+    padding: 10px;
+    padding-top: 20px;
+    margin-left: -10px;
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .Table.Content-table .Information .cardHeader h2 {
@@ -119,17 +123,27 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.18);
 }
 
+
+/* .Table.Content-table .Information table tr {
+    display: grid;
+    grid-template-columns: repeat(15, 1fr);
+} */
+
 .Table.Content-table .Information table tbody tr:last-child {
     border-bottom: none;
 }
 
-.Table.Content-table .Information table tr:hover {
+.Table.Content-table .Information table tbody tr:hover {
     background-color: rgba(162, 0, 255, 0.1)
 }
 
 .Table.Content-table .Information table tr td {
     padding: 0 10px;
     text-align: center;
+}
+
+.Table.Content-table .Information table tr td.ver_mas {
+    display: none;
 }
 
 .Table.Content-table .Information table tr .Edit {
@@ -147,4 +161,4 @@
 }
 
 
-/*--------------------------Fin DiseÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â±o Tabla de usuarios-------------------------*/
+/*--------------------------Users table layout-------------------------*/
