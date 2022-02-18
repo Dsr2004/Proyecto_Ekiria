@@ -1,15 +1,15 @@
 {%extends 'Menu_Usuario.html'%}
   {% block head %}
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <link rel="stylesheet" href="/static/Configuracion/css/estilo.css">
-    
-    <title>Roles</title>
-  </head>
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+      <link rel="stylesheet" href="/static/Configuracion/css/estilo.css">
+      
+      <title>Roles</title>
+    </head>
     {% endblock head %}
     {%block Contenido%}
     <h1 class="titulo">Listado De Roles</h1>
@@ -28,14 +28,14 @@
             <tbody>
               {%if roles%}
               {%for Rol in roles%}
-              <tr>
-                <th scope="row">{{Rol.id_rol}}</th>
-                <td>{{Rol.nombre}}</td>
-                <td>{{Rol.descripcion}}</td>
-                <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
-                <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
-                <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
-              </tr>
+                <tr>
+                  <th scope="row">{{Rol.id_rol}}</th>
+                  <td>{{Rol.nombre}}</td>
+                  <td>{{Rol.descripcion}}</td>
+                  <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
+                  <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
+                  <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
+                </tr>
               {%endfor%}
 
               {%else%}
@@ -55,7 +55,7 @@
       
 {% endblock Contenido %}
 
-          {%block scripts%} 
+{%block scripts%} 
 <script src="/static/Configuracion/js/main.js"></script>
 <script src="/static/Configuracion/js/habilitar.js"></script>
 <script src="/static/bootstrap/js/bootstrap.js"></script>
@@ -73,7 +73,7 @@
       <div class="modal-body">
 
         <label for="nombreRol">Nombre</label>
-        <input type="text" name="nombreRol" id="nombreRol"><br>
+        <input type="text" name="nombreRol" id="nombreRol" ><br>
         <label for="descripRol">Descripcion</label><br>
         <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
         <br>
@@ -86,6 +86,7 @@
     </div>
   </div>
 </div>
+
 <!-- Modal Editar Rol -->
 <div class="modal fade " id="EditarRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
@@ -99,7 +100,7 @@
         <label for="nombreRolEdi">Nombre</label>
         <input type="text" name="nombreRolEdi" id="nombreRolEdi">
         <label for="descripRol">Descripcion</label><br>
-        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
+        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="60">¡Describe el rol!</textarea>
       </div>
       <div class="modal-footer" id="botones">
         <button type="button" class="btn btn-warning">Editar</button>

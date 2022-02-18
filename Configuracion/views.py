@@ -33,6 +33,8 @@ def Cliente(request):
 
 def ListarRol(request):
     query = Rol.objects.all()
-    print(query)
     contexto= {'roles':query}
     return render(request, "Roles.html", contexto)
+
+# def CrearRol(request):
+#     if request =="POST":
