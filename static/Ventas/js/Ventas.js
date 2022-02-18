@@ -168,17 +168,45 @@ function mostrarErroresAgregarServicio(errores){
 }
 
 // AJAX
-
+ 
 function registrar(){
   $.ajax({
     data: $("#formCrearTipo_Servicio").serialize(),
     url: $("#formCrearTipo_Servicio").attr('action'),
     type: $("#formCrearTipo_Servicio").attr('method'),
     success: function(response){
-
+      window.location.href="/Ventas/AdminVentas/"
     },
     error: function(error){
+      $(document).ready(function(){
+        let formulario = $("#formCrearTipo_Servicio")
+        formulario.find('.bg-danger').text('');
+         for(let e in error.responseJSON.error){
+           let txt=error.responseJSON.error[e]
+              $("span[data-key='"+e+"']").text(txt)
+         }
+    });
+    }
+  });
+}
 
+function editar(){
+  $.ajax({
+    data: $("#formEditarTipo_Servicio").serialize(),
+    url: $("#formEditarTipo_Servicio").attr('action'),
+    type: $("#formEditarTipo_Servicio").attr('method'),
+    success: function(response){
+      window.location.href="/Ventas/AdminVentas/"
+    },
+    error: function(error){
+      $(document).ready(function(){
+        let formulario = $("#formEditarTipo_Servicio")
+        formulario.find('.bg-danger').text('');
+         for(let e in error.responseJSON.error){
+           let txt=error.responseJSON.error[e]
+              $("span[data-key='"+e+"']").text(txt)
+         }
+    });
     }
   });
 }

@@ -15,7 +15,7 @@ class Tipo_servicio(models.Model):
 
     class Meta:
         db_table = 'tipo_servicios'
-        verbose_name = 'tipo_servicio'
+        verbose_name = 'tipo de servicio'
         verbose_name_plural = 'tipo_servicios'
 
     def __str__(self):
@@ -92,7 +92,7 @@ class Servicio_Personalizado(models.Model):
 
     class Meta:
         db_table = 'servicios_personalizados'
-        verbose_name = 'servicio_personalizado'
+        verbose_name = 'servicio personalizado'
         verbose_name_plural = 'servicios_personalizados'
 
     def __str__(self):
@@ -132,7 +132,7 @@ class Pedido_Personalizado(models.Model):
 
     class Meta:
         db_table = 'pedidos_personalizados'
-        verbose_name = 'pedido_personalizado'
+        verbose_name = 'pedido personalizado'
         verbose_name_plural = 'pedidos_personalizados'
 
     def __str__(self):

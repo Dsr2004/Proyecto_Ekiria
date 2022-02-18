@@ -81,11 +81,11 @@
         </tbody>
      </table>
      <div class="row">
-    <div class="col">
+    <div class="col-10">
       <h2>Tipos de Servicio</h2>
     </div>
-    <div class="col">
-      <button class="btn" onclick="abrir_modal_crear('{% url 'Ventas:agregarTipoServicio' %}')"><span class=" float-end" style="font-size: 48px; margin-right: 80px; margin-top: 10px;"><i class="fa-solid fa-circle-plus"></i></span></button>
+    <div class="col-2">
+      <button class="btn" onclick="abrir_modal_crear('{% url 'Ventas:agregarTipoServicio' %}')"><span class="float" style="font-size: 48px; margin-right: -80%;"><i class="fa-solid fa-circle-plus"></i></span></button>
     </div>
   </div>
      <div class="Admin Events">
@@ -100,7 +100,7 @@
                      </button>
                         <div class="iconA">
                            <div class="form-check form-switch">
-                              <input style="font-size: 25px; left: 55px;" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if tipo_servicio.estado %}checked{% endif %}>
+                              <input style="top: 5px; font-size: 25px; left: 55px;" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if tipo_servicio.estado %}checked{% endif %}>
                            </div>
                         </div>
                      </div>
