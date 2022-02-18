@@ -60,6 +60,8 @@
 <script src="/static/Configuracion/js/habilitar.js"></script>
 <script src="/static/bootstrap/js/bootstrap.js"></script>
 <script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/Configuracion/js/editarRol.js"></script>
+
 {%endblock scripts%}
 {% block modal %} 
 <!-- Modal Crear Rol -->
@@ -71,21 +73,59 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
+        <form method='POST' id=CrearRoles action="{%url 'CreateRol'%}" enctype="multipart/form-data">
+        {% csrf_token %}
         <label for="nombreRol">Nombre</label>
         <input type="text" name="nombreRol" id="nombreRol" ><br>
+        {{createform.nombre}}
+        {% comment %} <input type="text" name="nombreRol" id="nombreRol"><br> {% endcomment %}
         <label for="descripRol">Descripcion</label><br>
-        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
-        <br>
+        {{createform.descripcion}}
+        {% comment %} <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="60">¡Describe el rol!</textarea> {% endcomment %}
         
-      </div>
-      <div class="modal-footer" id="botones">
-        <button type="button" class="btn btn-warning">Confirmar</button>
+        <br>
+         <div class="modal-footer" id="botones">
+        <button type="submit" class="btn btn-warning" >Confirmar</button>
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
+      </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
+<!-- <script>
+  $(function(){
+      $("#ajax_button").click(function(){
+          //var userID = $('form input[name="userID"]').val();
+          //var userEmail = $('form input[name="userEmail"]').val();
+          //var act = $("#act").serialize();
+          //console.log(userID,userEmail,act);
+          $.ajax({
+              url:"/logins/",
+              type:"POST",
+              data:$('#act').serialize(),
+              success:function(arg){
+                  $('.error-msg').remove();
+                  var v1 = JSON.parse(arg);
+                  console.log(v1);
+                  if(v1.status){
+                      var  error_obj = v1.error;
+                      $.each(error_obj,function(k,v){
+                           // k: usuario o correo electrónico
+                          // v: [{}{}{},]
+                          var tag = document.createElement('span');
+                          tag.className = 'error-msg';
+                          tag.innerHTML = v[0].message;
+                          $("input[name='"+k+"']").after(tag);
+                      })
+                  }else{
+                      location.href = "/logins/"
+                  }
+              }
+          })
+      });
+  });
+</script> -->
 
 <!-- Modal Editar Rol -->
 <div class="modal fade " id="EditarRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
@@ -96,16 +136,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-
+        <form method="POST" action="{%url 'updateRol'%}">
+         {% csrf_token %}
         <label for="nombreRolEdi">Nombre</label>
-        <input type="text" name="nombreRolEdi" id="nombreRolEdi">
+        {{updateForm.nombre}}
         <label for="descripRol">Descripcion</label><br>
         <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="60">¡Describe el rol!</textarea>
+        {{updateForm.descripcion}}
       </div>
       <div class="modal-footer" id="botones">
         <button type="button" class="btn btn-warning">Editar</button>
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
       </div>
+        </form>
     </div>
   </div>
 </div>
@@ -123,7 +166,7 @@
         <label for="nombreRol">Nombre</label>
         <input type="text" name="nombreRol" id="nombreRol"><br>
         <label for="descripRol">Descripcion</label><br>
-        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="40">¡Describe el rol!</textarea>
+        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="60">¡Describe el rol!</textarea>
         <br>
         
       </div>
