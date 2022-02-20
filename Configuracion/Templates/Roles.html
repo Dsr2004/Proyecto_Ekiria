@@ -7,10 +7,10 @@
       <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
       <link rel="stylesheet" href="/static/Configuracion/css/estilo.css">
-      
       <title>Roles</title>
     </head>
     {% endblock head %}
+    
     {%block Contenido%}
     <h1 class="titulo">Listado De Roles</h1>
     <div class="tabla">
@@ -32,7 +32,7 @@
                   <th scope="row">{{Rol.id_rol}}</th>
                   <td>{{Rol.nombre}}</td>
                   <td>{{Rol.descripcion}}</td>
-                  <td><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#EditarRol">Editar</button></td>
+                  <td><button type="button" class="btn btn-outline-success" onclick="abrir_modal_editar ('{% url 'updateRol' Rol.id_rol %}')">Editar</button></td>
                   <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
                   <td><button type="button" class="btn btn-outline-warning">Habilitar</button></td>
                 </tr>
@@ -46,7 +46,7 @@
       </table>
       <div class="contNuevoRol">
         
-        <button class="nuevoRol" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol">
+        <button class="nuevoRol" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol" onclick="abrir_modal_crear('{% url 'CreateRol' %}')">
           Crear Nuevo Rol
         </button>
         <img class="imgAgregar" src="/static/Configuracion/img/Agregar.png" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol">
@@ -55,15 +55,8 @@
       
 {% endblock Contenido %}
 
-{%block scripts%} 
-<script src="/static/Configuracion/js/main.js"></script>
-<script src="/static/Configuracion/js/habilitar.js"></script>
-<script src="/static/bootstrap/js/bootstrap.js"></script>
-<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/static/Configuracion/js/editarRol.js"></script>
-
-{%endblock scripts%}
 {% block modal %} 
+      <!-- <div class="modal fade" id="CreateRol" role="dialog"></div> -->
 <!-- Modal Crear Rol -->
 <div class="modal fade" id="CrearRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
@@ -73,86 +66,26 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method='POST' id=CrearRoles action="{%url 'CreateRol'%}" enctype="multipart/form-data">
+        <form method='post' id=CrearRoles action="{%url 'CreateRol'%}" enctype="multipart/form-data">
         {% csrf_token %}
-        <label for="nombreRol">Nombre</label>
-        <input type="text" name="nombreRol" id="nombreRol" ><br>
-        {{createform.nombre}}
-        {% comment %} <input type="text" name="nombreRol" id="nombreRol"><br> {% endcomment %}
+        <label for="nombreRol">Nombre</label><br>
+        {{crear.nombre}}
         <label for="descripRol">Descripcion</label><br>
-        {{createform.descripcion}}
-        {% comment %} <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="60">¡Describe el rol!</textarea> {% endcomment %}
-        
+        {{crear.descripcion}}
         <br>
          <div class="modal-footer" id="botones">
         <button type="submit" class="btn btn-warning" >Confirmar</button>
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
-      </div>
+        </div>
         </form>
       </div>
     </div>
   </div>
-</div>
-<!-- <script>
-  $(function(){
-      $("#ajax_button").click(function(){
-          //var userID = $('form input[name="userID"]').val();
-          //var userEmail = $('form input[name="userEmail"]').val();
-          //var act = $("#act").serialize();
-          //console.log(userID,userEmail,act);
-          $.ajax({
-              url:"/logins/",
-              type:"POST",
-              data:$('#act').serialize(),
-              success:function(arg){
-                  $('.error-msg').remove();
-                  var v1 = JSON.parse(arg);
-                  console.log(v1);
-                  if(v1.status){
-                      var  error_obj = v1.error;
-                      $.each(error_obj,function(k,v){
-                           // k: usuario o correo electrónico
-                          // v: [{}{}{},]
-                          var tag = document.createElement('span');
-                          tag.className = 'error-msg';
-                          tag.innerHTML = v[0].message;
-                          $("input[name='"+k+"']").after(tag);
-                      })
-                  }else{
-                      location.href = "/logins/"
-                  }
-              }
-          })
-      });
-  });
-</script> -->
-
+</div> 
 <!-- Modal Editar Rol -->
-<div class="modal fade " id="EditarRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Rol</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="{%url 'updateRol'%}">
-         {% csrf_token %}
-        <label for="nombreRolEdi">Nombre</label>
-        {{updateForm.nombre}}
-        <label for="descripRol">Descripcion</label><br>
-        <textarea type="text" name="nombreRol" id="descripRol" rows="5" cols="60">¡Describe el rol!</textarea>
-        {{updateForm.descripcion}}
-      </div>
-      <div class="modal-footer" id="botones">
-        <button type="button" class="btn btn-warning">Editar</button>
-        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
-      </div>
-        </form>
-    </div>
-  </div>
+ <div class="modal fade " id="EditarRol" role="dialog" >
+  
 </div>
-
 <!-- Modal Permisos del Rol -->
 <div class="modal fade" id="GrupoRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
@@ -179,3 +112,12 @@
 </div>
 
 {% endblock modal %}
+
+{%block scripts%} 
+<script src="/static/Configuracion/js/main.js"></script>
+<script src="/static/Configuracion/js/habilitar.js"></script>
+<script src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="//code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/Configuracion/js/Roles.js"></script>
+
+{%endblock scripts%}
