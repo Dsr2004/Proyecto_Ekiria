@@ -2,8 +2,10 @@ import json
 from django.shortcuts import render, redirect
 from Modulo_compras.forms import ProveedorForm
 from .models import Proveedor
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 
 
 
@@ -21,19 +23,33 @@ def Listarprov(request):
     # return redirect('proveedor')
 
 
-def Crearprov(request):
+# def Crearprov(request):
 
-    if request.method == 'POST':
-        prov_form = ProveedorForm(request.POST)
-        if prov_form.is_valid():
-            prov_form.save()
-            return redirect('listarprov')
+#     if request.method == 'POST':
+#         prov_form = ProveedorForm(request.POST)
+#         if prov_form.is_valid():
+#             prov_form.save()
+#             return redirect('listarprov')
 
-    else:
 
-         
-        messages.error(request, "Error")
-    return render(request, 'page.html', {'form':form_class()})
+class Crearprov(CreateView):
+    model= Proveedor
+    form_class=ProveedorForm
+    template_name='modalprov/agregarprov.html'
+
+    def post(self,request, *args, **kwargs):  
+            prov_form = ProveedorForm(request.POST)
+            if prov_form.is_valid():
+                prov_form.save()
+                return redirect('listarprov')
+            else:
+                errores=prov_form.errors
+                mensaje=f"{Proveedor.__name__} no hay registros"
+                response=JsonResponse({"mensaje":mensaje , "errors":errores})
+                response.status_code=400
+                return response
+   
+        
 
 def Eliminarprov(request, id_proveedor):
     prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)

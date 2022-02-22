@@ -5,7 +5,7 @@ from Modulo_compras.views import Modificarprov, Productos, Conf_compra,Listarpro
 urlpatterns = [
     path ("productos/", Productos, name="productos"),
     path ("confcompra/", Conf_compra, name="confcompra"),
-    path ("crearprov/", Crearprov, name="crearprov"),
+    path ("crearprov/", Crearprov.as_view(), name="crearprov"),
     path ("listarprov/", Listarprov, name="listarprov"),
     path ("eliminarprov/<int:id_proveedor>", Eliminarprov, name="eliminarprov"),
     path ("modificarprov/", Modificarprov, name="modificarprov"),

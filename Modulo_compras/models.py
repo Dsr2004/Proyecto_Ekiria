@@ -6,7 +6,7 @@ from django.db import models
 
 class Proveedor(models.Model):
     id_proveedor=models.AutoField("id_proveedor",primary_key=True, unique=True)
-    nombre=models.CharField(max_length=20,blank=False, null=False)
+    nombre=models.CharField(max_length=20,blank=False, null=False, unique=True)
     telefono=models.CharField(max_length=10,blank=True, null=True)
     celular=models.CharField(max_length=10,blank=False, null=False)
     descripcion=models.TextField(max_length=200,blank=True, null=True)
