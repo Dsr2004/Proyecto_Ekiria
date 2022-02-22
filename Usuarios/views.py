@@ -123,7 +123,7 @@ class EditarPerfil(UpdateView):
     model = Usuario
     form_class = Regitro
     template_name = "UserInformation/EditarPerfil.html"
-    success_url=reverse_lazy("Perfil")
+    success_url=reverse_lazy("Administracion")
 
 class Admin(ListView):
     model = Usuario

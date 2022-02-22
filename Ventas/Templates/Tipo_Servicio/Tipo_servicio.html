@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,7 +9,7 @@
         
         
           
-            <form id="formEditarTipo_Servicio" action="{% url 'EditarPerfil' object.id_usuario%}" method="post">
+            <form id="formEditarTipo_Servicio" action="{% url 'Ventas:editarTipoServicio' object.id_tipo_servicio%}" method="post">
             {% csrf_token %}
         <Label><strong>Nombre:   </strong></Label>
         {{form.nombre}}
@@ -28,3 +29,4 @@
       
     </div>
   </div>
+  

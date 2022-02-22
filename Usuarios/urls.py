@@ -8,6 +8,6 @@ urlpatterns = [
     path('Notificaciones/', Notification, name="Notify"),
     path('CrearUsuario/', CreateUser.as_view(), name="CreateUser"),
     path('CrearUsuario/<int:pk>', UpdateUser.as_view(), name="UpdateUser"),
-    path('EditarPerfil/', EditarPerfil.as_view(), name="EditarPerfil")
+    path('EditarPerfil/<int:pk>', EditarPerfil.as_view(), name="EditarPerfil")
     # path('', Usertoken.as_view(), name = "refresh_token"),
 ]
