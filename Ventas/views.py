@@ -1,3 +1,5 @@
+from pyexpat import model
+from turtle import update
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
@@ -108,11 +110,35 @@ class EditarTipo_Servicio(UpdateView):
                 return response
         else:
             return redirect("Ventas:adminVentas")
+<<<<<<< HEAD
             
+=======
+# class CambiarEstadoTipoServicio(UpdateView):
+#     def post(self, request, *args, **kwargs) :
+#         if request.method == "POST":
+#             form = self.form_class(request.POST)
+#             if form.is_valid():
+#                 form.save()
+#                 mensaje = f"{self.model.__name__} actualizado correctamente"
+#                 error = "No hay error!"
+#                 response = JsonResponse({"mensaje":mensaje, "error":error})
+#                 response.status_code = 201
+#                 return response
+#             else:
+#                 mensaje = f"{self.model.__name__} no se ha podido actualizar!"
+#                 error = form.errors
+#                 response = JsonResponse({"mensaje":mensaje, "error":error})
+#                 response.status_code = 400
+#                 return response
+#         else:
+#             return redirect("Ventas:adminVentas")
+
+>>>>>>> 554d461690d128585aca1753bd4f4c29e202af2f
 def CambiarEstadoTipoServicio(request, id):
     if request.method == "POST":
-        x=request.POST["estado"]
-        return JsonResponse({"data":"kiwi","x":x})
+        if request.POST["estado"]=="True"
+        Tipo_servicio.objects.filter(id_tipo_servicio=id).update(estado=request.POST["estado"])
+        return redirect("Ventas:adminVentas")
     else:
         return redirect("Ventas:adminVentas")
 
