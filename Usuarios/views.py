@@ -7,7 +7,7 @@ from multiprocessing import context
 from pyexpat import model
 from re import template
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
-from django.views.generic import TemplateView, CreateView, ListView, UpdateView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView
 from django.urls import reverse_lazy
 from rest_framework.decorators import api_view
 from django.shortcuts import render, redirect
@@ -62,6 +62,7 @@ class Login(ObtainAuthToken, TemplateView):
                         # header = {'Authorization':'Token '+token.key}
                         # return Response(headers=header, template_name="index.html")
                     
+                    
                 else:
                     return Response({'error':'Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
             else:
@@ -106,11 +107,23 @@ class Register(CreateView):
     template_name = 'registration/Registration.html'
     success_url = reverse_lazy("Inicio")
     
-def Perfil(request):
-    return render(request, "UserInformation/Perfil.html")
-# def Admin(request):
-#     context = {1,2,3,3,4,5,6,7,8,9,10}
-#     return render(request, "UsersConfiguration/UsersAdministration.html",{'rep':context})
+# def Perfil(request):
+#     return render(request, "UserInformation/Perfil.html")
+# # def Admin(request):
+# #     context = {1,2,3,3,4,5,6,7,8,9,10}
+# #     return render(request, "UsersConfiguration/UsersAdministration.html",{'rep':context})
+
+class Perfil(DetailView):
+    model = Usuario
+    context_object_name="Usuario"
+    template_name="UserInformation/Perfil.html"
+    queryset=Usuario.objects.all()
+
+class EditarPerfil(UpdateView):
+    model = Usuario
+    form_class = Regitro
+    template_name = "UserInformation/EditarPerfil.html"
+    success_url=reverse_lazy("Perfil")
 
 class Admin(ListView):
     model = Usuario
@@ -135,3 +148,4 @@ class UpdateUser(UpdateView):
 #     template_name = 'UserInformation/Notification.html'
 def Notification(request):
     return render(request, "UserInformation/Notification.html")
+

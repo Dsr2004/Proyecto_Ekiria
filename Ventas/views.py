@@ -4,7 +4,6 @@ from django.views.generic import View, TemplateView, ListView, DetailView, Creat
 from django.urls import reverse_lazy
 from django.template.context_processors import csrf
 from crispy_forms.utils import render_crispy_form
-from jsonview.decorators import json_view
 from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm
 
 from Ventas.models import Servicio, Tipo_servicio
@@ -109,6 +108,7 @@ class EditarTipo_Servicio(UpdateView):
                 return response
         else:
             return redirect("Ventas:adminVentas")
+            
 def CambiarEstadoTipoServicio(request, id):
     if request.method == "POST":
         x=request.POST["estado"]
