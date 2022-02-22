@@ -124,13 +124,10 @@
                     <td>{% if User.last_login %} {{User.last_login}} {%else%} No ha iniciado sesión {% endif %}</td>
                     <td>{{User.estado}}</td>
                     <td>
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            <input type="text" name="pk" value="{{User.id_usuario}}" style="display:none;">
-                            <button type="submit" class="Edit">
-                                <i class="mdi mdi-account-edit"></i>
-                            </button>
-                        </form>
+                        {% csrf_token %}
+                        <button type="button" class="Edit" onclick="EditarUsuario('{{User.id_usuario}}')">
+                            <i class="mdi mdi-account-edit"></i>
+                        </button>
                     </td>
                     <td class="ver_mas">
                         <div><i class="fas fa-angle-down"></i></div>

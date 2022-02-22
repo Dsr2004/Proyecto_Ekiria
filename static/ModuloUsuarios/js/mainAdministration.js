@@ -9,3 +9,6 @@ const getValueInput = () => {
     let inputValue = document.getElementById("Idate").value;
     document.getElementById("valueInput").innerHTML = inputValue;
 }
+function EditarUsuario(pk) {
+    window.location.href = "../CrearUsuario/"+pk;
+}

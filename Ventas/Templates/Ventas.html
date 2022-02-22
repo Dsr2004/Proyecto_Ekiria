@@ -1,0 +1,137 @@
+{% extends "Menu_Usuario.html" %} 
+{%load static%}
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administracion Ventas</title>
+    <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
+    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="{% static 'Ventas/css/Ventas-admin.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</head>{% endblock head %}
+
+{% block Contenido %}
+<h1>Administracion Ventas</h1>
+<div class="container">
+
+   <h2>catalogo</h2>
+    <table class="table table-striped">
+        <thead>
+           <tr>
+              <th scope="col">#</th>
+              <th scope="col">Foto</th>
+              <th scope="col">Servicio</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Acciones</th>
+           </tr>
+        </thead>
+        <tbody>
+           <tr>
+              <th scope="row">1</th>
+              <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
+              <td>Uñas Sencillas</td>
+              <td>$15000</td>
+              <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
+                  </div>
+              </td>
+           </tr>
+           <tr>
+              <th scope="row">2</th>
+              <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
+              <td>Uñas Sencillas</td>
+              <td>$15000</td>
+              <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Habilitar para el catalogo</label>
+                  </div>
+              </td>
+           </tr>
+           <tr>
+              <th scope="row">3</th>
+              <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
+              <td>Uñas Sencillas</td>
+              <td>$15000</td>
+              <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
+                  </div>
+              </td>
+           </tr>
+           <tr>
+              <th scope="row">4</th>
+              <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
+              <td>Uñas Sencillas</td>
+              <td>$15000</td>
+              <td>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
+                  </div>
+              </td>
+           </tr>
+        </tbody>
+     </table>
+     <div class="row">
+    <div class="col-10">
+      <h2>Tipos de Servicio</h2>
+    </div>
+    <div class="col-2">
+      <button class="btn" onclick="abrir_modal_crear('{% url 'Ventas:agregarTipoServicio' %}')"><span class="float" style="font-size: 48px; margin-right: -80%;"><i class="fa-solid fa-circle-plus"></i></span></button>
+    </div>
+  </div>
+     <div class="Admin Events">
+      <div class="Information">
+         {% if Tipo_Servicios%}
+            {% for tipo_servicio in  Tipo_Servicios %}
+               
+                  <div class="cardbox">
+                     <div class="Card">
+                        <button class="btn" onclick="abrir_modal_editar('{% url 'Ventas:editarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
+                           <div class="cardName">{{tipo_servicio.nombre}}</div>
+                     </button>
+                        <div class="iconA">
+                           <form action="{% url 'Ventas:editarEstadoTipoServicio' tipo_servicio.id_tipo_servicio %}" id="editarTipoSerivico" method="post">
+                              {% csrf_token %}
+                              <div class="form-check form-switch">
+                                    {{form_Tipo_Servicio.estado}}
+                                    <button type="submit" hidden="True"></button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+               </div>
+               
+             {% endfor %} 
+            {% else %}
+               No hay tipos de servicios registrados
+         {% endif %}
+      </div>
+  </div>
+  <div class="modal fade" id="EditarTipoServicio" role="dialog">
+   
+ </div>
+ <div class="modal fade" id="AgregarTipoServicio" role="dialog">
+   
+</div>
+</div>
+{% endblock Contenido %}
+
+{% block modals %}
+ 
+{% endblock modals %}
+
+
+{% block scripts %}
+<script src="/static/Ventas/js/Ventas.js"></script> 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+{% endblock scripts %}
+   
