@@ -210,3 +210,27 @@ function editar(){
     }
   });
 }
+
+// EDITAR TIPO DE SERVICIO 
+$("#editarTipoSerivico")
+
+function editarTipoSerivico(){
+  swal({
+    title: "Estas seguro?",
+    text: "Se modificara el estado de el Tipo de Servicio",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      swal("OK! Se ha modificado el tipo de servicio", {
+        icon: "success",
+      }).then(function() {
+      document.forms['editarTipoSerivico'].submit();
+   });
+    } else {
+      swal("OK! Ningun dato del tipo de servicio ha sido modificado");
+    }
+  });
+  return false;
+}

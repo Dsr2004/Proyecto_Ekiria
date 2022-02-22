@@ -99,9 +99,13 @@
                            <div class="cardName">{{tipo_servicio.nombre}}</div>
                      </button>
                         <div class="iconA">
-                           <div class="form-check form-switch">
-                              <input style="top: 5px; font-size: 25px; left: 55px;" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if tipo_servicio.estado %}checked{% endif %}>
-                           </div>
+                           <form action="{% url 'Ventas:editarEstadoTipoServicio' tipo_servicio.id_tipo_servicio %}" id="editarTipoSerivico" method="post">
+                              {% csrf_token %}
+                              <div class="form-check form-switch">
+                                    {{form_Tipo_Servicio.estado}}
+                                    <button type="submit" hidden="True"></button>
+                              </div>
+                           </form>
                         </div>
                      </div>
                </div>
@@ -127,6 +131,7 @@
 
 
 {% block scripts %}
-<script src="/static/Ventas/js/Ventas.js"></script>   
+<script src="/static/Ventas/js/Ventas.js"></script> 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
 {% endblock scripts %}
    

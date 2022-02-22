@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
-from .forms import ServicioForm, Tipo_servicioForm
+from django.template.context_processors import csrf
+from crispy_forms.utils import render_crispy_form
+from jsonview.decorators import json_view
+from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm
 
 from Ventas.models import Servicio, Tipo_servicio
 
@@ -47,14 +50,14 @@ class AdminVentas(TemplateView):
     def get_context_data(self,*args, **kwargs): 
         context = super().get_context_data(*args,**kwargs) 
         context['Tipo_Servicios'] = Tipo_servicio.objects.all()
-        formTipo_Servicio = Tipo_servicioForm
+        formTipo_Servicio = EditarTipoServicioForm
         context['form_Tipo_Servicio'] = formTipo_Servicio
         return context
 
 class AgregarTipo_Servicio(CreateView):
     model = Tipo_servicio
     form_class = Tipo_servicioForm
-    template_name = "Tipo_servicioAdd.html"
+    template_name = "Tipo_Servicio/Tipo_servicioAdd.html"
 
     def post(self, request, *args, **kwargs):
         if request.is_ajax():
@@ -71,9 +74,12 @@ class AgregarTipo_Servicio(CreateView):
                 response.status_code = 201
                 return response
             else:
+                ctx = {}
+                ctx.update(csrf(request))
+                form_html = render_crispy_form(form, context=ctx)
                 mensaje = f"{self.model.__name__} no se ha podido registrar!"
                 error = form.errors
-                response = JsonResponse({"mensaje":mensaje, "error":error})
+                response = JsonResponse({"mensaje":mensaje, "error":error,'form': form_html})
                 response.status_code = 400
                 return response
         else:
@@ -83,7 +89,7 @@ class AgregarTipo_Servicio(CreateView):
 class EditarTipo_Servicio(UpdateView):
     model = Tipo_servicio
     form_class = Tipo_servicioForm
-    template_name = "Tipo_servicio.html"
+    template_name = "Tipo_Servicio/Tipo_servicio.html"
 
     def post(self, request, *args, **kwargs):
         if request.is_ajax():
@@ -103,6 +109,12 @@ class EditarTipo_Servicio(UpdateView):
                 return response
         else:
             return redirect("Ventas:adminVentas")
+def CambiarEstadoTipoServicio(request, id):
+    if request.method == "POST":
+        x=request.POST["estado"]
+        return JsonResponse({"data":"kiwi","x":x})
+    else:
+        return redirect("Ventas:adminVentas")
 
 class AgregarServicio(CreateView):
     model = Servicio

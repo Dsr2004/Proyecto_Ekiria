@@ -10,6 +10,7 @@ urlpatterns = [
     path('DetalleCita/', DetalleCita.as_view(), name="detalleCita"),
     path('AdminVentas/', AdminVentas.as_view(), name="adminVentas"),
     path('EditarTipoServicio/<int:pk>', EditarTipo_Servicio.as_view(), name="editarTipoServicio"),
+     path('EditarEstadoTipoServicio/<int:id>', CambiarEstadoTipoServicio, name="editarEstadoTipoServicio"),
     path('AgregarTipoServicio/', AgregarTipo_Servicio.as_view(), name="agregarTipoServicio"),
     path('AgregarServicio/', AgregarServicio.as_view(), name="agregarServicio"),
     path('ListadoServicios/', ListarServicio.as_view(), name="listarServicios"),
