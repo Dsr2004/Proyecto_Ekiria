@@ -21,7 +21,7 @@ from django.contrib.sessions.models import Session
 from datetime import datetime
 from rest_framework.views import APIView
 from Usuarios.models import Usuario
-from Usuarios.forms import Regitro
+from Usuarios.forms import Regitro, Editar
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
 from rest_framework.renderers import TemplateHTMLRenderer
 
@@ -121,9 +121,10 @@ class Perfil(DetailView):
 
 class EditarPerfil(UpdateView):
     model = Usuario
-    form_class = Regitro
+    form_class = Editar
     template_name = "UserInformation/EditarPerfil.html"
     success_url=reverse_lazy("Administracion")
+
 
 class Admin(ListView):
     model = Usuario

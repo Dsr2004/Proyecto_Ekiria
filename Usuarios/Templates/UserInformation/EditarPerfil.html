@@ -8,9 +8,16 @@
     </head>
 {% endblock head %}
 {% block Contenido %}
-    <form method="post">
+    <form method="post" action="" enctype="multipart/form-data">
         {% csrf_token %}
-        {{form.as_p}}
+            <label for="imagen"><img src="/media/perfil/{{form.img_usuario.value}}"></label>
+            {{form.img_usuario}}
+        <p>{{form.telefono}}</p>
+        <p>{{form.celular}}</p>
+        <p>{{form.email}}</p>
+        <p>{{form.municipio}}</p>
+        <p>{{form.direccion}}</p>
+        <p>{{form.cod_postal}}</p>
         <button type="submit">Editar</button>
     </form>
 {% endblock Contenido %}
