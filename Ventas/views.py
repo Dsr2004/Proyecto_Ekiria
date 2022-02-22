@@ -131,10 +131,9 @@ class EditarTipo_Servicio(UpdateView):
 #             return redirect("Ventas:adminVentas")
 
 def CambiarEstadoTipoServicio(request, id):
+    print(request.POST)
     if request.method == "POST":
-        if request.POST["estado"]=="True"
-        Tipo_servicio.objects.filter(id_tipo_servicio=id).update(estado=request.POST["estado"])
-        return redirect("Ventas:adminVentas")
+        return JsonResponse({"x":request.POST})
     else:
         return redirect("Ventas:adminVentas")
 

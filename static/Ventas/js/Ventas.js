@@ -217,10 +217,10 @@ $("#editarTipoSerivico")
 function editarTipoSerivico(){
   // $('#id_estado').val('false');
   if($("#id_estado").checked){
-    $('#id_estado').val(true);
+    $('#id_estado').val("True");
   }else{
     console.log($("#id_estado"))
-     $('#id_estado').val(false);
+     $('#id_estado').val("False");
   }
 
   swal({

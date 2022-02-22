@@ -39,10 +39,10 @@ class ServicioForm(forms.ModelForm):
 class EditarTipoServicioForm(forms.ModelForm):
     class Meta:
         model=Servicio
-        fields=("nombre","precio","tipo_servicio_id","img_servicio","slug","descripcion", "estado")
+        fields=("estado",)
 
         widgets={
-            'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  'style':"top: 5px; font-size: -15px; left: 0px;transform: scale(0.5);", 'onclick':'editarTipoSerivico()', 'checked':'false'})
+            'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  'style':"top: 5px; font-size: -15px; left: 0px;transform: scale(0.5);", 'onclick':'editarTipoSerivico()', 'name':'estado'})
         }
     def __init__(self, *args, **kwargs):
             super(EditarTipoServicioForm, self).__init__(*args, **kwargs) 

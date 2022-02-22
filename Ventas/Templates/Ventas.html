@@ -102,9 +102,9 @@
                            <form action="{% url 'Ventas:editarEstadoTipoServicio' tipo_servicio.id_tipo_servicio %}" id="editarTipoSerivico" method="post">
                               {% csrf_token %}
                               <div class="form-check form-switch">
-                                    {{form_Tipo_Servicio.estado}}
-                                    <button type="submit" hidden="True"></button>
-                              </div>
+                                 <input class="form-check-input" type="checkbox" role="switch" id="id_estado" name="estado" onclick="editarTipoSerivico()">
+                               </div>
+                              <button type="submit" hidden="True"></button>
                            </form>
                         </div>
                      </div>
