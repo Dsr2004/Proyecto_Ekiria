@@ -75,6 +75,8 @@
       <div class="modal-body">
         <form method='POST' id=CrearRoles action="{%url 'CreateRol'%}" enctype="multipart/form-data">
         {% csrf_token %}
+        {{createform.errors}}
+        <div id="errores"></div>
         <label for="nombreRol">Nombre</label>
         {{createform.nombre}}
         {% comment %} <input type="text" name="nombreRol" id="nombreRol"><br> {% endcomment %}
@@ -84,7 +86,7 @@
         
         <br>
          <div class="modal-footer" id="botones">
-        <button type="submit" class="btn btn-warning">Confirmar</button>
+        <button type="submit" class="btn btn-warning" onclick="CrearUsuario();">Confirmar</button>
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
       </div>
         </form>
@@ -101,7 +103,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{%url 'updateRol'%}">
+        <form method="POST" action="">
          {% csrf_token %}
         <label for="nombreRolEdi">Nombre</label>
         {{updateForm.nombre}}
@@ -109,7 +111,7 @@
         {{updateForm.descripcion}}
       </div>
       <div class="modal-footer" id="botones">
-        <button type="button" class="btn btn-warning">Editar</button>
+        <button type="submit" class="btn btn-warning">Editar</button>
         <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
       </div>
         </form>

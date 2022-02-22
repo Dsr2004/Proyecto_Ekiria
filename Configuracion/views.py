@@ -12,6 +12,7 @@ from django.urls import reverse_lazy
 from .models import Rol
 from .forms import RolForm
 
+
 def Configuracion(request):
     return render(request, "Configuracion.html")
 
@@ -44,15 +45,20 @@ class CreateRolView(CreateView):
     model = Rol
     form_class = RolForm
     template_name = 'Roles.html'
-    success_url=reverse_lazy('Roles')
+    if RolForm==success_url=reverse_lazy('Roles')
+        pass
 
-# def EditarRoles(request):
-#     pk = request.POST.post('pk')
-#     object = post_object_or_404(Paper, pk = pk)
-#     form = editarForm(instance=object)
-#     return render(request, 'Roles.html', {
-#         'object': object,
-#         'pk': pk,
-#         'form': form,
-#         })
+    else:
+         return JsonResponse({'result': a})
+
+# # prueba
+
+    # def post(self,request,*args, **kwargs):
+    #     if request.is_ajax():
+    #         form=self.form_class(request.POST)
+    #         if form.is_valid():
+    #             nuevo_usuario=
+    #             pass
+    #     else:
+    #         pass
     
