@@ -48,11 +48,12 @@ class CreateRolView(CreateView):
     form_class = RolForm
     # template_name = 'Roles.html'
     template_name = 'CrearRol.html'
-    if RolForm==success_url=reverse_lazy('Roles')
-        pass
+    success_url=reverse_lazy('Roles')
+    # if RolForm==success_url=reverse_lazy('Roles')
+    #     pass
 
-    else:
-         return JsonResponse({'result': a})
+    # else:
+    #      return JsonResponse({'result': a})
 
 # # prueba
 
