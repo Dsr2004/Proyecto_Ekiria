@@ -215,6 +215,14 @@ function editar(){
 $("#editarTipoSerivico")
 
 function editarTipoSerivico(){
+  // $('#id_estado').val('false');
+  if($("#id_estado").checked){
+    $('#id_estado').val(true);
+  }else{
+    console.log($("#id_estado"))
+     $('#id_estado').val(false);
+  }
+
   swal({
     title: "Estas seguro?",
     text: "Se modificara el estado de el Tipo de Servicio",

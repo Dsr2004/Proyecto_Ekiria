@@ -42,7 +42,7 @@ class EditarTipoServicioForm(forms.ModelForm):
         fields=("nombre","precio","tipo_servicio_id","img_servicio","slug","descripcion", "estado")
 
         widgets={
-            'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  'style':"top: 5px; font-size: -15px; left: 0px;transform: scale(0.5);", 'onclick':'editarTipoSerivico()', 'checked':'False'})
+            'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  'style':"top: 5px; font-size: -15px; left: 0px;transform: scale(0.5);", 'onclick':'editarTipoSerivico()', 'checked':'false'})
         }
     def __init__(self, *args, **kwargs):
             super(EditarTipoServicioForm, self).__init__(*args, **kwargs) 

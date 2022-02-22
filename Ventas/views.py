@@ -1,10 +1,11 @@
+from pyexpat import model
+from turtle import update
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.template.context_processors import csrf
 from crispy_forms.utils import render_crispy_form
-from jsonview.decorators import json_view
 from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm
 
 from Ventas.models import Servicio, Tipo_servicio
@@ -109,10 +110,31 @@ class EditarTipo_Servicio(UpdateView):
                 return response
         else:
             return redirect("Ventas:adminVentas")
+# class CambiarEstadoTipoServicio(UpdateView):
+#     def post(self, request, *args, **kwargs) :
+#         if request.method == "POST":
+#             form = self.form_class(request.POST)
+#             if form.is_valid():
+#                 form.save()
+#                 mensaje = f"{self.model.__name__} actualizado correctamente"
+#                 error = "No hay error!"
+#                 response = JsonResponse({"mensaje":mensaje, "error":error})
+#                 response.status_code = 201
+#                 return response
+#             else:
+#                 mensaje = f"{self.model.__name__} no se ha podido actualizar!"
+#                 error = form.errors
+#                 response = JsonResponse({"mensaje":mensaje, "error":error})
+#                 response.status_code = 400
+#                 return response
+#         else:
+#             return redirect("Ventas:adminVentas")
+
 def CambiarEstadoTipoServicio(request, id):
     if request.method == "POST":
-        x=request.POST["estado"]
-        return JsonResponse({"data":"kiwi","x":x})
+        if request.POST["estado"]=="True"
+        Tipo_servicio.objects.filter(id_tipo_servicio=id).update(estado=request.POST["estado"])
+        return redirect("Ventas:adminVentas")
     else:
         return redirect("Ventas:adminVentas")
 
