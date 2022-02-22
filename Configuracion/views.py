@@ -1,11 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+import json
 
 # Create your views here.
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from django.http import HttpResponse
-from django.views.generic import CreateView
+
+from django.http import HttpResponse,JsonResponse
+from django.views.generic import CreateView, UpdateView
 from django.urls import reverse_lazy
 # Create your views here.
 
@@ -36,15 +38,16 @@ def Cliente(request):
 
 
 def ListarRol(request):
-    query = Rol.objects.all()
-    FormRoles=RolForm
-    contexto= {'roles':query, 'createform':FormRoles, 'editarForm':FormRoles}
+    formulario=RolForm
+    ListRoles = Rol.objects.all()
+    contexto= {'roles':ListRoles, 'crear':formulario}
     return render(request, "Roles.html", contexto)
 
 class CreateRolView(CreateView):
     model = Rol
     form_class = RolForm
-    template_name = 'Roles.html'
+    # template_name = 'Roles.html'
+    template_name = 'CrearRol.html'
     if RolForm==success_url=reverse_lazy('Roles')
         pass
 
@@ -60,5 +63,19 @@ class CreateRolView(CreateView):
     #             nuevo_usuario=
     #             pass
     #     else:
-    #         pass
+    # #         pass
+    # template_name = 'CrearRol.html'
+    # success_url=reverse_lazy('Roles')
+
+# class pruebas(CreateView):
+#     model = Rol
+#     form_class = RolForm
+#     template_name = "pruebas.html"
+#     success_url = reverse_lazy("pruebas")
+    
+class EditRolView(UpdateView):
+    model = Rol
+    form_class = RolForm
+    template_name = 'Rol/EdirRol.html'
+    success_url=reverse_lazy('Roles')
     
