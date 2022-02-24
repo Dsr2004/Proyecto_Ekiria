@@ -20,6 +20,7 @@ class Regitro(forms.ModelForm):
         model = Usuario
         
         fields=[
+            'img_usuario',
             'username',
             'nombres',
             'apellidos',
@@ -34,11 +35,19 @@ class Regitro(forms.ModelForm):
             'cod_postal',
         ]
         widgets = {
+            
             'email': forms.EmailInput(
                 attrs={
                     'id':'Idate',
                     'required':'requerid',
                     'autocomplete':'off',
+                }
+            ),
+            'img_usuario': forms.FileInput(
+                attrs={
+                    'id':'imagen',
+                    'style':'display:none;',
+                    'type':'file',
                 }
             ),
             'username': forms.TextInput(
@@ -131,3 +140,67 @@ class Regitro(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class Editar(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        
+        fields=[
+            'username',
+            'img_usuario',
+            'telefono',
+            'celular',
+            'email',
+            'municipio',
+            'direccion',
+            'cod_postal',
+        ]
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={
+                    'id':'Idate',
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+
+            'img_usuario': forms.FileInput(
+                attrs={
+                    'id':'imagen',
+                    'style':'display:none;',
+                }
+            ),
+            
+            'telefono': forms.TextInput(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+            'celular': forms.TextInput(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+            
+            'municipio': forms.Select(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+            'direccion': forms.TextInput(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+            'cod_postal': forms.TextInput(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+        }

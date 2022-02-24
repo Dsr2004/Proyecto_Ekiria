@@ -5,12 +5,23 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Editar</title>
+        <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleEditarPerfil.css">
     </head>
 {% endblock head %}
 {% block Contenido %}
-    <form method="post">
+    <form method="post" action="{% url 'EditarPerfil' object.id_usuario %}" enctype="multipart/form-data">
         {% csrf_token %}
-        {{form.as_p}}
+        <label for="imagen"><img src="/media/{{form.img_usuario.value}}"></label>
+        {{form.img_usuario}}
+        {{form.telefono}}
+        {{form.celular}}
+        {{form.email}}
+        {{form.municipio}}
+        {{form.direccion}}
+        {{form.cod_postal}}
+        {{form.username}}
         <button type="submit">Editar</button>
     </form>
+    
+        
 {% endblock Contenido %}

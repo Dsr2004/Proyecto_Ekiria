@@ -10,123 +10,53 @@
 {% endblock head %} {% block Contenido %} 
 <div class="Perfil_contenedor">
         <div class="container d-flex p-2">
-            <img src="/static/ModuloUsuarios/Img/profile.png" class="Perfil_foto_perfil" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <h1 class="Perfil_Apodo">Apodo</h1>
+            <img src="/media/{{Usuario.img_usuario}}" class="Perfil_foto_perfil" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <h1 class="Perfil_Apodo">
+                {{Usuario.username}}</h1>
         </div>
         <br>
         <div class="Perfil_informacion container">
             <div class="row">
-                <div class="col">Nombres</div>
-                <div class="col">Apellidos</div>
+                
+                <div class="col"><label>Nombres</label><br>{{Usuario.nombres}}</div>
+                
+                <div class="col"><label>Apellidos</label><br>{{Usuario.apellidos}}</div>
             </div>
             <div class="row">
-                <div class="col">Correo</div>
-                <div class="col">Telefono</div>
+                
+                <div class="col"><label>Email</label><br>{{Usuario.email}}</div>
+                
+                <div class="col"><label>Telefono</label><br>{{Usuario.telefono}}</div>
             </div>
             <div class="row">
-                <div class="col">Celular</div>
-                <div class="col">Fecha de nacimiento</div>
+                
+                <div class="col"><label>Celular</label><br>{{Usuario.celular}}</div>
+                
+                <div class="col"><label>Fecha de Nacimiento</label><br>{{Usuario.fec_nac}}</div>
             </div>
             <div class="row">
-                <div class="col">Tipo de documento</div>
-                <div class="col">Documento</div>
+                
+                <div class="col"><label>Tipo de documento</label><br>{{Usuario.tipo_documento}}</div>
+                
+                <div class="col"><label>Número de documento</label><br>{{Usuario.num_documento}}</div>
             </div>
             <div class="row">
-                <div class="col">Municipio</div>
-                <div class="col">Codigo postal</div>
+                
+                <div class="col"><label>Municipio</label><br>{{Usuario.municipio}}</div>
+                
+                <div class="col"><label>Codigo Postal</label><br>{{Usuario.cod_postal}}</div>
             </div>
             <div class="row">
-                <div class="col">Dirección</div>
+                <div class="col"><label>Dirección</label><br>{{Usuario.direccion}}</div>
                 <div class="col">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</button>
+                    
+                    <button type="button" class="btn btn-primary" onclick="EditarPerfil('{{Usuario.id_usuario}}')">Editar</button>
                 </div>
             </div>
         </div>
     </div>{% endblock Contenido %}{% block modal %}
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="Perfil_modificar">
-            <div class="Perfil_modificar-header">
-                <h5 class="Perfil_modificar-titulo">Editar Perfil</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="Perfil_modificar-body">
-                <form class="container">
-                    <div class="Perfil_foto">
-                        <label class="FP">Foto perfil</label>
 
-                        <input type="file" id="PMF" class="Perfil_modificar-foto">
-                        
-                        <label for="PMF" class="PMFP"><img class="Perfil_modificar-foto-perfil" src="/static/ModuloUsuarios/img/profile.png"></label>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col">
-                            <div class="flexbox" style="width: 95%;">
-                                <input id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Correo Electrónico</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="flexbox" style="width: 95%;">
-                                <input id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Teléfono</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="flexbox" style="width: 95%;">
-                                <input id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Celular</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="flexbox" style="width: 95%;">
-                                <input id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Municipio</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="flexbox" style="width: 95%;">
-                                <input id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Dirección</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="flexbox" style="width: 95%;">
-                                <input id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Codigo Postal</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="Perfil_modificar-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar Cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock modal %}
+{% block scripts %}
+  <script src="/static/ModuloUsuarios/js/mainPerfil.js"></script>
+{% endblock scripts %}
