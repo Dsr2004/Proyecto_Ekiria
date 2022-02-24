@@ -1,3 +1,4 @@
+{% include "preloader.html" %}
 <!DOCTYPE html>
 <html lang="es">
 
@@ -24,10 +25,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js">
     </script><script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<<<<<<< HEAD
-=======
-
->>>>>>> a2843b425dbfe7e485d74ea6d798aaee4431a307
 </head>
 <!--                            Zona de menú Horizontal header tamaño maximo 50px                  -->
 <header>
@@ -68,13 +65,7 @@
                             </div>
                             <ul class="list_show">
                                 <li class="nav_link--inside"><a href="{%url 'Administracion'%}">Administración de Usuarios</a></li>
-<<<<<<< HEAD
 
-                                <li class="nav_link--inside"><a href="{%url 'Configuracion'%}">Administración</a></li>
-=======
-                                <li class="nav_link--inside"><a href="{%url 'Configuracion'%}">Administración</a></li>
-
->>>>>>> a2843b425dbfe7e485d74ea6d798aaee4431a307
                                 <li class="nav_link--inside"><a href="{%url 'Roles'%}">Roles del usuario</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'Cambios'%}">Cambios de pagina</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'Permisos'%}">Permisos</a></li>
@@ -84,10 +75,6 @@
                         <li class="list_item list_item--click">
                             <div class="list 
                                 {% if request.path == '/compras/listarprov/'%}activar{% endif %} 
-<<<<<<< HEAD
-=======
-
->>>>>>> a2843b425dbfe7e485d74ea6d798aaee4431a307
                                 {% if request.path == '/compras/productos/'%}activar{% endif %}
                                 {% if request.path == '/compras/confcompra/'%}activar{% endif %}list_button--click">
                                 <i class="mdi mdi-archive centrado"></i>
@@ -95,12 +82,8 @@
                                 <i class="list_arrow mdi mdi-chevron-right escon"></i>
                             </div>
                             <ul class="list_show">
-<<<<<<< HEAD
                                 <li class="nav_link--inside"><a href="{%url 'listarprov'%}">Proveedor</a></li>
-=======
 
-                                <li class="nav_link--inside"><a>Proveedor</a></li>
->>>>>>> a2843b425dbfe7e485d74ea6d798aaee4431a307
                                 <li class="nav_link--inside"><a>Productos</a></li>
                                 <li class="nav_link--inside"><a>Compras</a></li>
                                 <br>
