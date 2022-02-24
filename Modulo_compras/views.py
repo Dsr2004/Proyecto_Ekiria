@@ -52,15 +52,15 @@ class Crearprov(CreateView):
    
         
 
-# class Eliminarprov(DeleteView):
-#     model = Proveedor
-#     template_name ="proveedores.html"
-#     success_url = reverse_lazy("listarprov")
+class Eliminarprov(DeleteView):
+    model = Proveedor
+    template_name ="proveedores.html"
+    success_url = reverse_lazy("listarprov")
 
-    # def post(self,request, *args, **kwargs):  
-    #     prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
-    #     prov_form.delete()
-    #     return redirect('listarprov')
+    def post(self,request, *args, **kwargs):  
+        prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
+        prov_form.delete()
+        return redirect('listarprov')
 
 
 # def Eliminarprov(request, id_proveedor):
