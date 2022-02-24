@@ -99,15 +99,8 @@
                            <div class="cardName">{{tipo_servicio.nombre}}</div>
                      </button>
                         <div class="iconA">
-                           <form id="editarTipoSerivico" action="{% url 'Ventas:editarEstadoTipoServicio' tipo_servicio.id_tipo_servicio %}"  method="POST" enctype="multipart/form-data">
-                              {% csrf_token %}
-                              <div class="form-check form-switch">
-                                 <!-- <input class="form-check-input" type="checkbox" role="switch" id="id_estado" name="estado" onclick="editarTipoSerivico()" style="top: 5px; font-size: -15px; left: 0px;transform: scale(0.5);"> -->
-                                 <!-- {{form_Tipo_Servicio}} -->
-                                 <input class="form-check-input" type="checkbox" role="switch" id="id_estado" value="{{form_Tipo_Servicio}}" onclick="editarTipoSerivico()" style="top: 5px; font-size: -15px; left: 0px;transform: scale(0.5);">
-                               </div>
-                              <button type="submit" hidden="True"></button>
-                           </form>
+                           <button class="btn" style="transform: scale(1.5);" onclick="abrir_modal_eliminar('{% url 'Ventas:eliminarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
+                              <i class="fa-solid fa-trash"></i> </button>
                         </div>
                      </div>
                </div>
@@ -123,6 +116,9 @@
  </div>
  <div class="modal fade" id="AgregarTipoServicio" role="dialog">
    
+</div>
+<div class="modal fade" id="EliminarTipoServicio"  role="dialog">
+
 </div>
 </div>
 {% endblock Contenido %}

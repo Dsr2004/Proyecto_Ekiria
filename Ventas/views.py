@@ -1,14 +1,12 @@
-from pyexpat import model
-from turtle import update
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.template.context_processors import csrf
 from crispy_forms.utils import render_crispy_form
-from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm
 
-from Ventas.models import Servicio, Tipo_servicio
+from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm
+from .models import Servicio, Tipo_servicio
 
 def pruebas(request):
     query = Servicio.objects.values_list("descripcion")
@@ -103,13 +101,24 @@ class EditarTipo_Servicio(UpdateView):
                 response.status_code = 201
                 return response
             else:
+                ctx = {}
+                ctx.update(csrf(self.request))
+                form_html = render_crispy_form(form, context=ctx)
+                print(form_html)
                 mensaje = f"{self.model.__name__} no se ha podido actualizar!"
-                error = form.errors
-                response = JsonResponse({"mensaje":mensaje, "error":error})
+                response = JsonResponse({"mensaje":mensaje, 'form_html': form_html})
                 response.status_code = 400
                 return response
         else:
             return redirect("Ventas:adminVentas")
+
+
+class ElimininarTipoServicio(DeleteView):
+    model = Tipo_servicio
+    template_name = "Tipo_Servicio/EliminarTipoServicio.html"
+    success_url = reverse_lazy("Ventas:adminVentas")
+
+
 # class CambiarEstadoTipoServicio(UpdateView):
 #     def post(self, request, *args, **kwargs) :
 #         if request.method == "POST":
@@ -131,16 +140,16 @@ class EditarTipo_Servicio(UpdateView):
 #             return redirect("Ventas:adminVentas")
 
 def CambiarEstadoTipoServicio(request, id):
-    print(request.POST)
+    print(request.POST["estado"])
     if request.method == "POST":
-        x=request.GET
-        if x=="False":
-            x=True
-        elif x=="True":
-            x=False
-        else:
-            return redirect("Ventas:adminVentas")
-        Tipo_servicio.objects.filter(id_tipo_servicio=id).update(estado=x)
+        # x=request.GET
+        # if x=="False":
+        #     x=False
+        # elif x=="True":
+        #     x=True
+        # else:
+        #     return redirect("Ventas:adminVentas")
+        x=Tipo_servicio.objects.filter(id_tipo_servicio=id).update(estado=request.POST["estado"])
         return redirect("Ventas:adminVentas")
         
     else:

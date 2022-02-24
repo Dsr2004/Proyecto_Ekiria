@@ -141,6 +141,12 @@ function abrir_modal_crear(url){
     });
 }
 
+function abrir_modal_eliminar(url){ 
+  $("#EliminarTipoServicio").load(url, function (){ 
+    $(this).appendTo("body").modal('show');
+  });
+}
+
 
 // ERRORES
 
@@ -199,14 +205,9 @@ function editar(){
       window.location.href="/Ventas/AdminVentas/"
     },
     error: function(error){
-      $(document).ready(function(){
-        let formulario = $("#formEditarTipo_Servicio")
-        formulario.find('.bg-danger').text('');
-         for(let e in error.responseJSON.error){
-           let txt=error.responseJSON.error[e]
-              $("span[data-key='"+e+"']").text(txt)
-         }
-    });
+      $("#formEditarTipo_Servicio").replaceWith(error.responseJSON["form_html"]);
+      // console.log(error.responseJSON["mensaje"])
+      console.log("kiwi")
     }
   });
 }
