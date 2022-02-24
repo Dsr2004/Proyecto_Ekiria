@@ -13,11 +13,17 @@
         {% csrf_token %}
         <label for="imagen"><img src="/media/{{form.img_usuario.value}}"></label>
         {{form.img_usuario}}
+        <label for="">Telefono:</label>
         {{form.telefono}}
+        <label for="">Celular:</label>
         {{form.celular}}
+        <label for="">Email:</label>
         {{form.email}}
+        <label for="">Municipio:</label>
         {{form.municipio}}
+        <label for="">Dirección:</label>
         {{form.direccion}}
+        <label for="">Codigo Postal:</label>
         {{form.cod_postal}}
         {{form.username}}
         <button type="submit">Editar</button>

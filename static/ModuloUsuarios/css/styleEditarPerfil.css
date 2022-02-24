@@ -12,11 +12,14 @@ form{
 form input{
     width: 100%;
 }
+form label{
+    font-weight: 700;
+}
 form label img{
     width: 300px;
     height: 300px;
     border-radius: 50%;
     border: 2px solid;
     margin: 0 34%;
-    
+    cursor: pointer;
 }
