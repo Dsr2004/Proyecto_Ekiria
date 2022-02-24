@@ -69,7 +69,7 @@ function mostrarerrores(errors){
   $('#errores').html("");
   let error = "";
   for (let item in errors.responseJSON.errors){
-    error += '<div class = "alert alert-danger"<strong>'+ errors.responseJSON.errors[item] + '</strong> ></div>'; 
+    error += '<div class = "alert alert-danger"<strong>'+ errors.responseJSON.errors[item] + '</strong></div>'; 
   }
 
   $('#errores').append(error)
@@ -87,7 +87,7 @@ function registrar(){
       console.log(response)
     },
     error: function(errors){
-      $('.form-control').addClass('is-invalid')
+      // $('.form-control').addClass('is-valid')
    
       console.log(errors)
       //  console.log(errors.responseJSON["errors"])

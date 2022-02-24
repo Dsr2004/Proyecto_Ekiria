@@ -1,11 +1,12 @@
 import json
+from turtle import update
 from django.shortcuts import render, redirect
 from Modulo_compras.forms import ProveedorForm
 from .models import Proveedor
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 
 
 
@@ -44,18 +45,29 @@ class Crearprov(CreateView):
                 return redirect('listarprov')
             else:
                 errors=prov_form.errors
-                mensaje=f"{Proveedor.__name__} no ha sido registrado"
+                mensaje=f"{self.model.__name__} no ha sido registrado"
                 response=JsonResponse({"errors":errors,"mensaje":mensaje})
                 response.status_code=400
                 return response
    
         
 
-def Eliminarprov(request, id_proveedor):
-    prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
-    prov_form.delete()
-    return redirect('listarprov')
-    # return render(request,'proveedores.html',{'prov_form':prov_form})
+# class Eliminarprov(DeleteView):
+#     model = Proveedor
+#     template_name ="proveedores.html"
+#     success_url = reverse_lazy("listarprov")
+
+    # def post(self,request, *args, **kwargs):  
+    #     prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
+    #     prov_form.delete()
+    #     return redirect('listarprov')
+
+
+# def Eliminarprov(request, id_proveedor):
+#     prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
+#     prov_form.delete()
+#     return redirect('listarprov')
+#     # return render(request,'proveedores.html',{'prov_form':prov_form})
 
 
 def Modificarprov(request):
@@ -71,4 +83,17 @@ def Actprov (request):
     if Proveedores.is_valid():
        Proveedores.save()
     return redirect('listarprov')
+
+# class estado(update):
+#     model= Proveedor
+#     form_class=ProveedorForm
+#     template_name='proveedores.html'
+
+#     def post(self,request, *args, **kwargs):  
+#         prov_form =request.method == 'POST'
+#         id_proveedor = request.POST.get("id_proveedor")
+#         prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
+#         prov_form =(request.POST)
+#     if prov_form = True        
+
    
