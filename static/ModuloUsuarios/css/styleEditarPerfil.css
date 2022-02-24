@@ -1,0 +1,22 @@
+form{
+    width: 50%;
+    margin: 0 25%;
+    border: 1px solid;
+    border-radius: 10px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.18);
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-row-gap: 20px;
+}
+form input{
+    width: 100%;
+}
+form label img{
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid;
+    margin: 0 34%;
+    
+}

@@ -3,11 +3,13 @@ from ast import Return
 from asyncio import transports
 from email import header
 from html.entities import html5
+from msilib.schema import SelfReg
 from multiprocessing import context
 from pyexpat import model
 from re import template
+from coreapi import Object
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
-from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView, View
 from django.urls import reverse_lazy
 from rest_framework.decorators import api_view
 from django.shortcuts import render, redirect
@@ -24,6 +26,8 @@ from Usuarios.models import Usuario
 from Usuarios.forms import Regitro, Editar
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
 from rest_framework.renderers import TemplateHTMLRenderer
+from django.views.decorators.csrf import csrf_exempt
+
 
 #--------------------------------------Templates Loaders------------------------------------
 class Login(ObtainAuthToken, TemplateView):
@@ -118,12 +122,25 @@ class Perfil(DetailView):
     context_object_name="Usuario"
     template_name="UserInformation/Perfil.html"
     queryset=Usuario.objects.all()
+    
 
 class EditarPerfil(UpdateView):
     model = Usuario
     form_class = Editar
     template_name = "UserInformation/EditarPerfil.html"
-    success_url=reverse_lazy("Administracion")
+    def post(self, request, *args, **kwargs):
+        form=self.form_class(request.POST or None, request.FILES or None, instance=self.get_object())
+        if form.is_valid():
+            form.save()
+            print(request.FILES)
+            username = request.POST.get('username')
+            Object = Usuario.objects.get(username=username)
+            id = Object.id_usuario
+            return redirect("../Perfil/"+str(id))
+        else:
+            e=form.errors
+            print(e)
+            return JsonResponse({"x":e})
 
 
 class Admin(ListView):
@@ -131,6 +148,7 @@ class Admin(ListView):
     context_object_name="Usuario"
     template_name = "UsersConfiguration/UsersAdministration.html"
     queryset=Usuario.objects.all()
+    
     
 class CreateUser(CreateView):
     model = Usuario
@@ -144,9 +162,22 @@ class UpdateUser(UpdateView):
     form_class = Regitro
     success_url=reverse_lazy("Administracion")   
     
-
-# class Notification(TemplateView):
+# class Notification(View):
 #     template_name = 'UserInformation/Notification.html'
-def Notification(request):
-    return render(request, "UserInformation/Notification.html")
+# class Notificacion(TemplateView):
+#     template_name="UserInformation/Notification.html"
 
+@csrf_exempt
+def Notification(request):
+    if request.POST:
+        id_estado= request.POST.get('id_estado')
+        Object = Usuario.objects.get(id_usuario=id_estado)
+        estado = Object.estado
+        if estado == True:
+            Object.estado = False
+            Object.save()
+        elif estado == False:
+            Object.estado = True
+            Object.save()
+    return render(request, "UserInformation/Notification.html")
+    
