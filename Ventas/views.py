@@ -1,14 +1,13 @@
-from pyexpat import model
-from turtle import update
+from pickle import TRUE
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView
+from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.template.context_processors import csrf
 from crispy_forms.utils import render_crispy_form
-from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm
 
-from Ventas.models import Servicio, Tipo_servicio
+from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm
+from .models import Servicio, Tipo_servicio
 
 def pruebas(request):
     query = Servicio.objects.values_list("descripcion")
@@ -103,13 +102,24 @@ class EditarTipo_Servicio(UpdateView):
                 response.status_code = 201
                 return response
             else:
+                ctx = {}
+                ctx.update(csrf(self.request))
+                form_html = render_crispy_form(form, context=ctx)
+                print(form_html)
                 mensaje = f"{self.model.__name__} no se ha podido actualizar!"
-                error = form.errors
-                response = JsonResponse({"mensaje":mensaje, "error":error})
+                response = JsonResponse({"mensaje":mensaje, 'form_html': form_html})
                 response.status_code = 400
                 return response
         else:
             return redirect("Ventas:adminVentas")
+
+
+class ElimininarTipoServicio(DeleteView):
+    model = Tipo_servicio
+    template_name = "Tipo_Servicio/EliminarTipoServicio.html"
+    success_url = reverse_lazy("Ventas:adminVentas")
+
+
 # class CambiarEstadoTipoServicio(UpdateView):
 #     def post(self, request, *args, **kwargs) :
 #         if request.method == "POST":
@@ -130,19 +140,31 @@ class EditarTipo_Servicio(UpdateView):
 #         else:
 #             return redirect("Ventas:adminVentas")
 
-def CambiarEstadoTipoServicio(request, id):
-    if request.method == "POST":
-        
-        Tipo_servicio.objects.filter(id_tipo_servicio=id).update(estado=request.POST["estado"])
-        return redirect("Ventas:adminVentas")
+def CambiarEstadoTipoServicio(request):
+    print(request.POST)
+    if request.method=="POST":
+        id = request.POST["estado"]
+        update=Tipo_servicio.objects.get(id_tipo_servicio=id)
+        estatus=update.estado
+        if estatus==True:
+            update.estado=False
+            update.save()
+        elif estatus==False:
+            update.estado=True
+            update.save()
+        else:
+            return redirect("Ventas:adminVentas")
+        return HttpResponse(update)
     else:
-        return redirect("Ventas:adminVentas")
-
+        return JsonResponse({"x":"no"})
+    
 class AgregarServicio(CreateView):
     model = Servicio
     form_class = ServicioForm
     template_name = "AgregarServicio.html"
     success_url = reverse_lazy('Ventas:listarServicios')
+    
+    
 
 class ListarServicio(ListView):
     queryset = Servicio.objects.all()

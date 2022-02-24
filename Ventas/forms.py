@@ -1,5 +1,14 @@
+# from crispy_forms.helper import FormHelper
+# from crispy_forms.layout import Layout, Submit, Row, Column,ButtonHolder, Div, Fieldset, HTML, Field
+# from crispy_forms.bootstrap import FormActions
+
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
+from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+
 from django import forms
 from .models import Servicio, Tipo_servicio
+
 
 class ServicioForm(forms.ModelForm):
     class Meta:
@@ -39,13 +48,14 @@ class ServicioForm(forms.ModelForm):
 class EditarTipoServicioForm(forms.ModelForm):
     class Meta:
         model=Servicio
-        fields=("nombre","precio","tipo_servicio_id","img_servicio","slug","descripcion", "estado")
+        fields=("estado",)
 
         widgets={
-            'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  'style':"top: 5px; font-size: -15px; left: 0px;transform: scale(0.5);", 'onclick':'editarTipoSerivico()', 'checked':'false'})
+            'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  'style':"top: 5px; font-size: -15px; left: 0px;transform: scale(0.5);", 'onclick':'editarTipoSerivico()', 'name':'estado'})
         }
     def __init__(self, *args, **kwargs):
-            super(EditarTipoServicioForm, self).__init__(*args, **kwargs) 
+            super(EditarTipoServicioForm, self).__init__(*args, **kwargs)
+            self.fields['nombre'].label = False
             self.fields['estado'].label = False
 
         
@@ -57,3 +67,56 @@ class Tipo_servicioForm(forms.ModelForm):
             'nombre':forms.TextInput(attrs={'class':'form-control'}),
             'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  "style":"margin-left: -5px; height: 30px; width: 60px; margin-top: -5px"})
         }
+    def __init__(self, *args, **kwargs):
+            super(Tipo_servicioForm, self).__init__(*args, **kwargs) 
+            self.fields['nombre'].label = False
+            self.fields['estado'].label = False
+            self.helper = FormHelper()
+            self.helper.layout = Layout(
+        Field('nombre', css_class='input-xlarge'),
+       
+        HTML("""
+        <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+        </div>
+        """),
+        FormActions(
+            Button('cancel', 'Cancelar',css_class="btn-secondary"),
+            Submit('save_changes', 'Modificar', css_class="btn-primary"),
+            
+        )
+    )
+#             self.helper.layout=Layout(
+#     Fieldset(
+        
+#         HTML("""
+           
+#         """),
+      
+#     )
+# )
+            # self.helper.layout = Layout(
+               
+                
+            #     Row(
+            #     Column('nombre', css_class='form-control'),
+            #     css_class='form-row'
+            # ),
+        
+            # HTML("""
+            # <br>
+            # <br>
+            # """),
+            
+            #     Row(
+            #     Div(
+            #     Column('estado', css_class='form-check-input estadoServicioRegistro'),
+            #     css_class='form-check form-switch'
+            # ),
+            # ),
+             
+            # ButtonHolder(
+            #         Submit("guardar", "Guardar")
+            #     )
+            # )
