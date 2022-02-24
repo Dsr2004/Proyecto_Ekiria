@@ -1,6 +1,7 @@
 {% extends "Menu_Usuario.html" %} 
 {% load jsonify %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block head %}
 <head>
     <meta charset="UTF-8">
@@ -23,46 +24,37 @@
     <div class="row" style="margin-top: 20px;">
         <div class="col">
             <Label><strong>Nombre:   </strong></Label>
-                {{form.nombre}}
-                <span data-key="nombre" class="badge bg-danger"></span>
+                {{form.nombre|as_crispy_field}}
         </div>
         <div class="col" >
             <Label><strong>Tipo de Servicio:  </strong></Label>
-            {{form.tipo_servicio_id}}
-            <span data-key="tipo_servicio_id" class="badge bg-danger"></span>
+            {{form.tipo_servicio_id|as_crispy_field}}
         </div>
     </div>
     <div class="row" style="margin-top: 20px;">
         <div class="col">
             <Label><strong>Precio: </strong></Label>
-            {{form.precio}}
-            <span data-key="precio" class="badge bg-danger"></span>
+            {{form.precio|as_crispy_field}}
         </div>
         <div class="col" style="display: flex;">
             <Label><strong>Estado:  </strong></Label>
             <div class="form-check form-switch">
-                {{form.estado}}
-                <span data-key="estado" class="badge bg-danger"></span>
+                {{form.estado|as_crispy_field}}
             </div>
         </div>
     </div>
     <div >
         <i class="fas fa-file-image" style="width: 50px; font-size: 30px; margin-top: 20px;"></i>
-        {{form.img_servicio}}
-        <span data-key="img_servicio" class="badge bg-danger"></span>
+        {{form.img_servicio|as_crispy_field}}
     </div>
     <div class="col">
         <Label><strong>Slug:   </strong></Label>
-            {{form.slug}}
-            <span data-key="slug" class="badge bg-danger"></span>
+            {{form.slug|as_crispy_field}}
     </div>
     <div style="margin-top: 30px;">
         <Label><strong>Descripcion: </strong></Label>
-        <div class="form-floating  descripcion">
-            {{form.descripcion}}
-            <span data-key="descripcion" class="badge bg-danger"></span>
-            
-            <label style="font-size: 20px;">Descripcion</label>
+        <div class="form  descripcion">
+            {{form.descripcion|as_crispy_field}}
         </div>
         <br><br>
         <button type="submit"  class="btn btn-block btn-success">Agregar Servicio</button>
@@ -76,10 +68,10 @@
 <script src="/static/Ventas/js/Ventas.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-{% if form.errors %}
+<!-- {% if form.errors %}
    <script>
        let errorsd='{{form.errors|jsonify}}'
        mostrarErroresAgregarServicio(errorsd)
    </script>
-    {% endif %}
+    {% endif %} -->
 {% endblock scripts %}

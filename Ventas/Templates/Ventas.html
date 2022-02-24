@@ -81,11 +81,11 @@
         </tbody>
      </table>
      <div class="row">
-    <div class="col">
+    <div class="col-10">
       <h2>Tipos de Servicio</h2>
     </div>
-    <div class="col">
-      <button class="btn" onclick="abrir_modal_crear('{% url 'Ventas:agregarTipoServicio' %}')"><span class=" float-end" style="font-size: 48px; margin-right: 80px; margin-top: 10px;"><i class="fa-solid fa-circle-plus"></i></span></button>
+    <div class="col-2">
+      <button class="btn" onclick="abrir_modal_crear('{% url 'Ventas:agregarTipoServicio' %}')"><span class="float" style="font-size: 48px; margin-right: -80%;"><i class="fa-solid fa-circle-plus"></i></span></button>
     </div>
   </div>
      <div class="Admin Events">
@@ -95,13 +95,20 @@
                
                   <div class="cardbox">
                      <div class="Card">
-                        <button class="btn" onclick="abrir_modal_editar('{% url 'Ventas:editarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
-                           <div class="cardName">{{tipo_servicio.nombre}}</div>
-                     </button>
+                        <div>
+                           <button class="btn" onclick="abrir_modal_editar('{% url 'Ventas:editarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
+                              <div class="cardName">{{tipo_servicio.nombre}}</div>
+                           </button>
+                     </div>
                         <div class="iconA">
-                           <div class="form-check form-switch">
-                              <input style="font-size: 25px; left: 55px;" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if tipo_servicio.estado %}checked{% endif %}>
-                           </div>
+                           <button class="btn" style="transform: scale(1.5);" onclick="abrir_modal_eliminar('{% url 'Ventas:eliminarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
+                              <i class="fa-solid fa-trash"></i> </button>
+                              <form action="{%url 'Ventas:editarEstadoTipoServicio'%}" method="post" id="EstadoTipoServicioForm2">
+                                 {%csrf_token%}
+                                 <div class="form-check form-switch">
+                                    <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="esatdo" onclick="CambiarEstadoTipoServicio('{{tipo_servicio.id_tipo_servicio}}')"  {% if tipo_servicio.estado == True%}checked{%endif%}>
+                                  </div>                                  
+                              </form>
                         </div>
                      </div>
                </div>
@@ -118,6 +125,9 @@
  <div class="modal fade" id="AgregarTipoServicio" role="dialog">
    
 </div>
+<div class="modal fade" id="EliminarTipoServicio"  role="dialog">
+
+</div>
 </div>
 {% endblock Contenido %}
 
@@ -127,6 +137,8 @@
 
 
 {% block scripts %}
-<script src="/static/Ventas/js/Ventas.js"></script>   
+<script src="/static/Ventas/js/Ventas.js"></script> 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script type="text/javascript">window.CSRF_TOKEN = "{{ csrf_token }}"; </script> 
 {% endblock scripts %}
    

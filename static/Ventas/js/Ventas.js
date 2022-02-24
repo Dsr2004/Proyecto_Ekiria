@@ -141,6 +141,12 @@ function abrir_modal_crear(url){
     });
 }
 
+function abrir_modal_eliminar(url){ 
+  $("#EliminarTipoServicio").load(url, function (){ 
+    $(this).appendTo("body").modal('show');
+  });
+}
+
 
 // ERRORES
 
@@ -168,17 +174,110 @@ function mostrarErroresAgregarServicio(errores){
 }
 
 // AJAX
-
+ 
 function registrar(){
   $.ajax({
     data: $("#formCrearTipo_Servicio").serialize(),
     url: $("#formCrearTipo_Servicio").attr('action'),
     type: $("#formCrearTipo_Servicio").attr('method'),
     success: function(response){
-
+      window.location.href="/Ventas/AdminVentas/"
     },
     error: function(error){
-
+      $(document).ready(function(){
+        let formulario = $("#formCrearTipo_Servicio")
+        formulario.find('.bg-danger').text('');
+         for(let e in error.responseJSON.error){
+           let txt=error.responseJSON.error[e]
+              $("span[data-key='"+e+"']").text(txt)
+         }
+    });
     }
   });
+}
+
+function editar(){
+  $.ajax({
+    data: $("#formEditarTipo_Servicio").serialize(),
+    url: $("#formEditarTipo_Servicio").attr('action'),
+    type: $("#formEditarTipo_Servicio").attr('method'),
+    success: function(response){
+      window.location.href="/Ventas/AdminVentas/"
+    },
+    error: function(error){
+      $("#formEditarTipo_Servicio").replaceWith(error.responseJSON["form_html"]);
+      // console.log(error.responseJSON["mensaje"])
+      console.log("kiwi")
+    }
+  });
+}
+
+// EDITAR TIPO DE SERVICIO 
+$("#editarTipoSerivico")
+
+function editarTipoSerivico(){
+  // $('#id_estado').val('false');
+  if($("#id_estado").checked){
+    $('#id_estado').val("True");
+  }else{
+    console.log($("#id_estado"))
+     $('#id_estado').val("False");
+  }
+
+  swal({
+    title: "Estas seguro?",
+    text: "Se modificara el estado de el Tipo de Servicio",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      swal("OK! Se ha modificado el tipo de servicio", {
+        icon: "success",
+      }).then(function() {
+      document.forms['editarTipoSerivico'].submit();
+   });
+    } else {
+      swal("OK! Ningun dato del tipo de servicio ha sido modificado");
+    }
+  });
+  return false;
+}
+
+
+function CambiarEstadoTipoServicio(id){
+let ids=id
+let token = $("#EstadoTipoServicioForm2").find('input[name=csrfmiddlewaretoken]').val()
+console.log(token)
+  swal({
+    title: "Estas seguro?",
+    text: "Se modificara el estado de el Tipo de Servicio",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      swal("OK! Se ha modificado el tipo de servicio", {
+        icon: "success",
+      }).then(function() {
+          $.ajax({
+            data: {"csrfmiddlewaretoken":token, "estado":ids},
+            url: $("#EstadoTipoServicioForm2").attr('action'),
+            type: $("#EstadoTipoServicioForm2").attr('method'),
+            success: function(data){
+              window.location.href="/Ventas/AdminVentas/"
+            },
+            error: function(error){
+              console.log("no")
+              console.log(error.responseJSON)
+            }
+          }); 
+       
+   });
+    } else {
+      swal("OK! Ningun dato del tipo de servicio ha sido modificado");
+      window.location.href="/Ventas/AdminVentas/"
+    }
+  });
+  return false;
 }

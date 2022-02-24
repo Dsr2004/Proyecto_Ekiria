@@ -1,22 +1,25 @@
+{% load crispy_forms_tags %}
 <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Tipo Servicio</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editar Tipo Servicio: <strong>{{object}}</strong></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-            <form action="{% url 'Ventas:editarTipoServicio' object.id_tipo_servicio%}" method="post">
+          <form id="formEditarTipo_Servicio" action="{% url 'Ventas:editarTipoServicio' object.id_tipo_servicio%}" method="post">
             {% csrf_token %}
         <Label><strong>Nombre:   </strong></Label>
-        {{form.nombre}}
+        {{form.nombre|as_crispy_field}}
+        <span data-key="nombre" class="badge bg-danger"></span>
         <br>
         <Label><strong>Estado:   </strong></Label>
         <div class="form-check form-switch">
             {{form.estado}}
+            <span data-key="estado" class="badge bg-danger"></span>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Modificar</button>
+            <button type="button" class="btn btn-primary" onclick="editar();">Modificar</button>
           </div>
         </form>
       </div>
