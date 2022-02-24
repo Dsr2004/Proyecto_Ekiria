@@ -11,5 +11,6 @@ urlpatterns=[
     path("Empleado/", views.Empleado, name="Empleado"),
     path("Cliente/", views.Cliente, name="Cliente"),
     path("CrearRol/", views.CreateRolView.as_view(), name="CreateRol"),
-    # path("EditarRol/",views.EditarRoles, name="updateRol")
+    path("EditarRol/<int:pk>",views.EditRolView.as_view(), name="updateRol"),
+    path("EstadoRol/",views.EstadoRol, name="estado")
 ]
