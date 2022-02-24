@@ -65,6 +65,40 @@ function agregarprov(url){
 
 };
 
+function mostrarerrores(errors){
+  $('#errores').html("");
+  let error = "";
+  for (let item in errors.responseJSON.errors){
+    error += '<div class = "alert alert-danger"<strong>'+ errors.responseJSON.errors[item] + '</strong> ></div>'; 
+  }
+
+  $('#errores').append(error)
+
+}
+
+
+function registrar(){
+ 
+  $.ajax({
+    data: $("#agregarprov").serialize(),
+    url: $("#agregarprov").attr('action'),
+    type: $("#agregarprov").attr('method'),
+    success: function(response){
+      console.log(response)
+    },
+    error: function(errors){
+      $('.form-control').addClass('is-invalid')
+   
+      console.log(errors)
+      //  console.log(errors.responseJSON["errors"])
+      // let gerrores = errors.responseJSON["errors"]
+        mostrarerrores(errors)
+         }
+  });
+}
+
+
+
 
 
 

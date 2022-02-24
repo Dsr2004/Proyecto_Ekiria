@@ -43,9 +43,9 @@ class Crearprov(CreateView):
                 prov_form.save()
                 return redirect('listarprov')
             else:
-                errores=prov_form.errors
-                mensaje=f"{Proveedor.__name__} no hay registros"
-                response=JsonResponse({"mensaje":mensaje , "errors":errores})
+                errors=prov_form.errors
+                mensaje=f"{Proveedor.__name__} no ha sido registrado"
+                response=JsonResponse({"errors":errors,"mensaje":mensaje})
                 response.status_code=400
                 return response
    
