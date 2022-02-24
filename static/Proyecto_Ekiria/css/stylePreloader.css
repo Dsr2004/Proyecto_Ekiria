@@ -1,0 +1,8 @@
+/* variable definition */
+
+*{
+    --black:black;
+    --menu_color:linear-gradient(to bottom, #572364, #2f214a);
+    --white:#fff;
+}
+/* End variable definition */
