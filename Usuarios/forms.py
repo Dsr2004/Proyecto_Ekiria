@@ -171,7 +171,12 @@ class Editar(forms.ModelForm):
                     'style':'display:none;',
                 }
             ),
-            
+            'username': forms.TextInput(
+                attrs={
+                    'style':'display:none;',
+                    'autocomplete':'off',
+                }
+            ),
             'telefono': forms.TextInput(
                 attrs={
                     'required':'requerid',
