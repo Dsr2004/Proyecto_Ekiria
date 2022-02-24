@@ -101,7 +101,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form method="POST" action="{%url 'updateRol'%}">
+        <form method="POST" action="">
          {% csrf_token %}
         <label for="nombreRolEdi">Nombre</label>
         {{updateForm.nombre}}
