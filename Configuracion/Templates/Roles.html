@@ -36,7 +36,10 @@
                   <td>{{Rol.descripcion}}</td>
                   <td><button type="button" class="btn btn-outline-success" onclick="abrir_modal_editar ('{% url 'updateRol' Rol.id_rol %}')">Editar</button></td>
                   <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
-                  <td><input type="button" value="{{Rol.estado}}" class="btn btn-outline-warning" id="Habilitar" onclick="fg()"></input></td>
+                  <label class="switch">
+                    <input data-bs-toggle="toggle" type="checkbox" value="{{Rol.id_rol}}" id="checkboxRol">
+                    <span class="slider round"></span>
+                  </label>
                 </tr>
               {%endfor%}
 

@@ -40,8 +40,14 @@ def Cliente(request):
 def ListarRol(request):
     formulario=RolForm
     ListRoles = Rol.objects.all()
-    contexto= {'roles':ListRoles, 'crear':formulario}
+    contexto= {'roles':ListRoles, 'crear':formulario }
     return render(request, "Roles.html", contexto)
+
+def EstadoRol(request):
+    roles = Rol.objects.get(id_rol=request.POST['id_rol'])
+    roles.id_rol = request.POST['id_rol'] == 'true'
+    roles.save()
+    return HttpResponse('success')
 
 class CreateRolView(CreateView):
     model = Rol
@@ -79,4 +85,7 @@ class EditRolView(UpdateView):
     form_class = RolForm
     template_name = 'Rol/EdirRol.html'
     success_url=reverse_lazy('Roles')
+
+
+
     

@@ -11,10 +11,20 @@
 //   }
 // });
 
-function fg(){
-    if (value == True)
-    var i=document.getElementById("Habilitar").value = inabilitado;
-    else{
-        var i=document.getElementById("Habilitar").value = Habilitado;
-    }
-}
+// function fg(){
+//     if (value == True)
+//     var i=document.getElementById("Habilitar").value = inabilitado;
+//     else{
+//         var i=document.getElementById("Habilitar").value = Habilitado;
+//     }
+// }
+
+$(document).ready(function() {
+    $('#checkbox').change(function() {
+        $.post("/EstadoRol/", {
+            id: '{{Rol.id_rol}}', 
+            id_rol: this.checked, 
+            csrfmiddlewaretoken: '{{ csrf_token }}' 
+        });
+    });
+}); 
