@@ -28,7 +28,7 @@ class Catalogo(ListView):
 class ServicioDetalle(DetailView):
     queryset = Servicio.objects.all()
     context_object_name = "DetailSs"
-    template_name = "Catalogo.html"
+    template_name = "Catalogo/Detalle_Servicio.html"
 
 class Carrito(TemplateView):
     template_name = "Carrito.html"
@@ -102,12 +102,9 @@ class EditarTipo_Servicio(UpdateView):
                 response.status_code = 201
                 return response
             else:
-                ctx = {}
-                ctx.update(csrf(self.request))
-                form_html = render_crispy_form(form, context=ctx)
-                print(form_html)
+                errores=form.errors
                 mensaje = f"{self.model.__name__} no se ha podido actualizar!"
-                response = JsonResponse({"mensaje":mensaje, 'form_html': form_html})
+                response = JsonResponse({"mensaje":mensaje, 'errors': errores})
                 response.status_code = 400
                 return response
         else:

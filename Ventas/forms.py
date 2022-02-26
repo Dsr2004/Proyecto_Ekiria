@@ -2,9 +2,9 @@
 # from crispy_forms.layout import Layout, Submit, Row, Column,ButtonHolder, Div, Fieldset, HTML, Field
 # from crispy_forms.bootstrap import FormActions
 
+# from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
+# from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 
 from django import forms
 from .models import Servicio, Tipo_servicio
@@ -57,6 +57,9 @@ class EditarTipoServicioForm(forms.ModelForm):
             super(EditarTipoServicioForm, self).__init__(*args, **kwargs)
             self.fields['nombre'].label = False
             self.fields['estado'].label = False
+            self.helper=FormHelper()
+            self.helper.form_show_errors=False
+            self.helper.error_text_inline = False
 
         
 class Tipo_servicioForm(forms.ModelForm):
@@ -71,52 +74,7 @@ class Tipo_servicioForm(forms.ModelForm):
             super(Tipo_servicioForm, self).__init__(*args, **kwargs) 
             self.fields['nombre'].label = False
             self.fields['estado'].label = False
-            self.helper = FormHelper()
-            self.helper.layout = Layout(
-        Field('nombre', css_class='input-xlarge'),
-       
-        HTML("""
-        <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
-        </div>
-        """),
-        FormActions(
-            Button('cancel', 'Cancelar',css_class="btn-secondary"),
-            Submit('save_changes', 'Modificar', css_class="btn-primary"),
+            self.helper=FormHelper()
+            self.helper.form_show_errors=False
+            self.helper.error_text_inline = False
             
-        )
-    )
-#             self.helper.layout=Layout(
-#     Fieldset(
-        
-#         HTML("""
-           
-#         """),
-      
-#     )
-# )
-            # self.helper.layout = Layout(
-               
-                
-            #     Row(
-            #     Column('nombre', css_class='form-control'),
-            #     css_class='form-row'
-            # ),
-        
-            # HTML("""
-            # <br>
-            # <br>
-            # """),
-            
-            #     Row(
-            #     Div(
-            #     Column('estado', css_class='form-check-input estadoServicioRegistro'),
-            #     css_class='form-check form-switch'
-            # ),
-            # ),
-             
-            # ButtonHolder(
-            #         Submit("guardar", "Guardar")
-            #     )
-            # )

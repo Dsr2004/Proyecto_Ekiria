@@ -147,6 +147,13 @@ function abrir_modal_eliminar(url){
   });
 }
 
+// catalogo
+
+function abrir_modal_detalleServicio(url){
+  $("#VerMasServivios").load(url, function (){  
+    $(this).appendTo("body").modal("show");
+  });
+}
 
 // ERRORES
 
@@ -196,53 +203,30 @@ function registrar(){
   });
 }
 
+// EDITAR TIPO DE SERVICIO 
 function editar(){
   $.ajax({
     data: $("#formEditarTipo_Servicio").serialize(),
     url: $("#formEditarTipo_Servicio").attr('action'),
     type: $("#formEditarTipo_Servicio").attr('method'),
     success: function(response){
-      window.location.href="/Ventas/AdminVentas/"
+      $("#EditarTipoServicio").modal('hide');
+      location.reload();
     },
     error: function(error){
-      $("#formEditarTipo_Servicio").replaceWith(error.responseJSON["form_html"]);
-      // console.log(error.responseJSON["mensaje"])
-      console.log("kiwi")
+      $("#formEditarTipo_Servicio").find('.text-danger').text('');
+      for (let i in error.responseJSON["errors"]){
+        let x=$("#formEditarTipo_Servicio").find('input[name='+i+']')
+        x.addClass("is-invalid")
+        $("#"+i).text( error.responseJSON["errors"][i])
+      }
     }
+      
   });
 }
 
-// EDITAR TIPO DE SERVICIO 
-$("#editarTipoSerivico")
 
-function editarTipoSerivico(){
-  // $('#id_estado').val('false');
-  if($("#id_estado").checked){
-    $('#id_estado').val("True");
-  }else{
-    console.log($("#id_estado"))
-     $('#id_estado').val("False");
-  }
 
-  swal({
-    title: "Estas seguro?",
-    text: "Se modificara el estado de el Tipo de Servicio",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  }).then((willDelete) => {
-    if (willDelete) {
-      swal("OK! Se ha modificado el tipo de servicio", {
-        icon: "success",
-      }).then(function() {
-      document.forms['editarTipoSerivico'].submit();
-   });
-    } else {
-      swal("OK! Ningun dato del tipo de servicio ha sido modificado");
-    }
-  });
-  return false;
-}
 
 
 function CambiarEstadoTipoServicio(id){
@@ -269,7 +253,7 @@ console.log(token)
             },
             error: function(error){
               console.log("no")
-              console.log(error.responseJSON)
+              alert("Error:"+error.responseJSON)
             }
           }); 
        
@@ -281,3 +265,4 @@ console.log(token)
   });
   return false;
 }
+

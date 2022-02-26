@@ -44,12 +44,29 @@
     font-weight: 500;
     font-size: 2.5em;
     color: #a200ff;
+    
 }
 
 .Admin.Events .Information .cardbox .Card .cardName {
     color: #3d3d3d;
     font-size: 1.1em;
-    margin-top: 5px;
+    flex:auto;
+    
+    /* margin-top: 50%; */
+}
+.container-text-services{
+    text-align: left;
+    word-wrap: break-word;
+    
+    
+}
+.line-vertical{
+    filter: blur(7px);
+    border-left: 5px groove #1c6ea446; /*opcional #1c6ea42c*/
+    height:100%;
+    left: 65%;
+    top: 0px;
+    position: absolute;
 }
 
 .Admin.Events .Information .cardbox .iconA {
@@ -64,4 +81,7 @@
     transform: scale(0.3)
 }
 
+.switch-Cambio-TipoServicio{
+    /* top: 10px; */
+}
 

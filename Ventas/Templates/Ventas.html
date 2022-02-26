@@ -95,17 +95,20 @@
                
                   <div class="cardbox">
                      <div class="Card">
-                        <div>
                            <button class="btn" onclick="abrir_modal_editar('{% url 'Ventas:editarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
-                              <div class="cardName">{{tipo_servicio.nombre}}</div>
+                              <div class="container-text-services">
+                                 <div class="cardName"><p>{{tipo_servicio.nombre}}</p></div>
+                              </div>
+                              
                            </button>
+                     <div class="line-vertical">
                      </div>
                         <div class="iconA">
                            <button class="btn" style="transform: scale(1.5);" onclick="abrir_modal_eliminar('{% url 'Ventas:eliminarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
                               <i class="fa-solid fa-trash"></i> </button>
                               <form action="{%url 'Ventas:editarEstadoTipoServicio'%}" method="post" id="EstadoTipoServicioForm2">
                                  {%csrf_token%}
-                                 <div class="form-check form-switch">
+                                 <div class="form-check form-switch switch-Cambio-TipoServicio">
                                     <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="esatdo" onclick="CambiarEstadoTipoServicio('{{tipo_servicio.id_tipo_servicio}}')"  {% if tipo_servicio.estado == True%}checked{%endif%}>
                                   </div>                                  
                               </form>
@@ -119,7 +122,7 @@
          {% endif %}
       </div>
   </div>
-  <div class="modal fade" id="EditarTipoServicio" role="dialog">
+  <div  data-backdrop="static" class="modal fade" id="EditarTipoServicio" role="dialog" >
    
  </div>
  <div class="modal fade" id="AgregarTipoServicio" role="dialog">
