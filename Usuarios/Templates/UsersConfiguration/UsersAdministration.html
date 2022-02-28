@@ -82,67 +82,69 @@
             <h2> Usuarios Registrados </h2>
             <i class="fas fa-angle-right"></i>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <td>Apodo</td>
-                    <td>Nombres</td>
-                    <td>Apellidos</td>
-                    <td>Télefono</td>
-                    <td>Celular</td>
-                    <td>E-mail</td>
-                    <td>Tipo De Documento</td>
-                    <td>Número De Documento</td>
-                    <td>Dirección</td>
-                    <td>Código Postal</td>
-                    <td>Municipio</td>
-                    <td>Rol</td>
-                    <td>Último Inicio</td>
-                    <td>Estado</td>
-                    <td>Editar</td>
-                    <td class="ver_mas">Ver más</td>
-                </tr>
-            </thead>
-            <tbody>
-                {%if Usuario%}
-                {% for User in Usuario%}
-                <tr>
-                    <td>{{User.username}}</td>
-                    <td>{{User.nombres}}</td>
-                    <td>{{User.apellidos}}</td>
-                    <td>
-                        {% if User.telefono %} {{User.telefono}} {%else%} No Aplica {% endif %}
-                    </td>
-                    <td>{{User.celular}}</td>
-                    <td>{{User.email}}</td>
-                    <td>{{User.tipo_documento}}</td>
-                    <td>{{User.num_documento}}</td>
-                    <td>{% if User.direccion %} {{User.direccion}} {%else%} No Aplica {% endif %}</td>
-                    <td>{{User.cod_postal}}</td>
-                    <td>{{User.municipio}}</td>
-                    <td>{{User.rol}}</td>
-                    <td>{% if User.last_login %} {{User.last_login}} {%else%} No ha iniciado sesión {% endif %}</td>
-                    <td>{{User.estado}}</td>
-                    <td>
-                        {% csrf_token %}
-                        <button type="button" class="Edit" onclick="EditarUsuario('{{User.id_usuario}}')">
-                            <i class="mdi mdi-account-edit"></i>
-                        </button>
-                    </td>
-                    <td class="ver_mas">
-                        <div><i class="fas fa-angle-down"></i></div>
-                    </td>
-                </tr>
-                {% endfor %}
-                {%else%}
-                <tr>
-                    <td>
-                    No hay usuarios Registrados
-                    </td>
-                </tr>
-                {%endif%}
-            </tbody>
-        </table>
+        <div class="over">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Apodo</td>
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                        <td>Télefono</td>
+                        <td>Celular</td>
+                        <td>E-mail</td>
+                        <td>Tipo De Documento</td>
+                        <td>Número De Documento</td>
+                        <td>Dirección</td>
+                        <td>Código Postal</td>
+                        <td>Municipio</td>
+                        <td>Rol</td>
+                        <td>Último Inicio</td>
+                        <td>Estado</td>
+                        <td>Editar</td>
+                        <td class="ver_mas">Ver más</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%if Usuario%}
+                    {% for User in Usuario%}
+                    <tr>
+                        <td>{{User.username}}</td>
+                        <td>{{User.nombres}}</td>
+                        <td>{{User.apellidos}}</td>
+                        <td>
+                            {% if User.telefono %} {{User.telefono}} {%else%} No Aplica {% endif %}
+                        </td>
+                        <td>{{User.celular}}</td>
+                        <td>{{User.email}}</td>
+                        <td>{{User.tipo_documento}}</td>
+                        <td>{{User.num_documento}}</td>
+                        <td>{% if User.direccion %} {{User.direccion}} {%else%} No Aplica {% endif %}</td>
+                        <td>{{User.cod_postal}}</td>
+                        <td>{{User.municipio}}</td>
+                        <td>{{User.rol}}</td>
+                        <td>{% if User.last_login %} {{User.last_login}} {%else%} No ha iniciado sesión {% endif %}</td>
+                        <td>{{User.estado}}</td>
+                        <td>
+                            {% csrf_token %}
+                            <button type="button" class="Edit" onclick="EditarUsuario('{{User.id_usuario}}')">
+                                <i class="mdi mdi-account-edit"></i>
+                            </button>
+                        </td>
+                        <td class="ver_mas">
+                            <div><i class="fas fa-angle-down"></i></div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {%else%}
+                    <tr>
+                        <td>
+                        No hay usuarios Registrados
+                        </td>
+                    </tr>
+                    {%endif%}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
