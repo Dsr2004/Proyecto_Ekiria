@@ -64,7 +64,7 @@
 <div class="Table Header-table">
     <div class="Table search">
         <label>
-        <input type="text" placeholder="Search here">
+        <input type="text" id="search" placeholder="Search here">
         <i class="fas fa-search"></i>
     </label>
     </div>
@@ -83,7 +83,7 @@
             <i class="fas fa-angle-right"></i>
         </div>
         <div class="over">
-            <table>
+            <table id="tabla">
                 <thead>
                     <tr>
                         <td>Apodo</td>
@@ -104,37 +104,32 @@
                         <td class="ver_mas">Ver más</td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="cuerpo">
                     {%if Usuario%}
+                    <script type="text/javascript">
+                        var contador = 0
+                        var field = []
+                        var tr, td;
+                        tr = document.getElementById("tr");
+                        td = [];
+                    </script>
+                    
+                    <tr id="tr"></tr>
                     {% for User in Usuario%}
-                    <tr>
-                        <td>{{User.username}}</td>
-                        <td>{{User.nombres}}</td>
-                        <td>{{User.apellidos}}</td>
-                        <td>
-                            {% if User.telefono %} {{User.telefono}} {%else%} No Aplica {% endif %}
-                        </td>
-                        <td>{{User.celular}}</td>
-                        <td>{{User.email}}</td>
-                        <td>{{User.tipo_documento}}</td>
-                        <td>{{User.num_documento}}</td>
-                        <td>{% if User.direccion %} {{User.direccion}} {%else%} No Aplica {% endif %}</td>
-                        <td>{{User.cod_postal}}</td>
-                        <td>{{User.municipio}}</td>
-                        <td>{{User.rol}}</td>
-                        <td>{% if User.last_login %} {{User.last_login}} {%else%} No ha iniciado sesión {% endif %}</td>
-                        <td>{{User.estado}}</td>
-                        <td>
-                            {% csrf_token %}
-                            <button type="button" class="Edit" onclick="EditarUsuario('{{User.id_usuario}}')">
-                                <i class="mdi mdi-account-edit"></i>
-                            </button>
-                        </td>
-                        <td class="ver_mas">
-                            <div><i class="fas fa-angle-down"></i></div>
-                        </td>
-                    </tr>
+                        <script>
+                            field[contador] = {username: "{{User.username}}"}
+                            td[contador] = document.createElement("h1");
+                            td[contador].innerHTML = "Hola";
+                            contador++
+                            console.log(contador)
+                        </script>
+                        
                     {% endfor %}
+                    <script type="text/javascript">
+                       field.forEach(field => {
+                           console.log(field)
+                       });
+                    </script>
                     {%else%}
                     <tr>
                         <td>
