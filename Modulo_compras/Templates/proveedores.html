@@ -75,13 +75,15 @@
           <td>{{prov.celular}}</td>
           <td>{{prov.descripcion}}</td>
           <td><div class="form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
-                <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+            <form action="{%url 'camestado' %}" method="POST" id="estado">
+              {%csrf_token%}
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {%if prov.estado == True  %} checked {%endif%} onclick="cambioestado('{{prov.id_proveedor}}')">
+            </form>
             </div>
           </td>
           <td>
             <button onclick="eliminarprov('{{ prov.id_proveedor }}')" class='buttonEliminar'><i class="mdi mdi-close" style="font-size: 17px;"></i></button>
-    
+         
           </td>
           <td>
                <form action="{% url 'modificarprov'%}" method="post"> 

@@ -51,23 +51,11 @@ class Crearprov(CreateView):
                 return response
    
         
-
-# class Eliminarprov(DeleteView):
-#     model = Proveedor
-#     template_name ="proveedores.html"
-#     success_url = reverse_lazy("listarprov")
-
-    # def post(self,request, *args, **kwargs):  
-    #     prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
-    #     prov_form.delete()
-    #     return redirect('listarprov')
-
-
-# def Eliminarprov(request, id_proveedor):
-#     prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
-#     prov_form.delete()
-#     return redirect('listarprov')
-#     # return render(request,'proveedores.html',{'prov_form':prov_form})
+def Eliminarprov(request, id_proveedor):
+    prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
+    prov_form.delete()
+    return redirect('listarprov')
+    # return render(request,'proveedores.html',{'prov_form':prov_form})
 
 
 def Modificarprov(request):
@@ -84,16 +72,7 @@ def Actprov (request):
        Proveedores.save()
     return redirect('listarprov')
 
-# class estado(update):
-#     model= Proveedor
-#     form_class=ProveedorForm
-#     template_name='proveedores.html'
-
-#     def post(self,request, *args, **kwargs):  
-#         prov_form =request.method == 'POST'
-#         id_proveedor = request.POST.get("id_proveedor")
-#         prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
-#         prov_form =(request.POST)
-#     if prov_form = True        
+def cambiarestado(request):
+    return HttpResponse ("kiwi")
 
    

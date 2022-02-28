@@ -1,6 +1,6 @@
 from unicodedata import name
 from django.urls import path
-from Modulo_compras.views import Modificarprov, Productos, Conf_compra,Listarprov, Crearprov, Eliminarprov, Modificarprov, Actprov
+from Modulo_compras.views import Modificarprov, Productos, Conf_compra,Listarprov, Crearprov, Eliminarprov, Modificarprov, Actprov, cambiarestado
 
 urlpatterns = [
     path ("productos/", Productos, name="productos"),
@@ -10,6 +10,8 @@ urlpatterns = [
     path ("eliminarprov/<int:id_proveedor>", Eliminarprov, name="eliminarprov"),
     path ("modificarprov/", Modificarprov, name="modificarprov"),
     path ("actprov/", Actprov, name="actprov"),
+    path ("cambiarestado/", cambiarestado, name="camestado"),
+
 
 
 

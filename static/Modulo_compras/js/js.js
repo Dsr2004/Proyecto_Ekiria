@@ -84,7 +84,7 @@ function registrar(){
     url: $("#agregarprov").attr('action'),
     type: $("#agregarprov").attr('method'),
     success: function(response){
-      console.log(response)
+      location.reload();
     },
     error: function(errors){
       // $('.form-control').addClass('is-valid')
@@ -96,18 +96,45 @@ function registrar(){
          }
   });
 }
+function cambioestado(id){
+  alert(id)
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
+  
+  swalWithBootstrapButtons.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      swalWithBootstrapButtons.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire(
+        'Cancelled',
+        'Your imaginary file is safe :)',
+        'error'
+      )
+    }
+  })
+}
 
 
 
 
 
-
-// function pasarPost(id_proveedor) {
-//     $.ajax({
-//       data: id_proveedor,
-//       url: '/compras/listarprov/',
-//       type: "POST",
-//       success: function(data) {
-//     }
-//     })
-// }
