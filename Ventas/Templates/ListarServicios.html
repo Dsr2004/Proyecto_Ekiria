@@ -22,7 +22,7 @@
       <a href="{% url 'Ventas:agregarServicio' %}"><span class=" float-end" style="font-size: 48px; margin-right: 80px; margin-top: 10px;"><i class="fa-solid fa-circle-plus"></i></span></a>
     </div>
   </div>
-    <table class="table table-striped">
+    <table class="table table-striped table-responsive">
         <thead>
            <tr>
               <th scope="col">Nombre</th>
@@ -46,7 +46,7 @@
               <td><img src="/media/{{servicio.img_servicio}}" style="border-radius: 15px;" width="150" height="100"></td>
               <td>${{servicio.precio}}</td>
               <td>{{servicio.tipo_servicio_id}}</td>
-              <td>{{servicio.descripcion}}</td>
+              <td ><p style="width:80px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{servicio.descripcion}}</p></td>
               <td>{{servicio.slug}}</td>
               <td>{{servicio.fecha_creacion}}</td>
               <td>{{servicio.fecha_actualizacion}}</td>

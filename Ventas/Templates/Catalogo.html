@@ -1,7 +1,6 @@
 {% extends "Menu_Usuario.html" %}
 {% load static %}
 
-
 {% block head %}
 <head>
    <meta charset="UTF-8">
@@ -10,8 +9,9 @@
    <title>Catalogo</title>
    <link rel="stylesheet" href="{% static 'Ventas/css/Ventas.css' %}">
    <link rel="icon" href="{% static 'Proyecto_Ekiria/Img/Logo Ekiria.png' %}">
-   <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
    
 </head>
 {% endblock head %}
@@ -21,11 +21,9 @@
 <div class="fondiu">
 <h1 class="tittleCatalogo">Catalogo</h1>
 <!-- Servicios del catalogo -->
-<div class=" body ">
+<div class="body">
    <div class="card">
-      <i>
-         <h2 class="precio"></h2>
-      </i>
+      <i><h2 class="precio"></h2></i>
       <div class="imgs"><a href="{%url 'Ventas:personalizar'%}"><img class="img-fluid Imas" src="{% static 'Ventas/img/masMorado.png' %} " alt=""></a></div>
       <div class="contenedor-botones">
          <a class="botonC Personalizar" href="{%url 'Ventas:personalizar'%}"><span>Personalizar</span></a><!--sI EL AZUL PERSISTE COLOCAR EL COLOR AQUI -->
@@ -38,7 +36,7 @@
          <h2 class="precio">${{servicio.precio}}</h2>
       </i>
       <div class="img"><img src="/media/{{servicio.img_servicio}}" alt=""></div>
-      <h2 class="nombreP text-center">{{servicio.nombre}}</h2>
+      <h2 class="nombreP text-center"><p style="width: 210px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; text-align: center !important;">{{servicio.nombre}}</p></h2>
       <p class="linea"></p>
       <div class="contenedor-botones">
          <a class="botonC Comprar"href="{% url 'Ventas:carrito' %}">
@@ -50,12 +48,7 @@
             </div>
             <span>Comprar</span>
          </a>
-         <form  id="FormVerM">
-         <a  type="submit" href="{{servicio.get_absolute_url}}" class="botonC VerM" onclick="DetalleServicio()" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></a>
-         <!-- " -->
-         <!-- <button class="botonC VerM" data-bs-toggle="modal" data-bs-target="#VerMasServivios"><span>Ver mas</span></button> -->
-      </form>
-      
+         <button type="button" class="botonC VerM" onclick="abrir_modal_detalleServicio('{% url 'Ventas:detalleSer' servicio.slug %}')"><span>Ver mas</span></button>
       </div>
    </div>
    {% endfor %}
@@ -69,35 +62,15 @@
 </div>
 </div>
 
+
 {% endblock Contenido %}
  <br><br><br><br>
 
 
-    
-
-
 {% block modal %}
    <!-- Modal para ver detalle del servicio -->
-   <div class="modal fade" id="VerMasServivios" tabindex="5" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Uñas sencillas</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col"><img src="{%static 'Ventas/img/arociris.jpg'%}" alt=""></div>
-              <div class="col"><h5>Te presentamos un estilo coqueto donde cada uña de tu mano podrá tener un estilo único podrás elegir donde 2 uñas tendrán un color sólido, dos uñas tendrán dibujos, y una uña tendrá un color brillante </h5></div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-dark d-grid gap-2" data-bs-dismiss="modal">Cerrar</button>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+   <div class="modal fade" id="VerMasServivios" role="dialog" >
+   </div>
     <!-- fin de la modal para ver detalle del servicio  -->
 
 {% endblock modal %}
