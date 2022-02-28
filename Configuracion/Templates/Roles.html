@@ -36,10 +36,10 @@
                   <td>{{Rol.descripcion}}</td>
                   <td><button type="button" class="btn btn-outline-success" onclick="abrir_modal_editar ('{% url 'updateRol' Rol.id_rol %}')">Editar</button></td>
                   <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
-                  <label class="switch">
-                    <input data-bs-toggle="toggle" type="checkbox" value="{{Rol.id_rol}}" id="checkboxRol">
-                    <span class="slider round"></span>
-                  </label>
+                  <td><form method="POST" action="{%url 'estado' %}" id="estadoRol" ><label class="switch"><div class="form-check form-switch"> 
+                  {%csrf_token%}
+                    <input class="form-check-input  {% if Rol.estado  %}btn-warning {% else %} btn-danger{% endif %} "type="checkbox" name="estado" onclick="ds({{Rol.id_rol}})"></div>
+                  </label></form></td> 
                 </tr>
               {%endfor%}
 

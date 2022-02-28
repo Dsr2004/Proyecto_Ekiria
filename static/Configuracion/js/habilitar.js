@@ -11,20 +11,27 @@
 //   }
 // });
 
-// function fg(){
-//     if (value == True)
-//     var i=document.getElementById("Habilitar").value = inabilitado;
-//     else{
-//         var i=document.getElementById("Habilitar").value = Habilitado;
-//     }
-// }
-
-$(document).ready(function() {
-    $('#checkbox').change(function() {
-        $.post("/EstadoRol/", {
-            id: '{{Rol.id_rol}}', 
-            id_rol: this.checked, 
-            csrfmiddlewaretoken: '{{ csrf_token }}' 
+function ds(id){
+    let cosa = id
+    let token = $('#estadoRol').find('input[name=csrfmiddlewaretoken]').val()
+        $.ajax({
+            data:{'csrfmiddlewaretoken':token, 'estado':cosa},
+            url:$('#estadoRol').attr('action'),
+            type:$('#estadoRol').attr('method'),
+            success: function (data) {
+                alert(data)
+            },error:function (data) {
+            }
         });
-    });
-}); 
+};
+
+// $(document).ready(function() {
+    
+//     $('#checkbox').change(function() {
+//         $.post("/EstadoRol/", {
+//             id: '{{Rol.id_rol}}', 
+//             id_rol: this.checked, 
+//             csrfmiddlewaretoken: '{{ csrf_token }}' 
+//         });
+//     });
+// }); 

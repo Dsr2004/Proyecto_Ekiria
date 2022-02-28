@@ -25,3 +25,16 @@ class Rol(models.Model):
     def __str__(self):
         return self.nombre 
 
+class cambios(models.Model):
+    id_cambios =  models.AutoField(primary_key=True, unique=True)
+    Color_Letra = models.CharField(max_length=20)
+    Color_Fondo = models.CharField(max_length=20)
+    Sangria_Letra = models.CharField(max_length=20)
+    tamano_letra = models.CharField(max_length=20)
+    Tipo_Letra = models.CharField(max_length=20)
+
+    class Meta:
+        db_table = "Cambios"
+
+    def __str__(self):
+        return self.nombre 
