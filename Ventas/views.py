@@ -138,7 +138,6 @@ class ElimininarTipoServicio(DeleteView):
 #             return redirect("Ventas:adminVentas")
 
 def CambiarEstadoTipoServicio(request):
-    print(request.POST)
     if request.method=="POST":
         id = request.POST["estado"]
         update=Tipo_servicio.objects.get(id_tipo_servicio=id)
@@ -153,7 +152,7 @@ def CambiarEstadoTipoServicio(request):
             return redirect("Ventas:adminVentas")
         return HttpResponse(update)
     else:
-        return JsonResponse({"x":"no"})
+        return redirect("Ventas:adminVentas")
     
 class AgregarServicio(CreateView):
     model = Servicio

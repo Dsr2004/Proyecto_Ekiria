@@ -247,7 +247,7 @@ console.log(token)
           $.ajax({
             data: {"csrfmiddlewaretoken":token, "estado":ids},
             url: $("#EstadoTipoServicioForm2").attr('action'),
-            type: $("#EstadoTipoServicioForm2").attr('method'),
+            type: $("#EstadoTipoServicioForm2").attr('metho  d'),
             success: function(data){
               window.location.href="/Ventas/AdminVentas/"
             },
