@@ -142,12 +142,16 @@ class EditarPerfil(UpdateView):
             print(e)
             return JsonResponse({"x":e})
 
-
-class Admin(ListView):
+def Admin(request):
     model = Usuario
-    context_object_name="Usuario"
+    filter = "yes"
     template_name = "UsersConfiguration/UsersAdministration.html"
-    queryset=Usuario.objects.all()
+    if request.method=="GET":
+        queryset = model.objects.all()
+    elif request.method=="POST":
+        filter = request.POST.get("data")
+        queryset = model.objects.filter(nombres=filter)
+    return render(request, template_name, {"Usuario":queryset,"contexto":filter})
     
     
 class CreateUser(CreateView):
@@ -161,7 +165,6 @@ class UpdateUser(UpdateView):
     template_name = 'UsersConfiguration/CreateUsers.html'
     form_class = Regitro
     success_url=reverse_lazy("Administracion")   
-    
 # class Notification(View):
 #     template_name = 'UserInformation/Notification.html'
 # class Notificacion(TemplateView):

@@ -109,21 +109,72 @@
                     <script type="text/javascript">
                         var contador = 0
                         var field = []
-                        var tr, td;
-                        tr = document.getElementById("tr");
-                        td = [];
+                        var search = document.getElementById("search").value;
+                        var td
+                        
                     </script>
                     
-                    <tr id="tr"></tr>
+                    
                     {% for User in Usuario%}
-                        <script>
-                            field[contador] = {username: "{{User.username}}"}
-                            td[contador] = document.createElement("h1");
-                            td[contador].innerHTML = "Hola";
-                            contador++
-                            console.log(contador)
-                        </script>
-                        
+                    <tr id="tr">
+                        <td id="username{{User.username}}"></td>
+                        <td id="name{{User.username}}"></td>
+                        <td id="last_name{{User.username}}"></td>
+                        <td id="telefono{{User.username}}"></td>
+                        <td id="celular{{User.username}}"></td>
+                        <td id="email{{User.username}}"></td>
+                        <td id="TipoDoc{{User.username}}"></td>
+                        <td id="NumDoc{{User.username}}"></td>
+                        <td id="direccion{{User.username}}"></td>
+                        <td id="cod_postal{{User.username}}"></td>
+                        <td id="municipio{{User.username}}"></td>
+                        <td id="rol{{User.username}}"></td>
+                        <td id="last_login{{User.username}}"></td>
+                        <td>{{User.estado}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="pk" value="{{User.id_usuario}}" style="display:none;">
+                                <button type="submit" class="Edit">
+                                    <i class="mdi mdi-account-edit"></i>
+                                </button>
+                            </form>
+                        </td>
+                            <script>
+                                field[contador] = {
+                                        username: "{{User.username}}",
+                                        name:"{{User.nombres}}",
+                                        last_name:"{{User.apellidos}}",
+                                        telefono:"{{User.telefono}}",
+                                        celular:"{{User.celular}}",
+                                        email:"{{User.email}}",
+                                        TipoDoc:"{{User.tipo_documento}}",
+                                        NumDoc:"{{User.num_documento}}",
+                                        direccion:"{{User.direccion}}",
+                                        cod_postal:"{{User.cod_postal}}",
+                                        municipio:"{{User.municipio}}",
+                                        rol:"{{User.rol}}",
+                                        last_login:"{{User.last_login}}",
+                                    }
+                                if (field[contador].name.toLowerCase().includes(search.toLowerCase)){
+                                    td = document.getElementById("username{{User.username}}");td.innerHTML = field[contador].username;
+                                    td = document.getElementById("name{{User.username}}");td.innerHTML = field[contador].name;
+                                    td = document.getElementById("last_name{{User.username}}");td.innerHTML = field[contador].last_name;
+                                    td = document.getElementById("telefono{{User.username}}");td.innerHTML = field[contador].telefono;
+                                    td = document.getElementById("celular{{User.username}}");td.innerHTML = field[contador].celular;
+                                    td = document.getElementById("email{{User.username}}");td.innerHTML = field[contador].email;
+                                    td = document.getElementById("TipoDoc{{User.username}}");td.innerHTML = field[contador].TipoDoc;
+                                    td = document.getElementById("NumDoc{{User.username}}");td.innerHTML = field[contador].NumDoc;
+                                    td = document.getElementById("direccion{{User.username}}");td.innerHTML = field[contador].direccion;
+                                    td = document.getElementById("cod_postal{{User.username}}");td.innerHTML = field[contador].cod_postal;
+                                    td = document.getElementById("municipio{{User.username}}");td.innerHTML = field[contador].municipio;
+                                    td = document.getElementById("rol{{User.username}}");td.innerHTML = field[contador].rol;
+                                    td = document.getElementById("last_login{{User.username}}");td.innerHTML = field[contador].last_login;
+                                }
+                                contador++
+                                console.log(contador)
+                            </script>
+                    </tr>
                     {% endfor %}
                     <script type="text/javascript">
                        field.forEach(field => {
