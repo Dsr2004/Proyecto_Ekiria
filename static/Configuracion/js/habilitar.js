@@ -19,7 +19,16 @@ function ds(id){
             url:$('#estadoRol').attr('action'),
             type:$('#estadoRol').attr('method'),
             success: function (data) {
-                alert(data)
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1000
+                  }).then(function() {
+                      location.reload();
+                  });
+
             },error:function (data) {
             }
         });

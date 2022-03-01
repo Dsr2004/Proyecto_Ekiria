@@ -1,5 +1,6 @@
 {%extends 'Menu_Usuario.html'%}
 {%load crispy_forms_tags%}
+{%load static%}
   {% block head %}
     <head>
       <meta charset="UTF-8">
@@ -38,11 +39,10 @@
                   <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
                   <td><form method="POST" action="{%url 'estado' %}" id="estadoRol" ><label class="switch"><div class="form-check form-switch"> 
                   {%csrf_token%}
-                    <input class="form-check-input  {% if Rol.estado  %}btn-warning {% else %} btn-danger{% endif %} "type="checkbox" name="estado" onclick="ds({{Rol.id_rol}})"></div>
+                    <input class="form-check-input" {% if Rol.estado == True %}checked {%endif%} type="checkbox" name="estado" onclick="ds({{Rol.id_rol}})"></div>
                   </label></form></td> 
                 </tr>
               {%endfor%}
-
               {%else%}
               <h1>No hay registros</h1>
 
@@ -50,8 +50,8 @@
             </tbody>
       </table>
       <div class="contNuevoRol">
-        
-        <button class="nuevoRol" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol" onclick="abrir_modal_crear('{% url 'CreateRol' %}')">
+
+        <button class="nuevoRol" type="button" onclick="abrir_modal_crear('{% url 'CreateRol' %}')">
           Crear Nuevo Rol
         </button>
         <img class="imgAgregar" src="/static/Configuracion/img/Agregar.png" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol">
@@ -61,36 +61,11 @@
 {% endblock Contenido %}
 
 {% block modal %} 
-      <!-- <div class="modal fade" id="CreateRol" role="dialog"></div> -->
-<!-- Modal Crear Rol -->
-<div class="modal fade" id="CrearRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear Rol</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      
-        <form method='post' id=CrearRoles action="{%url 'CreateRol'%}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {% comment %} {{createform.errors}} {% endcomment %}
-        {{createform.errors}}
-        <div id="errores"></div>
-        <label for="nombreRol">Nombre</label><br>
-        {{crear.nombre}}
-        <label for="descripRol">Descripcion</label><br>
-        {{crear.descripcion}}
-        <br>
-         <div class="modal-footer" id="botones">
-        <button type="submit" class="btn btn-warning" onclick="CrearUsuario();">Confirmar</button>
-        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div> 
+
+
+<div class="modal fade " id="CreateRol" role="dialog">
+
+</div>
 <!-- Modal Editar Rol -->
 <div class="modal fade " id="EditarRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
@@ -147,9 +122,11 @@
 {%block scripts%} 
 
 <script src="/static/Configuracion/js/main.js"></script>
+<script src="{%static 'Configuracion/js/errores.js'%}"></script>
 <script src="/static/Configuracion/js/habilitar.js"></script>
 <script src="/static/bootstrap/js/bootstrap.js"></script>
 <script src="/static/Configuracion/js/Roles.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 {%endblock scripts%}

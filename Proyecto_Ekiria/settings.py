@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'Proyecto_Ekiria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'configuracion',
+        'NAME': 'db_ekiria',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

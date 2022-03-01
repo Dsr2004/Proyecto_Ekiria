@@ -71,7 +71,24 @@ class CreateRolView(CreateView):
     model = Rol
     form_class = RolForm
     template_name = 'CrearRol.html'
-    success_url=reverse_lazy('Roles')
+
+    def post(self,request, *args, **kwargs):
+            if request.method == "POST":
+                formulario=self.form_class(request.POST)
+                if formulario.is_valid():
+                    formulario.save()
+                    return JsonResponse({"mensaje": f"{self.model.__name__} Se ha creado correctamente", "errores":"No hay errores"})
+                else:
+                    errores=formulario.errors
+                    mensaje=f"{self.model.__name__} No se ha creado correctamente!"
+                    respuesta=JsonResponse({"mensaje":mensaje, "errores":errores})
+                    respuesta.status_code=400
+                    return respuesta
+            else:
+                return HttpResponse("holis mango")
+    
+
+   
 
 # def EstadoRol(self,request,*args, **kwargs):
 #     roles = Rol.objects.get(id_rol=request.POST['id_rol'])
