@@ -97,42 +97,39 @@ function registrar(){
   });
 }
 function cambioestado(id){
-  alert(id)
-  const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: false
-  })
-  
-  swalWithBootstrapButtons.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
+  let ids= id
+  let token = $("#camestado").find('input[name=csrfmiddlewaretoken]').val()
+  console.log(token)
+  swal.fire({
+    title: 'Esta seguro de querer realizar esta acción?',
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: 'Yes, delete it!',
-    cancelButtonText: 'No, cancel!',
+    confirmButtonText: 'confirmar',
+    cancelButtonText: 'cancelar',
     reverseButtons: true
   }).then((result) => {
     if (result.isConfirmed) {
-      swalWithBootstrapButtons.fire(
-        'Deleted!',
-        'Your file has been deleted.',
+        'Cambiado correctamente',
+        'El estado del proveedor a sido cambiado exitosamente!',
         'success'
-      )
-    } else if (
-      /* Read more about handling dismissals below */
-      result.dismiss === Swal.DismissReason.cancel
-    ) {
-      swalWithBootstrapButtons.fire(
-        'Cancelled',
-        'Your imaginary file is safe :)',
-        'error'
-      )
     }
-  })
+  }).then(function() {
+    $.ajax({
+      data: {"csrfmiddlewaretoken":token, "estado":ids},
+      url: $("#camestado").attr('action'),
+      type: $("#camestado").attr('method'),
+      success: function(data){
+      window.location.href="/compras/listarprov/"
+      },
+      error: function(errors){
+        console.log("no")
+        alert("Error:"+errors.responseJSON)
+      }
+    }); 
+
+  });
 }
+
 
 
 
