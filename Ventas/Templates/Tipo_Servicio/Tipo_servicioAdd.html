@@ -10,10 +10,12 @@
             {% csrf_token %}
         <Label><strong>Nombre:   </strong></Label>
         {{form.nombre}}
+        <p id="nombre" class="bg-light text-danger" style="color: #dc3545;"></p>
         <br>
         <Label><strong>Estado: </strong></Label>
         <div class="form-check form-switch">
-            {{form.estado}}   
+            {{form.estado}}
+            <p id="estado" class="bg-light text-danger" style="color: #dc3545;"></p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

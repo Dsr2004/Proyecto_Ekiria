@@ -191,14 +191,12 @@ function registrar(){
       window.location.href="/Ventas/AdminVentas/"
     },
     error: function(error){
-      $(document).ready(function(){
-        let formulario = $("#formCrearTipo_Servicio")
-        formulario.find('.bg-danger').text('');
-         for(let e in error.responseJSON.error){
-           let txt=error.responseJSON.error[e]
-              $("span[data-key='"+e+"']").text(txt)
-         }
-    });
+        $("#formCrearTipo_Servicio").find('.text-danger').text('');
+        for (let i in error.responseJSON["errors"]){
+          let x=$("#formCrearTipo_Servicio").find('input[name='+i+']')
+          x.addClass("is-invalid")
+             
+      }
     }
   });
 }
