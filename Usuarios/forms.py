@@ -140,11 +140,14 @@ class Regitro(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
 class Editar(forms.ModelForm):
     class Meta:
         model = Usuario
         
         fields=[
+            'username',
             'img_usuario',
             'telefono',
             'celular',
@@ -162,14 +165,18 @@ class Editar(forms.ModelForm):
                 }
             ),
 
-            'img_usuario': forms.TextInput(
+            'img_usuario': forms.FileInput(
                 attrs={
                     'id':'imagen',
-                    'type':'file',
                     'style':'display:none;',
                 }
             ),
-            
+            'username': forms.TextInput(
+                attrs={
+                    'style':'display:none;',
+                    'autocomplete':'off',
+                }
+            ),
             'telefono': forms.TextInput(
                 attrs={
                     'required':'requerid',

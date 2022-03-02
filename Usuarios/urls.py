@@ -4,7 +4,7 @@ from Usuarios.views import PassR, Perfil, Admin, Notification, CreateUser, Updat
 urlpatterns = [
     path('RecuperarContraseña/', PassR, name="RecuperarContraseña"),
     path('Perfil/<int:pk>', Perfil.as_view(), name="Perfil"),
-    path('Administracion/', Admin.as_view(), name="Administracion"),
+    path('Administracion/', Admin, name="Administracion"),
     path('Notificaciones/', Notification, name="Notify"),
     path('CrearUsuario/', CreateUser.as_view(), name="CreateUser"),
     path('CrearUsuario/<int:pk>', UpdateUser.as_view(), name="UpdateUser"),

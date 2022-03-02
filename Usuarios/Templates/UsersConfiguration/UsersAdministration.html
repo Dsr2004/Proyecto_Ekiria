@@ -64,7 +64,7 @@
 <div class="Table Header-table">
     <div class="Table search">
         <label>
-        <input type="text" placeholder="Search here">
+        <input type="text" id="search" placeholder="Search here">
         <i class="fas fa-search"></i>
     </label>
     </div>
@@ -82,67 +82,115 @@
             <h2> Usuarios Registrados </h2>
             <i class="fas fa-angle-right"></i>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <td>Apodo</td>
-                    <td>Nombres</td>
-                    <td>Apellidos</td>
-                    <td>Télefono</td>
-                    <td>Celular</td>
-                    <td>E-mail</td>
-                    <td>Tipo De Documento</td>
-                    <td>Número De Documento</td>
-                    <td>Dirección</td>
-                    <td>Código Postal</td>
-                    <td>Municipio</td>
-                    <td>Rol</td>
-                    <td>Último Inicio</td>
-                    <td>Estado</td>
-                    <td>Editar</td>
-                    <td class="ver_mas">Ver más</td>
-                </tr>
-            </thead>
-            <tbody>
-                {%if Usuario%}
-                {% for User in Usuario%}
-                <tr>
-                    <td>{{User.username}}</td>
-                    <td>{{User.nombres}}</td>
-                    <td>{{User.apellidos}}</td>
-                    <td>
-                        {% if User.telefono %} {{User.telefono}} {%else%} No Aplica {% endif %}
-                    </td>
-                    <td>{{User.celular}}</td>
-                    <td>{{User.email}}</td>
-                    <td>{{User.tipo_documento}}</td>
-                    <td>{{User.num_documento}}</td>
-                    <td>{% if User.direccion %} {{User.direccion}} {%else%} No Aplica {% endif %}</td>
-                    <td>{{User.cod_postal}}</td>
-                    <td>{{User.municipio}}</td>
-                    <td>{{User.rol}}</td>
-                    <td>{% if User.last_login %} {{User.last_login}} {%else%} No ha iniciado sesión {% endif %}</td>
-                    <td>{{User.estado}}</td>
-                    <td>
-                        {% csrf_token %}
-                        <button type="button" class="Edit" onclick="EditarUsuario('{{User.id_usuario}}')">
-                            <i class="mdi mdi-account-edit"></i>
-                        </button>
-                    </td>
-                    <td class="ver_mas">
-                        <div><i class="fas fa-angle-down"></i></div>
-                    </td>
-                </tr>
-                {% endfor %}
-                {%else%}
-                <tr>
-                    <td>
-                    No hay usuarios Registrados
-                    </td>
-                </tr>
-                {%endif%}
-            </tbody>
-        </table>
+        <div class="over">
+            <table id="tabla">
+                <thead>
+                    <tr>
+                        <td>Apodo</td>
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                        <td>Télefono</td>
+                        <td>Celular</td>
+                        <td>E-mail</td>
+                        <td>Tipo De Documento</td>
+                        <td>Número De Documento</td>
+                        <td>Dirección</td>
+                        <td>Código Postal</td>
+                        <td>Municipio</td>
+                        <td>Rol</td>
+                        <td>Último Inicio</td>
+                        <td>Estado</td>
+                        <td>Editar</td>
+                        <td class="ver_mas">Ver más</td>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo">
+                    {%if Usuario%}
+                    <script type="text/javascript">
+                        var contador = 0
+                        var field = []
+                        var search = document.getElementById("search").value;
+                        var td
+                        
+                    </script>
+                    
+                    
+                    {% for User in Usuario%}
+                    <tr id="tr">
+                        <td id="username{{User.username}}"></td>
+                        <td id="name{{User.username}}"></td>
+                        <td id="last_name{{User.username}}"></td>
+                        <td id="telefono{{User.username}}"></td>
+                        <td id="celular{{User.username}}"></td>
+                        <td id="email{{User.username}}"></td>
+                        <td id="TipoDoc{{User.username}}"></td>
+                        <td id="NumDoc{{User.username}}"></td>
+                        <td id="direccion{{User.username}}"></td>
+                        <td id="cod_postal{{User.username}}"></td>
+                        <td id="municipio{{User.username}}"></td>
+                        <td id="rol{{User.username}}"></td>
+                        <td id="last_login{{User.username}}"></td>
+                        <td>{{User.estado}}</td>
+                        <td>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <input type="text" name="pk" value="{{User.id_usuario}}" style="display:none;">
+                                <button type="submit" class="Edit">
+                                    <i class="mdi mdi-account-edit"></i>
+                                </button>
+                            </form>
+                        </td>
+                            <script>
+                                field[contador] = {
+                                        username: "{{User.username}}",
+                                        name:"{{User.nombres}}",
+                                        last_name:"{{User.apellidos}}",
+                                        telefono:"{{User.telefono}}",
+                                        celular:"{{User.celular}}",
+                                        email:"{{User.email}}",
+                                        TipoDoc:"{{User.tipo_documento}}",
+                                        NumDoc:"{{User.num_documento}}",
+                                        direccion:"{{User.direccion}}",
+                                        cod_postal:"{{User.cod_postal}}",
+                                        municipio:"{{User.municipio}}",
+                                        rol:"{{User.rol}}",
+                                        last_login:"{{User.last_login}}",
+                                    }
+                                if (field[contador].name.toLowerCase().includes(search.toLowerCase)){
+                                    td = document.getElementById("username{{User.username}}");td.innerHTML = field[contador].username;
+                                    td = document.getElementById("name{{User.username}}");td.innerHTML = field[contador].name;
+                                    td = document.getElementById("last_name{{User.username}}");td.innerHTML = field[contador].last_name;
+                                    td = document.getElementById("telefono{{User.username}}");td.innerHTML = field[contador].telefono;
+                                    td = document.getElementById("celular{{User.username}}");td.innerHTML = field[contador].celular;
+                                    td = document.getElementById("email{{User.username}}");td.innerHTML = field[contador].email;
+                                    td = document.getElementById("TipoDoc{{User.username}}");td.innerHTML = field[contador].TipoDoc;
+                                    td = document.getElementById("NumDoc{{User.username}}");td.innerHTML = field[contador].NumDoc;
+                                    td = document.getElementById("direccion{{User.username}}");td.innerHTML = field[contador].direccion;
+                                    td = document.getElementById("cod_postal{{User.username}}");td.innerHTML = field[contador].cod_postal;
+                                    td = document.getElementById("municipio{{User.username}}");td.innerHTML = field[contador].municipio;
+                                    td = document.getElementById("rol{{User.username}}");td.innerHTML = field[contador].rol;
+                                    td = document.getElementById("last_login{{User.username}}");td.innerHTML = field[contador].last_login;
+                                }
+                                contador++
+                                console.log(contador)
+                            </script>
+                    </tr>
+                    {% endfor %}
+                    <script type="text/javascript">
+                       field.forEach(field => {
+                           console.log(field)
+                       });
+                    </script>
+                    {%else%}
+                    <tr>
+                        <td>
+                        No hay usuarios Registrados
+                        </td>
+                    </tr>
+                    {%endif%}
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

@@ -10,44 +10,44 @@
 {% endblock head %} {% block Contenido %} 
 <div class="Perfil_contenedor">
         <div class="container d-flex p-2">
-            <img src="/media/perfil/{{Usuario.img_usuario}}" class="Perfil_foto_perfil" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <img src="/media/{{Usuario.img_usuario}}" class="Perfil_foto_perfil" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <h1 class="Perfil_Apodo">
                 {{Usuario.username}}</h1>
         </div>
         <br>
         <div class="Perfil_informacion container">
             <div class="row">
-                <label>Nombres</label>
-                <div class="col">{{Usuario.nombres}}</div>
-                <label>apellidos</label>
-                <div class="col">{{Usuario.apellidos}}</div>
+                
+                <div class="col"><label>Nombres</label><br>{{Usuario.nombres}}</div>
+                
+                <div class="col"><label>Apellidos</label><br>{{Usuario.apellidos}}</div>
             </div>
             <div class="row">
-                <label>Email</label>
-                <div class="col">{{Usuario.email}}</div>
-                <label>Telefono</label>
-                <div class="col">{{Usuario.telefono}}</div>
+                
+                <div class="col"><label>Email</label><br>{{Usuario.email}}</div>
+                
+                <div class="col"><label>Telefono</label><br>{{Usuario.telefono}}</div>
             </div>
             <div class="row">
-                <label>Celular</label>
-                <div class="col">{{Usuario.celular}}</div>
-                <label>Fecha de Nacimiento</label>
-                <div class="col">{{Usuario.fec_nac}}</div>
+                
+                <div class="col"><label>Celular</label><br>{{Usuario.celular}}</div>
+                
+                <div class="col"><label>Fecha de Nacimiento</label><br>{{Usuario.fec_nac}}</div>
             </div>
             <div class="row">
-                <label>Tipo de documento</label>
-                <div class="col">{{Usuario.tipo_documento}}</div>
-                <label>Número de documento</label>
-                <div class="col">{{Usuario.num_documento}}</div>
+                
+                <div class="col"><label>Tipo de documento</label><br>{{Usuario.tipo_documento}}</div>
+                
+                <div class="col"><label>Número de documento</label><br>{{Usuario.num_documento}}</div>
             </div>
             <div class="row">
-                <label>Municipio</label>
-                <div class="col">{{Usuario.municipio}}</div>
-                <label>Codigo Postal</label>
-                <div class="col">{{Usuario.cod_postal}}</div>
+                
+                <div class="col"><label>Municipio</label><br>{{Usuario.municipio}}</div>
+                
+                <div class="col"><label>Codigo Postal</label><br>{{Usuario.cod_postal}}</div>
             </div>
             <div class="row">
-                <div class="col">{{Usuario.direccion}}</div>
+                <div class="col"><label>Dirección</label><br>{{Usuario.direccion}}</div>
                 <div class="col">
                     
                     <button type="button" class="btn btn-primary" onclick="EditarPerfil('{{Usuario.id_usuario}}')">Editar</button>
