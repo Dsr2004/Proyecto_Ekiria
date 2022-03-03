@@ -21,6 +21,7 @@
                     
                     <script>
                         let CantUsuarios
+                        var ContadorServicios = 0
                     </script>
                 </div>
                 <div class="iconA">
@@ -31,7 +32,9 @@
         <div class="cardbox">
             <div class="Card">
                 <div>
-                    <div class="numbers">2019</div>
+                    <div class="numbers" id="NumSer"> 
+                        
+                    </div>
                     <div class="cardName">Servicios</div>
                 </div>
                 <div class="iconA">
@@ -39,6 +42,18 @@
                 </div>
             </div>
         </div>
+                        {% for Servicio in contexto %}
+                            {% if Servicio.estado == True%} 
+                                <script>
+                                    ContadorServicios++
+                                </script>
+                            {% endif %}
+                        {% endfor %}
+                        <script>
+                            let insertServices = document.getElementById("NumSer");
+                            insertServices.innerHTML = ContadorServicios
+                        </script>
+        
         <div class="cardbox">
             <div class="Card">
                 <div>
@@ -209,7 +224,7 @@
                                         td = document.getElementById("estado" + field.username);
                                         td.style.display = "table-cell";
                                         errores = document.getElementById("errores");
-                                        errores.innerHTML = "No Hay más registros";
+                                        errores.innerHTML = "No hay más registros";
                                     } else {
                                         td = document.getElementById("username" + field.username);
                                         td.style.display = "none";

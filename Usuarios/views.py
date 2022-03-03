@@ -22,6 +22,7 @@ from django.contrib.sessions.models import Session
 from datetime import datetime
 from rest_framework.views import APIView
 from Usuarios.models import Usuario
+from Ventas.models import Servicio
 from Usuarios.forms import Regitro, Editar
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
 from rest_framework.renderers import TemplateHTMLRenderer
@@ -147,10 +148,8 @@ def Admin(request):
     template_name = "UsersConfiguration/UsersAdministration.html"
     if request.method=="GET":
         queryset = model.objects.all()
-    elif request.method=="POST":
-        filter = request.POST.get("data")
-        queryset = model.objects.filter(nombres=filter)
-    return render(request, template_name, {"Usuario":queryset,"contexto":filter})
+        Servicios = Servicio.objects.all()
+    return render(request, template_name, {"Usuario":queryset,"contexto":Servicios})
     
     
 class CreateUser(CreateView):
