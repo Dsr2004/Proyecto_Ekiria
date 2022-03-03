@@ -64,14 +64,14 @@
 <div class="Table Header-table">
     <div class="Table search">
         <label>
-        <input type="text" placeholder="Search here">
+        <input type="text" id="search" placeholder="Search here">
         <i class="fas fa-search"></i>
     </label>
     </div>
     <div class="Table Add">
-        <button type="button" class="Add img" data-bs-toggle="modal" data-bs-target="#add">
-        <i class="fas fa-user-plus"></i>
-    </button>
+        <button type="button" onclick="añadirUsuario()" class="Add img">
+            <i class="fas fa-user-plus"></i>
+        </button>
     </div>
 </div>
 
@@ -82,56 +82,212 @@
             <h2> Usuarios Registrados </h2>
             <i class="fas fa-angle-right"></i>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <td>Apodo</td>
-                    <td>Nombres</td>
-                    <td>Apellidos</td>
-                    <td>Télefono</td>
-                    <td>Celular</td>
-                    <td>E-mail</td>
-                    <td>Tipo De Documento</td>
-                    <td>Número De Documento</td>
-                    <td>Dirección</td>
-                    <td>Código Postal</td>
-                    <td>Municipio</td>
-                    <td>Rol</td>
-                    <td>Último Inicio</td>
-                    <td>Estado</td>
-                    <td>Editar</td>
-                    <td class="ver_mas">Ver más</td>
-                </tr>
-            </thead>
-            <tbody>
-                {% for a in rep%}
-                <tr>
-                    <td>Hoodinii890</td>
-                    <td>Jhorman</td>
-                    <td>Gallego Gallego</td>
-                    <td>No Aplica</td>
-                    <td>3145359545</td>
-                    <td>j@gmail.com</td>
-                    <td>C.C</td>
-                    <td>1000661096</td>
-                    <td>No Aplica</td>
-                    <td>050002</td>
-                    <td>Medellín</td>
-                    <td>Administrador</td>
-                    <td>2022-02-01 02:20</td>
-                    <td>Activo</td>
-                    <td>
-                        <button type="button" class="Edit" data-bs-toggle="modal" data-bs-target="#edit">
-                            <i class="mdi mdi-account-edit"></i>
-                        </button>
-                    </td>
-                    <td class="ver_mas">
-                        <div><i class="fas fa-angle-down"></i></div>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="over">
+            <table id="tabla">
+                <thead>
+                    <tr>
+                        <td>Apodo</td>
+                        <td>Nombres</td>
+                        <td>Apellidos</td>
+                        <td>Télefono</td>
+                        <td>Celular</td>
+                        <td>E-mail</td>
+                        <td>Tipo De Documento</td>
+                        <td>Número De Documento</td>
+                        <td>Dirección</td>
+                        <td>Código Postal</td>
+                        <td>Municipio</td>
+                        <td>Rol</td>
+                        <td>Último Inicio</td>
+                        <td>Estado</td>
+                        <td>Editar</td>
+                        <td class="ver_mas">Ver más</td>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo">
+                    <!-- Declaración de variables -->
+                    {%if Usuario%}
+                    <script type="text/javascript">
+                        var contador = 0
+                        var field = []
+                        var td
+                        const search = document.querySelector("#search");
+                        search.addEventListener("keyup", function() {
+                            Object()
+                        })
+                    </script>
+                    <!-- Creacion de filas de datos con sus debidas columnas -->
+                    {% for User in Usuario%}
+                    <tr id="tr">
+                        <td id="username{{User.username}}"></td>
+                        <td id="name{{User.username}}"></td>
+                        <td id="last_name{{User.username}}"></td>
+                        <td id="telefono{{User.username}}"></td>
+                        <td id="celular{{User.username}}"></td>
+                        <td id="email{{User.username}}"></td>
+                        <td id="TipoDoc{{User.username}}"></td>
+                        <td id="NumDoc{{User.username}}"></td>
+                        <td id="direccion{{User.username}}"></td>
+                        <td id="cod_postal{{User.username}}"></td>
+                        <td id="municipio{{User.username}}"></td>
+                        <td id="rol{{User.username}}"></td>
+                        <td id="last_login{{User.username}}"></td>
+                        <td id="estado{{User.username}}">
+                            <form action="{%url 'editarEstadoUsuario'%}" method="post" id="EstadoUsuarioForm">
+                                {%csrf_token%}
+                                <div class="form-check form-switch switch-Cambio-TipoServicio">
+                                   <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="estado" onclick="CambiarEstadoUsuario('{{User.id_usuario}}')"  {% if User.estado == True%}checked{%endif%}>
+                                 </div>                                  
+                             </form>
+                        </td>
+
+                        <td id="edit{{User.username}}">
+                            <a href="{%url 'UpdateUser' User.id_usuario%}">
+                                <i class="mdi mdi-account-edit"></i>
+                            </a>
+                        </td>
+                        {% endfor %}
+
+                        <!-- Función encargada de listar y filtrar los objectos -->
+                        <script>
+                            function listar(field) {
+                                field.forEach(field => {
+                                    if (
+                                        field.name.toLowerCase().includes(search.value.toLowerCase()) ||
+                                        field.email.toLowerCase().includes(search.value.toLowerCase()) ||
+                                        field.last_name.toLowerCase().includes(search.value.toLowerCase()) ||
+                                        field.last_login.toLowerCase().includes(search.value.toLowerCase()) ||
+                                        field.rol.toLowerCase().includes(search.value.toLowerCase()) ||
+                                        field.username.toLowerCase().includes(search.value.toLowerCase()) ||
+                                        field.municipio.toLowerCase().includes(search.value.toLowerCase())
+                                    ) {
+                                        td = document.getElementById("username" + field.username);
+                                        td.innerHTML = field.username;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("name" + field.username);
+                                        td.innerHTML = field.name;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("last_name" + field.username);
+                                        td.innerHTML = field.last_name;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("telefono" + field.username);
+                                        td.innerHTML = field.telefono;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("celular" + field.username);
+                                        td.innerHTML = field.celular;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("email" + field.username);
+                                        td.innerHTML = field.email;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("TipoDoc" + field.username);
+                                        td.innerHTML = field.TipoDoc;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("NumDoc" + field.username);
+                                        td.innerHTML = field.NumDoc;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("direccion" + field.username);
+                                        td.innerHTML = field.direccion;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("cod_postal" + field.username);
+                                        td.innerHTML = field.cod_postal;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("municipio" + field.username);
+                                        td.innerHTML = field.municipio;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("rol" + field.username);
+                                        td.innerHTML = field.rol;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("last_login" + field.username);
+                                        td.innerHTML = field.last_login;
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("edit" + field.username);
+                                        td.style.display = "table-cell";
+                                        td = document.getElementById("estado" + field.username);
+                                        td.style.display = "table-cell";
+                                        errores = document.getElementById("errores");
+                                        errores.innerHTML = "No Hay más registros";
+                                    } else {
+                                        td = document.getElementById("username" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("name" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("last_name" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("telefono" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("celular" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("email" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("TipoDoc" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("NumDoc" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("direccion" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("cod_postal" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("municipio" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("rol" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("last_login" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("edit" + field.username);
+                                        td.style.display = "none";
+                                        td = document.getElementById("estado" + field.username);
+                                        td.style.display = "none";
+                                        errores = document.getElementById("errores");
+                                        errores.innerHTML = "No se encontraron registros con estás credenciales";
+                                    }
+                                });
+                            }
+                        </script>
+                        <!-- Creacion de los objectos traidos del contexto -->
+                        {% for User in Usuario%}
+                        <script>
+                            field[contador] = {
+                                username: "{{User.username}}",
+                                name: "{{User.nombres}}",
+                                last_name: "{{User.apellidos}}",
+                                telefono: "{{User.telefono}}",
+                                celular: "{{User.celular}}",
+                                email: "{{User.email}}",
+                                TipoDoc: "{{User.tipo_documento}}",
+                                NumDoc: "{{User.num_documento}}",
+                                direccion: "{{User.direccion}}",
+                                cod_postal: "{{User.cod_postal}}",
+                                municipio: "{{User.municipio}}",
+                                rol: "{{User.rol}}",
+                                last_login: "{{User.last_login}}",
+                            }
+                            if (field) {
+                                Object()
+                            }
+
+                            contador++
+                        </script>
+                    </tr>
+                    {% endfor %}
+                    <!-- Instancia encargada de mandar los objectos para ser listados -->
+                    <script>
+                        function Object() {
+                            listar(field);
+                        }
+                    </script> {%else%}
+                    <!-- Fin del listado de datos -->
+                    <tr>
+                        <td>
+                            No hay usuarios Registrados
+                        </td>
+                    </tr>
+                    {%endif%}
+                </tbody>
+            </table>
+
+            <p id="errores">
+            </p>
+        </div>
     </div>
 </div>
 
@@ -139,273 +295,8 @@
 
 
 <!--------------------------------------Fin Dashborad Usuarios-------------------------------------->
-{% endblock Contenido %} {% block modal %}
-<div class="modal fade" id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="Perfil_modificar">
-            <div class="Perfil_modificar-header">
-                <h5 class="Perfil_modificar-titulo">Agregar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="Perfil_modificar-body">
-                <form id="FormularioInfo">
-                    <h1>Registro</h1>
-                    <div class="form">
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" autocomplete="off" id="nombre" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Nombres</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="apellido" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Apellidos</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="email" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>E-mail</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="direccion" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Dirección</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="tel" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Telefono</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="cel" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Celular</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="municipio" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Municicpio</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="codpostal" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Código Postal</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="documento" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Documento</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="tipo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Tipo de documento</strong></span>
-                                </label>
-                            </div>
-                        </div><br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="fecnac" autocomplete="off" type="date" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb" style="transform: translateY(-100%);
-                                font-size: 14px;"><strong>Fecha de nacimiento</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="codpostal" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Código Postal</strong></span>
-                                </label>
-                            </div>
-                        </div><br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="password" autocomplete="off" type="password" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Contraseña</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="confpassword" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Confirmar Contraseña</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div>
-                            <div class="flexbox" style="width: 95%;">
-                                <input class="pinput" id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Apodo</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="Perfil_modificar-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="Perfil_modificar">
-            <div class="Perfil_modificar-header">
-                <h5 class="Perfil_modificar-titulo">Editar Usuario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="Perfil_modificar-body">
-                <form id="FormularioInfo">
-                    <h1>Información de usuario</h1>
-                    <div class="form">
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" autocomplete="off" id="nombre" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Nombres</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="apellido" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Apellidos</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="email" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>E-mail</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="direccion" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Dirección</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="tel" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Telefono</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="cel" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Celular</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="municipio" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Municicpio</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="codpostal" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Código Postal</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="documento" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Documento</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="tipo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Tipo de documento</strong></span>
-                                </label>
-                            </div>
-                        </div><br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="fecnac" autocomplete="off" type="date" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb" style="transform: translateY(-100%);
-                                font-size: 14px;"><strong>Fecha de nacimiento</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="codpostal" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Código Postal</strong></span>
-                                </label>
-                            </div>
-                        </div><br>
-                        <div class="frid">
-                            <div class="flexbox">
-                                <input class="pinput" id="password" autocomplete="off" type="password" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Contraseña</strong></span>
-                                </label>
-                            </div> <br>
-                            <div class="flexbox">
-                                <input class="pinput" id="confpassword" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Confirmar Contraseña</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-                        <div>
-                            <div class="flexbox" style="width: 95%;">
-                                <input class="pinput" id="apodo" autocomplete="off" type="text" required>
-                                <label class="lbl-nombre">
-                                <span class="text-nomb"><strong>Apodo</strong></span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="Perfil_modificar-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock modal %} {% block scripts %}
+
+{% endblock Contenido %} {% block modal %} {% endblock modal %} {% block scripts %}
 <script src="/static/Proyecto_Ekiria/js/jsTablesInformations.js"></script>
+<script src="/static/ModuloUsuarios/js/mainAdministration.js"></script>
 {% endblock scripts %}

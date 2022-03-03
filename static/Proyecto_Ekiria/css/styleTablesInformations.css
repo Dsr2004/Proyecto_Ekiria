@@ -79,9 +79,11 @@
     margin: 20px 5%;
     border-radius: 20px;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.28);
-    overflow: auto;
 }
-
+.Table.Content-table .Information .over{
+    overflow-x:  auto;
+    height: 400px;
+}
 .Table.Content-table .Information .cardHeader {
     position: sticky;
     top: -20px;

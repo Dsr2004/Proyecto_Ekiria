@@ -1,10 +1,14 @@
 #-----------------------------------------Import's---------------------------------------------------
+from ast import Return
 from asyncio import transports
 from email import header
 from html.entities import html5
+from msilib.schema import SelfReg
+from multiprocessing import context
+from pyexpat import model
 from re import template
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
-from django.views.generic import TemplateView, CreateView
+from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView, View
 from django.urls import reverse_lazy
 from rest_framework.decorators import api_view
 from django.shortcuts import render, redirect
@@ -18,16 +22,18 @@ from django.contrib.sessions.models import Session
 from datetime import datetime
 from rest_framework.views import APIView
 from Usuarios.models import Usuario
-from Usuarios.forms import Regitro
+from Usuarios.forms import Regitro, Editar
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
 from rest_framework.renderers import TemplateHTMLRenderer
+from django.views.decorators.csrf import csrf_exempt
+
 
 #--------------------------------------Templates Loaders------------------------------------
 class Login(ObtainAuthToken, TemplateView):
     template_name = 'registration/login.html'
     def post(self,request,*arg, **kwargs):
         if request:
-            login_serializer = self.serializer_class(data = request.data, context={'request':request})
+            login_serializer = self.serializer_class(data = request. b , context={'request':request})
             print(request)
             if login_serializer.is_valid():
                 user=login_serializer.validated_data['user']
@@ -58,6 +64,7 @@ class Login(ObtainAuthToken, TemplateView):
                         return Response(headers=header)
                         # header = {'Authorization':'Token '+token.key}
                         # return Response(headers=header, template_name="index.html")
+                    
                     
                 else:
                     return Response({'error':'Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
@@ -103,13 +110,93 @@ class Register(CreateView):
     template_name = 'registration/Registration.html'
     success_url = reverse_lazy("Inicio")
     
-def Perfil(request):
-    return render(request, "UserInformation/Perfil.html")
-def Admin(request):
-    context = {1,2,3,3,4,5,6,7,8,9,10}
-    return render(request, "UsersConfiguration/UsersAdministration.html",{'rep':context})
+# def Perfil(request):
+#     return render(request, "UserInformation/Perfil.html")
+# # def Admin(request):
+# #     context = {1,2,3,3,4,5,6,7,8,9,10}
+# #     return render(request, "UsersConfiguration/UsersAdministration.html",{'rep':context})
 
-# class Notification(TemplateView):
+class Perfil(DetailView):
+    model = Usuario
+    context_object_name="Usuario"
+    template_name="UserInformation/Perfil.html"
+    queryset=Usuario.objects.all()
+    
+
+class EditarPerfil(UpdateView):
+    model = Usuario
+    form_class = Editar
+    template_name = "UserInformation/EditarPerfil.html"
+    def post(self, request, *args, **kwargs):
+        form=self.form_class(request.POST or None, request.FILES or None, instance=self.get_object())
+        if form.is_valid():
+            form.save()
+            print(request.FILES)
+            username = request.POST.get('username')
+            Object = Usuario.objects.get(username=username)
+            id = Object.id_usuario
+            return redirect("../Perfil/"+str(id))
+        else:
+            e=form.errors
+            print(e)
+            return JsonResponse({"x":e})
+
+def Admin(request):
+    model = Usuario
+    filter = "yes"
+    template_name = "UsersConfiguration/UsersAdministration.html"
+    if request.method=="GET":
+        queryset = model.objects.all()
+    elif request.method=="POST":
+        filter = request.POST.get("data")
+        queryset = model.objects.filter(nombres=filter)
+    return render(request, template_name, {"Usuario":queryset,"contexto":filter})
+    
+    
+class CreateUser(CreateView):
+    model = Usuario
+    form_class = Regitro
+    template_name = 'UsersConfiguration/CreateUsers.html'
+    success_url = reverse_lazy("Administracion")
+
+class UpdateUser(UpdateView):
+    model = Usuario    
+    template_name = 'UsersConfiguration/CreateUsers.html'
+    form_class = Regitro
+    success_url=reverse_lazy("Administracion")   
+# class Notification(View):
 #     template_name = 'UserInformation/Notification.html'
+# class Notificacion(TemplateView):
+#     template_name="UserInformation/Notification.html"
+
+@csrf_exempt
 def Notification(request):
+    if request.POST:
+        id_estado= request.POST.get('id_estado')
+        Object = Usuario.objects.get(id_usuario=id_estado)
+        estado = Object.estado
+        if estado == True:
+            Object.estado = False
+            Object.save()
+        elif estado == False:
+            Object.estado = True
+            Object.save()
     return render(request, "UserInformation/Notification.html")
+    
+def CambiarEstadoUsuario(request):
+    print(request.POST)
+    if request.method=="POST":
+        id = request.POST["estado"]
+        update=Usuario.objects.get(id_usuario=id)
+        estado=update.estado
+        if estado==True:
+            update.estado=False
+            update.save()
+        elif estado==False:
+            update.estado=True
+            update.save()
+        else:
+            return redirect("Administracion")
+        return HttpResponse(update)
+    else:
+        return JsonResponse({"x":"no"})

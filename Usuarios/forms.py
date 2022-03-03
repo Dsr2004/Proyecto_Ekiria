@@ -20,6 +20,7 @@ class Regitro(forms.ModelForm):
         model = Usuario
         
         fields=[
+            'img_usuario',
             'username',
             'nombres',
             'apellidos',
@@ -34,10 +35,19 @@ class Regitro(forms.ModelForm):
             'cod_postal',
         ]
         widgets = {
+            
             'email': forms.EmailInput(
                 attrs={
+                    'id':'Idate',
                     'required':'requerid',
                     'autocomplete':'off',
+                }
+            ),
+            'img_usuario': forms.FileInput(
+                attrs={
+                    'id':'imagen',
+                    'style':'display:none;',
+                    'type':'file',
                 }
             ),
             'username': forms.TextInput(
@@ -60,6 +70,7 @@ class Regitro(forms.ModelForm):
             ),
             'telefono': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
@@ -98,15 +109,18 @@ class Regitro(forms.ModelForm):
             ),
             'direccion': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
             'cod_postal': forms.TextInput(
                 attrs={
+                    'required':'requerid',
                     'autocomplete':'off',
                 }
             ),
         }
+        
     def clean_password2(self):
         """Validación de contraseña
         
@@ -117,7 +131,7 @@ class Regitro(forms.ModelForm):
         password2 = self.cleaned_data.get('password2')
         
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError('Contraseña no coinciden')
+            raise forms.ValidationError('La Contraseña no coincide')
         return password2
     
     def save(self,commit = True):
@@ -126,3 +140,72 @@ class Regitro(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class Editar(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        
+        fields=[
+            'username',
+            'img_usuario',
+            'telefono',
+            'celular',
+            'email',
+            'municipio',
+            'direccion',
+            'cod_postal',
+        ]
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={
+                    'id':'Idate',
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+
+            'img_usuario': forms.FileInput(
+                attrs={
+                    'id':'imagen',
+                    'style':'display:none;',
+                }
+            ),
+            'username': forms.TextInput(
+                attrs={
+                    'style':'display:none;',
+                    'autocomplete':'off',
+                }
+            ),
+            'telefono': forms.TextInput(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+            'celular': forms.TextInput(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+            
+            'municipio': forms.Select(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+            'direccion': forms.TextInput(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+            'cod_postal': forms.TextInput(
+                attrs={
+                    'required':'requerid',
+                    'autocomplete':'off',
+                }
+            ),
+        }

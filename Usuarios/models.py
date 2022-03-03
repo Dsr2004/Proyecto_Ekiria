@@ -1,5 +1,6 @@
 
 from email.policy import default
+from turtle import width
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from Configuracion.models import Rol
@@ -73,8 +74,8 @@ class Usuario(AbstractBaseUser):
     img_usuario = models.ImageField(
         'Imagen De Perfil', 
         upload_to='perfil/', 
-        default="perfil/profile.jpg",
-        max_length=200, blank=True, null=True
+        default="profile.jpg",
+        max_length=200,
         )
     municipio = models.ForeignKey(Municipio, null=True, blank=True, on_delete=models.CASCADE)
     direccion = models.CharField(blank=True, null=True, max_length=250)

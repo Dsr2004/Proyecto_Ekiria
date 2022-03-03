@@ -27,6 +27,9 @@
     margin-left: 20px;
     margin-top: 12px;
 }
+.Perfil_informacion label{
+    font-weight: 700;
+}
 
 .Perfil_informacion .row {
     margin: 20px 0;

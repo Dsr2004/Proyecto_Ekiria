@@ -1,0 +1,34 @@
+{% extends 'Menu_Usuario.html' %}
+{% block head %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Editar</title>
+        <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleEditarPerfil.css">
+    </head>
+{% endblock head %}
+{% block Contenido %}
+    <form method="post" action="{% url 'EditarPerfil' object.id_usuario %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="imagen"><img src="/media/{{form.img_usuario.value}}"></label>
+        {{form.img_usuario}}
+        <label for="">Telefono:</label>
+        {{form.telefono}}
+        <label for="">Celular:</label>
+        {{form.celular}}
+        <label for="">Email:</label>
+        {{form.email}}
+        <label for="">Municipio:</label>
+        {{form.municipio}}
+        <label for="">Dirección:</label>
+        {{form.direccion}}
+        <label for="">Codigo Postal:</label>
+        {{form.cod_postal}}
+        {{form.username}}
+        <button type="submit">Editar</button>
+    </form>
+    
+        
+        
+{% endblock Contenido %}

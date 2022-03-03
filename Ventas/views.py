@@ -138,7 +138,14 @@ class EditarTipo_Servicio(UpdateView):#actualziar
         else:
             return redirect("Ventas:adminVentas")
 
-def CambiarEstadoTipoServicio(request):#estado
+class ElimininarTipoServicio(DeleteView):
+    model = Tipo_servicio
+    template_name = "Tipo_Servicio/EliminarTipoServicio.html"
+    success_url = reverse_lazy("Ventas:adminVentas")
+
+
+def CambiarEstadoTipoServicio(request):
+    print(request.POST)
     if request.method=="POST":
         id = request.POST["estado"]
         update=Tipo_servicio.objects.get(id_tipo_servicio=id)
