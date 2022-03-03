@@ -93,3 +93,4 @@ class Servicio_PersonalizadoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(Servicio_PersonalizadoForm, self).__init__(*args, **kwargs) 
         self.fields['tipo_servicio_id'].queryset = Tipo_servicio.objects.filter(nombre__in=["Manicure","Pedicure","manicure","pedicure","MANICURE","PEDICURE"]).filter(estado=True)
+        self.fields['img_servicio'].label = False

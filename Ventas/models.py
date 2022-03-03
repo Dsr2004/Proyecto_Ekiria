@@ -1,3 +1,4 @@
+from typing_extensions import Required
 from django.db import models
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
@@ -84,7 +85,7 @@ class Servicio_Personalizado(models.Model):
     descripcion=models.TextField("Descripcion",null=True,blank=True)
     img_servicio=models.ImageField("Imagen del Servicio", upload_to="Ventas/servicios_personalizados",null=False, blank=False)
     precio=models.IntegerField("Precio",null=True, blank=True)
-    tipo_servicio_id=models.ForeignKey(Tipo_servicio, verbose_name="Tipo de Servicio", on_delete=models.CASCADE,null=True, blank=True, db_column="tipo_servicio_id")
+    tipo_servicio_id=models.ForeignKey(Tipo_servicio, verbose_name="Tipo de Servicio", on_delete=models.CASCADE,null=False, blank=False, db_column="tipo_servicio_id")
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
     fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
     estado=models.BooleanField("Estado", default=True)

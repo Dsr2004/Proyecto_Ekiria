@@ -46,32 +46,8 @@ class ServiciosPersonalizados(CreateView):
     model = Servicio_Personalizado
     form_class = Servicio_PersonalizadoForm
     template_name = "AddservicioPer.html"
-
+    success_url="Ventas:catalogo"
     
-
-    def post(self, request, *args, **kwargs):
-        if request.is_ajax():
-            form = self.form_class(request.POST)
-            if form.is_valid():
-                nuevo_TipoServicio = Tipo_servicio(
-                    nombre = form.cleaned_data.get('nombre'),
-                    estado = form.cleaned_data.get('estado')
-                )
-                nuevo_TipoServicio.save()
-                mensaje = f"{self.model.__name__} registrado correctamente"
-                error = "No hay error!"
-                response = JsonResponse({"mensaje":mensaje, "error":error})
-                response.status_code = 201
-                return response
-            else:
-                errores=form.errors
-                print(errores)
-                mensaje = f"{self.model.__name__} no se ha podido actualizar!"
-                response = JsonResponse({"mensaje":mensaje, 'errors': errores})
-                response.status_code = 400
-                return response
-        else:
-            return redirect("Ventas:adminVentas")
 
 """
 <----------------------------------------------------------------->
