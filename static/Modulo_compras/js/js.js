@@ -87,13 +87,15 @@ function registrar(){
       location.reload();
     },
     error: function(errors){
-      // $('.form-control').addClass('is-valid')
+      $('#agregarprov').find(".text-danger").text("");
+      for (let e in errors.responseJSON["errors"]){
+        let campo=$('#agregarprov').find("input[name="+e+"]")
+        campo.addClass("is-invalid")
+        $('#'+e).text(errors.responseJSON['errors'][e])
+      }
    
-      console.log(errors)
-      //  console.log(errors.responseJSON["errors"])
-      // let gerrores = errors.responseJSON["errors"]
-        mostrarerrores(errors)
-         }
+
+       }
   });
 }
 function cambioestado(id){
@@ -101,37 +103,33 @@ function cambioestado(id){
   let token = $("#camestado").find('input[name=csrfmiddlewaretoken]').val()
   console.log(token)
   swal.fire({
-    title: 'Esta seguro de querer realizar esta acción?',
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: 'confirmar',
-    cancelButtonText: 'cancelar',
+    confirmButtonText: 'Yes, delete it!',
+    cancelButtonText: 'No, cancel!',
     reverseButtons: true
-  }).then((result) => {
-    if (result.isConfirmed) {
-        'Cambiado correctamente',
-        'El estado del proveedor a sido cambiado exitosamente!',
-        'success'
+  }).then((willDelete) => {
+    if (willDelete.isConfirmed) {
+      $.ajax({
+        data: {"csrfmiddlewaretoken":token, "estado":ids},
+        url: $("#camestado").attr('action'),
+        type: $("#camestado").attr('method'),
+        success: function(data){
+          swal.fire("Se ha modificado el proveedor", {
+            icon: 'success',
+            }).then(function() {
+                location.reload()
+             });
+        },
+        error: function(errors){
+          alert("Error: kiwi perro "+errors.responseJSON)
+        }
+      }); 
+      
+    } else {
+      location.reload()
     }
-  }).then(function() {
-    $.ajax({
-      data: {"csrfmiddlewaretoken":token, "estado":ids},
-      url: $("#camestado").attr('action'),
-      type: $("#camestado").attr('method'),
-      success: function(data){
-      window.location.href="/compras/listarprov/"
-      },
-      error: function(errors){
-        console.log("no")
-        alert("Error:"+errors.responseJSON)
-      }
-    }); 
-
   });
 }
-
-
-
-
-
-

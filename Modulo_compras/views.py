@@ -1,5 +1,5 @@
 import json
-from turtle import update
+from pickle import TRUE
 from django.shortcuts import render, redirect
 from Modulo_compras.forms import ProveedorForm
 from .models import Proveedor
@@ -73,6 +73,22 @@ def Actprov (request):
     return redirect('listarprov')
 
 def cambiarestado(request):
-    return HttpResponse ("kiwi")
+    if request.is_ajax:
+        if request.method=="POST":
+            id = request.POST["estado"]
+            update=Proveedor.objects.get(id_proveedor=id)
+            estatus=update.estado
+            if estatus==True:
+                update.estado=False
+                update.save()
+            elif estatus==False:
+                update.estado=True
+                update.save()
+            else:
+                return redirect('listarprov')
+    return JsonResponse({"kiwi":"yes"})
+  
+
+
 
    
