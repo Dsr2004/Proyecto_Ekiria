@@ -1,3 +1,4 @@
+{%load crispy_forms_tags%}
 <div class="modal-dialog"  role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -7,9 +8,12 @@
         <div class="modal-body">
           <form method='post' id=CrearRoles action="{%url 'CreateRol'%}">
             {% csrf_token %}
-            {{form}}
+            {{form.nombre|as_crispy_field}}
+            <p id="nombre" class="bg-light text-danger"></p>
+            {{form.descripcion|as_crispy_field}}
+            <p id="descripcion" class="bg-light text-danger"></p>
            <div class="modal-footer" id="botones">
-          <button type="button" class="btn btn-warning" onclick="CrearUsuario()">Confirmar</button>
+          <button type="button" class="btn btn-warning" onclick="CrearRol()">Confirmar</button>
           <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
           </div>
           </form>

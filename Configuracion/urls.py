@@ -10,7 +10,7 @@ urlpatterns=[
     path("Admin/", views.Admin, name="Admin"),
     path("Empleado/", views.Empleado, name="Empleado"),
     path("Cliente/", views.Cliente, name="Cliente"),
+    path("EditarRol/<int:pk>",views.EditarRolView.as_view(), name="updateRol"),
     path("CrearRol/", views.CreateRolView.as_view(), name="CreateRol"),
-    path("EditarRol/<int:pk>",views.EditRolView.as_view(), name="updateRol"),
     path("EstadoRol/",views.EstadoRol, name="estado")
 ]

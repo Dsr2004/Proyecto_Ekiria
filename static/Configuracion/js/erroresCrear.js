@@ -3,7 +3,7 @@ function abrir_modal_crear(url){
         $(this).modal("show")
     });
 }
-function CrearUsuario(){
+function CrearRol(){
     $.ajax({
 
         data:$('#CrearRoles').serialize(),
@@ -13,11 +13,20 @@ function CrearUsuario(){
             location.reload()
         },
         error: function(error){
+            $('#CrearRoles').find('.text-danger').text('')
+            $('#CrearRoles').removeClass('is-invalid')
             for (let item in error.responseJSON["errores"]){
                 let input =$("#CrearRoles").find('input[name='+item+']')
                 input.addClass("is-invalid")
-               
+                $('#'+item).text(error.responseJSON["errores"][item])
+                
+            for(let item in error.responseJSON["errores"]){
+                let textarea=$("#CrearRoles").find('textarea[name='+item+']')
+                textarea.addClass("is-invalid")
+                $('#'+item).text(error.responseJSON["errores"][item])
+            }
         }
+        
     }
     });
 }

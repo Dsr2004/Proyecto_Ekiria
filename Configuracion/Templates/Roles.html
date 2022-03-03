@@ -67,28 +67,7 @@
 
 </div>
 <!-- Modal Editar Rol -->
-<div class="modal fade " id="EditarRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar Rol</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form method="POST" action="">
-         {% csrf_token %}
-        <label for="nombreRolEdi">Nombre</label>
-        {{updateForm.nombre}}
-        <label for="descripRol">Descripcion</label><br>
-        {{updateForm.descripcion}}
-      </div>
-      <div class="modal-footer" id="botones">
-        <button type="submit" class="btn btn-warning">Editar</button>
-        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="cancelar">Cancelar</button>
-      </div>
-        </form>
-    </div>
-  </div>
+
  <div class="modal fade " id="EditarRol" role="dialog" >
   
 </div>
@@ -122,10 +101,10 @@
 {%block scripts%} 
 
 <script src="/static/Configuracion/js/main.js"></script>
-<script src="{%static 'Configuracion/js/errores.js'%}"></script>
+<script src="{%static 'Configuracion/js/erroresCrear.js'%}"></script>
 <script src="/static/Configuracion/js/habilitar.js"></script>
 <script src="/static/bootstrap/js/bootstrap.js"></script>
-<script src="/static/Configuracion/js/Roles.js"></script>
+<script src="/static/Configuracion/js/ErroresEditar.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
