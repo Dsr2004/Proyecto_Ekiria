@@ -11,13 +11,28 @@
 //   }
 // });
 
-// function fg(){
-//     if (value == True)
-//     var i=document.getElementById("Habilitar").value = inabilitado;
-//     else{
-//         var i=document.getElementById("Habilitar").value = Habilitado;
-//     }
-// }
+function ds(id){
+    let cosa = id
+    let token = $('#estadoRol').find('input[name=csrfmiddlewaretoken]').val()
+        $.ajax({
+            data:{'csrfmiddlewaretoken':token, 'estado':cosa},
+            url:$('#estadoRol').attr('action'),
+            type:$('#estadoRol').attr('method'),
+            success: function (data) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1000
+                  }).then(function() {
+                      location.reload();
+                  });
+
+            },error:function (data) {
+            }
+        });
+};
 
 // $(document).ready(function() {
 //     $('#checkbox').change(function() {
@@ -27,4 +42,3 @@
 //             csrfmiddlewaretoken: '{{ csrf_token }}' 
 //         });
 //     });
-// }); 

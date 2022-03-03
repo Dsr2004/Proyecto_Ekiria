@@ -1,5 +1,6 @@
 {%extends 'Menu_Usuario.html'%}
 {%load crispy_forms_tags%}
+{%load static%}
   {% block head %}
     <head>
       <meta charset="UTF-8">
@@ -36,12 +37,12 @@
                   <td>{{Rol.descripcion}}</td>
                   <td><button type="button" class="btn btn-outline-success" onclick="abrir_modal_editar ('{% url 'updateRol' Rol.id_rol %}')">Editar</button></td>
                   <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
-                  <td><div class="switch form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="checkboxRol" name="esatdo" onclick="CambiarEstadoTipoServicio('{{Rol.id_rol}}')"  {% if tipo_servicio.estado == True%}checked{%endif%}>
-                  </div></td>
+                  <td><form method="POST" action="{%url 'estado' %}" id="estadoRol" ><label class="switch"><div class="form-check form-switch"> 
+                  {%csrf_token%}
+                    <input class="form-check-input" {% if Rol.estado == True %}checked {%endif%} type="checkbox" name="estado" onclick="ds({{Rol.id_rol}})"></div>
+                  </label></form></td> 
                 </tr>
               {%endfor%}
-
               {%else%}
               <h1>No hay registros</h1>
 
@@ -49,8 +50,8 @@
             </tbody>
       </table>
       <div class="contNuevoRol">
-        
-        <button class="nuevoRol" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol" onclick="abrir_modal_crear('{% url 'CreateRol' %}')">
+
+        <button class="nuevoRol" type="button" onclick="abrir_modal_crear('{% url 'CreateRol' %}')">
           Crear Nuevo Rol
         </button>
         <img class="imgAgregar" src="/static/Configuracion/img/Agregar.png" type="button"data-bs-toggle="modal" data-bs-target="#CrearRol">
@@ -62,7 +63,7 @@
 {% block modal %} 
       <!-- <div class="modal fade" id="CreateRol" role="dialog"></div> -->
 <!-- Modal Crear Rol -->
-<div class="modal fade" id="CrearRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+<!-- <div class="modal fade" id="CrearRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -89,7 +90,12 @@
       </div>
     </div>
   </div>
-</div> 
+</div>  -->
+
+
+<div class="modal fade " id="CreateRol" role="dialog">
+
+</div>
 <!-- Modal Editar Rol -->
 <div class="modal fade " id="EditarRol" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
@@ -146,9 +152,11 @@
 {%block scripts%} 
 
 <script src="/static/Configuracion/js/main.js"></script>
+<script src="{%static 'Configuracion/js/errores.js'%}"></script>
 <script src="/static/Configuracion/js/habilitar.js"></script>
 <script src="/static/bootstrap/js/bootstrap.js"></script>
 <script src="/static/Configuracion/js/Roles.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 {%endblock scripts%}

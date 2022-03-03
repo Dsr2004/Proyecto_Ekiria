@@ -1,20 +1,24 @@
+function abrir_modal_crear(url){
+    $("#CreateRol").load(url, function(){
+        $(this).modal("show")
+    });
+}
 function CrearUsuario(){
-    
     $.ajax({
 
-        data:(ErroresCreacion),
+        data:$('#CrearRoles').serialize(),
         url:$('#CrearRoles').attr('action'),
         type:$('#CrearRoles').attr('method'),
         success: function (response) {
-            
+            location.reload()
         },
-        error: function ErroresCreacion(error){
-            $('#errores').html("");
-            let error ="";
-            for (let item in errores.responseJSON.error){
-                error+= '<div class="alert alert-danger"<strong>' + errores.responseJSON.error[item] + '</strong></div>'
-            }
-            $('#errores').append(error)
+        error: function(error){
+            for (let item in error.responseJSON["errores"]){
+                let input =$("#CrearRoles").find('input[name='+item+']')
+                input.addClass("is-invalid")
+               
         }
+    }
     });
 }
+
