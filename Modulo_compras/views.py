@@ -1,3 +1,4 @@
+from gc import get_objects
 import json
 from pickle import TRUE
 from django.shortcuts import render, redirect
@@ -58,11 +59,21 @@ def Eliminarprov(request, id_proveedor):
     # return render(request,'proveedores.html',{'prov_form':prov_form})
 
 
-def Modificarprov(request):
-    id_proveedor= request.POST.get("id_proveedor")
-    form=Proveedor.objects.filter(id_proveedor=id_proveedor).first()
-    Proveedores=ProveedorForm(instance=form)
-    return render(request,'modificarprov.html',{'proveedores': Proveedores , 'Form':form, 'id':id_proveedor})
+class modificarprov(UpdateView):
+    model= Proveedor
+    form_class=ProveedorForm
+    template_name='modalprov/editarprov.html'
+
+    def post(self,request, *args, **kwargs):  
+            prov_form = ProveedorForm(request.POST,instance=self.get_object())
+            if prov_form.is_valid():
+                prov_form.save()
+            else:
+                errors=prov_form.errors
+                mensaje=f"{self.model.__name__} no ha sido registrado"
+                response=JsonResponse({"errors":errors,"mensaje":mensaje})
+                response.status_code=400
+                return response
 
 def Actprov (request):
     pk = request.POST.get("id_proveedor")

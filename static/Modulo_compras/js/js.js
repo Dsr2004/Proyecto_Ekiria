@@ -65,6 +65,15 @@ function agregarprov(url){
 
 };
 
+function modificarprov(url){
+  $("#editar_prov").load(url,function() {
+    $(this).modal('show')
+  })
+ 
+ };
+
+
+
 function mostrarerrores(errors){
   $('#errores').html("");
   let error = "";
@@ -77,7 +86,7 @@ function mostrarerrores(errors){
 }
 
 
-function registrar(){
+function registrarcp(){
  
   $.ajax({
     data: $("#agregarprov").serialize(),
@@ -98,6 +107,29 @@ function registrar(){
        }
   });
 }
+
+function registrarmp(){
+ 
+  $.ajax({
+    data: $("#editarprov").serialize(),
+    url: $("#editarprov").attr('action'),
+    type: $("#editarprov").attr('method'),
+    success: function(response){
+      location.reload();
+    },
+    error: function(errors){
+      $('#editarprov').find(".text-danger").text("");
+      for (let e in errors.responseJSON["errors"]){
+        let campo=$('#editarprov').find("input[name="+e+"]")
+        campo.addClass("is-invalid")
+        $('#'+e).text(errors.responseJSON['errors'][e])
+      }
+   
+
+       }
+  });
+}
+
 function cambioestado(id){
   let ids= id
   let token = $("#camestado").find('input[name=csrfmiddlewaretoken]').val()
