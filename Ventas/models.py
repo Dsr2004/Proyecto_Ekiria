@@ -40,8 +40,7 @@ class Servicio(models.Model):
         verbose_name_plural = 'servicios'
 
     def __str__(self):
-        c_servicio="{} cuesta ${}".format(self.nombre, self.precio)
-        return c_servicio
+        return self.nombre
 
     def get_absolute_url(self):
         return reverse("Ventas:detalleSer", kwargs={"slug": self.slug})
@@ -83,7 +82,7 @@ class Catalogo(models.Model):
 class Servicio_Personalizado(models.Model):
     id_servicio_personalizado=models.AutoField("Id del Servicio Personalizado", primary_key=True, unique=True)
     descripcion=models.TextField("Descripcion",null=True,blank=True)
-    img_servicio=models.ImageField("Imagen del Servicio", upload_to="Ventas/servicios",null=False, blank=False)
+    img_servicio=models.ImageField("Imagen del Servicio", upload_to="Ventas/servicios_personalizados",null=False, blank=False)
     precio=models.IntegerField("Precio",null=True, blank=True)
     tipo_servicio_id=models.ForeignKey(Tipo_servicio, verbose_name="Tipo de Servicio", on_delete=models.CASCADE,null=True, blank=True, db_column="tipo_servicio_id")
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
@@ -96,7 +95,7 @@ class Servicio_Personalizado(models.Model):
         verbose_name_plural = 'servicios_personalizados'
 
     def __str__(self):
-        c_servicio="El servicio personalizado es: {}".format(self.descripcion)
+        c_servicio=f"El servicio personalizado es: {self.descripcion}"
         return c_servicio
 
 # modelos para administrar los pedidos

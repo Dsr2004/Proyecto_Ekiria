@@ -147,6 +147,12 @@ function abrir_modal_eliminar(url){
   });
 }
 
+function abrir_modal_AgregarServicioCatalogo(url){
+  $("#AgregarServicioCatalogo").load(url, function (){ 
+    $(this).appendTo("body").modal('show');
+  });
+}
+
 // catalogo
 
 function abrir_modal_detalleServicio(url){
@@ -195,7 +201,7 @@ function registrar(){
         for (let i in error.responseJSON["errors"]){
           let x=$("#formCrearTipo_Servicio").find('input[name='+i+']')
           x.addClass("is-invalid")
-             
+          $("#"+i).text( error.responseJSON["errors"][i])
       }
     }
   });

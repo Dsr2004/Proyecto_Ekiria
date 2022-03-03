@@ -1,0 +1,37 @@
+<style>
+.paginacionCatalogo,.paginacionCatalogo a  {
+text-decoration: none;
+color: black !important;
+}
+.paginacionCatalogo ul{
+    grid-template-columns: repeat(999,auto) !important;   
+}
+.paginacionCatalogo{
+    left: -570px;
+}
+
+</style>
+<div  class="row paginacionCatalogo">
+<nav class="paginacionCatalogoNav ">
+    <ul class="pagination">
+        
+        {% if servicios.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">Primera</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{servicios.previous_page_number}}">&laquo;</a></li>
+        {% endif %}
+        
+        {% for pagina in paginas %}
+            <li class="page-item{% if pagina_actual == pagina %} active{% endif %}">
+                <a class="page-link" href="?page={{pagina}}">{{pagina}}</a>
+            </li>
+        {% endfor %}
+        
+
+        {% if servicios.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{servicios.next_page_number}}">&raquo;</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{servicios.paginator.num_pages}}">Última</a></li>
+        {% endif %}
+        
+    </ul>
+</nav>
+</div>
