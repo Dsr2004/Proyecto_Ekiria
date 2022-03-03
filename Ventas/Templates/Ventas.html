@@ -91,7 +91,7 @@
                         <div class="iconA">
                            <button class="btn" style="transform: scale(1.5);" onclick="abrir_modal_eliminar('{% url 'Ventas:eliminarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
                               <i class="fa-solid fa-trash"></i> </button>
-                              <form action="{%url 'Ventas:editarEstadoTipoServicio'%}" method="post" id="EstadoTipoServicioForm2">
+                              <form action="{%url 'Ventas:editarEstadoTipoServicio'%}" method="post" id="EstadoServicioForm">
                                  {%csrf_token%}
                                  <div class="form-check form-switch switch-Cambio-TipoServicio">
                                     <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="esatdo" onclick="CambiarEstadoTipoServicio('{{tipo_servicio.id_tipo_servicio}}')"  {% if tipo_servicio.estado == True%}checked{%endif%}>

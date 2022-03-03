@@ -53,9 +53,13 @@
               <td>{{servicio.estado}}</td>
               <td><a href="{%url 'Ventas:editarServicio' servicio.id_servicio %}"><i class="fas fa-eye" style="font-size: 25px;"></i></a></td>
               <td>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked onclick="CambioEstadoServicio()">
-                  </div>
+                <form action="{%url 'Ventas:editarEstadoTipoServicio'%}" method="post" id="EstadoTipoServicioForm2">
+                  {%csrf_token%}
+                  <div class="form-check form-switch switch-Cambio-TipoServicio">
+                     <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="esatdo" onclick="CambiarEstadoServicio('{{tipo_servicio.id_tipo_servicio}}')"  {% if servicio.estado == True%}checked{%endif%}>
+                   </div>                                  
+               </form>
+        
               </td>
            </tr>
             {% endfor %}

@@ -229,7 +229,42 @@ function editar(){
   });
 }
 
-
+function CambiarEstadoServicio(id){
+  let ids=id
+let token = $("#EstadoServicioForm").find('input[name=csrfmiddlewaretoken]').val()
+console.log(token)
+  swal({
+    title: "Estas seguro?",
+    text: "Se modificara el estado de el Tipo de Servicio",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      swal("OK! Se ha modificado el tipo de servicio", {
+        icon: "success",
+      }).then(function() {
+          $.ajax({
+            data: {"csrfmiddlewaretoken":token, "estado":ids},
+            url: $("#EstadoServicioForm").attr('action'),
+            type: $("#EstadoServicioForm").attr('metho  d'),
+            success: function(data){
+              window.location.href="/Ventas/AdminVentas/"
+            },
+            error: function(error){
+              console.log("no")
+              alert("Error:"+error.responseJSON)
+            }
+          }); 
+       
+   });
+    } else {
+      swal("OK! Ningun dato del tipo de servicio ha sido modificado");
+      window.location.href="/Ventas/AdminVentas/"
+    }
+  });
+  return false;
+}
 
 
 
