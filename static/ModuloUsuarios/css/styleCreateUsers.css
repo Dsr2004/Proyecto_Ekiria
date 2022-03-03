@@ -159,6 +159,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transform: translateY(-120%);
     font-size: 14px;
     color: #2ecece;
+    display: table-column;
 }
 
 .flexbox input:focus+.lbl-nombre.invalidate .text-nomb,

@@ -7,7 +7,6 @@ from msilib.schema import SelfReg
 from multiprocessing import context
 from pyexpat import model
 from re import template
-from coreapi import Object
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView, View
 from django.urls import reverse_lazy
