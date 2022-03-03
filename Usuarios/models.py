@@ -70,7 +70,7 @@ class Usuario(AbstractBaseUser):
     email = models.EmailField('Correo Electrónico', unique=True)
     fec_nac = models.DateField('Fecha De Nacimiento')
     tipo_documento = models.ForeignKey(TipoDocumento, null=True, blank=True, on_delete=models.CASCADE)
-    num_documento = models.CharField('Número De Identificación',max_length=10)
+    num_documento = models.CharField('Número De Identificación',max_length=10, unique=True)
     img_usuario = models.ImageField(
         'Imagen De Perfil', 
         upload_to='perfil/', 

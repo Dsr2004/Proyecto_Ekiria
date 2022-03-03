@@ -137,7 +137,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     width: 100%;
     height: 100%;
     border-bottom: 3px solid #2ecece;
-    transform: translateX(-1110%);
+    display: none;
     transition: 0.08s ease;
 }
 
@@ -152,11 +152,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     left: 0;
     transition: 0.1s ease;
     color: #000;
+    transform: translateY(-120%);
 }
 
 .flexbox input:focus+.lbl-nombre.validated .text-nomb,
 .flexbox input:valid+.lbl-nombre.validated .text-nomb {
-    transform: translateY(-120%);
     font-size: 14px;
     color: #2ecece;
     display: table-column;
@@ -164,19 +164,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .flexbox input:focus+.lbl-nombre.invalidate .text-nomb,
 .flexbox input:target+.lbl-nombre.invalidate .text-nomb {
-    transform: translateY(-120%);
     font-size: 14px;
     color: #2ecece;
 }
 
 .flexbox input:focus+.lbl-nombre.invalidate::after,
 .flexbox input:valid+.lbl-nombre.invalidate::after {
-    transform: translateX(0%);
+    display: block;
 }
 
 .flexbox input:focus+.lbl-nombre.validated::after,
 .flexbox input:valid+.lbl-nombre.validated::after {
-    transform: translateX(0%);
+    display: block;
 }
 
 .btm {

@@ -16,8 +16,12 @@
         <div class="cardbox">
             <div class="Card">
                 <div>
-                    <div class="numbers">1506</div>
+                    <div class="numbers" id="NumUser"></div>
                     <div class="cardName">Usuarios</div>
+                    
+                    <script>
+                        let CantUsuarios
+                    </script>
                 </div>
                 <div class="iconA">
                     <i class="mdi mdi-account-multiple"></i>
@@ -274,6 +278,8 @@
                         function Object() {
                             listar(field);
                         }
+                        CantUsuarios = document.getElementById("NumUser");
+                        CantUsuarios.innerHTML = contador
                     </script> {%else%}
                     <!-- Fin del listado de datos -->
                     <tr>

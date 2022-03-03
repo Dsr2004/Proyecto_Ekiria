@@ -31,7 +31,7 @@ let content = document.querySelector('.content');
 var nav = document.querySelector('.nav');
 var grid = document.querySelector('.grid');
 var img = document.querySelector('.Logo');
-var menu = document.querySelector('.menu');
+var menu = document.querySelector('.menus');
 menuToggle.onclick = function() {
         menuToggle.classList.toggle('activar');
         nav.classList.toggle('activar');
