@@ -9,13 +9,19 @@
             {% csrf_token %}
         <Label><strong>Nombre:   </strong></Label>
         {{form.nombre}}
-        <p id="nombre" class="bg-light text-danger"></p>
+        <p id="nombre" class="bg-light text-danger" style="color: #dc3545;"></p>
         <br>
         <Label><strong>Estado:   </strong></Label>
         <div class="form-check form-switch">
             {{form.estado}}
-            <p id="estado" class="bg-light text-danger"></p>
+            <p id="estado" class="bg-light text-danger" style="color: #dc3545;"></p>
         </div>
+        <br>
+        <hr>
+        <h3>Fecha de creacion</h3>
+        <h4>{{object.fecha_creacion|date:'j F Y'}}</h4>
+        <h3>Fecha de Modificacion</h3>
+        <h4>{{object.fecha_actualizacion|date:'j F Y P'}}</h4>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
             <button type="button" class="btn btn-primary" onclick="editar();">Modificar</button>

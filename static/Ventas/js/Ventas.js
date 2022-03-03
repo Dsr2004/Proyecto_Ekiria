@@ -147,6 +147,12 @@ function abrir_modal_eliminar(url){
   });
 }
 
+function abrir_modal_AgregarServicioCatalogo(url){
+  $("#AgregarServicioCatalogo").load(url, function (){ 
+    $(this).appendTo("body").modal('show');
+  });
+}
+
 // catalogo
 
 function abrir_modal_detalleServicio(url){
@@ -191,14 +197,12 @@ function registrar(){
       window.location.href="/Ventas/AdminVentas/"
     },
     error: function(error){
-      $(document).ready(function(){
-        let formulario = $("#formCrearTipo_Servicio")
-        formulario.find('.bg-danger').text('');
-         for(let e in error.responseJSON.error){
-           let txt=error.responseJSON.error[e]
-              $("span[data-key='"+e+"']").text(txt)
-         }
-    });
+        $("#formCrearTipo_Servicio").find('.text-danger').text('');
+        for (let i in error.responseJSON["errors"]){
+          let x=$("#formCrearTipo_Servicio").find('input[name='+i+']')
+          x.addClass("is-invalid")
+          $("#"+i).text( error.responseJSON["errors"][i])
+      }
     }
   });
 }
@@ -247,7 +251,7 @@ console.log(token)
           $.ajax({
             data: {"csrfmiddlewaretoken":token, "estado":ids},
             url: $("#EstadoTipoServicioForm2").attr('action'),
-            type: $("#EstadoTipoServicioForm2").attr('method'),
+            type: $("#EstadoTipoServicioForm2").attr('metho  d'),
             success: function(data){
               window.location.href="/Ventas/AdminVentas/"
             },

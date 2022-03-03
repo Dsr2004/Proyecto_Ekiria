@@ -3,6 +3,8 @@ from Ventas.views import *
 app_name="Ventas"
 urlpatterns = [
     path('Catalogo/', Catalogo.as_view(), name="catalogo"),
+    path('AgregarServicioCatalogo/', AgregarServicioalCatalogo.as_view(), name="agregarServicioCatalogo"),
+
     path('Carrito/', Carrito.as_view(), name="carrito"),
     path('TerminarPedido/', TerminarPedido.as_view(), name="TerminarPedido"),
     path('Calendario/', Calendario.as_view(), name="calendario"),

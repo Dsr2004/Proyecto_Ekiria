@@ -1,14 +1,9 @@
 from django.contrib import admin
-from Ventas.models import Servicio, Tipo_servicio
-
-class ServicioAdmin(admin.ModelAdmin):
-    pass
-
-class TipoServicioAdmin(admin.ModelAdmin):
-    pass
+from Ventas.models import Servicio, Tipo_servicio,Catalogo
 
 
-admin.site.register(Servicio,ServicioAdmin)
-admin.site.register(Tipo_servicio,TipoServicioAdmin)
+admin.site.register(Servicio)
+admin.site.register(Tipo_servicio)
+admin.site.register(Catalogo)
 
 # Register your models here.

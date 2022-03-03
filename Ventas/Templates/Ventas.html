@@ -18,7 +18,15 @@
 <h1>Administracion Ventas</h1>
 <div class="container">
 
-   <h2>catalogo</h2>
+   <div class="row">
+      <div class="col-10">
+        <h2>Catalogo</h2>
+      </div>
+      <div class="col-2">
+        <button class="btn" onclick="abrir_modal_AgregarServicioCatalogo('{% url 'Ventas:agregarServicioCatalogo' %}')"><span class="float" style="font-size: 48px; margin-right: -80%;"><i class="fa-solid fa-circle-plus"></i></span></button>
+      </div>
+    </div>
+   
     <table class="table table-striped">
         <thead>
            <tr>
@@ -30,56 +38,33 @@
            </tr>
         </thead>
         <tbody>
-           <tr>
-              <th scope="row">1</th>
-              <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
-              <td>Uñas Sencillas</td>
-              <td>$15000</td>
-              <td>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
-                  </div>
-              </td>
-           </tr>
-           <tr>
-              <th scope="row">2</th>
-              <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
-              <td>Uñas Sencillas</td>
-              <td>$15000</td>
-              <td>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" >
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Habilitar para el catalogo</label>
-                  </div>
-              </td>
-           </tr>
-           <tr>
-              <th scope="row">3</th>
-              <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
-              <td>Uñas Sencillas</td>
-              <td>$15000</td>
-              <td>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
-                  </div>
-              </td>
-           </tr>
-           <tr>
-              <th scope="row">4</th>
-              <td><img src="{%static 'Ventas/img/arociris.jpg'%}" class="" width="150" height="100"></td>
-              <td>Uñas Sencillas</td>
-              <td>$15000</td>
-              <td>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                    <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
-                  </div>
-              </td>
-           </tr>
+           
+           {% if servicios %}
+              {% for servicio in  servicios%}
+              <tr>
+               <th scope="row">{{ forloop.counter }}</th>
+               <td><img src="/media/{{servicio.img_servicio}}" class="" width="150" height="100"></td>
+               <td><p>{{servicio.nombre}}</p></td>
+               <td>${{servicio.precio}}</td>
+               <td>
+                 <div class="form-check form-switch">
+                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                     <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
+                   </div>
+               </td>
+            </tr>
+              {% endfor %}
+                 
+              {% else %}
+              <h1>No se encontraron servicios que se encuentren disponibles, <strong>Para habilitar servicios primero crealos, luego vuelve</strong></h1>
+           {% endif %}
         </tbody>
      </table>
+     
+     {% if servicios %}
+        {% include 'paginacion.html' %}
+     {% endif %}
+        
      <div class="row">
     <div class="col-10">
       <h2>Tipos de Servicio</h2>
@@ -117,6 +102,7 @@
                </div>
                
              {% endfor %} 
+             
             {% else %}
                No hay tipos de servicios registrados
          {% endif %}
@@ -131,6 +117,9 @@
 <div class="modal fade" id="EliminarTipoServicio"  role="dialog">
 
 </div>
+<div class="modal fade" id="AgregarServicioCatalogo" role="dialog">
+
+</div>
 </div>
 {% endblock Contenido %}
 
@@ -142,6 +131,5 @@
 {% block scripts %}
 <script src="/static/Ventas/js/Ventas.js"></script> 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript">window.CSRF_TOKEN = "{{ csrf_token }}"; </script> 
 {% endblock scripts %}
    
