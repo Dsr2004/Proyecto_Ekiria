@@ -14,11 +14,18 @@
 {% block Contenido %}
 <h1>Agrega un servicio personalizado</h1>
 <br><br><br><br>
+{% if form.errors %}
+    si 
+    {% else %}
+        no
+{% endif %}
 <div class="container">
-    <form action="" enctype="multipart/form-data" method="post">
+    <form action="{%url 'Ventas:personalizar'%}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
     <div class="row">
         <div class="col">
             {{form.tipo_servicio_id|as_crispy_field}}
+           
         </div>
         <div class="col">
             <i class="fas fa-file-image" style="width: 50px; font-size: 60px;"></i>

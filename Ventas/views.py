@@ -1,3 +1,4 @@
+from sre_constants import SUCCESS
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -46,7 +47,10 @@ class ServiciosPersonalizados(CreateView):
     model = Servicio_Personalizado
     form_class = Servicio_PersonalizadoForm
     template_name = "AddservicioPer.html"
-    success_url="Ventas:catalogo"
+    success_url=reverse_lazy("Ventas:catalogo")
+
+    
+        
     
 
 """

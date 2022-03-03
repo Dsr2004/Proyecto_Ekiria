@@ -26,7 +26,7 @@
     justify-content:left;
     flex-wrap:wrap;
     overflow: auto;
-    height: 75vh;
+    height: 95%;
     width: 99%;
     min-height: 1vh;
     padding: 10px;
@@ -42,6 +42,8 @@
     box-shadow: 10px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
     border-radius: 20px;
     margin-right: 25px;
+    margin-bottom: 50px;
+}
     
 }
 .card .nombreP{
