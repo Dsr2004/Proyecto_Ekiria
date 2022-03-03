@@ -127,8 +127,14 @@
         </div>
     </div>
   </div>
+  <script>
+    let texto="hola soy maria tu asistente virtual"
+    const hablar =(texto)=> speechSynthesis.speak(new SpeechSynthesisUtterance(texto));
+    hablar(texto);
+  </script> 
   {% endblock modal %}
   {%block scripts%} 
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script src="/static/Configuracion/js/main.js"></script>
   <script src="/static/bootstrap/js/bootstrap.js"></script>

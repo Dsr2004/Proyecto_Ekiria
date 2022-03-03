@@ -19,12 +19,12 @@
 //     }
 // }
 
-$(document).ready(function() {
-    $('#checkbox').change(function() {
-        $.post("/EstadoRol/", {
-            id: '{{Rol.id_rol}}', 
-            id_rol: this.checked, 
-            csrfmiddlewaretoken: '{{ csrf_token }}' 
-        });
-    });
-}); 
+// $(document).ready(function() {
+//     $('#checkbox').change(function() {
+//         $.post("/EstadoRol/", {
+//             id: '{{Rol.id_rol}}', 
+//             id_rol: this.checked, 
+//             csrfmiddlewaretoken: '{{ csrf_token }}' 
+//         });
+//     });
+// }); 

@@ -36,10 +36,9 @@
                   <td>{{Rol.descripcion}}</td>
                   <td><button type="button" class="btn btn-outline-success" onclick="abrir_modal_editar ('{% url 'updateRol' Rol.id_rol %}')">Editar</button></td>
                   <td><button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#GrupoRol">Agregar <br>Nivel</button></td>
-                  <label class="switch">
-                    <input data-bs-toggle="toggle" type="checkbox" value="{{Rol.id_rol}}" id="checkboxRol">
-                    <span class="slider round"></span>
-                  </label>
+                  <td><div class="switch form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="checkboxRol" name="esatdo" onclick="CambiarEstadoTipoServicio('{{Rol.id_rol}}')"  {% if tipo_servicio.estado == True%}checked{%endif%}>
+                  </div></td>
                 </tr>
               {%endfor%}
 
@@ -77,9 +76,9 @@
         {% comment %} {{createform.errors}} {% endcomment %}
         {{createform.errors}}
         <div id="errores"></div>
-        <label for="nombreRol">Nombre</label><br>
+        <label for="nombreRol" >Nombre</label><br>
         {{crear.nombre}}
-        <label for="descripRol">Descripcion</label><br>
+        <label for="descripRol" >Descripcion</label><br>
         {{crear.descripcion}}
         <br>
          <div class="modal-footer" id="botones">
