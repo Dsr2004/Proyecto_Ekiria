@@ -395,12 +395,12 @@ body {
     margin: 0 49%;
 }
 
-.menu.activar {
+.menus.activar {
     position: sticky;
     height: 65px;
 }
 
-.menu {
+.menus {
     position: sticky;
     top: 0px;
     margin: 0 auto;

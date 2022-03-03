@@ -183,3 +183,20 @@ def Notification(request):
             Object.save()
     return render(request, "UserInformation/Notification.html")
     
+def CambiarEstadoUsuario(request):
+    print(request.POST)
+    if request.method=="POST":
+        id = request.POST["estado"]
+        update=Usuario.objects.get(id_usuario=id)
+        estado=update.estado
+        if estado==True:
+            update.estado=False
+            update.save()
+        elif estado==False:
+            update.estado=True
+            update.save()
+        else:
+            return redirect("Administracion")
+        return HttpResponse(update)
+    else:
+        return JsonResponse({"x":"no"})

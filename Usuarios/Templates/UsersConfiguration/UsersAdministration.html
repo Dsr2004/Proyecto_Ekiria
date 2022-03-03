@@ -132,7 +132,14 @@
                         <td id="municipio{{User.username}}"></td>
                         <td id="rol{{User.username}}"></td>
                         <td id="last_login{{User.username}}"></td>
-                        <td id="estado{{User.username}}">{{User.estado}}</td>
+                        <td id="estado{{User.username}}">
+                            <form action="{%url 'editarEstadoUsuario'%}" method="post" id="EstadoUsuarioForm">
+                                {%csrf_token%}
+                                <div class="form-check form-switch switch-Cambio-TipoServicio">
+                                   <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="estado" onclick="CambiarEstadoUsuario('{{User.id_usuario}}')"  {% if User.estado == True%}checked{%endif%}>
+                                 </div>                                  
+                             </form>
+                        </td>
 
                         <td id="edit{{User.username}}">
                             <a href="{%url 'UpdateUser' User.id_usuario%}">
@@ -143,7 +150,7 @@
 
                         <!-- Función encargada de listar y filtrar los objectos -->
                         <script>
-                            function listar(field, contador) {
+                            function listar(field) {
                                 field.forEach(field => {
                                     if (
                                         field.name.toLowerCase().includes(search.value.toLowerCase()) ||
@@ -162,6 +169,7 @@
                                         td.style.display = "table-cell";
                                         td = document.getElementById("last_name" + field.username);
                                         td.innerHTML = field.last_name;
+                                        td.style.display = "table-cell";
                                         td = document.getElementById("telefono" + field.username);
                                         td.innerHTML = field.telefono;
                                         td.style.display = "table-cell";
@@ -264,7 +272,7 @@
                     <!-- Instancia encargada de mandar los objectos para ser listados -->
                     <script>
                         function Object() {
-                            listar(field, contador);
+                            listar(field);
                         }
                     </script> {%else%}
                     <!-- Fin del listado de datos -->
