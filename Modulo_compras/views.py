@@ -68,6 +68,7 @@ class modificarprov(UpdateView):
             prov_form = ProveedorForm(request.POST,instance=self.get_object())
             if prov_form.is_valid():
                 prov_form.save()
+                return redirect('listarprov')
             else:
                 errors=prov_form.errors
                 mensaje=f"{self.model.__name__} no ha sido registrado"
