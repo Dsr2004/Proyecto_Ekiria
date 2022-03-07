@@ -1,5 +1,5 @@
 {% extends "Menu_Usuario.html" %}
-{% load jsonify %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block head %}
 <head>
@@ -61,13 +61,7 @@
 {% endblock Contenido %}
 
 {% block scripts %}
-<script src="/static/Ventas/js/Ventas.js"></script>
+<script src="{% static 'Ventas/js/Servicios.js' %}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-{% if form.errors %}
-   <script>
-       let errorsd='{{form.errors|jsonify}}'
-       mostrarErroresEditarServicio(errorsd)
-   </script>
-    {% endif %}
 {% endblock scripts %}

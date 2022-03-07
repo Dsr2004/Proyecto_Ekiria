@@ -64,7 +64,7 @@ class Servicio(models.Model):
 # modelo para administrar el catalogo
 class Catalogo(models.Model):
     id_catalogo=models.AutoField("Id del Catalogo", primary_key=True, unique=True)
-    servicio_id=models.OneToOneField(Servicio, verbose_name="Servicio", on_delete=models.CASCADE,null=True, blank=True,db_column="servicio_id")
+    servicio_id=models.ForeignKey(Servicio, verbose_name="Servicio", on_delete=models.CASCADE,null=True, blank=True,db_column="servicio_id")
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
     fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
     estado=models.BooleanField("Estado", default=True)
@@ -75,9 +75,7 @@ class Catalogo(models.Model):
         ordering = ['id_catalogo','servicio_id','fecha_creacion','fecha_actualizacion','estado']
 
     def __str__(self):
-        c_catalogo=Servicio.objects.filter(id_servicio=self.servicio_id)
-        c_catalogo=str(c_catalogo)
-        return f'El servicio es{c_catalogo}'
+        return str(self.servicio_id.id_servicio)
 
 # modelo para administrar los servicios personalizados     
 class Servicio_Personalizado(models.Model):

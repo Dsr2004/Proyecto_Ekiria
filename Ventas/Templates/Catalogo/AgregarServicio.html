@@ -5,10 +5,19 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        
+        {% if NoEnCatalogo %}
+          
+          {% for servicio in NoEnCatalogo %}
+            {{servicio.id_servicio}} <br>
+          {% endfor %}
+        {% endif %}
+          
+
           <form id="formEditarTipo_Servicio" method="post">
             {% csrf_token %}
              <Label><strong>Servicio:   </strong></Label>
-            {{form.servicio_id}}
+          
             <br>
         
         <div class="modal-footer">

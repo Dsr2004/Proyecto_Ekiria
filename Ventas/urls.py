@@ -19,8 +19,10 @@ urlpatterns = [
 
     path('AgregarServicio/', AgregarServicio.as_view(), name="agregarServicio"),
     path('ListadoServicios/', ListarServicio.as_view(), name="listarServicios"),
+    path('CambiarEstadoServicio/', CambiarEstadoServicio, name="cambiarEstadoServicio"),
     path('EditarServicio/<int:pk>', EditarServicio.as_view(), name="editarServicio"),
     path('<slug>/', ServicioDetalle.as_view(), name="detalleSer"), 
+    
 
     path('AgregarCita/', AgregarCita.as_view(), name="agregarCita"),
     path('ListadoCitas/', ListarCita.as_view(), name="listarCitas"),

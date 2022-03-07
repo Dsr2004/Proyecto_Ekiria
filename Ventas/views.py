@@ -7,8 +7,8 @@ from django.core.paginator import Paginator
 
 
 from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm,CatalogoForm, Servicio_PersonalizadoForm
-from .models import Servicio, Tipo_servicio, Servicio_Personalizado
-
+from .models import Servicio, Tipo_servicio, Servicio_Personalizado, Catalogo
+from Ventas import models
 
 """
 <----------------------------------------------------------------->
@@ -21,12 +21,24 @@ class Catalogo(ListView):
     context_object_name = "servicios"
     template_name = "Catalogo.html"
 
-class AgregarServicioalCatalogo(CreateView):
-    model = Catalogo()
+class AgregarServicioalCatalogo(View):
+    model = Catalogo
     form_class =   CatalogoForm
     template_name = "Catalogo/AgregarServicio.html"
+    def get(self, request, *args, **kwargs):
+        servicesInCatalogo=models.Catalogo.objects.all()
+        servicesInCatalogoList=[]
+        for i in servicesInCatalogo:
+            id=i.servicio_id.id_servicio
+            servicesInCatalogoList.append(id)
+        ServiciosNoEnCatalogo=Servicio.objects.exclude(id_servicio__in=servicesInCatalogoList).filter(estado=True)
+        contexto={
+            "form":self.form_class,
+            "NoEnCatalogo":ServiciosNoEnCatalogo
+        }
 
-    
+        return render(request, self.template_name, contexto)
+
 
 class QuitarServicioalCatalogo(DeleteView):
     pass
@@ -64,7 +76,7 @@ class AdminVentas(TemplateView):
 
     def get(self,request, *args, **kwargs):
         formTipo_Servicio = EditarTipoServicioForm
-        servicios=Servicio.objects.filter(estado=True)
+        servicios=models.Catalogo.objects.all()
 
         paginado=Paginator(servicios, 5)
         pagina = request.GET.get("page") or 1
@@ -109,7 +121,6 @@ class AgregarTipo_Servicio(CreateView):#crear
                 return response
             else:
                 errores=form.errors
-                print(errores)
                 mensaje = f"{self.model.__name__} no se ha podido actualizar!"
                 response = JsonResponse({"mensaje":mensaje, 'errors': errores})
                 response.status_code = 400
@@ -149,7 +160,6 @@ class ElimininarTipoServicio(DeleteView):
 
 
 def CambiarEstadoTipoServicio(request):
-    print(request.POST)
     if request.method=="POST":
         id = request.POST["estado"]
         update=Tipo_servicio.objects.get(id_tipo_servicio=id)
@@ -183,6 +193,15 @@ class AgregarServicio(CreateView):#crear
     template_name = "AgregarServicio.html"
     success_url = reverse_lazy('Ventas:listarServicios')
 
+    def form_valid(self, form, **kwargs):
+        objeto=form.save()
+        if objeto.estado == True:
+            pk=int(objeto.id_servicio)
+            ServicioToCatalogo = models.Catalogo.objects.create(servicio_id=objeto)
+            ServicioToCatalogo.save()
+        objeto.save()
+        return redirect("Ventas:listarServicios")
+
 class EditarServicio(UpdateView):#actualizar
     model = Servicio
     form_class = ServicioForm
@@ -198,6 +217,23 @@ class ServicioDetalle(DetailView):#detalle
     queryset = Servicio.objects.all()
     context_object_name = "DetailSs"
     template_name = "Catalogo/Detalle_Servicio.html"
+
+def CambiarEstadoServicio(request):
+    if request.method == "POST":
+        id = request.POST["estado"]
+        update=Servicio.objects.get(id_servicio=id)
+        estatus=update.estado
+        if estatus==True:
+            update.estado=False
+            update.save()
+        elif estatus==False:
+            update.estado=True
+            update.save()
+        else:
+            return redirect("Ventas:listarServicios")
+        return HttpResponse(update)
+    else:
+        return redirect("Ventas:listarServicios")
 
 """
 <----------------------------------------------------------------->
@@ -228,5 +264,4 @@ def ejemplo(request, id):
 
 def pruebas(request):
     query = Servicio.objects.values_list("descripcion")
-    print(query)
     return render(request, "prueba.html", {"form":ServicioForm})

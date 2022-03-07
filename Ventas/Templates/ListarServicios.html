@@ -1,5 +1,5 @@
 {% extends "Menu_Usuario.html" %}
-
+{% load static %}
 {% block head %}
 <head>
     <meta charset="UTF-8">
@@ -50,13 +50,15 @@
               <td>{{servicio.slug}}</td>
               <td>{{servicio.fecha_creacion}}</td>
               <td>{{servicio.fecha_actualizacion}}</td>
-              <td>{{servicio.estado}}</td>
+              <td>
+              {% if servicio.estado == True %}Activo{%else%}Inactivo{% endif %}
+                </td>
               <td><a href="{%url 'Ventas:editarServicio' servicio.id_servicio %}"><i class="fas fa-eye" style="font-size: 25px;"></i></a></td>
               <td>
-                <form action="{%url 'Ventas:editarEstadoTipoServicio'%}" method="post" id="EstadoTipoServicioForm2">
+                <form action="{%url 'Ventas:cambiarEstadoServicio'%}" method="post" id="EstadoServicioForm">
                   {%csrf_token%}
                   <div class="form-check form-switch switch-Cambio-TipoServicio">
-                     <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="esatdo" onclick="CambiarEstadoServicio('{{tipo_servicio.id_tipo_servicio}}')"  {% if servicio.estado == True%}checked{%endif%}>
+                     <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="esatdo" onclick="CambiarEstadoServicio('{{servicio.id_servicio}}')"  {% if servicio.estado == True%}checked{%endif%}>
                    </div>                                  
                </form>
         
@@ -78,6 +80,6 @@
 {% endblock Contenido %}
 
 {% block scripts %}
-<script src="/static/Ventas/js/Ventas.js"></script>
+<script src="{% static 'Ventas/js/Servicios.js' %}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 {% endblock scripts %}

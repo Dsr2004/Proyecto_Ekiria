@@ -43,13 +43,13 @@
               {% for servicio in  servicios%}
               <tr>
                <th scope="row">{{ forloop.counter }}</th>
-               <td><img src="/media/{{servicio.img_servicio}}" class="" width="150" height="100"></td>
-               <td><p>{{servicio.nombre}}</p></td>
-               <td>${{servicio.precio}}</td>
+               <td><img src="/media/{{servicio.servicio_id.img_servicio}}" class="" width="150" height="100"></td>
+               <td><p>{{servicio.servicio_id.nombre}}</p></td>
+               <td>${{servicio.servicio_id.precio}}</td>
                <td>
                  <div class="form-check form-switch">
-                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-                     <label class="form-check-label" for="flexSwitchCheckChecked">Desabilitar para el catalogo</label>
+                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if servicio.estado %}checked{% endif %}>
+                     <label class="form-check-label" for="flexSwitchCheckChecked">{% if servicio.estado %}Deshabilitar {%else%}Habilitar{% endif %} para el catalogo</label>
                    </div>
                </td>
             </tr>
@@ -91,10 +91,10 @@
                         <div class="iconA">
                            <button class="btn" style="transform: scale(1.5);" onclick="abrir_modal_eliminar('{% url 'Ventas:eliminarTipoServicio' tipo_servicio.id_tipo_servicio %}')">
                               <i class="fa-solid fa-trash"></i> </button>
-                              <form action="{%url 'Ventas:editarEstadoTipoServicio'%}" method="post" id="EstadoServicioForm">
+                              <form id="EstadoTipoServicioForm2" method="post" action="{% url 'Ventas:editarEstadoTipoServicio' %}" >
                                  {%csrf_token%}
                                  <div class="form-check form-switch switch-Cambio-TipoServicio">
-                                    <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="esatdo" onclick="CambiarEstadoTipoServicio('{{tipo_servicio.id_tipo_servicio}}')"  {% if tipo_servicio.estado == True%}checked{%endif%}>
+                                    <input class="form-check-input kljkldsfjh" type="checkbox" role="switch"  name="esatdo" onclick="CambiarEstadoTipoServicio('{{tipo_servicio.id_tipo_servicio}}')"  {% if tipo_servicio.estado == True%}checked{%endif%}>
                                   </div>                                  
                               </form>
                         </div>
@@ -129,7 +129,10 @@
 
 
 {% block scripts %}
-<script src="/static/Ventas/js/Ventas.js"></script> 
+<script src="{% static 'Ventas/js/Admin.js' %}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    
+</script>
 {% endblock scripts %}
    

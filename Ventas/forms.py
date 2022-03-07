@@ -56,7 +56,7 @@ class Tipo_servicioForm(forms.ModelForm):
         model=Tipo_servicio
         fields="__all__"
         widgets={
-            'nombre':forms.TextInput(attrs={'class':'form-control'}),
+            'nombre':forms.TextInput(attrs={'class':'form-control','autocomplete':'off'}),
             'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  "style":"margin-left: -5px; height: 30px; width: 60px; margin-top: -5px"})
         }
     def __init__(self, *args, **kwargs):
