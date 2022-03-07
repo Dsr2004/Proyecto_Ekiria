@@ -16,8 +16,13 @@
         <div class="cardbox">
             <div class="Card">
                 <div>
-                    <div class="numbers">1506</div>
+                    <div class="numbers" id="NumUser"></div>
                     <div class="cardName">Usuarios</div>
+                    
+                    <script>
+                        let CantUsuarios
+                        var ContadorServicios = 0
+                    </script>
                 </div>
                 <div class="iconA">
                     <i class="mdi mdi-account-multiple"></i>
@@ -27,7 +32,9 @@
         <div class="cardbox">
             <div class="Card">
                 <div>
-                    <div class="numbers">2019</div>
+                    <div class="numbers" id="NumSer"> 
+                        
+                    </div>
                     <div class="cardName">Servicios</div>
                 </div>
                 <div class="iconA">
@@ -35,6 +42,18 @@
                 </div>
             </div>
         </div>
+                        {% for Servicio in contexto %}
+                            {% if Servicio.estado == True%} 
+                                <script>
+                                    ContadorServicios++
+                                </script>
+                            {% endif %}
+                        {% endfor %}
+                        <script>
+                            let insertServices = document.getElementById("NumSer");
+                            insertServices.innerHTML = ContadorServicios
+                        </script>
+        
         <div class="cardbox">
             <div class="Card">
                 <div>
@@ -205,7 +224,7 @@
                                         td = document.getElementById("estado" + field.username);
                                         td.style.display = "table-cell";
                                         errores = document.getElementById("errores");
-                                        errores.innerHTML = "No Hay más registros";
+                                        errores.innerHTML = "No hay más registros";
                                     } else {
                                         td = document.getElementById("username" + field.username);
                                         td.style.display = "none";
@@ -274,6 +293,8 @@
                         function Object() {
                             listar(field);
                         }
+                        CantUsuarios = document.getElementById("NumUser");
+                        CantUsuarios.innerHTML = contador
                     </script> {%else%}
                     <!-- Fin del listado de datos -->
                     <tr>

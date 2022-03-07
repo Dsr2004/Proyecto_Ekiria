@@ -50,10 +50,12 @@ body {
     font-size: 15px;
     margin-top: 15px;
     margin-left: 10px;
+    color: var(--white);
+    border-bottom: 1px solid #572364;
 }
 
 .Perfil a p sup {
-    color: red;
+    color: yellow;
     font-size: 11px;
 }
 
@@ -368,6 +370,23 @@ body {
         float: right;
         transition: 0.2s;
     }
+    .content ul {
+        position: static;
+        width: 20% !important;
+        display: flex;
+        padding: 0 20px;
+        flex-wrap: wrap;
+        list-style: none;
+        float: right;
+        z-index: 10;
+        margin-top: 10px;
+        margin-right: 20px;
+    }
+    
+    .content.activar ul {
+        width: 25% !important;
+    }
+    
 }
 
  ::-webkit-scrollbar-thumb:hover {
@@ -435,10 +454,10 @@ body {
 
 .content ul {
     position: static;
-    width: 25%;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    gap: 5px;
+    width: 30%;
+    display: flex;
+    padding: 0 20px;
+    flex-wrap: wrap;
     list-style: none;
     float: right;
     z-index: 10;
@@ -447,7 +466,7 @@ body {
 }
 
 .content.activar ul {
-    width: 30%;
+    width: 35%;
 }
 
 .content ul .links {
@@ -470,7 +489,7 @@ body {
 }
 
 .content ul .links .atext {
-    margin-left: 5px;
+    margin-left: 15px;
 }
 
 .content ul li {
@@ -555,14 +574,15 @@ body {
     }
     .content ul {
         position: static;
-        width: 35%;
-        display: grid;
-        grid-template-columns: repeat(3, auto);
-        gap: 5px;
+        width: 25%;
+        display: flex;
+        padding: 0 20px;
+        flex-wrap: wrap;
         list-style: none;
         float: right;
         z-index: 10;
-        margin-right: 10px;
+        margin-top: 10px;
+        margin-right: 20px;
     }
     .content.activar ul {
         width: 45%;
@@ -599,8 +619,16 @@ body {
         width: 68%;
     }
     .Logo.activar {
-        margin-left: 30%;
+        margin:0 30%;
         margin-top: 7px;
+    }
+    .Logo{
+        width: 40px;
+        height: 50px;
+        position: fixed;
+        top: 5px;
+        z-index: 10;
+        margin: 0 20%;
     }
     .toggle.activar {
         left: 33%;
@@ -656,6 +684,21 @@ body {
     }
     .content {
         width: 100%;
+    }
+    .content ul{
+        position: static;
+        width: 35%;
+        display: flex;
+        padding: 0 20px;
+        flex-wrap: wrap;
+        list-style: none;
+        float: right;
+        z-index: 10;
+        margin-top: 10px;
+        margin-right: 20px;
+    }
+    .content.activar ul {
+        width: 40%;
     }
     .content.activar {
         display: none;
