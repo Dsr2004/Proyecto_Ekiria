@@ -32,9 +32,20 @@ class AgregarServicioalCatalogo(View):
             id=i.servicio_id.id_servicio
             servicesInCatalogoList.append(id)
         ServiciosNoEnCatalogo=Servicio.objects.exclude(id_servicio__in=servicesInCatalogoList).filter(estado=True)
+
+        paginado=Paginator(ServiciosNoEnCatalogo, 5)
+        pagina = request.GET.get("page") or 1
+        posts = paginado.get_page(pagina)
+        pagina_actual=int(pagina)
+        paginas=range(1,posts.paginator.num_pages+1)
+
+
         contexto={
             "form":self.form_class,
-            "NoEnCatalogo":ServiciosNoEnCatalogo
+            "NoEnCatalogo":ServiciosNoEnCatalogo,
+            'servicios':posts,
+            'paginas':paginas,
+            'pagina_actual':pagina_actual
         }
 
         return render(request, self.template_name, contexto)
