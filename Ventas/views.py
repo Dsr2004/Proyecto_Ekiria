@@ -28,33 +28,16 @@ class AgregarServicioalCatalogo(View):
     def get(self, request, *args, **kwargs):
         servicesInCatalogo=models.Catalogo.objects.all()
         servicesInCatalogoList=[]
-        if request.is_ajax():
-            page = request.GET.get('page')
-            try:
-                posts = paginator.page(page)
-            except Exception as e:
-                posts = paginator.page(1)
-            except Exception:
-                posts = paginator.page(paginator.num_pages)
-            services_list = list(posts.object_list.values())
-            result = {'has_previous': posts.has_previous(),
-                  'has_next': posts.has_next(),
-                  'num_pages': posts.paginator.num_pages,
-                  'user_li': services_list}
-            return JsonResponse(result)
-        else:
-            for i in servicesInCatalogo:
-                id=i.servicio_id.id_servicio
-                servicesInCatalogoList.append(id)
-            ServiciosNoEnCatalogo=Servicio.objects.exclude(id_servicio__in=servicesInCatalogoList).filter(estado=True)
+        for i in servicesInCatalogo:
+            id=i.servicio_id.id_servicio
+            servicesInCatalogoList.append(id)
+        ServiciosNoEnCatalogo=Servicio.objects.exclude(id_servicio__in=servicesInCatalogoList).filter(estado=True)
 
-            paginado=Paginator(ServiciosNoEnCatalogo, 3)
-            pagina = request.GET.get("page") or 1
-            posts = paginado.get_page(pagina)
-            pagina_actual=int(pagina)
-            paginas=range(1,posts.paginator.num_pages+1)
-
-
+        paginado=Paginator(ServiciosNoEnCatalogo, 3)
+        pagina = request.GET.get("page") or 1
+        posts = paginado.get_page(pagina)
+        pagina_actual=int(pagina)
+        paginas=range(1,posts.paginator.num_pages+1)
 
         contexto={
             "form":self.form_class,
