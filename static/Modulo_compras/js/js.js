@@ -58,6 +58,13 @@ function eliminarprov(id_proveedor) {
       })
 };
 
+function agregarprod(url){
+  $("#agregar_prov").load(url,function() {
+    $(this).modal('show')
+  })
+ 
+ };
+
 function agregarprov(url){
  $("#agregar_prov").load(url,function() {
    $(this).modal('show')
@@ -83,6 +90,29 @@ function mostrarerrores(errors){
 
   $('#errores').append(error)
 
+}
+
+
+function registrarcpd(){
+ 
+  $.ajax({
+    data: $("#agregarprod").serialize(),
+    url: $("#agregarprod").attr('action'),
+    type: $("#agregarprod").attr('method'),
+    success: function(response){
+      location.reload();
+    },
+    error: function(errors){
+      $('#agregarprod').find(".text-danger").text("");
+      for (let e in errors.responseJSON["errors"]){
+        let campo=$('#agregarprod').find("input[name="+e+"]")
+        campo.addClass("is-invalid")
+        $('#'+e).text(errors.responseJSON['errors'][e])
+      }
+   
+
+       }
+  });
 }
 
 
