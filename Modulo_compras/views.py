@@ -17,6 +17,10 @@ def Productos (request):
 def Conf_compra (request):
     return render(request,"conf_compra.html")
 
+def Listcompra(request):
+    Proveedores=Proveedor.objects.all()
+    prov_form=ProveedorForm()
+    return render(request,'proveedores.html',{'prov_form':prov_form , 'proveedores': Proveedores})
 
 def Listarprov(request):
     Proveedores=Proveedor.objects.all()
