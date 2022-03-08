@@ -1,51 +1,50 @@
-<div class="modal-dialog" role="document">
+<div class="modal-dialog  modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <h5 class="modal-title" id="exampleModalLabel">Servicios Para el catalogo <strong>{{servicios|length}}</strong></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
         {% if NoEnCatalogo %}
-          
+        <div class="card-deck">
           {% for servicio in NoEnCatalogo %}
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
+          <div class="card">
+            <img src="/media/{{servicio.img_servicio}}" alt="{{servicio.nombre}}" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{servicio.nombre}}</h5>
+              <p class="card-text" style="width:100%; height: 50px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{servicio.descripcion}}</p>
             </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-              </div>
+            <div class="card-footer">
+              <a href="#" class="btn btn-primary">Añadir al Catalogo</a>
             </div>
           </div>
-            {{servicio.nombre}} <br>
           {% endfor %}
-        {% endif %}
-          
-
-          <form id="formEditarTipo_Servicio" method="post">
-            {% csrf_token %}
-             <Label><strong>Servicio:   </strong></Label>
-          
-            <br>
-        
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-primary" onclick="editar();">Modificar</button>
+        </div>
+        <div  class="row paginacionCatalogo">
+          <nav class="paginacionCatalogoNav ">
+              <ul class="pagination">
+                  
+                  {% if NoEnCatalogo.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?page=1">Primera</a></li>
+                  <li class="page-item"><a class="page-link" href="?page={{NoEnCatalogo.previous_page_number}}">&laquo;</a></li>
+                  {% endif %}
+                  
+                  {% for pagina in paginas %}
+                      <li class="page-item{% if pagina_actual == pagina %} active{% endif %}">
+                          <a class="page-link" href="?page={{pagina}}">{{pagina}}</a>
+                      </li>
+                  {% endfor %}
+                  {% if NoEnCatalogo.has_next %}
+                  <li class="page-item"><a class="page-link" href="?page={{NoEnCatalogo.next_page_number}}">&raquo;</a></li>
+                  <li class="page-item"><a class="page-link" href="?page={{NoEnCatalogo.paginator.num_pages}}">Última</a></li>
+                  {% endif %}
+                  
+              </ul>
+          </nav>
           </div>
-        </form>
+        {% else %}
+        <h1>No hay servicios para Agregar</h1>
+        {% endif %} 
       </div>
-      
     </div>
-  </div>
+</div>

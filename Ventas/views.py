@@ -28,22 +28,38 @@ class AgregarServicioalCatalogo(View):
     def get(self, request, *args, **kwargs):
         servicesInCatalogo=models.Catalogo.objects.all()
         servicesInCatalogoList=[]
-        for i in servicesInCatalogo:
-            id=i.servicio_id.id_servicio
-            servicesInCatalogoList.append(id)
-        ServiciosNoEnCatalogo=Servicio.objects.exclude(id_servicio__in=servicesInCatalogoList).filter(estado=True)
+        if request.is_ajax():
+            page = request.GET.get('page')
+            try:
+                posts = paginator.page(page)
+            except Exception as e:
+                posts = paginator.page(1)
+            except Exception:
+                posts = paginator.page(paginator.num_pages)
+            services_list = list(posts.object_list.values())
+            result = {'has_previous': posts.has_previous(),
+                  'has_next': posts.has_next(),
+                  'num_pages': posts.paginator.num_pages,
+                  'user_li': services_list}
+            return JsonResponse(result)
+        else:
+            for i in servicesInCatalogo:
+                id=i.servicio_id.id_servicio
+                servicesInCatalogoList.append(id)
+            ServiciosNoEnCatalogo=Servicio.objects.exclude(id_servicio__in=servicesInCatalogoList).filter(estado=True)
 
-        paginado=Paginator(ServiciosNoEnCatalogo, 5)
-        pagina = request.GET.get("page") or 1
-        posts = paginado.get_page(pagina)
-        pagina_actual=int(pagina)
-        paginas=range(1,posts.paginator.num_pages+1)
+            paginado=Paginator(ServiciosNoEnCatalogo, 3)
+            pagina = request.GET.get("page") or 1
+            posts = paginado.get_page(pagina)
+            pagina_actual=int(pagina)
+            paginas=range(1,posts.paginator.num_pages+1)
+
 
 
         contexto={
             "form":self.form_class,
-            "NoEnCatalogo":ServiciosNoEnCatalogo,
-            'servicios':posts,
+            "servicios":ServiciosNoEnCatalogo,
+            "NoEnCatalogo":posts,
             'paginas':paginas,
             'pagina_actual':pagina_actual
         }
@@ -274,5 +290,43 @@ def ejemplo(request, id):
     consuta=Servicio.objects.filter(id_servicio=id)
 
 def pruebas(request):
-    query = Servicio.objects.values_list("descripcion")
-    return render(request, "prueba.html", {"form":ServicioForm})
+    newsdata = Servicio.objects.all()
+    per_page = 4
+    obj_paginator = Paginator(newsdata, per_page)
+    first_page = obj_paginator.page(1).object_list
+    page_range = obj_paginator.page_range
+
+    context = {
+    'obj_paginator':obj_paginator,
+    'first_page':first_page,
+    'page_range':page_range
+    }
+    #
+    if request.method == 'POST':
+        page_no = request.POST.get('page_no', None) 
+        results = list(obj_paginator.page(page_no).object_list.values('id', 'title','content'))
+        return JsonResponse({"results":results})
+
+    return render(request, 'index.html',context)
+    # user_list = Servicio.objects.all().order_by('id_servicio')
+    # paginator = Paginator(user_list, 4)
+    # if request.method == 'GET':
+    # 	users = paginator.page(1)
+    # 	return render(request, 'prueba.html', {'users': users})
+    # if request.is_ajax():
+    #     page = request.GET.get('page')
+    #     try:
+    #         users = paginator.page(page)
+    #     except PageNotAnInteger:
+    #         users = paginator.page(1)
+    #     except InvalidPage:
+    #         users = paginator.page(paginator.num_pages)
+
+    #     user_li = list(users.object_list.values())
+    #     # Respectivamente, si hay una página anterior falsa / verdadera, si hay una página siguiente falsa / verdadera, el número total de páginas, los datos de la página actual
+    #     result = {'has_previous': users.has_previous(),
+    #               'has_next': users.has_next(),
+    #               'num_pages': users.paginator.num_pages,
+    #               'user_li': user_li}
+    #     print(result["user_li"])
+    #     return JsonResponse(result)

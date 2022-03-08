@@ -22,7 +22,7 @@
 <h1 class="tittleCatalogo">Catalogo</h1>
 <!-- Servicios del catalogo -->
 <div class="body">
-   <div class="card">
+   <div class="card cardService">
       <i><h2 class="precio"></h2></i>
       <div class="imgs"><a href="{%url 'Ventas:personalizar'%}"><img class="img-fluid Imas" src="{% static 'Ventas/img/masMorado.png' %} " alt=""></a></div>
       <div class="contenedor-botones">
@@ -31,7 +31,7 @@
    </div>
    {% if servicios %}
    {% for servicio in servicios %}
-   <div class="card">
+   <div class="card cardService">
       <i>
          <h2 class="precio">${{servicio.precio}}</h2>
       </i>

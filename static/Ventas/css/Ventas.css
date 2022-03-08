@@ -31,7 +31,7 @@
     min-height: 1vh;
     padding: 10px;
 }  
-.card{
+.cardService{
     float: center;      
     margin-left: 3%;
     margin-top: 10px;
@@ -44,12 +44,11 @@
     margin-bottom: 50px;
 }
     
-}
-.card .nombreP{
+.cardService .nombreP{
     text-align: start;
 	top: 30px;
 }
-.card i{
+.cardService i{
     position: relative;
     top: 20px;
     left: -15px;
@@ -60,7 +59,7 @@
     border-bottom-left-radius: 0;
 }
 
-.card i::before{
+.cardService i::before{
     content: '';
     position: absolute;
     left: 0;
@@ -73,7 +72,7 @@
     z-index: 2;
 }
 
-.card i::after{
+.cardService i::after{
     content: '';
     position: absolute;
     left: 0;
@@ -82,7 +81,7 @@
     height: 15px;
     background-color: rgb(85, 26, 139);
 }
-.card a{
+.cardServicer a{
     color: white;
 }
 

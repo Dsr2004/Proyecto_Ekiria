@@ -4,6 +4,8 @@ app_name="Ventas"
 urlpatterns = [
     path('Catalogo/', Catalogo.as_view(), name="catalogo"),
     path('AgregarServicioCatalogo/', AgregarServicioalCatalogo.as_view(), name="agregarServicioCatalogo"),
+    
+    path('pruebas/', pruebas, name="pruebas"), 
 
     path('Carrito/', Carrito.as_view(), name="carrito"),
     path('TerminarPedido/', TerminarPedido.as_view(), name="TerminarPedido"),
@@ -28,7 +30,7 @@ urlpatterns = [
     path('ListadoCitas/', ListarCita.as_view(), name="listarCitas"),
     path('EditarCita/', EditarCita.as_view(), name="editarCita"),
 
-    path('pruebas/', pruebas, name="pruebas"), 
+    
                          
 ]
 
