@@ -109,3 +109,42 @@
       return false;
     }
   
+    //CAMBIAR ESTADO DE  DE SERVICIO PARA EL CATALOGO
+  function CambiarEstadoServicioCatalogo(id){
+    let ids=id
+    let token = $("#EstadoTipoServicioCatalogoForm").find('input[name=csrfmiddlewaretoken]').val()
+      swal({
+        title: "¿Estas seguro?",
+        text: "Se modificará el estado, Esto significa que el servicio no se mostrará en el catalogo",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          swal("OK! Se ha modificado el estado", {
+            icon: "success",
+          }).then(function() {
+              $.ajax({
+                data: {"csrfmiddlewaretoken":token, "estado":ids},
+                url: $("#EstadoTipoServicioCatalogoForm").attr('action'),
+                type: $("#EstadoTipoServicioCatalogoForm").attr('method'),
+                success: function(data){
+                  window.location.href="/Ventas/AdminVentas/"
+                },
+                error: function(error){
+                  console.log("no")
+                  alert("Error:"+error.responseJSON)
+                }
+              }); 
+           
+       });
+        } else {
+          swal("OK! Ningun dato del servicio ha sido modificado").then(function(){
+            location.reload()
+          });
+          
+        }
+      });
+      return false;
+    }
+  

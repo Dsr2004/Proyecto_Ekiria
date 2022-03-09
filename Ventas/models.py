@@ -155,6 +155,6 @@ class Cita(models.Model):
 
 def pre_save_servicio_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
-        instance.slug=slugify(instance.title)
+        instance.slug=slugify(instance.nombre)
 
 pre_save.connect(pre_save_servicio_receiver,sender=Servicio)

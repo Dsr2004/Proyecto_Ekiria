@@ -34,10 +34,10 @@
             {% for servicio in servicios %}
             <div class="card cardService">
                <i>
-                  <h2 class="precio">${{servicio.precio}}</h2>
+                  <h2 class="precio">${{servicio.servicio_id.precio}}</h2>
                </i>
-               <div class="img"><img src="/media/{{servicio.img_servicio}}" alt=""></div>
-               <h2 class="nombreP text-center"><p style="width: 210px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; text-align: center !important;">{{servicio.nombre}}</p></h2>
+               <div class="img"><img src="/media/{{servicio.servicio_id.img_servicio}}" alt=""></div>
+               <h2 class="nombreP text-center"><p style="width: 210px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; text-align: center !important;">{{servicio.servicio_id.nombre}}</p></h2>
                <p class="linea"></p>
                <div class="contenedor-botones">
                   <a class="botonC Comprar"href="{% url 'Ventas:carrito' %}">
@@ -49,23 +49,19 @@
                      </div>
                      <span>Comprar</span>
                   </a>
-                  <button type="button" class="botonC VerM" onclick="abrir_modal_detalleServicio('{% url 'Ventas:detalleSer' servicio.slug %}')"><span>Ver mas</span></button>
+                  <button type="button" class="botonC VerM" onclick="abrir_modal_detalleServicio('{% url 'Ventas:detalleSer' servicio.servicio_id.slug %}')"><span>Ver mas</span></button>
                </div>
             </div>
             {% endfor %}
-               
             {%else%}
             <h1>No hay registros </h1>
          {% endif %}
-            
-         {{DetailSs}}
-      
    </div>
 </div>
 </div>
-
+<br><br>
 {% endblock Contenido %}
- <br><br><br><br>
+ 
 
 
 {% block modal %}

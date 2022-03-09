@@ -17,7 +17,7 @@ Seccion de las Vistas donde se administra el catalogo
 """
 
 class Catalogo(ListView): 
-    queryset = Servicio.objects.filter(estado=True)
+    queryset = models.Catalogo.objects.filter(estado=True)
     context_object_name = "servicios"
     template_name = "Catalogo.html"
 
@@ -48,6 +48,52 @@ class AgregarServicioalCatalogo(View):
         }
 
         return render(request, self.template_name, contexto)
+
+    def post(self, request, *args, **kwargs):
+        id = request.POST["id"]
+        try:
+            servicio = Servicio.objects.get(id_servicio=id)
+            ServicioToCatalogo = models.Catalogo.objects.create(servicio_id=servicio)
+            ServicioToCatalogo.save()
+            return redirect("Ventas:adminVentas")
+        except Exception as e: 
+            formTipo_Servicio = EditarTipoServicioForm
+            servicios=models.Catalogo.objects.all()
+
+            paginado=Paginator(servicios, 5)
+            pagina = request.GET.get("page") or 1
+            posts = paginado.get_page(pagina)
+            pagina_actual=int(pagina)
+            paginas=range(1,posts.paginator.num_pages+1)
+            #contexto
+            contexto={
+                'Tipo_Servicios':Tipo_servicio.objects.all(),
+                'form_Tipo_Servicio':formTipo_Servicio,
+                'servicios':posts,
+                'paginas':paginas,
+                'pagina_actual':pagina_actual,
+                "errores": "No se puede realizar su solicitud, el error es: "+str(e)
+            }
+
+            return render(request, "Ventas.html", contexto)
+
+
+def CambiarEstadoServicioEnCatalogo(request):
+    if request.method == "POST":
+        id = request.POST["estado"]
+        update=models.Catalogo.objects.get(id_catalogo=id)
+        estatus=update.estado
+        if estatus==True:
+            update.estado=False
+            update.save()
+        elif estatus==False:
+            update.estado=True
+            update.save()
+        else:
+            return redirect("Ventas:listarServicios")
+        return HttpResponse(update)
+    else:
+        return redirect("Ventas:listarServicios")  
 
 
 class QuitarServicioalCatalogo(DeleteView):
@@ -218,6 +264,16 @@ class EditarServicio(UpdateView):#actualizar
     template_name = "EditarServicio.html" 
     success_url = reverse_lazy('Ventas:listarServicios')
 
+    def form_valid(self, form, **kwargs):
+        objeto=form.save()
+        if objeto.estado == False:
+            QuitarServicioToCatalogo = models.Catalogo.objects.filter(servicio_id=objeto).delete()
+        elif objeto.estado == True:
+            ServicioToCatalogo = models.Catalogo.objects.create(servicio_id=objeto)
+            ServicioToCatalogo.save()
+        objeto.save()
+        return redirect("Ventas:listarServicios")
+
 class ListarServicio(ListView):#listar
     queryset = Servicio.objects.all()
     context_object_name = "servicios"
@@ -235,10 +291,13 @@ def CambiarEstadoServicio(request):
         estatus=update.estado
         if estatus==True:
             update.estado=False
+            QuitarServicioToCatalogo = models.Catalogo.objects.filter(servicio_id=update).delete()
             update.save()
         elif estatus==False:
             update.estado=True
             update.save()
+            ServicioToCatalogo = models.Catalogo.objects.create(servicio_id=update)
+            ServicioToCatalogo.save()
         else:
             return redirect("Ventas:listarServicios")
         return HttpResponse(update)
@@ -273,24 +332,11 @@ def ejemplo(request, id):
     consuta=Servicio.objects.filter(id_servicio=id)
 
 def pruebas(request):
-    newsdata = Servicio.objects.all()
-    per_page = 4
-    obj_paginator = Paginator(newsdata, per_page)
-    first_page = obj_paginator.page(1).object_list
-    page_range = obj_paginator.page_range
-
-    context = {
-    'obj_paginator':obj_paginator,
-    'first_page':first_page,
-    'page_range':page_range
+    servicios=Servicio.objects.all()
+    cont={
+        "servicios":servicios
     }
-    #
-    if request.method == 'POST':
-        page_no = request.POST.get('page_no', None) 
-        results = list(obj_paginator.page(page_no).object_list.values('id', 'title','content'))
-        return JsonResponse({"results":results})
-
-    return render(request, 'index.html',context)
+    return render(request, 'prueba.html',cont)
     # user_list = Servicio.objects.all().order_by('id_servicio')
     # paginator = Paginator(user_list, 4)
     # if request.method == 'GET':

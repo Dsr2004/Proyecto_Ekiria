@@ -15,7 +15,11 @@
               <p class="card-text" style="width:100%; height: 50px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis;">{{servicio.descripcion}}</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-primary">Añadir al Catalogo</a>
+              <form  action="{% url 'Ventas:agregarServicioCatalogo' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{servicio.id_servicio}}">
+                <button type="submit" class="btn btn-primary">Añadir al Catalogo</button>
+              </form>
             </div>
           </div>
           {% endfor %}
