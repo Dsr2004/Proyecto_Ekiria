@@ -18,7 +18,7 @@
                 <div>
                     <div class="numbers" id="NumUser"></div>
                     <div class="cardName">Usuarios</div>
-                    
+
                     <script>
                         let CantUsuarios
                         var ContadorServicios = 0
@@ -32,8 +32,8 @@
         <div class="cardbox">
             <div class="Card">
                 <div>
-                    <div class="numbers" id="NumSer"> 
-                        
+                    <div class="numbers" id="NumSer">
+
                     </div>
                     <div class="cardName">Servicios</div>
                 </div>
@@ -42,18 +42,16 @@
                 </div>
             </div>
         </div>
-                        {% for Servicio in contexto %}
-                            {% if Servicio.estado == True%} 
-                                <script>
-                                    ContadorServicios++
-                                </script>
-                            {% endif %}
-                        {% endfor %}
-                        <script>
-                            let insertServices = document.getElementById("NumSer");
-                            insertServices.innerHTML = ContadorServicios
-                        </script>
-        
+        {% for Servicio in contexto %} {% if Servicio.estado == True%}
+        <script>
+            ContadorServicios++
+        </script>
+        {% endif %} {% endfor %}
+        <script>
+            let insertServices = document.getElementById("NumSer");
+            insertServices.innerHTML = ContadorServicios
+        </script>
+
         <div class="cardbox">
             <div class="Card">
                 <div>
@@ -155,9 +153,9 @@
                             <form action="{%url 'editarEstadoUsuario'%}" method="post" id="EstadoUsuarioForm">
                                 {%csrf_token%}
                                 <div class="form-check form-switch switch-Cambio-TipoServicio">
-                                   <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="estado" onclick="CambiarEstadoUsuario('{{User.id_usuario}}')"  {% if User.estado == True%}checked{%endif%}>
-                                 </div>                                  
-                             </form>
+                                    <input class="form-check-input kljkldsfjh" type="checkbox" role="switch" id="lopsdyu" name="estado" onclick="CambiarEstadoUsuario('{{User.id_usuario}}')" {% if User.estado%}checked{%endif%}>
+                                </div>
+                            </form>
                         </td>
 
                         <td id="edit{{User.username}}">
@@ -171,6 +169,7 @@
                         <script>
                             function listar(field) {
                                 field.forEach(field => {
+                                    console.log(field)
                                     if (
                                         field.name.toLowerCase().includes(search.value.toLowerCase()) ||
                                         field.email.toLowerCase().includes(search.value.toLowerCase()) ||
@@ -180,6 +179,7 @@
                                         field.username.toLowerCase().includes(search.value.toLowerCase()) ||
                                         field.municipio.toLowerCase().includes(search.value.toLowerCase())
                                     ) {
+                                        console.log(field.username)
                                         td = document.getElementById("username" + field.username);
                                         td.innerHTML = field.username;
                                         td.style.display = "table-cell";
@@ -223,9 +223,8 @@
                                         td.style.display = "table-cell";
                                         td = document.getElementById("estado" + field.username);
                                         td.style.display = "table-cell";
-                                        errores = document.getElementById("errores");
-                                        errores.innerHTML = "No hay más registros";
                                     } else {
+                                        console.log(field.username)
                                         td = document.getElementById("username" + field.username);
                                         td.style.display = "none";
                                         td = document.getElementById("name" + field.username);
@@ -261,6 +260,13 @@
                                     }
                                 });
                             }
+
+                            function Objecto(field) {
+
+                                this.field = field;
+                                console.log(this.field)
+                                listar(this.field)
+                            }
                         </script>
                         <!-- Creacion de los objectos traidos del contexto -->
                         {% for User in Usuario%}
@@ -280,9 +286,6 @@
                                 rol: "{{User.rol}}",
                                 last_login: "{{User.last_login}}",
                             }
-                            if (field) {
-                                Object()
-                            }
 
                             contador++
                         </script>
@@ -290,8 +293,8 @@
                     {% endfor %}
                     <!-- Instancia encargada de mandar los objectos para ser listados -->
                     <script>
-                        function Object() {
-                            listar(field);
+                        if (field) {
+                            Objecto(field)
                         }
                         CantUsuarios = document.getElementById("NumUser");
                         CantUsuarios.innerHTML = contador
