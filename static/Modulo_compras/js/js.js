@@ -59,7 +59,7 @@ function eliminarprov(id_proveedor) {
 };
 
 function agregarprod(url){
-  $("#agregar_prov").load(url,function() {
+  $("#agregar_prod").load(url,function() {
     $(this).modal('show')
   })
  
@@ -79,6 +79,15 @@ function modificarprov(url){
  
  };
 
+ function agregartp(url){
+  $("#agregar_tp").load(url,function() {
+    $(this).modal('show')
+  })
+  $("#agregar_prod").load(url,function() {
+    $(this).modal('hidden')
+  })
+ };
+
 
 
 function mostrarerrores(errors){
@@ -93,6 +102,29 @@ function mostrarerrores(errors){
 }
 
 
+function registrartp(){
+ 
+  $.ajax({
+    data: $("#agregartp").serialize(),
+    url: $("#agregartp").attr('action'),
+    type: $("#agregartp").attr('method'),
+    success: function(response){
+      location.reload();
+    },
+    error: function(errors){
+      $('#agregartp').find(".text-danger").text("");
+      for (let e in errors.responseJSON["errors"]){
+        let campo=$('#agregartp').find("input[name="+e+"]")
+        campo.addClass("is-invalid")
+        $('#'+e).text(errors.responseJSON['errors'][e])
+      }
+   
+
+       }
+  });
+}
+
+
 function registrarcpd(){
  
   $.ajax({
@@ -100,7 +132,7 @@ function registrarcpd(){
     url: $("#agregarprod").attr('action'),
     type: $("#agregarprod").attr('method'),
     success: function(response){
-      location.reload();
+      
     },
     error: function(errors){
       $('#agregarprod').find(".text-danger").text("");

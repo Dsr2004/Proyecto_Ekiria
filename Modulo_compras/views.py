@@ -2,8 +2,8 @@ from gc import get_objects
 import json
 from pickle import TRUE
 from django.shortcuts import render, redirect
-from Modulo_compras.forms import ProveedorForm, ComprasForm, ProductosForm
-from .models import Proveedor, Producto, Compra
+from Modulo_compras.forms import ProveedorForm, ComprasForm, ProductosForm, Tipo_productoForm
+from .models import Proveedor, Producto, Compra, Tipo_producto
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
@@ -43,6 +43,26 @@ class Crearprod(CreateView):
                 response=JsonResponse({"errors":errors,"mensaje":mensaje})
                 response.status_code=400
                 return response
+
+
+
+class Creartp(CreateView):
+    model=Tipo_producto
+    form_class=Tipo_productoForm
+    template_name='modalprod/agregartp.html'
+
+    def post(self,request, *args, **kwargs):  
+            tproducto_form = Tipo_productoForm(request.POST)
+            if tproducto_form.is_valid():
+                tproducto_form.save()
+                return redirect('listarprod')
+            else:
+                errors=tproducto_form.errors
+                mensaje=f"{self.model.__name__} no ha sido registrado"
+                response=JsonResponse({"errors":errors,"mensaje":mensaje})
+                response.status_code=400
+                return response
+
 
 
 

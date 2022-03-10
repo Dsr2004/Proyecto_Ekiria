@@ -24,7 +24,7 @@ class Proveedor(models.Model):
 
 class Tipo_producto(models.Model):
     id_tipo_producto=models.AutoField("id_tipo_producto",primary_key=True, unique=True)
-    nombre=models.CharField(max_length=20,blank=False, null=False)
+    nombre=models.CharField(max_length=20,blank=False, null=False, unique=True)
     estado=models.BooleanField('estado', default=True)
 
     class Meta:
