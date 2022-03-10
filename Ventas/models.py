@@ -3,7 +3,9 @@ from django.db import models
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
 from django.shortcuts import reverse 
+from django.conf import settings
 
+usuario=settings.AUTH_USER_MODEL
 
 
 # modelo para administrar los tipos de servicios
@@ -46,19 +48,7 @@ class Servicio(models.Model):
     def get_absolute_url(self):
         return reverse("Ventas:detalleSer", kwargs={"slug": self.slug})
 
-    # def clean(self): 
-    #     somefield = self.cleaned_data.get('somefield') 
-    #     if not somefield: 
-    #         if not self._errors.has_key('somefield'): 
-    #             from django.forms.util import ErrorList 
-    #             self._errors['somefield'] = ErrorList() 
-    #             self._errors['somefield'].append('Some field is blank')
-
-    
-    
-    # def ComentarioMin(self):
-    #     query=Servicio.objects.all()
-    #     return 
+   
     
 
 # modelo para administrar el catalogo
@@ -100,10 +90,12 @@ class Servicio_Personalizado(models.Model):
 # modelos para administrar los pedidos
 class Pedido(models.Model):
     id_pedido=models.AutoField("Id del Pedido", primary_key=True, unique=True)
-    total_pagar=models.IntegerField("Total a pagar",null=False,blank=False)
-    fecha_cita=models.DateTimeField("Fecha de la Cita",null=False,blank=False)
-    descripcion=models.TextField("Descripcion",null=True ,blank=True)
-    servicio_id=models.ManyToManyField(Servicio, verbose_name="Servicios",db_column="servicio_id")
+    cliente_id=models.ForeignKey(usuario, on_delete=models.SET_NULL, blank=True, null=True, db_column="cliente_id")
+    completado=models.BooleanField(default=False, null=True, blank=False)
+    transaccion_id= models.CharField(max_length=200, null=True,db_column="transaccion_id" )
+    # total_pagar=models.IntegerField("Total a pagar",null=False,blank=False)
+    
+    # servicio_id=models.ManyToManyField(Servicio, verbose_name="Servicios",db_column="servicio_id")
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
     fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
     estado=models.BooleanField("Estado", default=True)
@@ -115,6 +107,47 @@ class Pedido(models.Model):
 
     def __str__(self):
         return f"el id del pedido es: {self.id_pedido}"
+
+    @property
+    def get_total_carrito(self):
+        itemspedido = self.pedidoitem_set.all()
+        total = sum([item.get_total for item in itemspedido])
+        return total 
+
+    @property
+    def get_items_carrito(self):
+        itemspedido = self.pedidoitem_set.all()
+        total = sum([item.cantidad for item in itemspedido])
+        return total 
+
+
+    
+    
+
+# modelos para administrar los items del pedido
+class PedidoItem(models.Model):
+    id_pedidoItem=models.AutoField("Id del Item del  Pedido", primary_key=True, unique=True)
+    servicio_id=models.ForeignKey(Servicio, verbose_name="Id del Servicio",db_column="servicio_id", on_delete=models.SET_NULL, null=True)
+    cantidad=models.IntegerField("Cantidad", default=1, null=True, blank=True)
+    pedido_id=models.ForeignKey(Pedido, verbose_name="Id del Pedido",db_column="pedido_id", on_delete=models.SET_NULL, null=True)
+    fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
+    fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
+    estado=models.BooleanField("Estado", default=True)
+
+    class Meta:
+        db_table = 'pedidoItems'
+        verbose_name = 'pedidoItem'
+        verbose_name_plural = 'pedidoItems'
+
+    def __str__(self):
+        return f"el id del pedido es: {self.id_pedidoItem}"
+
+    @property
+    def get_total(self):
+        total = self.servicio_id.precio * self.cantidad
+        return total
+
+    
 
 # modelos para administrar los pedidos personalizados osea que tenga por lo menos un servicio personalizado
 class Pedido_Personalizado(models.Model):
@@ -138,9 +171,13 @@ class Pedido_Personalizado(models.Model):
 
 class Cita(models.Model):
     id_cita=models.AutoField("Id de la Cita", primary_key=True, unique=True)
-    cliente_id=models.IntegerField("Cliente de la Cita", default=1, null=True, blank=True)
-    pedido_personalizado_id=models.OneToOneField(Pedido_Personalizado, verbose_name="Pedido Personalizado", on_delete=models.CASCADE,null=True, blank=True,db_column="pedido_personalizado_id")
-    pedido_id=models.OneToOneField(Pedido, verbose_name="Pedido", on_delete=models.CASCADE,null=True, blank=True,db_column="pedido_id")
+    empleado_id=models.IntegerField("Empleado para la cita", default=3)
+    cliente_id=models.ForeignKey(usuario, on_delete=models.SET_NULL, blank=True, null=True, db_column="cliente_id")
+    pedido_id=models.ForeignKey(Pedido, verbose_name="Id del Pedido",db_column="pedido_id", on_delete=models.SET_NULL, null=True)
+    diaCita=models.DateField("Dia de la cita")
+    horaInicioCita=models.TimeField("Fecha de Inicio de la Cita")
+    horaFinCita=models.TimeField("Fecha de Fin de la Cita")
+    descripcion=models.TextField("Descripcion",null=True ,blank=True)
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
     fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
     estado=models.BooleanField("Estado", default=True)

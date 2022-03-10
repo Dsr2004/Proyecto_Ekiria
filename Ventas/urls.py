@@ -1,7 +1,10 @@
 from django.urls import path 
 from Ventas.views import *
+from Ventas import carrito
 app_name="Ventas"
 urlpatterns = [
+    path('AddtoCarrito/', carrito.actualizarItem, name="addtoCarrito"),
+
     path('AgregarCita/', AgregarCita.as_view(), name="agregarCita"),
     path('ListadoCitas/', ListarCita.as_view(), name="listarCitas"),
     path('DetalleCita/', DetalleCita.as_view(), name="detalleCita"),
@@ -13,8 +16,8 @@ urlpatterns = [
     
     path('pruebas/', pruebas, name="pruebas"), 
 
-    path('Carrito/', Carrito.as_view(), name="carrito"),
-    path('TerminarPedido/', TerminarPedido.as_view(), name="TerminarPedido"),
+    path('Carrito/', Carrito, name="carrito"),
+    path('TerminarPedido/', TerminarPedido, name="terminarPedido"),
     path('Calendario/', Calendario.as_view(), name="calendario"),
     path('PersonalizarSer/', ServiciosPersonalizados.as_view(), name="personalizar"),
     

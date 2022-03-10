@@ -4,137 +4,49 @@
     box-sizing: border-box;
     z-index: 0;
 }
-.fondiu{
-    border-radius: 20px;
-    box-shadow: 0 7px 25px rgba(10, 10, 10, 0.425);
-}
-/* .fondiu .tittleCatalogo{
-    text-align: center;
-} */
+/* TARJETAS DEL CATALOGO  */
 .body{
-    /* ___VERSION  1 ____*/
-    /* display: flex;
-    justify-content: left;
-    flex-wrap:wrap;
-    align-items: center;
-    min-height: 1vh;
-    margin-right: 2%;
-    background-color: rgb(213, 228, 241) ; */
+    background-color: hsl(0, 0%, 98%);
+}
+.col-lg-4{
+    margin-top: 30px;
+}
+.box-element{
+	box-shadow:hsl(0, 0%, 80%) 0 0 16px;
+	background-color: #fff;
+	border-radius: 4px;
+	padding: 10px;
+   
+}
 
-    /* _-_VERSION 2_-_ */
-    display: flex;
-    flex-wrap: wrap !important;
-    justify-content: flex-start;
+.ServicePersonalizate{
+	width: 100%;
+	height: 200px;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+}
+.ImgServiceCatalogo{
     width: 100%;
-    align-items: center;
-}  
-.cardService{
-    float: center;      
-    margin-left: 3%;
-    margin-top: 10px;
-    position:relative;
-    width: 220px;
-    height: 380px;
-    box-shadow: 10px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
-    border-radius: 20px;
-    margin-right: 25px;
+	height: 241px;
+	-webkit-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    -moz-box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+    box-shadow: -1px -3px 5px -2px rgba(214,214,214,1);
+}
+
+.product{
+	border-radius: 0 0 4px 4px;
     margin-bottom: 50px;
 }
-    
-.cardService .nombreP{
-    text-align: start;
-	top: 30px;
-}
-.cardService i{
-    position: relative;
-    top: 20px;
-    left: -15px;
-    width: 200px;
-    height: 50px;
-    background-color: rgb(85, 26, 139);
-    border-radius: 30px;
-    border-bottom-left-radius: 0;
-}
-
-.cardService i::before{
-    content: '';
-    position: absolute;
-    left: 0;
-    top:50px;
-    width: 15px;
-    height: 30px;
-    background:rgb(59, 12, 104) ;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    z-index: 2;
-}
-
-.cardService i::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    top:50px;
-    width: 15px;
-    height: 15px;
-    background-color: rgb(85, 26, 139);
-}
-.cardServicer a{
-    color: white;
-}
-
-.img{
-    position: relative;
-    max-width: 200px;
-    width: auto;
-    height: 180px;
-    left: 4.8%;
-    top: 25px;
-    background: rgba(255, 255, 255, 0);
-    border-radius: 10px;
-}
-.imgs{
-    position: absolute;
-    width: 89%;
-    height: 180px;
-    left: 10%;
-    top: 90px;
-    background: rgba(255, 255, 255, 0);
-}
 
 
-.precio{
-    font-family: sans-serif;
-    letter-spacing: 0.10rem;
-    color: white;
-    align-items: center;
-    margin-top: 10px;
-    margin-left: 70px;
-}
 
-.nombreP{
-	    position: relative;
-}
 
-.img img{
-    width: 100%;
-    height: 170px;
-    box-shadow: -1px 1px 25px 2px rgba(130,130,130,0.65);
-    border-radius: 20px;
-    margin-top: 5px;
-}
-.Imas{
-    width: 100%;
-    height: 230px !important;
-    box-shadow: none !important;
-}
+/* BOTONES  */
 .contenedor-botones {
-	position: absolute;
     width: 100%;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    gap: 5px;
-    top: 328px;
-    padding: 3px;
 }
 
 .botonC {
@@ -143,9 +55,7 @@
 	justify-content: center;
 	width: 100%;
 	height: 40px;
-	background: white;
-    background: linear-gradient(90deg, rgba(37,40,54,1) 7%, rgba(23,25,65,1) 21%, rgba(7,10,77,1) 41%, rgba(36,26,96,1) 58%, rgba(51,7,113,1) 78%, rgba(73,18,148,1) 100%);
-	color: #fff ;
+	color: black ;
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
 	font-weight: 500;
@@ -163,7 +73,7 @@
 	position: relative;
 	z-index: 2;
 	transition: .3s ease all;
-    color: white;
+    color: black;
     
     
 }
@@ -226,7 +136,9 @@
 	content: "";
 	width: 100%;
 	height: 300px;
-	background: #18a362;
+    color: white;
+	background: rgb(45,126,233);
+    background: linear-gradient(90deg, rgba(45,126,233,1) 0%, rgba(126,147,236,1) 37%, rgba(156,90,217,1) 100%, rgba(145,63,213,1) 100%, rgba(0,212,255,1) 100%);
 	position: absolute;
 	z-index: 1;
 	top: -300px;
@@ -236,6 +148,7 @@
 }
 
 .botonC.Personalizar:hover::after {
+    color: white;
 	top: 0;
 }
 
@@ -250,10 +163,16 @@
 }
 
 /* carrito */
-
-.borrarCarro{
-    margin-top: 20px;
-    margin-left: 8px;
+.fila_carrito{
+	display: flex;
+    align-items: flex-stretch;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+}
+.img_carrito{
+    width: 100px;
+    height: 80px ;
 }
 
 /* finalizar la compra  */
@@ -416,7 +335,7 @@
     width: 500px;
     height: 500px;
 } */
-.Divcentrado{
+/* .Divcentrado{
     margin: 10px 5.5%;
     width: 90%;
     display: flex;
@@ -471,4 +390,4 @@
 		height: 100px;
 
     }
-}
+} */

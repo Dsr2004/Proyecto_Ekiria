@@ -4,10 +4,14 @@ from django.http import HttpResponse, JsonResponse
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from Usuarios.models import Usuario
+
 
 
 from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm,CatalogoForm, Servicio_PersonalizadoForm
-from .models import Servicio, Tipo_servicio, Servicio_Personalizado, Catalogo
+from .models import *
 from Ventas import models
 
 """
@@ -100,13 +104,38 @@ class QuitarServicioalCatalogo(DeleteView):
     pass
 
 
+def Carrito(request):
+    cliente=Usuario.objects.get(id_usuario=3)
+    if cliente:
+        pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
+        items= pedido.pedidoitem_set.all()
+        request.session["carrito"]=pedido.get_items_carrito
+        
+    else:
+        items=[]
+        pedido={"get_total_carrito":0,"get_items_carrito":0}
+        request.session["carrito"]=0
+    contexto={"items":items, "pedido":pedido}
 
+    return render(request, "Carrito.html",contexto)
 
-class Carrito(TemplateView):
-    template_name = "Carrito.html"
+# class Carrito(TemplateView):
+#     template_name = "Carrito.html"
 
-class TerminarPedido(TemplateView):
-    template_name = "TerminarPedido.html"
+def TerminarPedido(request):
+    cliente=Usuario.objects.get(id_usuario=3)
+    if cliente:
+        pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
+        items= pedido.pedidoitem_set.all()
+    else:
+        items=[]
+        pedido={"get_total_carrito":0,"get_items_carrito":0}
+    contexto={"items":items, "pedido":pedido}
+
+    return render(request, "TerminarPedido.html",contexto)
+
+# class TerminarPedido(TemplateView):
+#     template_name = "TerminarPedido.html"
 
 class Calendario(TemplateView):
     template_name = "Calendario.html"

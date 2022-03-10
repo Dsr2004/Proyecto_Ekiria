@@ -1,5 +1,5 @@
 {% extends "Menu_Usuario.html" %} 
-
+{% load static %}
 {% block head %}
 <head>
     <meta charset="UTF-8">
@@ -12,32 +12,86 @@
 </head>{% endblock head %}
 
 {% block Contenido %}
-<h1>Finalizar Compra</h1>
+  <div class="container">
+      <h1>Finalizar Compra</h1>
+      <div class="row" style="margin-top: 10px;">
+        <div class="col-lg-6">
+          <div class="box-element" id="form-pedido">
+            <form action="">
+              <label class="label-control">Seleccione un empleado:</label>
+              <select class="form-select" name="empleado" id="" >
+                <option selected>Desplega esta lista</option>
+                <option value="1">Empleado 1</option>
+                <option value="2">Empleado 2</option>
+              </select>
+              <br>
+              <div class="row">
+                <div class="col-6">
+                  <label class="label-control">Seleccione una fecha:</label>
+                  <input type="date" class="form-control" >
+                </div>  
+                <div class="col-6">
+                  <label class="label-control">Seleccione una Hora:</label>
+                  <br>
+                  <input type="time" class="form-control" >
+                </div>
+              </div>
+              
+              <br><br>
+              <label class="label-control">Descripción (Opcional):</label>
+              <br>
+              <textarea class="form-control" cols="60" rows="10"></textarea>
+              <br><br>
+              <div class="d-grid gap-2">
+                <button class="btn btn-success" type="button">Continuar</button>
+              </div>
+            </form>
+          </div>
+        </div>  
 
-<div class="body">
-  <form >
-    <div class="row">
-      <div class="col-6">
-        <label class="label-control">Seleccione una fecha y hora para su cita:</label>
-        <br><br>
-        <input type="datetime-local" >
-        <br><br>
-        <label class="label-control">Descripción (Opcional):</label>
-        <br>
-        <textarea  cols="60" rows="10"></textarea>
-        <br><br>
+        <div class="col-lg-6">
+          <div class="box-element">
+            <a class="btn btn-outline-secondary" href="{% url 'Ventas:carrito' %}">&#x2190;De vuelta al carrito</a>
+            <hr>
+            <h3>Resumen de la cita</h3>
+            <hr>
+            {% if items %}    
+                        {% for item in items %}
+                        <div class="fila_carrito">
+                                <div style="flex: 2;">
+                                    <img class="img_carrito" src="/media/{{item.servicio_id.img_servicio}}" alt="">
+                                    </div>
+                                    <div style="flex: 2;">{{item.servicio_id.nombre}}</div>
+                                    <div style="flex: 1;">${{item.servicio_id.precio}}</div>
+                                     
+                        </div>
+                        {% endfor %}   
+                        <h5>Items: {{pedido.get_items_carrito}}</h5>
+                        <h5>Total: ${{pedido.get_total_carrito}}</h5>
+                        {% else %}
+                        <h5>No hay servicios que mostrar</h5>  
+                        {% endif %}
+                        
+            
+          </div>
+        </div>
       </div>
-      <div class="col-6">
-        <section class="infoTerminar">
-          <h4>Recuerde que los precios pueden variar para más información contáctanos al WhatsApp +57 3206374472  </h4>
-        </section>
+      <br><br>
+      <div class="alert alert-dark alert-dismissible fade show" role="alert">
+        <h4 class="alert-heading">Señor Usuario!</h4>
+        <p>Recuerde que los precios de los servicios que usted este agendando puede variar, este es un precio base, pero si al momento de prestar el servicio se requiere de más materiales estos serán cobrados </p>
+        <hr>
+        <p class="mb-0">Para más información escriba a nuestro WhatsApp <strong>1234567890</strong> o escribanos a nuestro correo <strong>servicioalcliente@ekiria.com</strong> lo atenderemos lo mas pronto posible .</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-      
-      <a href="{% url 'Ventas:calendario' %}" class="btn btn-success">Agendar Cita</a>
-    </div>
-    
-  </form>
+  </div>
+ 
+  
+  <br>
 
-
-  <br><br><br><br>
 {% endblock Contenido %}
+
+{% block scripts %}
+<script src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="{% static 'Ventas/js/Carrito.js' %}"></script>
+{% endblock scripts %}

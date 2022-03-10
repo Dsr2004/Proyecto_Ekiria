@@ -18,50 +18,50 @@
 
 <!--     Empieza el contenido del catalogo    -->
 {% block Contenido %}
-<div class="fondiu">
-<h1 class="tittleCatalogo">Catalogo</h1>
-<!-- Servicios del catalogo -->
-<div class="Divcentrado">
-   <div class="body">      
-            <div class="card cardService">
-               <i><h2 class="precio"></h2></i>
-               <div class="imgs"><a href="{%url 'Ventas:personalizar'%}"><img class="img-fluid Imas" src="{% static 'Ventas/img/masMorado.png' %} " alt=""></a></div>
-               <div class="contenedor-botones">
-                  <a class="botonC Personalizar" href="{%url 'Ventas:personalizar'%}"><span>Personalizar</span></a><!--sI EL AZUL PERSISTE COLOCAR EL COLOR AQUI -->
-               </div>
+<div class="body">
+   <div class="container">
+      <h1>Catalogo</h1>
+      <br>
+      <div class="row">
+         <div class="col-md-3">
+            <div class="box-element">
+               <div align="center"><img class="img-fluid ServicePersonaliza" src="/static/Ventas/img/masMorado.png" width="200" height="200"></div>
             </div>
-            {% if servicios %}
+            <div class="box-element product" style="height: 160px;">
+            <h6 ><strong><center>Personalizar Servicio</center> </strong></h6>
+				<hr>
+            <div class="contenedor-botones">
+               <a style="position: relative; top: 17px !important" class="btn btn-outline-dark" href="{%url 'Ventas:personalizar'%}"><span>Personalizar</span></a><!--sI EL AZUL PERSISTE COLOCAR EL COLOR AQUI -->
+            </div>
+         </div>
+         </div>
+         
+         {% if servicios %}
             {% for servicio in servicios %}
-            <div class="card cardService">
-               <i>
-                  <h2 class="precio">${{servicio.servicio_id.precio}}</h2>
-               </i>
-               <div class="img"><img src="/media/{{servicio.servicio_id.img_servicio}}" alt=""></div>
-               <h2 class="nombreP text-center"><p style="width: 210px; overflow: hidden; white-space:nowrap; text-overflow: ellipsis; text-align: center !important;">{{servicio.servicio_id.nombre}}</p></h2>
-               <p class="linea"></p>
-               <div class="contenedor-botones">
-                  <a class="botonC Comprar"href="{% url 'Ventas:carrito' %}">
-                     <div  class="iconoC">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                           <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                           <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                        </svg>
-                     </div>
-                     <span>Comprar</span>
-                  </a>
-                  <button type="button" class="botonC VerM" onclick="abrir_modal_detalleServicio('{% url 'Ventas:detalleSer' servicio.servicio_id.slug %}')"><span>Ver mas</span></button>
+            
+            <div class="col-md-3">
+               <img class="img ImgServiceCatalogo" src="/media/{{servicio.servicio_id.img_servicio}}"  height="241">
+               <div class="box-element product" style="height: 160px;">
+                  <h6><strong>{{servicio.servicio_id.nombre}}</strong></h6>
+                  <hr>
+                  <button data-servicio="{{servicio.servicio_id.id_servicio}}" data-action="add" class="btn btn-outline-success addToCar">Al carrito!</button>
+                  <a  class="btn  btn-outline-primary" onclick="abrir_modal_detalleServicio('{% url 'Ventas:detalleSer' servicio.servicio_id.slug %}')">Ver</a>
+                  <hr>
+                  <h6 style="float: left; color: gray;"><strong>Precio:</strong></h6>
+                  <h6 style="float: right; "><strong>${{servicio.servicio_id.precio}}</strong></h6>
+      
                </div>
             </div>
             {% endfor %}
-            {%else%}
-            <h1>No hay registros </h1>
+               {% else %}
+               <h1>No hay servicios que mostrar</h1>
          {% endif %}
+            
+      </div>
    </div>
-</div>
 </div>
 <br><br>
 {% endblock Contenido %}
- 
 
 
 {% block modal %}
@@ -71,14 +71,9 @@
     <!-- fin de la modal para ver detalle del servicio  -->
 
 {% endblock modal %}
-
-
-
-
-
-
 <!-- scripts -->
 {% block scripts %}
 <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
 <script src="{%static 'Ventas/js/Ventas.js'%}"></script>
+<script src="{% static 'Ventas/js/Carrito.js' %}"></script>
 {% endblock scripts %}
