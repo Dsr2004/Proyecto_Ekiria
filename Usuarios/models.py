@@ -1,9 +1,6 @@
 
-from email.policy import default
 from turtle import width
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-from Configuracion.models import Rol
 
 class VistasDiarias(models.Model):
     id_dia = models.AutoField(primary_key=True)
@@ -35,13 +32,3 @@ class Municipio(models.Model):
     def __str__(self) :
         return self.nom_municipio
 
-class Notificacion(models.Model):
-    id_notificacion = models.AutoField(primary_key=True)
-    mensaje = models.CharField(max_length=1000)
-    usuario_id = models.ForeignKey(Usuario, null=True, blank=True, on_delete=models.CASCADE)
-
-    
-    class Meta:
-        db_table = 'notificaciones'
-        verbose_name ='notificacion'
-        verbose_name_plural='notificiaciones'

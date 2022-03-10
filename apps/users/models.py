@@ -1,5 +1,11 @@
 from django.db import models
 from Usuarios.models import *
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from simple_history.models import HistoricalRecors
+from email.policy import default
+from turtle import width
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from Configuracion.models import Rol
 
 # Create your models here.
 
@@ -37,7 +43,7 @@ class UsuarioManager(BaseUserManager):
         usuario.administrador = True
         usuario.save()
         return usuario
-class Usuario(AbstractBaseUser):
+class Usuario(AbstractBaseUser, PermissionMixin):
     id_usuario = models.AutoField(unique=True, primary_key=True)
     username = models.CharField('Nombre de usuario', unique = True, max_length=25)
     nombres = models.CharField('Nombres', max_length=60, blank=False, null = False)
@@ -60,6 +66,7 @@ class Usuario(AbstractBaseUser):
     rol = models.ForeignKey(Rol, default=1, null=True, blank=True, on_delete=models.CASCADE)
     estado = models.BooleanField(default = True) 
     administrador = models.BooleanField(default=False)
+    historical = HistoricalRecords()
     objects = UsuarioManager()
     
     USERNAME_FIELD='username'
@@ -79,4 +86,13 @@ class Usuario(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.administrador
+class Notificacion(models.Model):
+    id_notificacion = models.AutoField(primary_key=True)
+    mensaje = models.CharField(max_length=1000)
+    usuario_id = models.ForeignKey(Usuario, null=True, blank=True, on_delete=models.CASCADE)
+
     
+class Meta:
+        db_table = 'notificaciones'
+        verbose_name ='notificacion'
+        verbose_name_plural='notificiaciones'

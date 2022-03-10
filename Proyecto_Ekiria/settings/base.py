@@ -32,12 +32,14 @@ LOCAL_APPS =[
     'Ventas',
     'Configuracion',
     'Usuarios',
+    'apps.users',
 ]
 THIRD_APPS = [
     'rest_framework', 
     'rest_framework.authtoken',
     'crispy_forms',
     'jsonify',
+    'simple_history',
 ]
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'Proyecto_Ekiria.urls'
@@ -95,7 +98,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-AUTH_USER_MODEL = 'Usuarios.Usuario'
+AUTH_USER_MODEL = 'users.Usuario'
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
