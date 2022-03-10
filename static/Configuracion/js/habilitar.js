@@ -14,25 +14,57 @@
 function ds(id){
     let cosa = id
     let token = $('#estadoRol').find('input[name=csrfmiddlewaretoken]').val()
-        $.ajax({
-            data:{'csrfmiddlewaretoken':token, 'estado':cosa},
-            url:$('#estadoRol').attr('action'),
-            type:$('#estadoRol').attr('method'),
-            success: function (data) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your work has been saved',
-                    showConfirmButton: false,
-                    timer: 1000
-                  }).then(function() {
-                      location.reload();
-                  });
-
-            },error:function (data) {
-            }
-        });
-};
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success sweetAlertB',
+          cancelButton: 'btn btn-danger sweetAlertB',
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: '¿Estas seguro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $(document).ready(function(){
+                $.ajax({
+                    data:{'csrfmiddlewaretoken':token, 'estado':cosa},
+                    url:$('#estadoRol').attr('action'),
+                    type:$('#estadoRol').attr('method'),
+                    success: function (data) {
+                        swalWithBootstrapButtons.fire(
+                            'Modificado Correctamente',
+                            'Cambiaste el estado',
+                            'success'
+                        ).then(function(){
+                            location.reload()
+                        });
+                    },error:function (data) {
+                        alert("Error: "+error.responseJSON)
+                    }
+                });
+                    
+            })
+          
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'Ningun Cambio',
+            'error'
+          ).then(function(){
+              location.reload()
+          });
+        }
+      });
+}
 
 // $(document).ready(function() {
 //     $('#checkbox').change(function() {

@@ -265,3 +265,7 @@
 .input#flexSwitchCheckChecked{
     width: 7%;
 } 
+
+.sweetAlertB{
+    margin: 0 10px;
+}
