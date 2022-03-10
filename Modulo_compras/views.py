@@ -26,6 +26,28 @@ def Listarprov(request):
     prov_form=ProveedorForm
     return render(request,'proveedores.html',{'prov_form':prov_form , 'proveedores': Proveedores})
 
+def Listartp(request):
+    Tp=Tipo_producto.objects.all()
+    tp_form=Tipo_productoForm
+    return render(request,'tipoprod.html',{'tp_form':tp_form , 'Tp': Tp})
+
+
+class Tipoprod(UpdateView):
+    model= Tipo_producto
+    form_class=Tipo_productoForm
+    template_name='tipoprod.html'
+
+    def post(self,request, *args, **kwargs):  
+            prov_form = ProveedorForm(request.POST,instance=self.get_object())
+            if prov_form.is_valid():
+                prov_form.save()
+                return redirect('listarprov')
+            else:
+                errors=prov_form.errors
+                mensaje=f"{self.model.__name__} no ha sido registrado"
+                response=JsonResponse({"errors":errors,"mensaje":mensaje})
+                response.status_code=400
+                return response
 
 class Crearprod(CreateView):
     model= Producto

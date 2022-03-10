@@ -1,8 +1,9 @@
 from unicodedata import name
 from django.urls import path
-from Modulo_compras.views import Listproductos, Crearprod, Listarprov, Listcompra , Crearprov, Eliminarprov, modificarprov, Actprov, cambiarestado, Creartp
+from Modulo_compras.views import Listproductos, Crearprod, Listarprov, Listcompra , Crearprov, Eliminarprov, modificarprov, Actprov, cambiarestado, Creartp, Listartp
 
 urlpatterns = [
+    path ("listartp/", Listartp, name="listartp"),
     path ("creartp/", Creartp.as_view(), name="creartp"),
     path ("listarcompra/", Listcompra, name="listarcompra"),
     path ("listarproductos/", Listproductos, name="listarprod"),

@@ -1,0 +1,85 @@
+{%extends 'Menu_Usuario.html'%}
+
+{% block head %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Proveedores</title>
+   <link rel="stylesheet" href="/static/Modulo_compras/css/style.css">
+   <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleTablesInformations.css">
+    <link rel="stylesheet" href="/static/ModuloUsuarios/css/styleAdministration.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">  
+   <link rel="stylesheet" href="sweetalert2.min.css">
+   <script src="/static/bootstrap/js/bootstrap.js"></script>
+
+ 
+</head>
+{% endblock head %}
+
+{% block Contenido %}
+
+
+
+{%if Tp%}
+
+{%for tp in Tp%}
+                        
+<div class="Admin Events">
+    <div class="Information">
+        <div class="cardbox">
+            <div class="Card">
+                <div>
+                    <div class="cardName">{{tp.nombre}}</div>
+                </div>
+                <div class="iconA">
+                    <i class="mdi mdi-page-next"></i>
+                </div>
+                <td><div class="form-switch" style="margin: auto;">
+                    <form action="{%url 'camestado' %}" method="POST" id="camestado">
+                      {%csrf_token%}
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {%if prov.estado == True  %} checked {%endif%} onclick="cambioestado('{{prov.id_proveedor}}')">
+                    </form>
+        
+                    </div>
+                  </td>
+             </div>
+        </div> 
+  </div>  
+</div>  
+    {%endfor%} 
+
+    {% else %}
+
+      <h1>No hay registros</h1>
+
+    {% endif %}       
+     
+         
+
+
+{% endblock Contenido %}
+
+{% block modal %}
+
+
+{% endblock modal%}
+
+{%block scripts%}
+
+<script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
+<script src="/static/Modulo_compras/js/js.js"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{%endblock scripts%}
+</html>
+
+
+
+
+

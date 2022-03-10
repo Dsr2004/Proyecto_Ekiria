@@ -132,7 +132,7 @@ function registrarcpd(){
     url: $("#agregarprod").attr('action'),
     type: $("#agregarprod").attr('method'),
     success: function(response){
-      
+      location.reload();
     },
     error: function(errors){
       $('#agregarprod').find(".text-danger").text("");

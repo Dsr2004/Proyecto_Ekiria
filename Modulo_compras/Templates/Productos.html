@@ -53,26 +53,33 @@
       <table >
         <thead >
           <tr>
-            <th scope="col">Proveedor</th>
-            <th scope="col">Tipo producto</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Descripción</th>
+            <th scope="col">nombre</th>
+            <th scope="col">precio</th>
+            <th scope="col">proveedor</th>
+            <th scope="col">tipo de producto</th>
             <th scope="col">Cantidad</th>
-            <th scope="col">Editar</th>
+            <th scope="col">estado</th>
           </tr>
         </thead>
         <tbody>
 
-  {%if proveedores%}
+  {%if Productos%}
 
-  {%for prov in proveedores%}
+  {%for prod in Productos%}
           <tr>
-            <td>Jose</td>
-            <td>Barniz</td>
-            <td>$8600</td>
-            <td>color rojo</td>
-            <td>5</td>
-          <td><img type="button" id="e"  data-bs-toggle="modal" data-bs-target="#editar_prod" src="/static/Modulo_compras/img/Editar.png" title="Editar proveedor"></td>
+            <td>{{prod.nombre}}</td>
+            <td>{{prod.precio}}</td>
+            <td>{{prod.proveedor}}</td>
+            <td>{{prod.tipo_producto}}</td>
+            <td>{{prod.cantidad}}</td>
+            <td><div class="form-switch">
+              <form action="{%url 'camestado' %}" method="POST" id="camestado">
+                {%csrf_token%}
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {%if prov.estado == True  %} checked {%endif%} onclick="cambioestado('{{prov.id_proveedor}}')">
+              </form>
+  
+              </div>
+            </td>
           </tr>
 
     {%endfor%} 
