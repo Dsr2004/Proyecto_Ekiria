@@ -34,7 +34,7 @@ class Login(ObtainAuthToken, TemplateView):
     template_name = 'registration/login.html'
     def post(self,request,*arg, **kwargs):
         if request:
-            login_serializer = self.serializer_class(data = request. b , context={'request':request})
+            login_serializer = self.serializer_class(data = request.POST , context={'request':request})
             print(request)
             if login_serializer.is_valid():
                 user=login_serializer.validated_data['user']
@@ -70,14 +70,14 @@ class Login(ObtainAuthToken, TemplateView):
                 else:
                     return Response({'error':'Este usuario no puede iniciar sesión'}, status = status.HTTP_401_UNAUTHORIZED)
             else:
-                return Response({'error':'Nombre de usuario o contraseña incorrectos.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'error':'Contraseña o Usuario incorrectos'},status=status.HTTP_400_BAD_REQUEST)
 
 
                 
-class Loguot(ObtainAuthToken, APIView):
+class Loguot(Authentication, APIView):
     def post(self,request,*args,**kwargs):
         try:    
-            token = Token.objects.filter(key = request.POST.get('token')).first()
+            token = token
             
             if token:
                 

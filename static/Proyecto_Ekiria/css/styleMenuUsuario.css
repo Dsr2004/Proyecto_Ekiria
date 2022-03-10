@@ -372,7 +372,7 @@ body {
     }
     .content ul {
         position: static;
-        width: 20% !important;
+        width: 30% !important;
         display: flex;
         padding: 0 20px;
         flex-wrap: wrap;
@@ -489,7 +489,7 @@ body {
 }
 
 .content ul .links .atext {
-    margin-left: 15px;
+    margin-left: 10px !important;
 }
 
 .content ul li {
@@ -572,9 +572,9 @@ body {
     .content.activar {
         width: 68%;
     }
-    .content ul {
+    .content ul{
         position: static;
-        width: 25%;
+        width: 40%;
         display: flex;
         padding: 0 20px;
         flex-wrap: wrap;
@@ -628,7 +628,7 @@ body {
         position: fixed;
         top: 5px;
         z-index: 10;
-        margin: 0 20%;
+        margin: 0 50%;
     }
     .toggle.activar {
         left: 33%;
