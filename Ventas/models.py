@@ -95,7 +95,6 @@ class Pedido(models.Model):
     transaccion_id= models.CharField(max_length=200, null=True,db_column="transaccion_id" )
     # total_pagar=models.IntegerField("Total a pagar",null=False,blank=False)
     
-    # servicio_id=models.ManyToManyField(Servicio, verbose_name="Servicios",db_column="servicio_id")
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
     fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
     estado=models.BooleanField("Estado", default=True)
@@ -152,14 +151,14 @@ class PedidoItem(models.Model):
 # modelos para administrar los pedidos personalizados osea que tenga por lo menos un servicio personalizado
 class Pedido_Personalizado(models.Model):
     id_pedido_personalizado=models.AutoField("Id del Pedido Personalizado", primary_key=True, unique=True)
-    total_pagar=models.IntegerField("Total a pagar",null=False,blank=False)
-    fecha_cita=models.DateTimeField("Fecha de la Cita",null=False,blank=False)
-    descripcion=models.TextField("Descripcion",null=True ,blank=True)
-    servicio_id=models.ManyToManyField(Servicio, verbose_name="Servicios",db_column="servicio_id")
-    servicio_personalizado_id=models.ManyToManyField(Servicio_Personalizado, verbose_name="Servicios Personalizados", db_column="servicio_id")
+    servicio_id=models.ForeignKey(Servicio, verbose_name="Id del Servicio",db_column="servicio_id", on_delete=models.SET_NULL, null=True)
+    servicio_personalizado_id=models.ForeignKey(Servicio_Personalizado, verbose_name="Servicios Personalizados",on_delete=models.SET_NULL, null=True,db_column="servicio_personalizado_id")
+    cantidad=models.IntegerField("Cantidad", default=1, null=True, blank=True)
+    pedido_id=models.ForeignKey(Pedido, verbose_name="Id del Pedido",db_column="pedido_id", on_delete=models.SET_NULL, null=True)
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
     fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
     estado=models.BooleanField("Estado", default=True)
+
 
     class Meta:
         db_table = 'pedidos_personalizados'

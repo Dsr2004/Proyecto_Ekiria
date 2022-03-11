@@ -384,7 +384,7 @@ body {
     }
     
     .content.activar ul {
-        width: 25% !important;
+        width:auto !important;
     }
     
 }

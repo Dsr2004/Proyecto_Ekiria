@@ -7,12 +7,12 @@
 from crispy_forms.helper import FormHelper
 
 from django import forms
-from .models import Servicio, Tipo_servicio, Catalogo, Servicio_Personalizado
+from .models import Servicio, Tipo_servicio, Catalogo, Servicio_Personalizado,Cita
 
 
 class ServicioForm(forms.ModelForm):
     class Meta:
-        model=Servicio
+        model=Servicio  
         fields=("nombre","precio","tipo_servicio_id","img_servicio","slug","descripcion", "estado")
         widgets={
             'nombre':forms.TextInput(attrs={'class':'form-control'}),
@@ -95,3 +95,10 @@ class Servicio_PersonalizadoForm(forms.ModelForm):
         super(Servicio_PersonalizadoForm, self).__init__(*args, **kwargs) 
         self.fields['tipo_servicio_id'].queryset = Tipo_servicio.objects.filter(nombre__in=["Manicure","Pedicure","manicure","pedicure","MANICURE","PEDICURE"]).filter(estado=True)
         self.fields['img_servicio'].label = False
+
+
+class CitaForm(forms.ModelForm):
+    class Meta:
+        model=Cita
+        fields=("empleado_id", "diaCita", "horaInicioCita", "descripcion")
+        

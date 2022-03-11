@@ -10,9 +10,18 @@ from Usuarios.models import Usuario
 
 
 
-from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm,CatalogoForm, Servicio_PersonalizadoForm
+from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm,CatalogoForm, Servicio_PersonalizadoForm, CitaForm
 from .models import *
 from Ventas import models
+
+
+
+
+def is_list_empty(list):
+    if len(list) == 0:
+        return True
+    else:
+        return False
 
 """
 <----------------------------------------------------------------->
@@ -123,16 +132,22 @@ def Carrito(request):
 #     template_name = "Carrito.html"
 
 def TerminarPedido(request):
+    form=CitaForm
     cliente=Usuario.objects.get(id_usuario=3)
     if cliente:
         pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
         items= pedido.pedidoitem_set.all()
+        contexto={"items":items, "pedido":pedido,"form":form}
     else:
         items=[]
         pedido={"get_total_carrito":0,"get_items_carrito":0}
-    contexto={"items":items, "pedido":pedido}
+        contexto={"items":items, "pedido":pedido,"form":form}
 
-    return render(request, "TerminarPedido.html",contexto)
+    if is_list_empty(items):
+        contexto["mensaje"]=True
+        return render(request, "Carrito.html",contexto)
+    else:
+        return render(request, "TerminarPedido.html",contexto)
 
 # class TerminarPedido(TemplateView):
 #     template_name = "TerminarPedido.html"

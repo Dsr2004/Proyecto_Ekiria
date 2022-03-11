@@ -82,7 +82,7 @@
                             <div class="list 
                             {% if request.path == '/Ventas/Catalogo/'%}activar{% endif %} 
                             {% if request.path == '/Ventas/Calendario/'%}activar{% endif %}
-                            {% if request.path == '/Ventas/TerminarPedido/'%}activar{% endif %}
+                            {% if request.path == '/Ventas/terminarPedido/'%}activar{% endif %}
                             {% if request.path == '/Ventas/PersonalizarSer/'%}activar{% endif %}
                             {% if request.path == '/Ventas/DetalleCita/'%}activar{% endif %} 
                             {% if request.path == '/Ventas/AdminVentas/'%}activar{% endif %}
@@ -149,7 +149,13 @@
                             </ul>
                         </div>
                         <li><a href="/Ventas/Carrito/ " type="button " class=" btn position-relative " data-bs-toggle="offcanvas " data-bs-target="#Carrito " aria-controls="offcanvasTop " style="margin-top: -7px; "><i class="fas fa-shopping-cart
-                            "></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">{{request.session.carrito}}</span></a></li>
+                            "></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger "> 
+                            {% if request.session.carrito %}
+                            {{request.session.carrito}}
+                            {% else %}
+                            0
+                            {% endif %}
+                                </span></a></li>
                     </ul>
                 </div>
 

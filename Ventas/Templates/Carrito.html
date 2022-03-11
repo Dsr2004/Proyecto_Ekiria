@@ -17,9 +17,15 @@
 
 <!-- empieza el contenido del carrito  -->
 {% block Contenido %}
-    
+
     <div class="body" style="margin-top: 10px;">
         <div class="container" >
+            {% if mensaje %}
+                <div class="alert alert-warning  alert-dismissible fade show" role="alert">
+                    Para seguir a la siguiente página primero debe elegir algún servicio del <a href="{% url 'Ventas:catalogo' %}" class="alert-link">Catálogo</a>. Seleccione alguno y luego vuelva
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> 
+            {% endif %}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="box-element">
@@ -54,7 +60,7 @@
                                     <div style="flex: 2;">{{item.servicio_id.nombre}}</div>
                                     <div style="flex: 1;">${{item.servicio_id.precio}}</div>
                                     <div style="flex: 1;">
-                                        <button class="btn" style="transform: scale(1.5);">
+                                        <button data-servicio="{{item.servicio_id.id_servicio}}" data-action="remove" class="btn addToCar" style="transform: scale(1.5);">
                                             <i class="fa-solid fa-trash"></i> </button>
                                     </div>   
                         </div>

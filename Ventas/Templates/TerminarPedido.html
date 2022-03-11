@@ -8,7 +8,10 @@
     <title>Terminar Pedido</title>
     <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
     <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="{% static 'Plugins/Datepicker/datepicker.min.css' %}">
+    
 </head>{% endblock head %}
 
 {% block Contenido %}
@@ -26,9 +29,13 @@
               </select>
               <br>
               <div class="row">
-                <div class="col-6">
-                  <label class="label-control">Seleccione una fecha:</label>
-                  <input type="date" class="form-control" >
+                <div class="col-6" >
+                  <label  class="label-control">Seleccione una fecha:</label>
+                  <div class="input-group date">
+                    <input id="datepicker" type="text" class="form-control" value="12-02-2012">
+                    <div class="input-group-addon"><center><i style="position: relative; top: 10px;" class="fa-regular fa-calendar"></i></center>
+                    </div>
+                </div>
                 </div>  
                 <div class="col-6">
                   <label class="label-control">Seleccione una Hora:</label>
@@ -92,6 +99,10 @@
 {% endblock Contenido %}
 
 {% block scripts %}
+<script src="{% static 'Plugins/Datepicker/datepicker.min.js' %}"></script>
 <script src="/static/bootstrap/js/bootstrap.js"></script>
 <script src="{% static 'Ventas/js/Carrito.js' %}"></script>
+<script>
+  $('#datepicker').datepicker();
+</script>
 {% endblock scripts %}

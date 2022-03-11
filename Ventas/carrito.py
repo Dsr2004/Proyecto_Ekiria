@@ -20,7 +20,6 @@ def actualizarItem(request):
 
     if accion== "remove":
         itemPedio.delete()
-    itemPedio.save()
     
     print(servicio)
     return JsonResponse('Item fue anadido', safe=False)
