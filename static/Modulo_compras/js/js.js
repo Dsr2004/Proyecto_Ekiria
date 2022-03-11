@@ -83,11 +83,18 @@ function modificarprov(url){
   $("#agregar_tp").load(url,function() {
     $(this).modal('show')
   })
+ 
   $("#agregar_prod").load(url,function() {
     $(this).modal('hidden')
   })
  };
 
+ function agregarcompra(url){
+  $("#editar_comp").load(url,function() {
+    $(this).modal('show')
+  })
+ 
+ };
 
 
 function mostrarerrores(errors){
@@ -146,6 +153,29 @@ function registrarcpd(){
        }
   });
 }
+
+function registrarcomp(){
+ 
+  $.ajax({
+    data: $("#agregarcomp").serialize(),
+    url: $("#agregarcomp").attr('action'),
+    type: $("#agregarcomp").attr('method'),
+    success: function(response){
+      location.reload();
+    },
+    error: function(errors){
+      $('#agregarcomp').find(".text-danger").text("");
+      for (let e in errors.responseJSON["errors"]){
+        let campo=$('#agregarcomp').find("input[name="+e+"]")
+        campo.addClass("is-invalid")
+        $('#'+e).text(errors.responseJSON['errors'][e])
+      }
+   
+
+       }
+  });
+}
+
 
 
 function registrarcp(){

@@ -182,6 +182,20 @@ main {
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.cardbox{
-	
+/* anuncio de no registros */
+
+.anunre{
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 40px;
+	margin-left: 25%;
+}
+
+/* imagen de espera */
+.imgespera{
+	width: 40%;
+	height: 40%;
+	margin-left: 10%;
+
+
+
 }

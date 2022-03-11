@@ -76,7 +76,7 @@
           <td><div class="form-switch">
             <form action="{%url 'camestado' %}" method="POST" id="camestado">
               {%csrf_token%}
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {%if prov.estado == True  %} checked {%endif%} onclick="cambioestado('{{prov.id_proveedor}}')">
+                <input style="margin-top: -8px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {%if prov.estado == True  %} checked {%endif%} onclick="cambioestado('{{prov.id_proveedor}}')">
             </form>
 
             </div>
@@ -96,7 +96,7 @@
 
     {% else %}
 
-      <h1>No hay registros</h1>
+      <h3>No se han encontrado registros</h3>
 
     {% endif %}
         

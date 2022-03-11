@@ -59,6 +59,8 @@
             <th scope="col">tipo de producto</th>
             <th scope="col">Cantidad</th>
             <th scope="col">estado</th>
+            <th scope="col">editar</th>
+
           </tr>
         </thead>
         <tbody>
@@ -75,10 +77,15 @@
             <td><div class="form-switch">
               <form action="{%url 'camestado' %}" method="POST" id="camestado">
                 {%csrf_token%}
-                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {%if prov.estado == True  %} checked {%endif%} onclick="cambioestado('{{prov.id_proveedor}}')">
+                  <input style="margin-top: -8px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {%if prov.estado == True  %} checked {%endif%} onclick="cambioestado('{{prov.id_proveedor}}')">
               </form>
   
               </div>
+            </td>
+
+            <td>
+              <button type="button" style="background: none;color: inherit;border: none;padding: 0;font: inherit;cursor: pointer;outline: inherit;"
+               onclick="modificarprov('{%url 'modificarprov' prov.id_proveedor %}')"><i class="mdi mdi-account-edit"></i> </button>
             </td>
           </tr>
 

@@ -18,13 +18,10 @@ class ProductosForm(forms.ModelForm):
     class Meta:
         model = Producto
         fields = ['nombre','precio','proveedor','tipo_producto','cantidad']
-        widgets ={
-            'nombre':forms.TextInput({})
-        }
-
+   
 
 
 class ComprasForm(forms.ModelForm):
     class Meta:
         model = Compra
-        fields = ['producto','descripcion','cantidad','precio']
+        fields = ['producto','descripcion','cantidad','precio','total']

@@ -106,6 +106,25 @@ class Crearprov(CreateView):
                 return response
    
         
+
+class Crearcompra(CreateView):
+    model= Compra
+    form_class=ComprasForm
+    template_name='modalprov/agregarcompra.html'
+
+    def post(self,request, *args, **kwargs):  
+            comp_form = ComprasForm(request.POST)
+            cant=Producto.objects.get(cantidad)
+            if comp_form.is_valid():
+                comp_form.save()
+                return redirect('listarcompra')
+            else:
+                errors=comp_form.errors
+                mensaje=f"{self.model.__name__} no ha sido registrado"
+                response=JsonResponse({"errors":errors,"mensaje":mensaje})
+                response.status_code=400
+                return response 
+
 def Eliminarprov(request, id_proveedor):
     prov_form =Proveedor.objects.get(id_proveedor=id_proveedor)
     prov_form.delete()

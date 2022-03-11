@@ -24,12 +24,17 @@
 
 {% block Contenido %}
 
-
+<div class="container">
+  <div class="Table Add">
+    <button type="button" class="Add img" onclick="agregartp('{%url 'creartp' %}')">
+      <i class="fas fa-user-plus"></i>
+  </button>
+  </div>
 
 {%if Tp%}
 
 {%for tp in Tp%}
-                        
+
 <div class="Admin Events">
     <div class="Information">
         <div class="cardbox">
@@ -55,18 +60,22 @@
     {%endfor%} 
 
     {% else %}
-
-      <h1>No hay registros</h1>
-
+    <div class="anunre">
+      <p>No se han encontrado registros</p>
+      <img class="imgespera" src="/static/Modulo_compras/img/espera.png" alt="espera"> 
+    </div>
     {% endif %}       
      
          
-
+</div>
 
 {% endblock Contenido %}
 
 {% block modal %}
 
+<div class="modal fade" id="agregar_tp" role="dialog" >
+    
+</div>
 
 {% endblock modal%}
 

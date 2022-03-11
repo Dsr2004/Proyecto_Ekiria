@@ -60,7 +60,7 @@ class Producto(models.Model):
 class Compra(models.Model):
     id_compras=models.AutoField("id_compra",primary_key=True, unique=True)
     producto=models.ForeignKey(Producto, on_delete=models.CASCADE)
-    descripcion=models.TextField('descripcion',max_length=200,blank=False, null=False)
+    descripcion=models.TextField('descripcion',blank=False, null=False)
     cantidad=models.IntegerField('cantidad',blank=False, null=False)
     precio=models.IntegerField('precio',blank=False, null=False)
     total=models.IntegerField('total',blank=False, null=False )
