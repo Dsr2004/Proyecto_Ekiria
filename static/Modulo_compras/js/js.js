@@ -63,7 +63,7 @@ function agregarprod(url){
     $(this).modal('show')
   })
  
- };
+};
 
 function agregarprov(url){
  $("#agregar_prov").load(url,function() {
@@ -77,9 +77,9 @@ function modificarprov(url){
     $(this).modal('show')
   })
  
- };
+};
 
- function agregartp(url){
+function agregartp(url){
   $("#agregar_tp").load(url,function() {
     $(this).modal('show')
   })
@@ -87,14 +87,14 @@ function modificarprov(url){
   $("#agregar_prod").load(url,function() {
     $(this).modal('hidden')
   })
- };
+};
 
- function agregarcompra(url){
-  $("#editar_comp").load(url,function() {
+function agregarcompra(url){
+  $("#agregar_comp").load(url,function() {
     $(this).modal('show')
   })
  
- };
+};
 
 
 function mostrarerrores(errors){
@@ -257,3 +257,16 @@ function cambioestado(id){
     }
   });
 }
+
+
+function sumartotal(){
+   let total=$("#precio").find('{{producto.precio}}')
+   console.log(total)
+  }
+
+
+
+
+
+
+ 

@@ -24,4 +24,7 @@ class ProductosForm(forms.ModelForm):
 class ComprasForm(forms.ModelForm):
     class Meta:
         model = Compra
-        fields = ['producto','descripcion','cantidad','precio','total']
+        fields = ['producto','descripcion','total']
+        widgets={
+            "producto":forms.CheckboxSelectMultiple()
+        }

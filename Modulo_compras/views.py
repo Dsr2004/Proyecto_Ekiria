@@ -1,4 +1,5 @@
 from gc import get_objects
+from itertools import product
 import json
 from pickle import TRUE
 from django.shortcuts import render, redirect
@@ -7,7 +8,7 @@ from .models import Proveedor, Producto, Compra, Tipo_producto
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, View
 
 
 
@@ -32,22 +33,22 @@ def Listartp(request):
     return render(request,'tipoprod.html',{'tp_form':tp_form , 'Tp': Tp})
 
 
-class Tipoprod(UpdateView):
-    model= Tipo_producto
-    form_class=Tipo_productoForm
-    template_name='tipoprod.html'
+# class Tipoprod(View):
+#     model= Tipo_producto
+#     form_class=Tipo_productoForm
+#     template_name='tipoprod.html'
 
-    def post(self,request, *args, **kwargs):  
-            prov_form = ProveedorForm(request.POST,instance=self.get_object())
-            if prov_form.is_valid():
-                prov_form.save()
-                return redirect('listarprov')
-            else:
-                errors=prov_form.errors
-                mensaje=f"{self.model.__name__} no ha sido registrado"
-                response=JsonResponse({"errors":errors,"mensaje":mensaje})
-                response.status_code=400
-                return response
+#     def post(self,request, *args, **kwargs):  
+#             prov_form = ProveedorForm(request.POST,instance=self.get_object())
+#             if prov_form.is_valid():
+#                 prov_form.save()
+#                 return redirect('listarprov')
+#             else:
+#                 errors=prov_form.errors
+#                 mensaje=f"{self.model.__name__} no ha sido registrado"
+#                 response=JsonResponse({"errors":errors,"mensaje":mensaje})
+#                 response.status_code=400
+#                 return response
 
 class Crearprod(CreateView):
     model= Producto
@@ -110,11 +111,24 @@ class Crearprov(CreateView):
 class Crearcompra(CreateView):
     model= Compra
     form_class=ComprasForm
-    template_name='modalprov/agregarcompra.html'
+    template_name='modalcomp/agregarcompra.html'
 
-    def post(self,request, *args, **kwargs):  
+    def get(self,request,*args, **kwargs):
+        producto=Producto.objects.filter(estado=True)
+        form=self.form_class
+        contexto={
+            "productos":producto,
+            "form":form
+        }
+        return render(request, self.template_name,contexto)
+
+    def post(self,request, *args, **kwargs): 
+            if request.is_ajax():
+                x=request.POST.get("datos")
+                print(x)
+                return JsonResponse({"s":"dfd"})
+
             comp_form = ComprasForm(request.POST)
-            cant=Producto.objects.get(cantidad)
             if comp_form.is_valid():
                 comp_form.save()
                 return redirect('listarcompra')
