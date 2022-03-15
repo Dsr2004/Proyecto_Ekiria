@@ -1,5 +1,6 @@
 {% extends "Menu_Usuario.html" %} 
 {% load static %}
+{% load crispy_forms_tags %}
 {% block head %}
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,9 @@
     <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <link rel="stylesheet" href="{% static 'Plugins/Datepicker/datepicker.min.css' %}">
+    <link rel="stylesheet" href="/static/Plugins/datetimepicker/jquery.datetimepicker.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet"/>
     
 </head>{% endblock head %}
 
@@ -22,32 +25,36 @@
           <div class="box-element" id="form-pedido">
             <form action="">
               <label class="label-control">Seleccione un empleado:</label>
-              <select class="form-select" name="empleado" id="" >
-                <option selected>Desplega esta lista</option>
-                <option value="1">Empleado 1</option>
-                <option value="2">Empleado 2</option>
-              </select>
+             {{form.empleado_id}}
               <br>
               <div class="row">
-                <div class="col-6" >
-                  <label  class="label-control">Seleccione una fecha:</label>
-                  <div class="input-group date">
-                    <input id="datepicker" type="text" class="form-control" value="12-02-2012">
-                    <div class="input-group-addon"><center><i style="position: relative; top: 10px;" class="fa-regular fa-calendar"></i></center>
+                <div class="col-6" id="DiaCitaBox">
+
+                  <label  class="label-control">Seleccione una Dia:</label>
+                  <div class="input-group">
+                    {{form.diaCita}}
+                    <div class="input-group-text">
+                      <i style="font-size: 15px;" class=" fa-regular fa-calendar"></i>
                     </div>
                 </div>
                 </div>  
-                <div class="col-6">
+                <div class="col-6" id="horaInicioBox">
                   <label class="label-control">Seleccione una Hora:</label>
                   <br>
-                  <input type="time" class="form-control" >
+                  <div class="input-group">
+                   {{form.horaInicioCita}}
+                  <div class="input-group-text">
+                    <i style="font-size: 15px;" class=" fa-regular fa-clock"></i>
+                  </div>
+                  </div>
+                  
                 </div>
               </div>
               
               <br><br>
               <label class="label-control">Descripción (Opcional):</label>
               <br>
-              <textarea class="form-control" cols="60" rows="10"></textarea>
+             {{form.descripcion}}
               <br><br>
               <div class="d-grid gap-2">
                 <button class="btn btn-success" type="button">Continuar</button>
@@ -91,6 +98,9 @@
         <p class="mb-0">Para más información escriba a nuestro WhatsApp <strong>1234567890</strong> o escribanos a nuestro correo <strong>servicioalcliente@ekiria.com</strong> lo atenderemos lo mas pronto posible .</p>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
+
+     
+      
   </div>
  
   
@@ -99,10 +109,60 @@
 {% endblock Contenido %}
 
 {% block scripts %}
-<script src="{% static 'Plugins/Datepicker/datepicker.min.js' %}"></script>
+<!-- <script src="{% static 'Plugins/Datepicker/datepicker.min.js' %}"></script> -->
 <script src="/static/bootstrap/js/bootstrap.js"></script>
+<script src="/static/Plugins/datetimepicker/build/jquery.datetimepicker.full.js"></script>
 <script src="{% static 'Ventas/js/Carrito.js' %}"></script>
 <script>
-  $('#datepicker').datepicker();
+   $: "jquery"
+  $.datetimepicker.setLocale('es');
+
+  $("#DiaCita").datetimepicker({
+  timepicker:false,
+  format:'d/m/Y',
+  minDate: 0,
+  onChangeDateTime:function(dp,$input){
+    let empleado=$("#empleado").val()
+    $.ajax({
+      type: "POST",
+      url: "/Ventas/BuscarEmpleadoParaCita/",
+      data: {"csrfmiddlewaretoken":csrftoken,"accion":"BuscarDiaDeEmpleado","empleado":empleado,"dia":$input.val()},
+      success: function (response) {
+        jQuery("#horaInicioBox").css("display", "block")
+        var horas = response["horasDisponibles"]
+       $("#horaInicio").click(function(){
+        $('#horaInicio').datetimepicker({
+        formatTime:"g:i a",
+        format:'g:i A',
+        datepicker:false,
+        allowTimes:["13:00", "15:00"]
+        
+    });
+   
+       } 
+       )}
+    });
+    
+  },
+  disabledDates:['2022/03/17'],
+
+});
+
+
+
+$("#empleado").on("change", function(){
+    let empleado=this.value
+    $.ajax({
+      type: "POST",
+      url: "/Ventas/BuscarEmpleadoParaCita/",
+      data: {"csrfmiddlewaretoken":csrftoken,"empleado":empleado,"accion":"BuscarEmpleado"},
+      success: function (response) {
+        $("#DiaCitaBox").css("display", "block")
+       
+      }
+    });
+  })
+
+
 </script>
 {% endblock scripts %}

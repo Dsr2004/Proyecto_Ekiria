@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from sre_constants import SUCCESS
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
@@ -10,7 +12,7 @@ from Usuarios.models import Usuario
 
 
 
-from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm,CatalogoForm, Servicio_PersonalizadoForm, CitaForm
+from .forms import ServicioForm, Tipo_servicioForm, EditarTipoServicioForm,CatalogoForm, Servicio_PersonalizadoForm, CitaForm, pruebaxForm
 from .models import *
 from Ventas import models
 
@@ -118,7 +120,9 @@ def Carrito(request):
     if cliente:
         pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
         items= pedido.pedidoitem_set.all()
+        duracion= sum([item.servicio_id.duracion for item in items])
         request.session["carrito"]=pedido.get_items_carrito
+        request.session["duracion"]=duracion
         
     else:
         items=[]
@@ -149,8 +153,63 @@ def TerminarPedido(request):
     else:
         return render(request, "TerminarPedido.html",contexto)
 
-# class TerminarPedido(TemplateView):
-#     template_name = "TerminarPedido.html"
+class BuscarDisponibilidadEmpleado(View):
+    def post(self,request,*args,**kwargs):
+        accion=request.POST["accion"]
+        if accion == "BuscarEmpleado":
+            empleado=request.POST["empleado"]
+            agenda=models.Calendario.objects.filter(empleado_id=empleado)
+            print(agenda)
+            x= request.session["duracion"]
+            return JsonResponse({"empleado":empleado})
+
+        elif accion == "BuscarDiaDeEmpleado":
+            empleado=request.POST["empleado"]
+            dia=request.POST["dia"]
+            dia=datetime.strptime(dia, "%d/%m/%Y")
+            dia=dia.strftime("%Y-%m-%d")
+            diasConsulta = models.Calendario.objects.filter(empleado_id=empleado).filter(dia=dia)
+            
+
+            horasNoDisponibles={}
+            cont=1
+            
+            for i in diasConsulta:
+                horaInicio=i.horaInicio
+                horaInicio = horaInicio.strftime("%H:%M")
+                horaFin=i.horaFin
+                horaFin = horaFin.strftime("%H:%M")
+                cont=str(cont)
+                horasNoDisponibles[str("cita"+cont)]={"horaInicio":horaInicio,"horaFin":horaFin}
+                cont=int(cont)
+                cont+=1
+                   
+           
+            horas = [
+                "00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00",
+                "15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00",
+            ]
+
+            if len(horasNoDisponibles)==0:
+                res=horas
+            else:
+                for i in horasNoDisponibles:
+                    res = [x for x in horas if (x < horasNoDisponibles[i]["horaInicio"] or x > horasNoDisponibles[i]["horaFin"])]
+
+            # duracion=request.session["duracion"]
+            # for i in res:
+            #     posibleHoraFin
+            # # print("duracion ")
+            # # print(request.session["duracion"])
+            # # print("total de horas")
+            # # print(horas)
+            # # print("horas no disponibles")
+            # # print(horasNoDisponibles)
+            # # print("horas que quedan")
+            print(res)
+            
+            return JsonResponse({"horasDisponibles":res})
+
 
 class Calendario(TemplateView):
     template_name = "Calendario.html"
@@ -354,6 +413,8 @@ Seccion de las Vistas donde se administran las citas
 <----------------------------------------------------------------->
 """
 
+
+
 class AgregarCita(TemplateView):
     template_name = "AgregarCita.html"
 
@@ -377,8 +438,10 @@ def ejemplo(request, id):
 
 def pruebas(request):
     servicios=Servicio.objects.all()
+    form=pruebaxForm
     cont={
-        "servicios":servicios
+        "servicios":servicios,
+        "form":form
     }
     return render(request, 'prueba.html',cont)
     # user_list = Servicio.objects.all().order_by('id_servicio')

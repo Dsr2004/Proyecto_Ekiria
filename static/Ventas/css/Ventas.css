@@ -177,12 +177,10 @@
 
 /* finalizar la compra  */
 
-.infoTerminar{
-    background: rgb(176, 185, 194);
-    margin-top: 150px;
-    margin-right: 70px;
-    padding: 20px;
+#DiaCitaBox, #horaInicioBox{
+    display: none;
 }
+
 
 
 /* servicios personalizados */

@@ -10,6 +10,8 @@ urlpatterns = [
     path('DetalleCita/', DetalleCita.as_view(), name="detalleCita"),
     path('EditarCita/', EditarCita.as_view(), name="editarCita"),
 
+    path("BuscarEmpleadoParaCita/", BuscarDisponibilidadEmpleado.as_view(), name="buscarEmpleadoParaCita"),
+
     path('Catalogo/', Catalogo.as_view(), name="catalogo"),
     path('AgregarServicioCatalogo/', AgregarServicioalCatalogo.as_view(), name="agregarServicioCatalogo"),
     path("CambiarEstadoServicioEnCatalogo/",CambiarEstadoServicioEnCatalogo, name="cambiarEstadoServicioEnCatalogo"),

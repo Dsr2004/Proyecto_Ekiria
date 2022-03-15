@@ -1,0 +1,28 @@
+<style>
+    .kisiandMelocoton > *{
+        display:none !important;
+    }
+    .input-group-append{
+        
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+          <!-- <style>
+              .datepicker {
+                transform: translate(auto, 3.1em);
+                }
+          </style> -->
+        <form method="post" action=".">
+          {% csrf_token %}
+          <div style="position:relative">
+            {{ form.time_field}}
+        </div>
+          
+          {{form.datetime_field}}
+        </form>
+      </div>
+    </div>
+  </div>

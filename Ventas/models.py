@@ -33,6 +33,7 @@ class Servicio(models.Model):
     img_servicio=models.ImageField("Imagen del Servicio", upload_to='Ventas/servicios',null=False, blank=False)
     precio=models.IntegerField("Precio",null=False, blank=False)
     tipo_servicio_id=models.ForeignKey(Tipo_servicio, verbose_name="Tipo de Servicio", on_delete=models.CASCADE,null=True, blank=True, db_column="tipo_servicio_id")
+    duracion=models.PositiveIntegerField(blank=False, null=False)
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
     fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
     estado=models.BooleanField("Estado", default=True)
@@ -74,6 +75,7 @@ class Servicio_Personalizado(models.Model):
     img_servicio=models.ImageField("Imagen del Servicio", upload_to="Ventas/servicios_personalizados",null=False, blank=False)
     precio=models.IntegerField("Precio",null=True, blank=True)
     tipo_servicio_id=models.ForeignKey(Tipo_servicio, verbose_name="Tipo de Servicio", on_delete=models.CASCADE,null=False, blank=False, db_column="tipo_servicio_id")
+    duracion=models.PositiveIntegerField()
     fecha_creacion=models.DateField("Fecha de Creacion", auto_now=False, auto_now_add=True)
     fecha_actualizacion= models.DateTimeField("Fecha de Actualizacion", auto_now=True, auto_now_add=False)
     estado=models.BooleanField("Estado", default=True)
@@ -147,6 +149,8 @@ class PedidoItem(models.Model):
         return total
 
     
+    
+    
 
 # modelos para administrar los pedidos personalizados osea que tenga por lo menos un servicio personalizado
 class Pedido_Personalizado(models.Model):
@@ -170,8 +174,8 @@ class Pedido_Personalizado(models.Model):
 
 class Cita(models.Model):
     id_cita=models.AutoField("Id de la Cita", primary_key=True, unique=True)
-    empleado_id=models.IntegerField("Empleado para la cita", default=3)
-    cliente_id=models.ForeignKey(usuario, on_delete=models.SET_NULL, blank=True, null=True, db_column="cliente_id")
+    empleado_id=models.ForeignKey(usuario, on_delete=models.SET_NULL, blank=True, null=True, db_column="empleado_id", related_name="empleado_id")
+    cliente_id=models.ForeignKey(usuario, on_delete=models.SET_NULL, blank=True, null=True, db_column="cliente_id",related_name="cliente_id")
     pedido_id=models.ForeignKey(Pedido, verbose_name="Id del Pedido",db_column="pedido_id", on_delete=models.SET_NULL, null=True)
     diaCita=models.DateField("Dia de la cita")
     horaInicioCita=models.TimeField("Fecha de Inicio de la Cita")
@@ -185,6 +189,22 @@ class Cita(models.Model):
         db_table = 'citas'
         verbose_name = 'cita'
         verbose_name_plural = 'citas'
+
+    def __str__(self):
+        return f"el cliente de esta cita es: {self.cliente_id}"
+
+class Calendario(models.Model):
+    empleado_id=models.ForeignKey(usuario, on_delete=models.SET_NULL,null=True, db_column="empleado_id", related_name="empleado_calendario_id")
+    cliente_id=models.ForeignKey(usuario, on_delete=models.SET_NULL,null=True, db_column="cliente_id",related_name="cliente_calendario_id")
+    cita_id=models.ForeignKey(Cita, on_delete=models.SET_NULL,null=True,db_column="cita_id")
+    dia=models.DateField(null=False, blank=False)
+    horaInicio=models.TimeField(null=False, blank=False)
+    horaFin=models.TimeField(null=False, blank=False)
+
+    class Meta:
+        db_table = 'calendario'
+        verbose_name = 'calendario'
+        verbose_name_plural = 'calendario'
 
     def __str__(self):
         return f"el cliente de esta cita es: {self.cliente_id}"

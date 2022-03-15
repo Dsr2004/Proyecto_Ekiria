@@ -9,8 +9,7 @@ def actualizarItem(request):
     data = request.POST
     servicioid = data["servicioId"]
     accion = data["accion"]
-    print("ACCION: ", accion)
-    print("SERVICIO: ", servicioid)
+    
 
     cliente = Usuario.objects.get(id_usuario=3)
     servicio= Servicio.objects.get(id_servicio=servicioid)
@@ -21,5 +20,4 @@ def actualizarItem(request):
     if accion== "remove":
         itemPedio.delete()
     
-    print(servicio)
     return JsonResponse('Item fue anadido', safe=False)
