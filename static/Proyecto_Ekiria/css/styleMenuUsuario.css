@@ -430,6 +430,7 @@ body {
     z-index: 9;
     animation-duration: 2s;
     transition: 2s;
+    background-color: black;
 }
 
 .lista img {
