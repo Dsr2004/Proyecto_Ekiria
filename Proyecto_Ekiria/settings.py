@@ -98,9 +98,10 @@ DATABASES = {
             'init_command': 'SET default_storage_engine=INNODB',
             'charset': 'utf8mb4',
             }
-
-    }
+        }
 }
+    
+
 # para sqlite
 # DATABASES = {
 #     'default': {
@@ -140,8 +141,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
 CRISPY_TEMPLATE_PACK='bootstrap4'
+
 AUTH_USER_MODEL = 'Usuarios.Usuario'
 
 # Internationalization

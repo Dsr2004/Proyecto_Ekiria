@@ -317,6 +317,26 @@ class ElimininarTipoServicio(DeleteView):
     template_name = "Tipo_Servicio/EliminarTipoServicio.html"
     success_url = reverse_lazy("Ventas:adminVentas")
 
+# class CambiarEstadoTipoServicio(UpdateView):
+#     def post(self, request, *args, **kwargs) :
+#         if request.method == "POST":
+#             form = self.form_class(request.POST)
+#             if form.is_valid():
+#                 form.save()
+#                 mensaje = f"{self.model.__name__} actualizado correctamente"
+#                 error = "No hay error!"
+#                 response = JsonResponse({"mensaje":mensaje, "error":error})
+#                 response.status_code = 201
+#                 return response
+#             else:
+#                 mensaje = f"{self.model.__name__} no se ha podido actualizar!"
+#                 error = form.errors
+#                 response = JsonResponse({"mensaje":mensaje, "error":error})
+#                 response.status_code = 400
+#                 return response
+#         else:
+#             return redirect("Ventas:adminVentas")
+
 
 def CambiarEstadoTipoServicio(request):
     if request.method=="POST":

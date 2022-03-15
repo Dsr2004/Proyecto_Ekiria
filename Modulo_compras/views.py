@@ -108,6 +108,7 @@ class Crearprov(CreateView):
    
         
 
+
 class Crearcompra(CreateView):
     model= Compra
     form_class=ComprasForm
@@ -144,6 +145,7 @@ def Eliminarprov(request, id_proveedor):
     prov_form.delete()
     return redirect('listarprov')
     # return render(request,'proveedores.html',{'prov_form':prov_form})
+
 
 
 class modificarprov(UpdateView):

@@ -37,6 +37,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
 
+
 ]
 
 if settings.DEBUG:

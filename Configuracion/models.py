@@ -25,6 +25,7 @@ class Rol(models.Model):
     def __str__(self):
         return self.nombre 
 
+
 class cambios(models.Model):
     id_cambios =  models.AutoField(primary_key=True, unique=True)
     Color_Letra = models.CharField(max_length=20)
