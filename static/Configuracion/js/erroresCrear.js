@@ -1,6 +1,6 @@
 function abrir_modal_crear(url){
     $("#CreateRol").load(url, function(){
-        $(this).modal("show")
+        $(this).appendTo("body").modal('show');
     });
 }
 function CrearRol(){

@@ -1,21 +1,3 @@
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== '') {
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {
-          const cookie = cookies[i].trim();
-          // ¿Esta cadena de cookies comienza con el nombre que queremos?
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-              break;
-          }
-      }
-  }
-  return cookieValue;
-}
-const csrftoken = getCookie('csrftoken');
-
-
 function eliminarprov(id_proveedor) {
   let path = "/compras/eliminarprov/"
   var ruta = path+id_proveedor
@@ -60,28 +42,29 @@ function eliminarprov(id_proveedor) {
 
 function agregarprod(url){
   $("#agregar_prod").load(url,function() {
-    $(this).modal('show')
+    $(this).appendTo("body").modal('show');
   })
  
 };
 
 function agregarprov(url){
  $("#agregar_prov").load(url,function() {
-   $(this).modal('show')
+  $(this).appendTo("body").modal('show');
  })
 
 };
 
 function modificarprov(url){
   $("#editar_prov").load(url,function() {
-    $(this).modal('show')
+    $(this).appendTo("body").modal('show');
   })
  
-};
+}; 
 
 function agregartp(url){
+ 
   $("#agregar_tp").load(url,function() {
-    $(this).modal('show')
+    $(this).appendTo("body").modal('show');
   })
  
   $("#agregar_prod").load(url,function() {
@@ -91,7 +74,7 @@ function agregartp(url){
 
 function agregarcompra(url){
   $("#agregar_comp").load(url,function() {
-    $(this).modal('show')
+    $(this).appendTo("body").modal('show');
   })
  
 };

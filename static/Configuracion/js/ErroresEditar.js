@@ -1,6 +1,6 @@
 function abrir_modal_editar(url){
     $("#EditarRol").load(url, function(){
-        $(this).modal("show");
+        $(this).appendTo("body").modal('show');
     });
 }
 function EditarRol(){

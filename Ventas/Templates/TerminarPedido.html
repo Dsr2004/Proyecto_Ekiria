@@ -130,17 +130,7 @@
       success: function (response) {
         jQuery("#horaInicioBox").css("display", "block")
         var horas = response["horasDisponibles"]
-       $("#horaInicio").click(function(){
-        $('#horaInicio').datetimepicker({
-        formatTime:"g:i a",
-        format:'g:i A',
-        datepicker:false,
-        allowTimes:["13:00", "15:00"]
-        
-    });
-   
-       } 
-       )}
+       }
     });
     
   },
@@ -148,6 +138,13 @@
 
 });
 
+$('#horaInicio').datetimepicker({
+        formatTime:"g:i a",
+        format:'g:i A',
+        datepicker:false,
+        allowTimes:["13:00", "15:00"]
+        
+    });
 
 
 $("#empleado").on("change", function(){
