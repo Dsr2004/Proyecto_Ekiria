@@ -11,3 +11,10 @@ function CambioLetra() {
         });
     })
 }
+
+function presionaEnter(event) {
+
+    const key = event.key; 
+    console.log("Presionada: " + key);
+    
+}
