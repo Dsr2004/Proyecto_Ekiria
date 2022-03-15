@@ -1,0 +1,128 @@
+{%extends 'Menu_Usuario.html'%}
+
+{% block head %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Productos</title>
+   <link rel="stylesheet" href="/static/Modulo_compras/css/style.css">
+   <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vast+Shadow&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/Proyecto_Ekiria/css/styleTablesInformations.css">
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+   <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">  
+   <link rel="stylesheet" href="sweetalert2.min.css">
+   <script src="/static/bootstrap/js/bootstrap.js"></script>
+
+ 
+</head>
+{% endblock head %}
+
+{% block Contenido %}
+
+
+
+<div class="container">
+  <div class="Table Add">
+    <button type="button" class="Add img" onclick="agregarprod('{%url 'crearprod' %}')">
+      <i class="fas fa-user-plus"></i>
+  </button>
+  </div>
+
+  <div class="Table Header-table">
+    <div class="Table search">
+        <label>
+        <input type="text" placeholder="Search here">
+        <i class="fas fa-search"></i>
+    </label>
+    </div>
+  </div>     
+
+
+
+<div class="Table Content-table">
+  <div class="Information">
+      <div class="cardHeader">
+          <i class="fas fa-angle-left"></i>
+          <h2>Productos</h2>
+          <i class="fas fa-angle-right"></i>
+      </div>
+      <table >
+        <thead >
+          <tr>
+            <th scope="col">nombre</th>
+            <th scope="col">precio</th>
+            <th scope="col">proveedor</th>
+            <th scope="col">tipo de producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">estado</th>
+            <th scope="col">editar</th>
+
+          </tr>
+        </thead>
+        <tbody>
+
+  {%if Productos%}
+
+  {%for prod in Productos%}
+          <tr>
+            <td>{{prod.nombre}}</td>
+            <td>{{prod.precio}}</td>
+            <td>{{prod.proveedor}}</td>
+            <td>{{prod.tipo_producto}}</td>
+            <td>{{prod.cantidad}}</td>
+            <td><div class="form-switch">
+              <form action="{%url 'camestado' %}" method="POST" id="camestado">
+                {%csrf_token%}
+                  <input style="margin-top: -8px;" class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" {%if prov.estado == True  %} checked {%endif%} onclick="cambioestado('{{prov.id_proveedor}}')">
+              </form>
+  
+              </div>
+            </td>
+
+       
+          </tr>
+
+    {%endfor%} 
+
+    {% else %}
+
+      <h1>No hay registros</h1>
+
+    {% endif %}
+        
+         
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+
+
+
+{% endblock Contenido %}
+
+{% block modal %}
+
+<div class="modal fade" id="agregar_prod" role="dialog" >
+    
+</div>
+
+{% endblock modal%}
+
+{%block scripts%}
+
+<script src="/static/Proyecto_Ekiria/js/jsMenuL.js"></script>
+<script src="/static/Modulo_compras/js/js.js"></script>
+<script src="sweetalert2.all.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+{%endblock scripts%}
+</html>
+
+
+
+
+

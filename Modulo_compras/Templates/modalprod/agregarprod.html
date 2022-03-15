@@ -1,0 +1,52 @@
+{% load crispy_forms_tags  %} 
+
+
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ageLabel">Crear Productos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="errores" >
+          
+        </div>
+       <form id="agregarprod" action="{% url 'crearprod'%}" class="form-p" method="POST">
+         {%csrf_token%}
+          {{form.nombre|as_crispy_field}}
+        <p id="nombre" class="bg-light text-danger"></p>
+
+          {{form.precio|as_crispy_field}}
+        <p id="precio" class="bg-light text-danger"></p>
+
+          {{form.proveedor|as_crispy_field}}
+        <p id="proveedor" class="bg-light text-danger"></p>
+
+         <div class="row">
+             <div class="col-11">
+                {{form.tipo_producto|as_crispy_field}}
+                <p id="tipo_producto" class="bg-light text-danger"></p>
+             </div>
+             <div class="col-1">
+                 
+        <div class="Table Add">
+            <button type="button" class="Add img" onclick="agregartp('{%url 'creartp' %}')" style="margin-top: 15px !important; margin-left: 15px !important;">
+              <i class="fas fa-user-plus"></i>
+          </button>
+          </div>
+             </div>
+         </div>
+
+
+        {{form.cantidad|as_crispy_field}}
+        <p id="cantidad" class="bg-light text-danger"></p>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" onclick="registrarcpd();" class="btn btn-primary">Confirmar</button>
+          </div>
+        </form>    
+      </div>
+    </div>
+  </div>
