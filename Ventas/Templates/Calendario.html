@@ -21,7 +21,15 @@
 {% endblock head %}
 
 {% block Contenido %}
-<h1>Calendario</h1>
+<div class="row">
+  <div class="col-8">
+    <h1>Calendario</h1>
+  </div>
+  <div class="col-4" style="margin-top: 20px;">
+    <button type="button" class="btn btn-info">Generar calendario de esta semana </button>
+  </div>
+</div>
+
 <div class="row">
     <div class="col-7">{% include "CalendarioP.html" %}</div>
     <div class="col-4 ContainerHistorialCitas">

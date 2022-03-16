@@ -44,9 +44,15 @@
       <div class="col-10">
         <h2>Catalogo</h2>
       </div>
-      <div class="col-2">
-        <button class="btn" onclick="abrir_modal_AgregarServicioCatalogo('{% url 'Ventas:agregarServicioCatalogo' %}')"><span class="float" style="font-size: 48px; margin-right: -80%;"><i class="fa-solid fa-circle-plus"></i></span></button>
+      <div class="col-2 ">
+        <button class="btn text-end" onclick="abrir_modal_AgregarServicioCatalogo('{% url 'Ventas:agregarServicioCatalogo' %}')"><span class="float" style="font-size: 48px; margin-right: -80%;"><i class="fa-solid fa-circle-plus"></i></span></button>
       </div>
+    </div>
+    
+    <div class="row" style="margin-bottom: 50px; margin-top: 10px;">
+       <div class="col align-self-end">
+         <button type="button" class="btn btn-info" onclick="reporteVentas()">Generar reporte</button>
+       </div>
     </div>
    
     <table id="dataTableExample" class="table table-striped">
@@ -145,10 +151,31 @@
 
 </div>
 </div>
+
+!-- Modal -->
+<div class="modal fade" id="reporteVentas" tabindex="6" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Reporte</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Reporte de ventas para los servicios mas pedidos por los usuarios
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock Contenido %}
 
 {% block modals %}
- 
+
+
+
 {% endblock modals %}
 
 
@@ -160,6 +187,10 @@
     $(document).ready(function(){
        $("#dataTableExample").DataTable();
     });
+
+    function reporteVentas(){
+       $("#reporteVentas").appendTo("body").modal("show")
+    }
 </script>
 {% endblock scripts %}
    
