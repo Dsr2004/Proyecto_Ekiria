@@ -12,14 +12,14 @@
 {% endblock head %}
 </head>
 
-<div id="body">
 {% block Contenido %}
+<div id="body">
+
     <style>
       .modal-backdrop {
             z-index: -1 !important;
                 }
     </style>
-  <div >
     <h3 class="tituloCambios" >Cambios de pagina</h3>
     <div class="contenedorcambios">
       <div class="ContenedorMision">
@@ -36,7 +36,18 @@
           </div>
           <div class="seleccionar">
             <label for="">Color de Fondo</label>
-              <input type="text" name="select1" id="Colorletra" placeholder="en ingles " onkeydown="presionaEnter(event);" >
+              <input type="text" name="select1" id="ColorFondo" placeholder="en ingles " onkeydown="CambiarFondo(event);" >
+          </div>
+
+          <div class="seleccionar">
+            <label for="">Color de Letra</label>
+              <input type="text" name="select2" id="ColorLetra" placeholder="en ingles " onkeydown="CambiarLetra(event);" >
+          </div>
+
+          <div class="seleccionar">
+            <label for="">Tamaño de Letra</label>
+              <input type="text" name="select3" id="TamanoLetra" placeholder="en ingles " onkeydown="CambiarTamano(event);" >
+          </div>
             <!-- <select name="select2" id="ColorFondo" onchange="ColorFondo();" >
               <option value="fondo2" selected>Color de Fondo</option>
               <option value="sangria2">Sangria de Letra</option>
