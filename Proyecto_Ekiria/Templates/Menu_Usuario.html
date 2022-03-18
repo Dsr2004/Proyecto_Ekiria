@@ -28,9 +28,9 @@
 
                     <!--           Zona de links de navegación     -->
                     <div class="Perfil">
-                        <a href="">
-                            <img src="/static/Proyecto_Ekiria/Img/profile.png" class="foto_perfil">
-                            <p class="escon">Nombre de Usuario <sup>Rol</sup> </p>
+                        <a href="{%url 'Perfil'%} ">
+                            <img src="/media/{{User.imagen}}" class="foto_perfil">
+                            <p class="escon">{{User.username}}<sup>{{User.rol}}</sup> </p>
                         </a>
                     </div>
                     <ul class="list_content">
@@ -113,7 +113,7 @@
                     <li class="salir" id="salir">
                         <div class="cerrar">
                             <a href="{% url 'IniciarSesion' %}" class="icon"><i class="mdi mdi-power centrado"></i> </a>
-                            <a href="{% url 'IniciarSesion' %}" class="escon text"> Cerrar Sesión</a>
+                            <a href="{% url 'CerrarSesion' %}" class="escon text"> Cerrar Sesión</a>
                         </div>
                     </li>
                 </div>

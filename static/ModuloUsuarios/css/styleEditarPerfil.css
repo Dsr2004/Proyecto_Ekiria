@@ -1,4 +1,4 @@
-form{
+form {
     width: 50%;
     margin: 0 25%;
     border: 1px solid;
@@ -9,17 +9,21 @@ form{
     grid-template-columns: 100%;
     grid-row-gap: 20px;
 }
-form input{
+
+form input {
     width: 100%;
 }
-form label{
+
+form label {
     font-weight: 700;
+    display: flex;
+    justify-content: center;
 }
-form label img{
+
+form label img {
     width: 300px;
     height: 300px;
     border-radius: 50%;
     border: 2px solid;
-    margin: 0 34%;
     cursor: pointer;
 }

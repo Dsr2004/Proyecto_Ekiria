@@ -82,7 +82,7 @@ class Usuario(AbstractBaseUser):
     img_usuario = models.ImageField(
         'Imagen De Perfil', 
         upload_to='perfil/', 
-        default="profile.jpg",
+        default="perfil/profile.jpg",
         max_length=200,
         )
     municipio = models.ForeignKey(Municipio, null=True, blank=True, on_delete=models.CASCADE)

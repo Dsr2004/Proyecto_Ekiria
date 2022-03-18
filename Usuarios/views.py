@@ -1,12 +1,15 @@
 #-----------------------------------------Imports---------------------------------------------------
 from ast import Return
 from asyncio import transports
-from email import header
+from email import header, message
 from html.entities import html5
 from msilib.schema import SelfReg
 from multiprocessing import context
 from pyexpat import model
+from pyexpat.errors import messages
 from re import template
+from tkinter.messagebox import NO
+from urllib import response
 #-----------------------------------------Django---------------------------------------------------
 from django.http import HttpResponseRedirect, request, HttpResponse, JsonResponse
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DetailView, View
@@ -14,6 +17,8 @@ from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.sessions.models import Session
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.forms import AuthenticationForm
 #-----------------------------------------Rest Framework---------------------------------------------------
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -22,7 +27,7 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.renderers import TemplateHTMLRenderer
-from restt_framework import viewsets
+from rest_framework import viewsets
 #-----------------------------------------Serializers---------------------------------------------------
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
@@ -35,10 +40,10 @@ from datetime import datetime
 from Usuarios.forms import Regitro, Editar
 
 #--------------------------------------Templates Loaders------------------------------------
-class Login(ObtainAuthToken, TemplateView):
-    template_name = 'registration/login.html'
-    def post(self,request,*arg, **kwargs):
-        pass
+
+# class Login(ObtainAuthToken, TemplateView):
+#     template_name = 'registration/login.html'
+#     def post(self,request,*arg, **kwargs):
         # if request:
         #     login_serializer = self.serializer_class(data = request.POST , context={'request':request})
         #     print(request)
@@ -80,33 +85,58 @@ class Login(ObtainAuthToken, TemplateView):
 
 
                 
-class Loguot(Authentication, APIView):
-    def post(self,request,*args,**kwargs):
-        try:    
-            token = token
+# class Loguot(Authentication, APIView):
+#     def post(self,request,*args,**kwargs):
+#         try:    
+#             token = token
             
-            if token:
+#             if token:
                 
-                user = token.user
+#                 user = token.user
                 
-                for i in range(2):
-                    all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
-                    if all_sessions.exists():
-                        for session in all_sessions:
-                            session_data = session.get_decoded()
-                            if user.id_usuario == int(session_data.get('_auth_user_id')):
-                                session.delete()
+#                 for i in range(2):
+#                     all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
+#                     if all_sessions.exists():
+#                         for session in all_sessions:
+#                             session_data = session.get_decoded()
+#                             if user.id_usuario == int(session_data.get('_auth_user_id')):
+#                                 session.delete()
                                         
-                token.delete()
+#                 token.delete()
                     
-                session_message = 'Sesiones de usuario eliminadas.'
-                token_message = 'Token eliminado.'
-                return Response({'token_message': token_message, 'session_message': session_message}, status = status.HTTP_200_OK)
-            return Response({'error':'No se ha encontrado un usuario con estas credenciales.'}, status = status.HTTP_400_BAD_REQUEST)
-        except :
-            return Response({'error': 'No se ha encontrado token en la petición.'}, status = status.HTTP_409_CONFLICT)
+#                 session_message = 'Sesiones de usuario eliminadas.'
+#                 token_message = 'Token eliminado.'
+#                 return Response({'token_message': token_message, 'session_message': session_message}, status = status.HTTP_200_OK)
+#             return Response({'error':'No se ha encontrado un usuario con estas credenciales.'}, status = status.HTTP_400_BAD_REQUEST)
+#         except :
+#             return Response({'error': 'No se ha encontrado token en la petición.'}, status = status.HTTP_409_CONFLICT)
         
-        
+
+def Loguot(request):
+    logout(request)
+    return redirect('Inicio')
+
+def Login(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username= form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            usuario = authenticate(username=username, password=password)
+            if usuario is not None:
+                login(request, usuario)
+                request.session['username'] = usuario.username
+                request.session['rol']= usuario.rol.nombre
+                request.session['pk'] = usuario.id_usuario
+                request.session['Admin'] = usuario.administrador
+                print(usuario.id_usuario)
+                return redirect("Inicio")
+            else:
+                return HttpResponse("Apodo o Contraseñas incorrectos")
+        return HttpResponse( "Credenciales incorrectas")
+            
+    form = AuthenticationForm()
+    return render(request, "registration/login.html", {'form': form})
             
 def PassR(request):
     return render(request, "UserInformation/PasswordRecovery.html")
@@ -117,45 +147,80 @@ class Register(CreateView):
     template_name = 'registration/Registration.html'
     success_url = reverse_lazy("Inicio")
     
-# def Perfil(request):
-#     return render(request, "UserInformation/Perfil.html")
-# # def Admin(request):
-# #     context = {1,2,3,3,4,5,6,7,8,9,10}
-# #     return render(request, "UsersConfiguration/UsersAdministration.html",{'rep':context})
+def Perfil(request):
+    UserSesion = ""
+    if request.session:
+        imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+        imagen = imagen.img_usuario
+        UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+    usuario = Usuario.objects.get(id_usuario=request.session['pk'])
+    print(usuario)
+    return render(request, "UserInformation/Perfil.html", {"Usuario":usuario, "User":UserSesion})
 
-class Perfil(DetailView):
-    model = Usuario
-    context_object_name="Usuario"
-    template_name="UserInformation/Perfil.html"
-    queryset=Usuario.objects.all()
+# def Admin(request):
+#     context = {1,2,3,3,4,5,6,7,8,9,10}
+#     return render(request, "UsersConfiguration/UsersAdministration.html",{'rep':context})
+
+# class Perfil(DetailView):
+#     model = Usuario
+#     context_object_name="Usuario"
+#     template_name="UserInformation/Perfil.html"
+#     queryset=Usuario.objects.all()
     
 
-class EditarPerfil(UpdateView):
-    model = Usuario
-    form_class = Editar
+# class EditarPerfil(UpdateView):
+#     model = Usuario
+#     form_class = Editar
+#     template_name = "UserInformation/EditarPerfil.html"
+#     def post(self, request, *args, **kwargs):
+#         form=self.form_class(request.POST or None, request.FILES or None, instance=self.get_object())
+#         if form.is_valid():
+#             form.save()
+#             print(request.FILES)
+#             username = request.POST.get('username')
+#             Object = Usuario.objects.get(username=username)
+#             id = Object.id_usuario
+#             return redirect("../Perfil/"+str(id))
+#         else:
+#             e=form.errors
+#             print(e)
+#             return JsonResponse({"x":e})
+def EditarPerfil(request):
     template_name = "UserInformation/EditarPerfil.html"
-    def post(self, request, *args, **kwargs):
-        form=self.form_class(request.POST or None, request.FILES or None, instance=self.get_object())
+    UserSesion = ""
+    if request.session:
+        get_object = Usuario.objects.get(id_usuario=request.session['pk'])
+        form = Editar(instance=get_object)
+        imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+        imagen = imagen.img_usuario
+        UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+    if request.method=="POST":
+        form = Editar(request.POST or None, request.FILES or None, instance=get_object)
         if form.is_valid():
             form.save()
-            print(request.FILES)
-            username = request.POST.get('username')
-            Object = Usuario.objects.get(username=username)
-            id = Object.id_usuario
-            return redirect("../Perfil/"+str(id))
+            return redirect("Perfil")
         else:
             e=form.errors
             print(e)
             return JsonResponse({"x":e})
-
+    return render(request, template_name, {"form":form,"User":UserSesion})
+    
 def Admin(request):
+    UserSesion = ""
+    if request.session:
+        imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+        imagen = imagen.img_usuario
+        if request.session['Admin'] == True:
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+        else:
+            return redirect("SinPermisos")
     model = Usuario
     filter = "yes"
     template_name = "UsersConfiguration/UsersAdministration.html"
     if request.method=="GET":
         queryset = model.objects.all()
         Servicios = Servicio.objects.all()
-    return render(request, template_name, {"Usuario":queryset,"contexto":Servicios})
+    return render(request, template_name, {"Usuario":queryset,"contexto":Servicios, "User":UserSesion})
     
     
 class CreateUser(CreateView):
@@ -176,17 +241,12 @@ class UpdateUser(UpdateView):
 
 @csrf_exempt
 def Notification(request):
-    if request.POST:
-        id_estado= request.POST.get('id_estado')
-        Object = Usuario.objects.get(id_usuario=id_estado)
-        estado = Object.estado
-        if estado == True:
-            Object.estado = False
-            Object.save()
-        elif estado == False:
-            Object.estado = True
-            Object.save()
-    return render(request, "UserInformation/Notification.html")
+    UserSesion = ""
+    if request.session:
+        imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+        imagen = imagen.img_usuario
+        UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+    return render(request, "UserInformation/Notification.html", {"User":UserSesion})
     
 def CambiarEstadoUsuario(request):
     print(request.POST)

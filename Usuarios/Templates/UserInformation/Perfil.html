@@ -13,7 +13,7 @@
             <img src="/media/{{Usuario.img_usuario}}" class="Perfil_foto_perfil" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <h1 class="Perfil_Apodo">
                 {{Usuario.username}}</h1>
-        </div>
+            </div>
         <br>
         <div class="Perfil_informacion container">
             <div class="row">
@@ -50,7 +50,7 @@
                 <div class="col"><label>Dirección</label><br>{{Usuario.direccion}}</div>
                 <div class="col">
                     
-                    <button type="button" class="btn btn-primary" onclick="EditarPerfil('{{Usuario.id_usuario}}')">Editar</button>
+                    <button type="button" class="btn btn-primary"><a href="{%url 'EditarPerfil'%} " style="color:#000;"> Editar</a></button>
                 </div>
             </div>
         </div>

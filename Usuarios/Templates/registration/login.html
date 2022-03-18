@@ -17,24 +17,24 @@
         <div class="contLogo">
             <img class="logo" src="/static/ModuloUsuarios/img/Logo.png">
         </div>
-        <form method="post">
+        <form method="POST">
             {%csrf_token%}
             <h1>{% if request.path == '/IniciarSesion/'%}Iniciar Sesión{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Recuperar Contraseña{% endif %}</h1>
             <div class="form">
                 <div class="flexbox">
-                    <input autocomplete="off" id="username" name="username" type="text" required>
+                    {{form.username}}
                     <label class="lbl-nombre">
                     <span class="text-nomb"><strong>Ingrese El Nombre De Usuario</strong></span>
                 </label>
                 </div> <br>
                 <div class="flexbox">
-                    <input id="password" name="password" autocomplete="off" type="{% if request.path == '/IniciarSesion/'%}password{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}text{% endif %}" required>
+                    {{form.password}}
                     <label class="lbl-nombre">
                     <span class="text-nomb"><strong>Contraseña</strong></span>
                 </label>
                 </div>
             </div><br>
-            <button type="submit" class="boton"><strong>{% if request.path == '/IniciarSesion/'%}Ingresar{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}Confirmar{% endif %}</strong></button>
+            <button type="submit" class="boton"><strong>Ingresar</strong></button>
             <div class="ayuda {% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}activar{% endif %}">
                 {% if request.path == '/IniciarSesion/'%}<a href="{%url 'RecuperarContraseña'%}}">¿Olvide mi contraseña?</a>
                 <a href="{%url 'Registro'%}">Registrarme</a>{% endif %}{% if request.path == '/InformacionUsuario/RecuperarContraseña/'%}
