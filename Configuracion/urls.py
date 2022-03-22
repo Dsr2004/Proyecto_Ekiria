@@ -12,5 +12,5 @@ urlpatterns=[
     path("Cliente/", views.Cliente, name="Cliente"),
     path("EditarRol/<int:pk>",views.EditarRolView.as_view(), name="updateRol"),
     path("CrearRol/", views.CreateRolView.as_view(), name="CreateRol"),
-    path("EstadoRol/",views.EstadoRol, name="estado")
+    path("EstadoRol/",views.EstadoRol, name="estado"),
 ]

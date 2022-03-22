@@ -76,6 +76,9 @@
     text-align: center;
     text-decoration: none;
 }
+#text2{
+    margin: 0px,0px,16px;
+}
 /*tabla de roles*/
 .Letracont:hover , .Letracont2:hover{
     color: #000;
@@ -156,8 +159,8 @@
     color: white;
 }
 .ContenedorMision, .contactenos{
-    width: 80%;
-    margin-left: 10%;
+    width: 60%;
+    margin-left: 20%;
     margin-bottom: 5%;
 }
 .ContMision, .seleccionar2, .contfooter, .principalPermisos{
@@ -168,11 +171,12 @@
 
     border-color:#000;
     border-radius: 30px;
-    box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem rgb(240, 240, 247);
+    box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #AF8DBB;
     background: #AF8DBB;
+    background-color: rgb(240, 240, 247);
     color: #000000;
 }
-.ContMision:hover, .contfooter:hover, .principalPermisos:hover{
+/* .ContMision:hover, .contfooter:hover, .principalPermisos:hover{
     box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #AF8DBB;
     background-color: rgb(240, 240, 247);
     
@@ -180,10 +184,19 @@
     transition-property: all;
     transition-duration: 0.3s;
     transition-timing-function: steps(5, jump-both);
-}
+} */
 .tituloCambios{
     text-align: center;
 }
+.editarcambios{
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+}
+.botonEditarCambios{
+    margin-top: 8%;
+}
+
 /* permisos */
 .principalPermisos{
     align-items: center;

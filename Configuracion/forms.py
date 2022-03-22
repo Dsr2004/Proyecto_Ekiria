@@ -24,3 +24,9 @@ class CambiosForm(forms.ModelForm):
     class Meta:
         model = cambios
         fields = '__all__'
+
+class FooterForm(forms.ModelForm):
+
+    class Meta:
+        model = footer
+        fields = '__all__'

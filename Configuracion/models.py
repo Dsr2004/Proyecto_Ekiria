@@ -40,3 +40,20 @@ class cambios(models.Model):
 
     def __str__(self):
         return self.nombre 
+        
+class cambiosFooter(models.Model):
+    id_footer = models.AutoField(primary_key=True, unique=True)
+    Direccion = models.CharField(max_length=500, null=False, blank=False)
+    Telefono = models.CharField(max_length=20, null=False, blank=False)
+    Derechos = models.CharField(max_length=20, null=False, blank=False)
+    Footer_Color_Letra = models.CharField(max_length=20, null=False, blank=False)
+    Footer_Color_Fondo = models.CharField(max_length=20, null=False, blank=False)
+    Footer_tamano_Titulo = models.CharField(max_length=20, null=False, blank=False)
+    Footer_tamano_Texto = models.CharField(max_length=20, null=False, blank=False)
+    Footer_Tipo_Letra = models.CharField(max_length=20, null=False, blank=False)
+
+    class Meta:
+        db_table = "footer"
+
+    def __str__(self):
+        return self.nombre

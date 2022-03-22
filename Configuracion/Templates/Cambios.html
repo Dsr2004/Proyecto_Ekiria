@@ -22,17 +22,17 @@
     </style>
     <h3 class="tituloCambios" >Cambios de pagina</h3>
     <div class="contenedorcambios">
+        {%if Cambios%}
+        {%for cambios in Cambios%}
       <div class="ContenedorMision">
         <div class="ContMision">
           <div class="recuadro" id="texto">
+              
             <h4 id="text" class="tipo">MISIÓN</h4>
-            <p id="text2" class="tipo">La Misión de EKIRIA es  ofrecer  a mujeres, hombres y niñ@s de Medellin, <br>
-              servicios de belleza para la presentación personal a través de servicios <br>
-              como manicura, pedicura, aplanchados, masajes, etc.</p>
+            <p id="text2" class="tipo">{{cambios.Texto_Mision}}</p>
             <h4 id="text" class="tipo">VISIÓN</h4>
-            <p id="text2" class="tipo">Tener y/o poseer un mejor establecimiento para dar al cliente los mejores <br>
-                servicios de calidad. Y garantía. Ser reconocida por muchos más clientes <br>
-                y satisfacer sus necesidades.</p>
+            <p id="text2" class="tipo">{{cambios.Texto_Vision}}</p>
+                
           </div>
           <div class="seleccionar">
             <label for="">Color de Fondo</label>
@@ -60,12 +60,26 @@
               <option value="arial">Arial</option>
               <option value="cursive">cursive</option>
             </select>
-            <div>
-              <textarea id="TextoEditar" cols="30" rows="10"></textarea>
+            <br>
+            <div class="editarcambios">
+              <div>
+                <label class="separacambios" >Edita la Mision</label>
+                <br><br>
+                <textarea id="TextoEditar" cols="50" rows="10">{{cambios.Texto_Mision}}</textarea>
+              </div>
+              <div>
+                <label class="separacambios" >Edita la Vision</label>
+                <br><br>
+                <textarea id="TextoEditar" cols="50" rows="10">{{cambios.Texto_Vision}}</textarea>
+              </div>
+              {%endfor%}
+                {%else%}
+                <h1>No hay registros</h1>
+
+              {%endif%}
             </div>
+            <button type="button" class="btn btn-warning botonEditarCambios" data-bs-toggle="modal" data-bs-target="#CrearConfirmacion" onclick="EditarMV()";>Editar Texto</button>
           </div>
-          <br>
-          <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CrearConfirmacion" onclick="EditarMV()";>Editar Texto</button>
         </div>
       </div>
       <!-- foteeer -->

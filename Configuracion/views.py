@@ -22,7 +22,10 @@ def Roles(request):
     return render(request, "Roles.html")
 
 def Cambios(request):
-    return render(request,"Cambios.html")
+    formulario = CambiosForm
+    ListarCambios = cambios.objects.all()
+    contexto = {'Cambios' :ListarCambios}
+    return render (request, "Cambios.html",contexto)
 
 def Permisos(request):
     return render(request, "Permisos.html")
@@ -43,11 +46,7 @@ def ListarRol(request):
     contexto= {'roles':ListRoles}
     return render(request, "Roles.html", contexto)
 
-def ListarCambios(request):
-    formulario = CambiosForm
-    ListarCambios = cambios.object.all()
-    contexto = {'Cambios' :ListarCambios}
-    return render (request, "index.html",contexto)
+
 
 def EstadoRol(request):
     id_estado=request.POST.get("estado")
