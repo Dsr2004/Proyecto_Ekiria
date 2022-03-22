@@ -2,7 +2,6 @@ from django import forms
 
 from Usuarios.models import Usuario
 class Regitro(forms.ModelForm):
-    
     password1 = forms.CharField(label = "Contraseña", widget=forms.PasswordInput(
         attrs={
             'id':"password",

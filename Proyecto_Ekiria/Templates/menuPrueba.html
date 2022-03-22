@@ -1,0 +1,303 @@
+{% include 'preloader.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  {% block head %}
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menu Prueba Ekiria</title>
+</head>
+  {% endblock head %}
+    
+
+
+<div class="bodyMenuSiempre">
+  <body class="hold-transition sidebar-mini sidebar-collapse">
+    <style>
+  
+      .nav p{
+        color: white !important;
+      }
+      .sidebar {
+      height: 100vh;
+      background: linear-gradient(to bottom, #0c0c0c, #0f0f0f);
+  }
+  
+  .Perfil a p {
+      padding-top: 5px;
+      font-size: 15px;
+      margin-top: 15px;
+      margin-left: 10px;
+      color: white;
+      border-bottom: 1px solid #572364;
+  }
+  
+  .Perfil a p sup {
+     
+      font-size: 11px;
+  }
+  sup{
+    color: yellow !important;
+  }
+  .escon{
+    color: white;
+  }
+  
+  .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active>p{
+      background-color: #572364;
+      color: black;
+  }
+  .navbar-white{
+    background: linear-gradient(to bottom, #0c0c0c, #0f0f0f);
+    
+  }
+  .nav-linkHorizontal{
+    color: white !important;
+  }
+  .cerrar:hover{
+    background-color: rgba(128, 128, 128, 0.241) !important;
+    text-decoration: none;
+    color: white;
+  
+  }
+  
+    </style>
+  
+    <div class="wrapper">
+     <!-- menu horizontal -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- izquierda navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a  class="nav-link nav-linkHorizontal" data-widget="pushmenu" href="#" role="button"><i style="font-size: 25px;" class="fas fa-bars"></i></a>
+        </li>
+  
+      </ul>
+  
+      <!-- derecha navbar links -->
+      <ul class="navbar-nav ml-auto" style="margin-right: 30px;">
+        <li class="nav-item">
+          <a class="nav-link nav-linkHorizontal"  href="#" ><i class="mdi mdi-account-group "></i> Nosotros</a>
+        </li>
+  
+        <li class="nav-item">
+          <a class="nav-link nav-linkHorizontal" href="{% url 'Ventas:carrito' %}" >
+            <i  style="font-size: 20px;" class="fa-solid fa-cart-shopping"></i><span class="position-absolute top-10 start-80 translate-middle badge rounded-pill bg-danger">
+              {% if request.session.carrito %}{{request.session.carrito}}{% else %}0{% endif %}
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" style="margin-top: -8px;">
+          <a class="nav-link nav-linkHorizontal" href="#" >
+            <i style="font-size: 24px;" class="mdi mdi-bell noti-icon "></i>
+           
+          </a>
+        </li>
+      </ul>
+    </nav>
+      
+    
+      <!-- menu Sidebar Container -->
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- informacion de usuario -->
+          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img src="{% static 'Plugins/AdminLTE/dist/img/user2-160x160.jpg' %}" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info Perfil">
+              <p class="escon">Nombne de Usuario
+                <sup>Rol</sup> 
+              </p>
+            </div>
+          </div>
+         
+    
+          <!--  Menu -->
+          <nav class="mt-2 nav">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            
+                   <li class="nav-item">
+                    <a href="../widgets.html" class="nav-link" 
+                    {% if request.path == '/Inicio/'%}active{% endif %}>
+                      <i class="nav-icon mdi mdi-home "></i>
+                      <p>Inicio</p>
+                    </a>
+                  </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link"
+                {%if request.path == '/InformacionUsuario/Administracion/'%}active{% endif %}
+                {%if request.path == '/InformacionUsuario/Administracion/'%}active{% endif %}>
+                  <i class="nav-icon mdi mdi-view-dashboard"></i>
+                  <p>
+                    Configuracion
+                    <i class="right fas fa-angle-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Administración de Usuarios</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Administración</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Roles del usuario</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Cambios de pagina</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Permisos</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              
+             <li class="nav-item ">   <!--menu-open para que el menu este abierto -->
+                <a href="#" class="nav-link " 
+                {% if request.path == '/compras/listarprov/'%}active{% endif %} 
+                {% if request.path == '/compras/listarproductos/'%}active{% endif %}
+                {% if request.path == '/compras/listartp/'%}active{% endif %}
+                {% if request.path == '/compras/listarcompra/'%}active{% endif %}>
+                  <i class="nav-icon mdi mdi-archive "></i>
+                  <p>
+                    Productos
+                    <i class="fas fa-angle-right right"></i>
+                
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Proveedor</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Productos</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Tipo de producto</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Compras</p>
+                    </a>
+                  </li>
+                  
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link" 
+                    {% if request.path == '/Ventas/Catalogo/'%}active{% endif %} 
+                    {% if request.path == '/Ventas/Calendario/'%}active{% endif %}
+                    {% if request.path == '/Ventas/terminarPedido/'%}active{% endif %}
+                    {% if request.path == '/Ventas/PersonalizarSer/'%}active{% endif %}
+                    {% if request.path == '/Ventas/DetalleCita/'%}active{% endif %} 
+                    {% if request.path == '/Ventas/AdminVentas/'%}active{% endif %}
+                    {% if request.path == '/Ventas/AgregarServicio/'%}active{% endif %}
+                    {% if request.path == '/Ventas/ListadoServicios/'%}active{% endif %}
+                    {% if request.path == '/Ventas/EditarServicio/'%}active{% endif %} 
+                    {% if request.path == '/Ventas/AgregarCita/'%}active{% endif %}
+                    {% if request.path == '/Ventas/ListadoCitas/'%}active{% endif %}
+                    {% if request.path == '/Ventas/EditarCita/'%}active{% endif %}>
+                  <i class="nav-icon mdi mdi-basket"></i>
+                  <p>
+                    Servicios
+                    <i class="right fas fa-angle-right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Catalogo</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Calendario</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Administración de ventas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Servicios</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Citas</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Agregar cita</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="" class="nav-link">
+                      <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
+                      <p>Agregar Servicios</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <div class="cerrar" style="margin-top: 43vh;">
+                <div style="background-color: black;"></div>
+                <li class="nav-item">
+                  <a href="" class="nav-link">
+                    <i class="mdi mdi-power nav-icon"></i>
+                    <p style="margin-left:20px;">Cerrar Sesión</p>
+                  </a>
+                </li>
+              </div>
+            </ul>
+          </nav>
+        </div>
+      </aside>
+      <div class="content-wrapper">
+        <div class="LosQueHereden" style="height: 90vh; overflow: auto; background-color: white;">
+          {% block Contenido %} {% endblock Contenido %}
+        </div>
+      </div>
+
+      {% block modal %} {% endblock modal %}
+  
+      {% block scripts %}{% endblock scripts %}
+  </body>
+</div>
+</html>

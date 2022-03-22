@@ -1,0 +1,201 @@
+/*imagen de fondo*/
+
+body{
+	background-image: linear-gradient(rgba(5,7,12,0.75)), url(/static/Modulo_compras/img/ESPACIO.jpg);
+}
+
+
+/*size img*/
+.table td img{
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+/*Estilos de icono borrar*/
+#b{
+    width: 60%;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+
+#b:hover{
+    background-color:rgba(247, 8, 8, 0.205);
+
+}
+
+/*Estilos de icono editar*/
+#e{
+    
+    border-radius: 6px;
+}
+
+#e:hover{
+    background-color:rgba(231, 247, 8, 0.253);
+
+}
+
+
+/*contenerdor*/
+#cont1{
+    width: 65%;
+    height: 120px;
+   
+}
+
+.contend{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+/*TITULO ANIMADO*/
+
+:root {
+	--logotipo: #2b035fc4;
+	--profesion: #ffffff;
+	--primario: #480575;
+}
+
+main {
+	width: 90%;
+	max-width: 400px;
+	min-height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.logotipo {
+	padding: 10px;
+	color: var(--logotipo);
+}
+
+.logotipo .subtitulo {
+
+	color: var(--profesion);
+	background: var(--logotipo);
+	padding: 12px 20px;
+	transition: .5s ease all;
+	font-size: 15px;
+	font-family: 'Noto Sans', sans-serif;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.logotipo:hover .subtitulo {
+	background: var(--primario);
+}
+
+.texto-animado {
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+}
+
+.texto-animado > div {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	transition: .3s ease all;
+}
+
+.texto-animado > div.animacion {
+	transform: translateY(-100px);
+}
+
+.texto-animado > div span {
+	font-size:45px;
+	font-weight: normal;
+	line-height: 40px;
+}
+
+.texto-animado .segunda-linea {
+	position: absolute;
+	top: 100px;
+}
+
+@media screen and (max-width: 600px){
+	.texto-animado > div span {
+		font-size: 50px;
+		line-height: 50px;
+	}
+
+	.texto-animado .segunda-linea {
+		top: 50px;
+	}
+
+	.texto-animado > div.animacion {
+		transform: translateY(-50px);
+	}
+
+	.logotipo .subtitulo {
+		font-size: 20px;
+	}
+}
+
+
+/*contenerdor de la tabla en el modal*/
+
+.cont-tabl{
+
+	width:80%;
+
+}
+
+.cont-tabl td{
+ justify-items: center;
+}
+
+.modal-content{
+	width: 145% !important;
+    right: 22% !important;
+}
+
+.Table.Content-table .Information table tr td {
+    padding: 0 5px !important;
+    text-align: start !important; 
+}
+
+.Table.Add .Add.img {
+    padding: 10px 15px !important;
+ 
+}
+.buttonEliminar{
+	background: #e93737;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius:50%;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+/* icono */
+
+.cardName{
+	font-size: 25px !important;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* anuncio de no registros */
+
+.anunre{
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: 40px;
+	margin-left: 25%;
+}
+
+/* imagen de espera */
+.imgespera{
+	width: 40%;
+	height: 40%;
+	margin-left: 10%;
+
+
+
+}

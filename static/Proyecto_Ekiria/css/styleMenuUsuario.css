@@ -4,17 +4,23 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
 .modal-backdrop {
     z-index: 1 !important;
     opacity: 0.5 !important;
-        }
-.modal-content{
+}
+
+.modal-content {
     z-index: 15 !important;
 }
+
 body {
     min-height: 100vh;
 }
 
+.sidebar{
+    height: 90vh !important;
+}
 
 /* ajuste del contenedor de datos con el menu lateral */
 
@@ -372,7 +378,7 @@ body {
     }
     .content ul {
         position: static;
-        width: 20% !important;
+        width: 30% !important;
         display: flex;
         padding: 0 20px;
         flex-wrap: wrap;
@@ -382,11 +388,13 @@ body {
         margin-top: 10px;
         margin-right: 20px;
     }
-    
     .content.activar ul {
-        width: 25% !important;
+<<<<<<< HEAD
+        width: 35% !important;
+=======
+        width:auto !important;
+>>>>>>> e6ce8d946767afccb464c7942dda680c0d954bca
     }
-    
 }
 
  ::-webkit-scrollbar-thumb:hover {
@@ -430,6 +438,7 @@ body {
     z-index: 9;
     animation-duration: 2s;
     transition: 2s;
+    background-color: black;
 }
 
 .lista img {
@@ -489,7 +498,7 @@ body {
 }
 
 .content ul .links .atext {
-    margin-left: 15px;
+    margin-left: 10px !important;
 }
 
 .content ul li {
@@ -574,7 +583,7 @@ body {
     }
     .content ul {
         position: static;
-        width: 25%;
+        width: 40%;
         display: flex;
         padding: 0 20px;
         flex-wrap: wrap;
@@ -619,16 +628,16 @@ body {
         width: 68%;
     }
     .Logo.activar {
-        margin:0 30%;
+        margin: 0 30%;
         margin-top: 7px;
     }
-    .Logo{
+    .Logo {
         width: 40px;
         height: 50px;
         position: fixed;
         top: 5px;
         z-index: 10;
-        margin: 0 20%;
+        margin: 0 50%;
     }
     .toggle.activar {
         left: 33%;
@@ -685,7 +694,7 @@ body {
     .content {
         width: 100%;
     }
-    .content ul{
+    .content ul {
         position: static;
         width: 35%;
         display: flex;

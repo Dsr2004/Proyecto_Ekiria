@@ -127,7 +127,7 @@
     justify-content: space-between;
 }
 #nombreRol,#nombreRolEdi{
-    width: 100%;
+    width: 97%;
 }   
 
 #CrearRol,#EditarRol{
@@ -259,9 +259,13 @@
     border-color: black;
 }
 
-/* .form-check-input:checked{
+.form-check-input:checked{
     width: 7%;
 }
 .input#flexSwitchCheckChecked{
     width: 7%;
-} */
+} 
+
+.sweetAlertB{
+    margin: 0 10px;
+}
