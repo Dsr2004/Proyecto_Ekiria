@@ -259,10 +259,21 @@ function cambioestado(id){
 }
 
 
-function sumartotal(){
-   let total=$("#precio").find('{{producto.precio}}')
-   console.log(total)
-  }
+// function sumartotal(){
+//    cantidad = document.getElementById("cant").value
+//    console.log(cantidad)
+//    $.ajax({  
+//      data: $(this).serialize(),
+//     url: "..",
+//     type: $(this).attr('method'),
+//     success: function(response){
+//       console.log("cambio")
+//     },
+//   });
+//   n = document.getElementById("total");
+//   n.value = parseInt("0"+this.value) + parseInt("0"+this.defaultValue);
+//  this.defaultValue = this.value;
+//   }
 
 
 

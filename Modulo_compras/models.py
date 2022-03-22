@@ -56,6 +56,12 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
+    @property
+    def total(self):
+        total= self.precio * self.cantidad
+        return total
+
+
 
 class Compra(models.Model):
     id_compras=models.AutoField("id_compra",primary_key=True, unique=True)
