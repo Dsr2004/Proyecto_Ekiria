@@ -1,1 +1,3 @@
-$('#exampleModal').modal('show')
+
+
+

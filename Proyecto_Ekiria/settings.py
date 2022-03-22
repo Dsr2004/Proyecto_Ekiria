@@ -37,12 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'tempus_dominus',
-    "bootstrap4",
-    'bootstrap_datepicker_plus',
     'crispy_forms',
     'jsonify',
-    'Ventas',
     'Configuracion',
     'Usuarios',
     'rest_framework', 
@@ -66,7 +62,7 @@ ROOT_URLCONF = 'Proyecto_Ekiria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates', 'Configuracion/Templates'],
+        'DIRS': ['Proyecto_Ekiria/Templates', 'Usuarios/Templates','Modulo_compras/Templates','Configuracion/Templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,8 +96,10 @@ DATABASES = {
             'init_command': 'SET default_storage_engine=INNODB',
             'charset': 'utf8mb4',
             }
-    }
+        }
 }
+    
+
 # para sqlite
 # DATABASES = {
 #     'default': {
@@ -140,9 +138,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
 
 AUTH_USER_MODEL = 'Usuarios.Usuario'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 

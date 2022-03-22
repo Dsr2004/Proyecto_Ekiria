@@ -22,7 +22,7 @@ from django.contrib.sessions.models import Session
 from datetime import datetime
 from rest_framework.views import APIView
 from Usuarios.models import Usuario
-from Ventas.models import Servicio
+# from Ventas.models import Servicio  todavia no jhorman pendejo jajaja
 from Usuarios.forms import Regitro, Editar
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
 from rest_framework.renderers import TemplateHTMLRenderer
