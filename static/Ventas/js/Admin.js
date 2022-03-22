@@ -133,7 +133,7 @@
                 },
                 error: function(error){
                   console.log("no")
-                  alert("Error:"+error.responseJSON)
+                  alert("Error:"+error.vi)
                 }
               }); 
            

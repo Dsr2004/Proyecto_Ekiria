@@ -33,10 +33,14 @@ from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
 from Usuarios.Serializers.general_serializers import UsuarioTokenSerializer
 #-----------------------------------------Models---------------------------------------------------
 from Usuarios.models import Usuario
+<<<<<<< HEAD
 from Ventas.models import Servicio
 #-----------------------------------------More---------------------------------------------------
 from Usuarios.authentication_mixins import Authentication
 from datetime import datetime
+=======
+# from Ventas.models import Servicio  todavia no jhorman pendejo jajaja
+>>>>>>> e6ce8d946767afccb464c7942dda680c0d954bca
 from Usuarios.forms import Regitro, Editar
 
 #--------------------------------------Templates Loaders------------------------------------

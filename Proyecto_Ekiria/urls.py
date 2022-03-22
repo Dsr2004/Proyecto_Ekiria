@@ -32,11 +32,10 @@ urlpatterns = [
     path('InformacionUsuario/', include('Usuarios.urls')),
     path('admin/', admin.site.urls),
     path('Inicio/', Inicio),
-    path('Ventas/',include('Ventas.urls')),
     path('Configuracion/', include ('Configuracion.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api_generate_token/', views.obtain_auth_token, name="tokenGenerate"),
-    path('SinPermisos/', SinPermisos, name="SinPermisos")
+    path('SinPermisos/', SinPermisos, name="SinPermisos"),
 ]
 
 if settings.DEBUG:
