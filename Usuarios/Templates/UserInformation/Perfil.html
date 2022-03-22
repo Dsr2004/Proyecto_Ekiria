@@ -9,13 +9,15 @@
 </head>
 {% endblock head %} {% block Contenido %} 
 <div class="Perfil_contenedor">
-        <div class="container d-flex p-2">
-            <img src="/media/{{Usuario.img_usuario}}" class="Perfil_foto_perfil" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div class=" d-flex p-2">
+            <a href="{%url 'EditarPerfil'%} ">
+                <img src="/media/{{Usuario.img_usuario}}" class="Perfil_foto_perfil" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            </a>
             <h1 class="Perfil_Apodo">
                 {{Usuario.username}}</h1>
-        </div>
+            </div>
         <br>
-        <div class="Perfil_informacion container">
+        <div class="Perfil_informacion">
             <div class="row">
                 
                 <div class="col"><label>Nombres</label><br>{{Usuario.nombres}}</div>
@@ -50,11 +52,13 @@
                 <div class="col"><label>Dirección</label><br>{{Usuario.direccion}}</div>
                 <div class="col">
                     
-                    <button type="button" class="btn btn-primary" onclick="EditarPerfil('{{Usuario.id_usuario}}')">Editar</button>
+                    <button type="button" class="btn btn-primary"><a href="{%url 'EditarPerfil'%} " style="color:#000;"> Editar</a></button>
                 </div>
             </div>
         </div>
-    </div>{% endblock Contenido %}{% block modal %}
+    </div>
+    {% endblock Contenido %}
+    {% block modal %}
 
 {% endblock modal %}
 {% block scripts %}

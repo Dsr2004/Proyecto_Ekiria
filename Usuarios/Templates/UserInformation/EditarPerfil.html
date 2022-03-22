@@ -1,3 +1,4 @@
+
 {% extends 'Menu_Usuario.html' %}
 {% block head %}
     <head>
@@ -9,7 +10,7 @@
     </head>
 {% endblock head %}
 {% block Contenido %}
-    <form method="post" action="{% url 'EditarPerfil' object.id_usuario %}" enctype="multipart/form-data">
+    <form method="post" action="{% url 'EditarPerfil' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="imagen"><img src="/media/{{form.img_usuario.value}}"></label>
         {{form.img_usuario}}

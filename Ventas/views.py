@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from sre_constants import SUCCESS
+from webbrowser import get
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.views.generic import View, TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -35,6 +36,17 @@ class Catalogo(ListView):
     queryset = models.Catalogo.objects.filter(estado=True)
     context_object_name = "servicios"
     template_name = "Catalogo.html"
+
+    def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+            usuario = Usuario.objects.get(id_usuario=request.session['pk'])
+            return render(request, self.template_name, {"servicios":self.queryset, "User":UserSesion})
+        except:
+            return redirect("UNR")
 
 class AgregarServicioalCatalogo(View):
     model = Catalogo
@@ -128,7 +140,16 @@ def Carrito(request):
         items=[]
         pedido={"get_total_carrito":0,"get_items_carrito":0}
         request.session["carrito"]=0
-    contexto={"items":items, "pedido":pedido}
+
+    try:
+        if request.session:
+            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            imagen = imagen.img_usuario
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+    except:
+            return redirect("UNR")
+
+    contexto={"items":items, "pedido":pedido,"User":UserSesion}
 
     return render(request, "Carrito.html",contexto)
 
@@ -147,10 +168,20 @@ def TerminarPedido(request):
         pedido={"get_total_carrito":0,"get_items_carrito":0}
         contexto={"items":items, "pedido":pedido,"form":form}
 
+    try:
+        if request.session:
+            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            imagen = imagen.img_usuario
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+    except:
+            return redirect("UNR")
+    
     if is_list_empty(items):
         contexto["mensaje"]=True
+        contexto["User"]=UserSesion
         return render(request, "Carrito.html",contexto)
     else:
+        contexto["User"]=UserSesion
         return render(request, "TerminarPedido.html",contexto)
 
 class BuscarDisponibilidadEmpleado(View):
@@ -213,13 +244,21 @@ class BuscarDisponibilidadEmpleado(View):
 
 class Calendario(TemplateView):
     template_name = "Calendario.html"
+    def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                return render(request, self.template_name, {"User":UserSesion})
+        except:
+            return redirect("UNR")
 
 class ServiciosPersonalizados(CreateView):
     model = Servicio_Personalizado
     form_class = Servicio_PersonalizadoForm
     template_name = "AddservicioPer.html"
     success_url=reverse_lazy("Ventas:catalogo")
-
     
         
     
@@ -242,13 +281,23 @@ class AdminVentas(TemplateView):
         posts = paginado.get_page(pagina)
         pagina_actual=int(pagina)
         paginas=range(1,posts.paginator.num_pages+1)
+        #autenticacion usuario
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+        except:
+            return redirect("UNR")
+
         #contexto
         context={
             'Tipo_Servicios':Tipo_servicio.objects.all(),
             'form_Tipo_Servicio':formTipo_Servicio,
             'servicios':posts,
             'paginas':paginas,
-            'pagina_actual':pagina_actual
+            'pagina_actual':pagina_actual,
+            "User":UserSesion
         }
         
         return render(request, self.template_name, context)
@@ -351,7 +400,15 @@ class AgregarServicio(CreateView):#crear
     form_class = ServicioForm
     template_name = "AgregarServicio.html"
     success_url = reverse_lazy('Ventas:listarServicios')
-
+    def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                return render(request, self.template_name, {"User":UserSesion,"form":self.form_class})
+        except:
+            return redirect("UNR")
     def form_valid(self, form, **kwargs):
         objeto=form.save()
         if objeto.estado == True:
@@ -366,7 +423,16 @@ class EditarServicio(UpdateView):#actualizar
     form_class = ServicioForm
     template_name = "EditarServicio.html" 
     success_url = reverse_lazy('Ventas:listarServicios')
-
+    
+    def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                return render(request, self.template_name, {"User":UserSesion,"form":self.form_class})
+        except:
+            return redirect("UNR")
     def form_valid(self, form, **kwargs):
         objeto=form.save()
         if objeto.estado == False:
@@ -381,6 +447,15 @@ class ListarServicio(ListView):#listar
     queryset = Servicio.objects.all()
     context_object_name = "servicios"
     template_name = "ListarServicios.html"
+    def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                return render(request, self.template_name, {"User":UserSesion,self.context_object_name:self.queryset})
+        except:
+            return redirect("UNR")
 
 class ServicioDetalle(DetailView):#detalle
     queryset = Servicio.objects.all()
@@ -417,15 +492,51 @@ Seccion de las Vistas donde se administran las citas
 
 class AgregarCita(TemplateView):
     template_name = "AgregarCita.html"
+    def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                return render(request, self.template_name, {"User":UserSesion})
+        except:
+            return redirect("UNR")
 
 class ListarCita(TemplateView):
     template_name = "ListarCitas.html"
+    def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                return render(request, self.template_name, {"User":UserSesion})
+        except:
+            return redirect("UNR")
     
 class EditarCita(TemplateView):
     template_name = "EditarCita.html"
+    def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                return render(request, self.template_name, {"User":UserSesion})
+        except:
+            return redirect("UNR")
 
 class DetalleCita(TemplateView):
    template_name = "DetalleCita.html"
+   def get(self, request, *args, **kwargs):
+        try:
+            if request.session:
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                return render(request, self.template_name, {"User":UserSesion})
+        except:
+            return redirect("UNR")
 
 """
 <----------------------------------------------------------------->
@@ -439,9 +550,17 @@ def ejemplo(request, id):
 def pruebas(request):
     servicios=Servicio.objects.all()
     form=pruebaxForm
+    try:
+        if request.session:
+            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            imagen = imagen.img_usuario
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+    except:
+            return redirect("UNR")
     cont={
         "servicios":servicios,
-        "form":form
+        "form":form,
+        "User":UserSesion
     }
     return render(request, 'prueba.html',cont)
     # user_list = Servicio.objects.all().order_by('id_servicio')
