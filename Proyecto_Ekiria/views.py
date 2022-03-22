@@ -11,13 +11,15 @@ from Usuarios.models import Usuario
 #--------------------------------------Cargadores de templates------------------------------------
 class Inicio(View):
     def get(self, request, *args, **kwargs):  
-        UserSesion = ""
-        if request.session:
-            print(request.session)
-            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
-            imagen = imagen.img_usuario
-            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
-        return render(request, 'index.html', {'User':UserSesion})
+        try:
+            if request.session:
+                print(request.session)
+                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = imagen.img_usuario
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+            return render(request, 'index.html', {'User':UserSesion})
+        except:
+            return render(request, 'index.html')
 class menu(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'Menu_usuario.html')

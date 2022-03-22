@@ -11,7 +11,7 @@
     <title>Menú Usuario</title>
 
     {% endblock head %}
-    
+
 </head>
 <!--                            Zona de menú Horizontal header tamaño maximo 50px                  -->
 <header>
@@ -20,6 +20,10 @@
 <body>
     {%csrf_token%}
     <div class="grid">
+
+        {% if User %}
+
+
         <!--          Creación del menú lateral        -->
         <div class="backnav">
             <nav class="nav">
@@ -102,7 +106,7 @@
                                 <li class="nav_link--inside"><a href="{%url 'Ventas:catalogo'%}">Catalogo</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'Ventas:calendario'%}">Calendario</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'Ventas:adminVentas'%}">Administración de ventas</a></li>
-                                <li class="nav_link--inside"><a href="{%url 'Ventas:listarServicios'%}">Servicios</a></li> 
+                                <li class="nav_link--inside"><a href="{%url 'Ventas:listarServicios'%}">Servicios</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'Ventas:listarCitas'%}">Citas</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'Ventas:agregarCita'%}">Agregar cita</a></li>
                                 <li class="nav_link--inside"><a href="{%url 'Ventas:agregarServicio'%}">Agregar Servicios</a></li>
@@ -124,7 +128,8 @@
             <i class="abrir fas fa-bars "></i>
             <i class="cerrar fas fa-times "></i>
         </div>
-
+        {%else%}
+        <a href="{%url 'IniciarSesion'%}">Iniciar Sesion</a> {% endif %}
         <div class="content ">
 
             <div class="fondo "></div>
@@ -161,15 +166,15 @@
                     </div>
 
                     <li><a href="{% url 'Ventas:carrito' %}" type="button" class=" btn position-relative" style="margin-top: -7px;"><i class="fas fa-shopping-cart"></i><span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span></a></li>
-                </ul>
-            </div>
-
-                    <div>Hola 2</div>
-                    {% endblock Contenido %}
-
+                    </ul>
                 </div>
+
+                <div>Hola 2</div>
+                {% endblock Contenido %}
+
             </div>
         </div>
+    </div>
 
     </div>
     <!---->{%block scripts%} {%endblock scripts%}

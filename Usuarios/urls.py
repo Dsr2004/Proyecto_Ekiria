@@ -1,8 +1,9 @@
 from unicodedata import name
 from django.urls import path
-from Usuarios.views import PassR, Perfil, Admin, Notification, CreateUser, UpdateUser,EditarPerfil, CambiarEstadoUsuario
+from Usuarios.views import PassR, Perfil, Admin, Notification, CreateUser, UpdateUser,EditarPerfil, CambiarEstadoUsuario, Change
 urlpatterns = [
     path('RecuperarContraseña/', PassR, name="RecuperarContraseña"),
+    path('CambiarContraseña/', Change, name="Cambiar"),
     path('estado/', CambiarEstadoUsuario, name="editarEstadoUsuario"),
     path('Perfil', Perfil, name="Perfil"),
     path('Administracion/', Admin, name="Administracion"),

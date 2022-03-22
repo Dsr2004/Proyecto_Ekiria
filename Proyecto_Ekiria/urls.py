@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from Proyecto_Ekiria.views import Inicio, menu, SinPermisos
+from Proyecto_Ekiria.views import Inicio, menu, SinPermisos, Noregistrado
 from Usuarios.views import Login, Register, Loguot
 from rest_framework.authtoken import views
 
 urlpatterns = [
     path('', Inicio.as_view(), name="Inicio"),
+    path('UsuarioNoRegistrado', Noregistrado, name="UNR"),
     path('menu/', menu.as_view(), name="menu"),
     path('IniciarSesion/', Login, name="IniciarSesion"),
     path('CerrarSesion/', Loguot, name="CerrarSesion"),

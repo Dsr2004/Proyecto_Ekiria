@@ -148,14 +148,16 @@ class Register(CreateView):
     success_url = reverse_lazy("Inicio")
     
 def Perfil(request):
-    UserSesion = ""
-    if request.session:
-        imagen = Usuario.objects.get(id_usuario=request.session['pk'])
-        imagen = imagen.img_usuario
-        UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
-    usuario = Usuario.objects.get(id_usuario=request.session['pk'])
-    print(usuario)
-    return render(request, "UserInformation/Perfil.html", {"Usuario":usuario, "User":UserSesion})
+    try:
+        if request.session:
+            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            imagen = imagen.img_usuario
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+        usuario = Usuario.objects.get(id_usuario=request.session['pk'])
+        print(usuario)
+        return render(request, "UserInformation/Perfil.html", {"Usuario":usuario, "User":UserSesion})
+    except:
+        return redirect("UNR")
 
 # def Admin(request):
 #     context = {1,2,3,3,4,5,6,7,8,9,10}
@@ -187,40 +189,46 @@ def Perfil(request):
 #             return JsonResponse({"x":e})
 def EditarPerfil(request):
     template_name = "UserInformation/EditarPerfil.html"
-    UserSesion = ""
-    if request.session:
-        get_object = Usuario.objects.get(id_usuario=request.session['pk'])
-        form = Editar(instance=get_object)
-        imagen = Usuario.objects.get(id_usuario=request.session['pk'])
-        imagen = imagen.img_usuario
-        UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
-    if request.method=="POST":
-        form = Editar(request.POST or None, request.FILES or None, instance=get_object)
-        if form.is_valid():
-            form.save()
-            return redirect("Perfil")
-        else:
-            e=form.errors
-            print(e)
-            return JsonResponse({"x":e})
-    return render(request, template_name, {"form":form,"User":UserSesion})
+    try:
+        if request.session:
+            get_object = Usuario.objects.get(id_usuario=request.session['pk'])
+            form = Editar(instance=get_object)
+            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            imagen = imagen.img_usuario
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen, "admin":request.session["Admin"]}
+        if request.method=="POST":
+            form = Editar(request.POST or None, request.FILES or None, instance=get_object)
+            if form.is_valid():
+                form.save()
+                return redirect("Perfil")
+            else:
+                e=form.errors
+                print(e)
+                return JsonResponse({"x":e})
+        return render(request, template_name, {"form":form,"User":UserSesion})
+    except:
+        return redirect("UNR")
     
+def Change(request):
+    return render(request,'UserInformation/ChangePassword.html')
 def Admin(request):
-    UserSesion = ""
-    if request.session:
-        imagen = Usuario.objects.get(id_usuario=request.session['pk'])
-        imagen = imagen.img_usuario
-        if request.session['Admin'] == True:
-            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
-        else:
-            return redirect("SinPermisos")
-    model = Usuario
-    filter = "yes"
-    template_name = "UsersConfiguration/UsersAdministration.html"
-    if request.method=="GET":
-        queryset = model.objects.all()
-        Servicios = Servicio.objects.all()
-    return render(request, template_name, {"Usuario":queryset,"contexto":Servicios, "User":UserSesion})
+    try:
+        if request.session:
+            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            imagen = imagen.img_usuario
+            if request.session['Admin'] == True:
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+            else:
+                return redirect("SinPermisos")
+        model = Usuario
+        filter = "yes"
+        template_name = "UsersConfiguration/UsersAdministration.html"
+        if request.method=="GET":
+            queryset = model.objects.all()
+            Servicios = Servicio.objects.all()
+        return render(request, template_name, {"Usuario":queryset,"contexto":Servicios, "User":UserSesion})
+    except:
+        return redirect("UNR")
     
     
 class CreateUser(CreateView):
