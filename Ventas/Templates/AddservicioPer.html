@@ -1,0 +1,44 @@
+{% extends "menuPrueba.html" %} 
+{% load crispy_forms_tags %}
+{% block head %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicio Personalizado</title>
+    <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
+    <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+</head>{% endblock head %}
+
+{% block Contenido %}
+<h1>Agrega un servicio personalizado</h1>
+<br><br><br><br>
+{% if form.errors %}
+    si 
+    {% else %}
+        no
+{% endif %}
+<div class="container">
+    <form action="{%url 'Ventas:personalizar'%}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col">
+            {{form.tipo_servicio_id|as_crispy_field}}
+           
+        </div>
+        <div class="col">
+            <i class="fas fa-file-image" style="width: 50px; font-size: 60px;"></i>
+            <br><br>
+                {{form.img_servicio|as_crispy_field}}
+           
+        </div>
+    </div>
+    <label class=" tituloServicioPersonalizadoComentario">Descríbanos lo que quiere</label>
+    <div class="form-floating container descripcion" style="width:90vw;">   
+       {{form.descripcion|as_crispy_field}}
+      </div>
+      <button class="btn btn-block btn-success  AgregarServPersonCarrito"  type="submit">  Agregar al Carrito</button>
+    </form>
+</div>
+{% endblock Contenido %}

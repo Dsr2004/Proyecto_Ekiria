@@ -1,0 +1,112 @@
+{% extends "menuPrueba.html" %}
+{% load static %}
+{% block head %}
+<head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Static Example</title>
+    {{ form.media }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  </head>
+
+{% endblock head %}
+    
+
+
+{% block Contenido %}
+
+
+{{form}}
+<br>
+    <hr>
+    <br>
+    <div class="container">
+      <div class="row">
+          <div class='col-sm-6'>
+              <div class="form-group">
+                  <div class='input-group date' id='kiwisandia'>
+                      <input type='text' class="form-control" />
+                      <span class="input-group-addon">
+                          <span class="fa fa-calendar"></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+    
+
+
+
+{% endblock Contenido %}
+
+
+
+{% block modal %}{% endblock modal %}
+  
+
+
+{% block scripts %}
+<script type="text/javascript">
+  $(function () {
+      $('#kiwisandia').datetimepicker();
+  });
+</script>
+
+{% endblock scripts %}
+
+
+
+
+
+{% comment %}
+{% block head %}
+<head>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Static Example</title>
+
+    
+    <link rel="stylesheet" href="/static/Plugins/datetimepicker/jquery.datetimepicker.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="/static/Plugins/datetimepicker/build/jquery.datetimepicker.full.js"></script>
+    
+
+  </head>
+
+{% endblock head %}
+    
+
+
+{% block Contenido %}
+
+
+<input id="datetimepicker" type="text" autocomplete="off">
+
+
+
+
+{% endblock Contenido %}
+
+
+
+{% block modal %}
+
+  
+{% endblock modal %}
+  
+
+
+{% block scripts %}
+
+<script>
+ $('#datetimepicker').datetimepicker();
+</script>
+
+{% endblock scripts %}
+{% endcomment %}
+  
+

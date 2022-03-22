@@ -43,9 +43,10 @@
   .escon{
     color: white;
   }
+  .ac
   
-  .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active>p{
-      background-color: #572364;
+  .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active{
+      background-color: #572364 !important;
       color: black;
   }
   .navbar-white{
@@ -127,9 +128,9 @@
                     </a>
                   </li>
               <li class="nav-item">
-                <a href="#" class="nav-link"
+                <a href="#" class="nav-link 
                 {%if request.path == '/InformacionUsuario/Administracion/'%}active{% endif %}
-                {%if request.path == '/InformacionUsuario/Administracion/'%}active{% endif %}>
+                {%if request.path == '/InformacionUsuario/Administracion/'%}active{% endif %}">
                   <i class="nav-icon mdi mdi-view-dashboard"></i>
                   <p>
                     Configuracion
@@ -171,11 +172,11 @@
               </li>
               
              <li class="nav-item ">   <!--menu-open para que el menu este abierto -->
-                <a href="#" class="nav-link " 
+                <a href="#" class="nav-link 
                 {% if request.path == '/compras/listarprov/'%}active{% endif %} 
                 {% if request.path == '/compras/listarproductos/'%}active{% endif %}
                 {% if request.path == '/compras/listartp/'%}active{% endif %}
-                {% if request.path == '/compras/listarcompra/'%}active{% endif %}>
+                {% if request.path == '/compras/listarcompra/'%}active{% endif %}">
                   <i class="nav-icon mdi mdi-archive "></i>
                   <p>
                     Productos
@@ -212,7 +213,7 @@
                 </ul>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link" 
+                <a href="#" class="nav-link 
                     {% if request.path == '/Ventas/Catalogo/'%}active{% endif %} 
                     {% if request.path == '/Ventas/Calendario/'%}active{% endif %}
                     {% if request.path == '/Ventas/terminarPedido/'%}active{% endif %}
@@ -224,7 +225,8 @@
                     {% if request.path == '/Ventas/EditarServicio/'%}active{% endif %} 
                     {% if request.path == '/Ventas/AgregarCita/'%}active{% endif %}
                     {% if request.path == '/Ventas/ListadoCitas/'%}active{% endif %}
-                    {% if request.path == '/Ventas/EditarCita/'%}active{% endif %}>
+                    {% if request.path == '/Ventas/EditarCita/'%}active{% endif %}
+                    ">
                   <i class="nav-icon mdi mdi-basket"></i>
                   <p>
                     Servicios
@@ -233,43 +235,43 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{% url 'Ventas:catalogo' %}" class="nav-link">
                       <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
                       <p>Catalogo</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{% url 'Ventas:calendario' %}" class="nav-link">
                       <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
                       <p>Calendario</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{% url 'Ventas:adminVentas' %}" class="nav-link">
                       <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
                       <p>Administración de ventas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{% url 'Ventas:listarServicios' %}" class="nav-link">
                       <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
                       <p>Servicios</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{% url 'Ventas:agregarCita' %}" class="nav-link">
                       <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
                       <p>Citas</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{% url 'Ventas:listarCitas' %}" class="nav-link">
                       <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
                       <p>Agregar cita</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{% url 'Ventas:agregarServicio' %}" class="nav-link">
                       <i style="font-size: 10px;" class="far fa-circle nav-icon"></i>
                       <p>Agregar Servicios</p>
                     </a>
