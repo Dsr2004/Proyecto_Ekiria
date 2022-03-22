@@ -23,34 +23,29 @@
 
     /* _-_VERSION 2_-_ */
     display: flex;
-    justify-content:left;
-    flex-wrap:wrap;
-    overflow: auto;
-    height: 95%;
-    width: 99%;
-    min-height: 1vh;
-    padding: 10px;
+    flex-wrap: wrap !important;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
 }  
-.card{
+.cardService{
     float: center;      
     margin-left: 3%;
     margin-top: 10px;
     position:relative;
     width: 220px;
     height: 380px;
-    background: red;
     box-shadow: 10px 10px 20px 2px rgba(0, 0, 0, 0.25) !important;
     border-radius: 20px;
     margin-right: 25px;
     margin-bottom: 50px;
 }
     
-}
-.card .nombreP{
+.cardService .nombreP{
     text-align: start;
 	top: 30px;
 }
-.card i{
+.cardService i{
     position: relative;
     top: 20px;
     left: -15px;
@@ -61,7 +56,7 @@
     border-bottom-left-radius: 0;
 }
 
-.card i::before{
+.cardService i::before{
     content: '';
     position: absolute;
     left: 0;
@@ -74,7 +69,7 @@
     z-index: 2;
 }
 
-.card i::after{
+.cardService i::after{
     content: '';
     position: absolute;
     left: 0;
@@ -83,7 +78,7 @@
     height: 15px;
     background-color: rgb(85, 26, 139);
 }
-.card a{
+.cardServicer a{
     color: white;
 }
 
@@ -421,3 +416,59 @@
     width: 500px;
     height: 500px;
 } */
+.Divcentrado{
+    margin: 10px 5.5%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-deck1{
+    display: flex;
+    flex-wrap: wrap !important;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+}
+.card-deck1 .card1{
+    margin-bottom: 15px;
+
+}
+.card-deck1 .card1 img{
+    width: 100%;
+    height: 150px;
+}
+
+@media (min-width: 992px) {  
+    .card-deck1 .card1{
+        width: 200px;
+        margin-left:15px;
+    }
+    .card-deck1 .card1 img{
+        height: 100px;
+    }
+}
+@media (min-width:700px){
+	.card-deck1 .card1{
+        width: 200px;
+    }
+    .card-deck1 .card1 img{
+		height: 100px;
+
+    }
+}
+@media (max-width: 700px) { 
+    .card-deck1 .card1{
+        width: 200px;
+    }
+    .card-deck1{
+        margin: 0 40%;
+    }
+    .body{
+        margin: 0 40%;
+    }
+    .card-deck1 .card1 img{
+		height: 100px;
+
+    }
+}

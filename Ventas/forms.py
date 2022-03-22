@@ -20,7 +20,7 @@ class ServicioForm(forms.ModelForm):
             'descripcion':forms.Textarea(attrs={'class':'form-control'}),
             'img_servicio':forms.FileInput(attrs={"class":"fileSerPersonalizado", "style":"margin-left:40px; top:-15px"}),
             'precio':forms.NumberInput(attrs={'class':'form-control'}),
-            'slug':forms.TextInput(attrs={'class':'form-control'}),
+            'slug':forms.TextInput(attrs={'class':'form-control', }),
             'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  "style":"margin-left: -5px; height: 30px; width: 60px; margin-top: -5px"})
         }
     def __init__(self, *args, **kwargs):
@@ -33,6 +33,7 @@ class ServicioForm(forms.ModelForm):
             self.fields['slug'].label = False
             self.fields['descripcion'].label = False
             self.fields['estado'].label = False
+            self.fields['slug'].required = False
 
 class EditarTipoServicioForm(forms.ModelForm):
     class Meta:
@@ -56,7 +57,7 @@ class Tipo_servicioForm(forms.ModelForm):
         model=Tipo_servicio
         fields="__all__"
         widgets={
-            'nombre':forms.TextInput(attrs={'class':'form-control'}),
+            'nombre':forms.TextInput(attrs={'class':'form-control','autocomplete':'off'}),
             'estado':forms.CheckboxInput(attrs={'class':'form-check-input estadoServicioRegistro',  "style":"margin-left: -5px; height: 30px; width: 60px; margin-top: -5px"})
         }
     def __init__(self, *args, **kwargs):

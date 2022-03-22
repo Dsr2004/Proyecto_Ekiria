@@ -47,7 +47,6 @@
         <i class="fas fa-file-image" style="width: 50px; font-size: 30px; margin-top: 20px;"></i>
         {{form.img_servicio|as_crispy_field}}
     </div>
-    lo
     <div class="col">
         <Label><strong>Slug:   </strong></Label>
             {{form.slug|as_crispy_field}}
@@ -66,13 +65,7 @@
 {% endblock Contenido %}
 
 {% block scripts %}
-<script src="/static/Ventas/js/Ventas.js"></script>
+<script src="{% static 'Ventas/js/Servicios.js' %}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-<!-- {% if form.errors %}
-   <script>
-       let errorsd='{{form.errors|jsonify}}'
-       mostrarErroresAgregarServicio(errorsd)
-   </script>
-    {% endif %} -->
 {% endblock scripts %}

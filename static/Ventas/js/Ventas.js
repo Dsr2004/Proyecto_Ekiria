@@ -38,39 +38,6 @@ function CancelarCita(){
       });
 }
 
-function CambioEstadoServicio(){
-  swal({
-    title: "Hecho",
-    text: "Estado del servicio cambiado con exito",
-    icon: "success",
-  });
-}
-
-
-function ConfirmacionEditarServicio(){
-  event.preventDefault();
-  swal({
-    title: "Estas seguro?",
-    text: "Se modificaran los datos del servicio",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  }).then((willDelete) => {
-    if (willDelete) {
-      swal("OK! Se ha modificado el servicio", {
-        icon: "success",
-      }).then(function() {
-      window.location.href = "/Ventas/ListadoServicios/";
-      document.forms['EditarServicioForm'].submit();
-   });
-    } else {
-      swal("OK! Ningun dato del servicio ha sido modificado");
-    }
-  });
-  return false;
-}
-
-
 function ConfirmarNoGuardarCita(){
   swal({
     title: "Estas seguro?",
@@ -127,31 +94,6 @@ function CancelarCita2(){
       }
     });
 }
-// MODALES
-// tipo de servicio 
-function abrir_modal_editar(url){
-   $("#EditarTipoServicio").load(url, function (){ 
-      $(this).appendTo("body").modal('show');
-    });
-}
-
-function abrir_modal_crear(url){
-   $("#AgregarTipoServicio").load(url, function (){ 
-      $(this).appendTo("body").modal('show');
-    });
-}
-
-function abrir_modal_eliminar(url){ 
-  $("#EliminarTipoServicio").load(url, function (){ 
-    $(this).appendTo("body").modal('show');
-  });
-}
-
-function abrir_modal_AgregarServicioCatalogo(url){
-  $("#AgregarServicioCatalogo").load(url, function (){ 
-    $(this).appendTo("body").modal('show');
-  });
-}
 
 // catalogo
 
@@ -161,112 +103,4 @@ function abrir_modal_detalleServicio(url){
   });
 }
 
-// ERRORES
-
-// EDITAR SERVICIO 
-function mostrarErroresEditarServicio(errores){
-  errorsd=JSON.parse(errores)
-  $(document).ready(function(){
-      let formulario = $("#EditarServicioForm")
-      formulario.find('.bg-danger').text('');
-       for(let e in errorsd){
-            $("span[data-key='"+e+"']").text(errorsd[e])
-       }
-  });
-}
-// AGREGAR SERVICIO 
-function mostrarErroresAgregarServicio(errores){
-  errorsd=JSON.parse(errores)
-  $(document).ready(function(){
-      let formulario = $("#AgregarServicioForm")
-      formulario.find('.bg-danger').text('');
-       for(let e in errorsd){
-            $("span[data-key='"+e+"']").text(errorsd[e])
-       }
-  });
-}
-
-// AJAX
- 
-function registrar(){
-  $.ajax({
-    data: $("#formCrearTipo_Servicio").serialize(),
-    url: $("#formCrearTipo_Servicio").attr('action'),
-    type: $("#formCrearTipo_Servicio").attr('method'),
-    success: function(response){
-      window.location.href="/Ventas/AdminVentas/"
-    },
-    error: function(error){
-        $("#formCrearTipo_Servicio").find('.text-danger').text('');
-        for (let i in error.responseJSON["errors"]){
-          let x=$("#formCrearTipo_Servicio").find('input[name='+i+']')
-          x.addClass("is-invalid")
-          $("#"+i).text( error.responseJSON["errors"][i])
-      }
-    }
-  });
-}
-
-// EDITAR TIPO DE SERVICIO 
-function editar(){
-  $.ajax({
-    data: $("#formEditarTipo_Servicio").serialize(),
-    url: $("#formEditarTipo_Servicio").attr('action'),
-    type: $("#formEditarTipo_Servicio").attr('method'),
-    success: function(response){
-      $("#EditarTipoServicio").modal('hide');
-      location.reload();
-    },
-    error: function(error){
-      $("#formEditarTipo_Servicio").find('.text-danger').text('');
-      for (let i in error.responseJSON["errors"]){
-        let x=$("#formEditarTipo_Servicio").find('input[name='+i+']')
-        x.addClass("is-invalid")
-        $("#"+i).text( error.responseJSON["errors"][i])
-      }
-    }
-      
-  });
-}
-
-
-
-
-
-function CambiarEstadoTipoServicio(id){
-let ids=id
-let token = $("#EstadoTipoServicioForm2").find('input[name=csrfmiddlewaretoken]').val()
-console.log(token)
-  swal({
-    title: "Estas seguro?",
-    text: "Se modificara el estado de el Tipo de Servicio",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  }).then((willDelete) => {
-    if (willDelete) {
-      swal("OK! Se ha modificado el tipo de servicio", {
-        icon: "success",
-      }).then(function() {
-          $.ajax({
-            data: {"csrfmiddlewaretoken":token, "estado":ids},
-            url: $("#EstadoTipoServicioForm2").attr('action'),
-            type: $("#EstadoTipoServicioForm2").attr('metho  d'),
-            success: function(data){
-              window.location.href="/Ventas/AdminVentas/"
-            },
-            error: function(error){
-              console.log("no")
-              alert("Error:"+error.responseJSON)
-            }
-          }); 
-       
-   });
-    } else {
-      swal("OK! Ningun dato del tipo de servicio ha sido modificado");
-      window.location.href="/Ventas/AdminVentas/"
-    }
-  });
-  return false;
-}
 
