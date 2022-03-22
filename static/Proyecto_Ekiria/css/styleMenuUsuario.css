@@ -15,6 +15,9 @@ body {
     min-height: 100vh;
 }
 
+.sidebar{
+    height: 90vh !important;
+}
 
 /* ajuste del contenedor de datos con el menu lateral */
 

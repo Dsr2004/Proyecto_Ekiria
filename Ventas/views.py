@@ -463,7 +463,7 @@ def pruebas(request):
         "servicios":servicios,
         "form":form
     }
-    return render(request, 'prueba.html',cont)
+    return render(request, 'menuPrueba.html',cont)
     # user_list = Servicio.objects.all().order_by('id_servicio')
     # paginator = Paginator(user_list, 4)
     # if request.method == 'GET':
