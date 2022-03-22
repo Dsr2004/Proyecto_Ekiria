@@ -27,11 +27,13 @@ class Rol(models.Model):
 
 class cambios(models.Model):
     id_cambios =  models.AutoField(primary_key=True, unique=True)
-    Color_Letra = models.CharField(max_length=20)
-    Color_Fondo = models.CharField(max_length=20)
-    Sangria_Letra = models.CharField(max_length=20)
-    tamano_letra = models.CharField(max_length=20)
-    Tipo_Letra = models.CharField(max_length=20)
+    Color_Letra = models.CharField(max_length=20, null=False, blank=False)
+    Color_Fondo = models.CharField(max_length=20, null=False, blank=False)
+    tamano_Titulo = models.CharField(max_length=20, null=False, blank=False)
+    tamano_Texto = models.CharField(max_length=20, null=False, blank=False)
+    Tipo_Letra = models.CharField(max_length=20, null=False, blank=False)
+    Texto_Mision= models.CharField(max_length=500, null=False, blank=False)
+    Texto_Vision= models.CharField(max_length=500, null=False, blank=False)
 
     class Meta:
         db_table = "Cambios"

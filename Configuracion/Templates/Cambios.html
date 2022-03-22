@@ -25,54 +25,44 @@
       <div class="ContenedorMision">
         <div class="ContMision">
           <div class="recuadro" id="texto">
-            <h4 id="text">MISIÓN</h4>
-            <p id="text">La Misión de EKIRIA es  ofrecer  a mujeres, hombres y niñ@s de Medellin, <br>
+            <h4 id="text" class="tipo">MISIÓN</h4>
+            <p id="text2" class="tipo">La Misión de EKIRIA es  ofrecer  a mujeres, hombres y niñ@s de Medellin, <br>
               servicios de belleza para la presentación personal a través de servicios <br>
               como manicura, pedicura, aplanchados, masajes, etc.</p>
-            <h4 id="text" >VISIÓN</h4>
-            <p id="text" >Tener y/o poseer un mejor establecimiento para dar al cliente los mejores <br>
+            <h4 id="text" class="tipo">VISIÓN</h4>
+            <p id="text2" class="tipo">Tener y/o poseer un mejor establecimiento para dar al cliente los mejores <br>
                 servicios de calidad. Y garantía. Ser reconocida por muchos más clientes <br>
                 y satisfacer sus necesidades.</p>
           </div>
           <div class="seleccionar">
             <label for="">Color de Fondo</label>
-              <input type="text" name="select1" id="ColorFondo" placeholder="en ingles " onkeydown="CambiarFondo(event);" >
+              <input type="text" name="select1" id="ColorFondo" placeholder="en ingles " onkeydown="ColorFondo(event);" >
           </div>
-
+          <br>
           <div class="seleccionar">
             <label for="">Color de Letra</label>
-              <input type="text" name="select2" id="ColorLetra" placeholder="en ingles " onkeydown="CambiarLetra(event);" >
+              <input type="text" name="select2" id="ColorLetra" placeholder="en ingles " onkeydown="ColorLetra(event);" >
           </div>
-
+          <br>
           <div class="seleccionar">
-            <label for="">Tamaño de Letra</label>
-              <input type="text" name="select3" id="TamanoLetra" placeholder="en ingles " onkeydown="CambiarTamano(event);" >
+            <label for="">Tamaño de Letra del titulo</label>
+              <input type="text" name="select3" id="TamanoLetra"  onkeydown="CambiarTamano(event);" >
           </div>
-            <!-- <select name="select2" id="ColorFondo" onchange="ColorFondo();" >
-              <option value="fondo2" selected>Color de Fondo</option>
-              <option value="sangria2">Sangria de Letra</option>
-              <option value="tamaño2">Tamaño de Letra</option>
-              <option value="tipo2">Tipo de Letra</option>
-            </select> -->
-            <br><br>
-            <!-- <select name="select3" id="SangriaLetra" onchange="SangriaLetra();">
-              <option value="sangria3" selected>Sangria de Letra</option>
-              <option value="letra3"> Letra</option>
-              <option value="tamaño3">Tamaño de Letra</option>
-              <option value="tipo3">Tipo de Letra</option>
-            </select> -->
-            <!-- <select name="select4" id="TamañoLetra" onchange="TamanoLetra();">
-              <option value="tamaño4">Tamaño de Letra</option>
-              <option value="tipo4">Tipo de Letra</option>
-            </select>
-            <br><br> -->
+          <br>
+          <div class="seleccionar">
+            <label for="">Tamaño de Letra del parrafo</label>
+              <input type="text" name="select3" id="TamanoLetra2"  onkeydown="CambiarTamano2(event);" >
+          </div>
+            <br>
             <label for="TipoLetra">tipo de letra</label>
             <select  id="TipoLetra" onchange="CambioLetra();">
               <option value="tahoma">Tahoma</option>
               <option value="arial">Arial</option>
               <option value="cursive">cursive</option>
             </select>
-            <!-- <input type="file" name="imgmv" id="imgmv" placeholder="Insertar imagen" ><label for="">insertar imagen</label> -->
+            <div>
+              <textarea id="TextoEditar" cols="30" rows="10"></textarea>
+            </div>
           </div>
           <br>
           <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#CrearConfirmacion" onclick="EditarMV()";>Editar Texto</button>

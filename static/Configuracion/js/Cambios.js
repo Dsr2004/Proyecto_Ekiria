@@ -1,7 +1,7 @@
 function CambioLetra() {
     $(document).ready(function() {
         let TipoLetra = document.querySelector("#TipoLetra").value;
-        let body = document.querySelectorAll("#text");
+        let body = document.querySelectorAll(".tipo");
         body.forEach(texto => {
             if (texto.style.fontFamily = TipoLetra) {
                 texto.style.fontFamily = TipoLetra
@@ -11,12 +11,12 @@ function CambioLetra() {
         });
     })
 }
-function CambiarLetra(event) {
+function ColorLetra(event) {
     const codigo = event.which || event.keyCode;
     if(codigo === 13){
         $(document).ready(function(){
             let ColorLetra = document.querySelector("#ColorLetra").value;
-            let texto = document.querySelectorAll("#text");
+            let texto = document.querySelectorAll(".tipo");
             texto.forEach(textos =>{
                 if (textos.style.color = ColorLetra) {
                     textos.style.color = ColorLetra
@@ -26,6 +26,18 @@ function CambiarLetra(event) {
             
         });
     }  
+}
+
+
+
+function ColorFondo(event) {
+    const codigo = event.which || event.keyCode;
+    if(codigo === 13){
+        let ColorFondo = document.getElementById("ColorFondo").value;
+        let body = document.getElementById("texto");
+        body.style.backgroundColor = ColorFondo;
+    }
+    
 }
 
 function CambiarTamano(event) {
@@ -44,13 +56,19 @@ function CambiarTamano(event) {
         });
     }  
 }
-
-function CambiarFondo(event) {
+function CambiarTamano2(event) {
     const codigo = event.which || event.keyCode;
     if(codigo === 13){
-        let ColorFondo = document.getElementById("ColorFondo").value;
-        let body = document.getElementById("texto");
-        body.style.backgroundColor = ColorFondo;
-    }
-    
+        $(document).ready(function(){
+            let TamanoLetra2 = document.querySelector("#TamanoLetra2").value;
+            let tamano2 = document.querySelectorAll("#text2");
+            tamano2.forEach(tamanos2 =>{
+                if (tamanos2.style.fontSize = TamanoLetra2) {
+                    tamanos2.style.fontSize = TamanoLetra2+("px")
+                    tamanos2 = tamanos2.style.fontSize = TamanoLetra2+("px") 
+                }
+            });
+            
+        });
+    }  
 }
