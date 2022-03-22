@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'jsonify',
-    'Ventas',
-    'Modulo_compras',
     'Configuracion',
     'Usuarios',
     'rest_framework', 
