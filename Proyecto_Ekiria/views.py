@@ -16,13 +16,13 @@ class Inicio(View):
                 print(request.session)
                 imagen = Usuario.objects.get(id_usuario=request.session['pk'])
                 imagen = imagen.img_usuario
-                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
+                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen, "admin":request.session['Admin']}
             return render(request, 'index.html', {'User':UserSesion})
         except:
             return render(request, 'index.html')
 class menu(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'Menu_usuario.html')
+        return render(request, 'menuPrueba.html')
     
 def SinPermisos(request):
     return render(request, "SinPermisos.html")
