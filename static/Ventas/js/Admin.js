@@ -24,7 +24,7 @@
 
  function abrir_modal_AgregarServicioCatalogo(url){
    $("#AgregarServicioCatalogo").load(url, function (){ 
-     $(this).modal('show');
+     $(this).appendTo("body").modal('show');
    });
  }
 
