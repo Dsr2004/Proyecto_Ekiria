@@ -1,4 +1,4 @@
-{% extends "Menu_Usuario.html" %} 
+{% extends "Menu_Usuario.html" %}
 {%load static%}
 {% block head %}
 <head>
@@ -8,12 +8,11 @@
     <title>Administracion Ventas</title>
     <link rel="stylesheet" href="/static/Ventas/css/Ventas.css">
     <link rel="icon" href="/static/Proyecto_Ekiria/Img/Logo Ekiria.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
     <link rel="stylesheet" href="{% static 'Ventas/css/Ventas-admin.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     
-    <link rel="stylesheet" href="{%static 'Data_Table/jquery.dataTables.min.css'%}">
+    
+    <!-- <link rel="stylesheet" href="{%static 'Data_Table/jquery.dataTables.min.css'%}"> -->
 </head>{% endblock head %}
 
 {% block Contenido %}
@@ -153,13 +152,10 @@
 
 
 {% block scripts %}
-<script src="{%static 'Data_Table/jquery.dataTables.min.js'%}"></script>
+
+<!-- <script src="{%static 'Data_Table/jquery.dataTables.min.js'%}"></script> -->
 <script src="{% static 'Ventas/js/Admin.js' %}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-    $(document).ready(function(){
-       $("#dataTableExample").DataTable();
-    });
-</script>
+
 {% endblock scripts %}
    
