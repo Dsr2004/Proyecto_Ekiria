@@ -57,8 +57,9 @@ class Producto(models.Model):
         return self.nombre
 
     @property
-    def get_total (self):
-        total = self.precio * self.cantidad
+
+    def total(self):
+        total= self.precio * self.cantidad
         return total
 
 class Compra(models.Model):

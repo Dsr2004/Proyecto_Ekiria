@@ -41,12 +41,11 @@
                    </td>
                   <td>{{producto.nombre}}</td>
                   <td>
-                    <form action="">
-                      <input type="number" class="form-control" id="cant" value="{{producto.cantidad}}" oninput="sumartotal()">
-                    </form>
+                    {{producto.cantidad}}
                   </td>
-                  <td id="precio" >${{producto.precio}}</td>
-                  <td id="total">${{producto.get_total}}</td>
+                  <td id="precio" >{{producto.precio}}</td>
+                  <td id="total">{{producto.total}}</td>
+
 
                 </tr>
                 {% endfor %}
