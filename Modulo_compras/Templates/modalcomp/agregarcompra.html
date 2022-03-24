@@ -27,9 +27,12 @@
                 </tr>
               </thead>
               <tbody>
+      
+
                 {% if productos %}
            
                 {% for producto in productos %}   
+      
                 <tr>
                   <td>
                     <div class="form-check form-check-inline">
@@ -42,8 +45,8 @@
                       <input type="number" class="form-control" id="cant" value="{{producto.cantidad}}" oninput="sumartotal()">
                     </form>
                   </td>
-                  <td id="precio" >{{producto.precio}}</td>
-                  <td id="total"></td>
+                  <td id="precio" >${{producto.precio}}</td>
+                  <td id="total">${{producto.get_total}}</td>
 
                 </tr>
                 {% endfor %}

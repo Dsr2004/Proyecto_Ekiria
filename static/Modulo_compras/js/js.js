@@ -260,7 +260,10 @@ function cambioestado(id){
 
 
 function sumartotal(){
-   let total=$("#precio").find('{{producto.precio}}')
+  cantidad = document.getElementById("cant").value
+  precio = document.getElementById("precio").value
+
+
    console.log(total)
   }
 
