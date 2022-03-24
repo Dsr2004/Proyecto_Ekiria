@@ -115,53 +115,49 @@
 <script src="{% static 'Ventas/js/Carrito.js' %}"></script>
 <script>
   $.datetimepicker.setLocale('es');
+  //funcion que busca horas disponibles
+  function ejecutarReloj(horas){
+  $('#horaInicio').datetimepicker({
+  formatTime:"g:i a",
+  format:'g:i A',
+  datepicker:false,
+  allowTimes:horas
+})
+}
 
+  //buscar dia cita
   $("#DiaCita").datetimepicker({
   timepicker:false,
-  format:'d/m/Y',
-  minDate: 0,
-  onChangeDateTime:function(dp,$input){
-    let empleado=$("#empleado").val()
-    $.ajax({
-      type: "POST",
-      url: "/Ventas/BuscarEmpleadoParaCita/",
-      data: {"csrfmiddlewaretoken":csrftoken,"accion":"BuscarDiaDeEmpleado","empleado":empleado,"dia":$input.val()},
-      success: function (response) {
-        jQuery("#horaInicioBox").css("display", "block")
-        var horas = response["horasDisponibles"]
-       $("#horaInicio").click(function(){
-        $('#horaInicio').datetimepicker({
-        formatTime:"g:i a",
-        format:'g:i A',
-        datepicker:false,
-        allowTimes:["13:00", "15:00"]
-        
-    });
-   
-       } 
-       )}
-    });
-    
-  },
-  disabledDates:['2022/03/17'],
-
-});
-
-
-
-$("#empleado").on("change", function(){
-  let empleado=this.value
-  $.ajax({
-      type: "POST",
-      url: "/Ventas/BuscarEmpleadoParaCita/",
-      data: {"csrfmiddlewaretoken":csrftoken,"empleado":empleado,"accion":"BuscarEmpleado"},
-      success: function (response){
-        $("#DiaCitaBox").css("display", "block")
-      }
-      
-    });
+    format:'d/m/Y',
+    minDate: 0,
+    onChangeDateTime:function(dp,$input){
+      let empleado=$("#empleado").val()
+      $.ajax({
+        type: "POST",
+        url: "/Ventas/BuscarEmpleadoParaCita/",
+        data: {"csrfmiddlewaretoken":csrftoken,"accion":"BuscarDiaDeEmpleado","empleado":empleado,"dia":$input.val()},
+        success: function(response){
+          jQuery("#horaInicioBox").css("display", "block")
+          var horas = response["horasDisponibles"]
+          ejecutarReloj(horas)
+        }
+      })
+    },
+    disabledDates:['2022/03/17'],
   })
-
+  //buscar empleado
+  $("#empleado").on("change", function(){
+    let empleado=this.value
+    $.ajax({
+        type: "POST",
+        url: "/Ventas/BuscarEmpleadoParaCita/",
+        data: {"csrfmiddlewaretoken":csrftoken,"empleado":empleado,"accion":"BuscarEmpleado"},
+        success: function (response){
+          $("#DiaCitaBox").css("display", "block")
+        }
+        
+      });
+    })
 
 </script>
 {% endblock scripts %}

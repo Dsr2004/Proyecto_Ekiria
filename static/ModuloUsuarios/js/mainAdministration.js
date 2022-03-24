@@ -41,6 +41,7 @@ function CambiarEstadoUsuario(id){
               }); 
            
        });
+       
         } else {
           swal("OK! Ningun dato del tipo de servicio ha sido modificado");
           window.location.href="/InformacionUsuario/Administracion/"

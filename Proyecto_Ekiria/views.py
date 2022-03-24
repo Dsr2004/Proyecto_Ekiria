@@ -20,6 +20,7 @@ class Inicio(View):
             return render(request, 'index.html', {'User':UserSesion})
         except:
             return render(request, 'index.html')
+            
 class menu(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'menuPrueba.html')

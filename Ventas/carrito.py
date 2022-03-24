@@ -11,7 +11,7 @@ def actualizarItem(request):
     accion = data["accion"]
     
 
-    cliente = Usuario.objects.get(id_usuario=3)
+    cliente = Usuario.objects.get(username=request.session['username'])
     servicio= Servicio.objects.get(id_servicio=servicioid)
     pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
 

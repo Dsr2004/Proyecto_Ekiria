@@ -26,7 +26,9 @@
         {{form.direccion}}
         <label for="">Codigo Postal:</label>
         {{form.cod_postal}}
-        {{form.username}}
+        {% if User.admin %}
+            <a href="{%url 'Cambiar'%}">Cambiar contraseña</a>
+        {%endif%}
         <button type="submit">Editar</button>
     </form>
     

@@ -95,6 +95,7 @@ class Servicio_PersonalizadoForm(forms.ModelForm):
         self.fields['tipo_servicio_id'].queryset = Tipo_servicio.objects.filter(nombre__in=["Manicure","Pedicure","manicure","pedicure","MANICURE","PEDICURE"]).filter(estado=True)
         self.fields['img_servicio'].label = False
         self.fields['duracion'].label = False
+        self.fields['duracion'].required = False
 
 
 class CitaForm(forms.ModelForm):

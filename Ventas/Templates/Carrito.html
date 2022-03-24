@@ -51,8 +51,8 @@
                             <div style="flex: 1;"><strong>Precio</strong></div>
                             <div style="flex: 1;"><strong>Acciones</strong></div>
                         </div>
-                        {% if items %}    
-                        {% for item in items %}
+                        {% if serviciosx %}    
+                        {% for item in serviciosx %}
                         <div class="fila_carrito">
                                 <div style="flex: 2;">
                                     <img class="img_carrito" src="/media/{{item.servicio_id.img_servicio}}" alt="">
@@ -66,6 +66,36 @@
                         </div>
                         {% endfor %}      
                         {% endif %}
+                        
+                        {% if serviciosPerx %}
+                            <h5>Estosd son los servicios personalizados</h5>
+                            <br>
+                            <div class="fila_carrito">
+                                <div style="flex: 1;"></div>
+                                <div style="flex: 1;"><strong>Tipo de Servicicio</strong></div>
+                                <div style="flex: 2;"><strong>Descripcion</strong></div>
+                                <div style="flex: 1;"><strong>Acciones</strong></div>
+                            </div>
+                            {% for item in serviciosPerx  %}
+                            <div class="fila_carrito">
+                                <div style="flex: 1;">
+                                    <img class="img_carrito" src="/media/{{item.servicio_personalizado_id.img_servicio}}" alt="">
+                                    </div>
+                                    <div style="flex: 1">
+                                        {{item.servicio_personalizado_id.tipo_servicio_id}}
+                                    </div>
+                                    <div style="flex: 2;">{{item.servicio_personalizado_id.descripcion}}</div>
+                                    <div style="flex: 1;">
+                                        <button data-servicio="{{item.servicio_id.id_servicio}}" data-action="remove" class="btn addToCar" style="transform: scale(1.5);">
+                                            <i class="fa-solid fa-trash"></i> </button>
+                                            <button data-servicio="{{item.servicio_id.id_servicio}}" data-action="update" class="btn addToCar" style="transform: scale(1.5);">
+                                                <i class="fa-solid fa-pencil"></i> </button>
+                                    </div>   
+                        </div>
+                            {% endfor %}
+                                
+                        {% endif %}
+                            
                     </div>
                 </div>
             </div>

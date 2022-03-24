@@ -37,7 +37,7 @@ from Ventas.models import Servicio
 #-----------------------------------------More---------------------------------------------------
 from Usuarios.authentication_mixins import Authentication
 from datetime import datetime
-from Usuarios.forms import Regitro, Editar
+from Usuarios.forms import Cambiar, Regitro, Editar
 
 #--------------------------------------Templates Loaders------------------------------------
 
@@ -187,26 +187,53 @@ def Perfil(request):
 #             print(e)
 #             return JsonResponse({"x":e})
 def EditarPerfil(request):
-    template_name = "UserInformation/EditarPerfil.html"
-    if request.session:
-        get_object = Usuario.objects.get(id_usuario=request.session['pk'])
-        form = Editar(instance=get_object)
-        imagen = Usuario.objects.get(id_usuario=request.session['pk'])
-        imagen = imagen.img_usuario
-        UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen, "admin":request.session["Admin"]}
-    if request.method=="POST":
-        form = Editar(request.POST or None, request.FILES or None, instance=get_object)
-        if form.is_valid():
-            form.save()
-            return redirect("Perfil")
-        else:
-            e=form.errors
-            print(e)
-            return JsonResponse({"x":e})
-    return render(request, template_name, {"form":form, "User":UserSesion})
+    try:
+        template_name = "UserInformation/EditarPerfil.html"
+        if request.session['pk']:
+            get_object = Usuario.objects.get(id_usuario=request.session['pk'])
+            form = Editar(instance=get_object)
+            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            imagen = imagen.img_usuario
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen, "admin":request.session["Admin"]}
+        else: 
+            return redirect("SinPermisos")
+        if request.method=="POST":
+            form = Editar(request.POST or None, request.FILES or None, instance=get_object)
+            if form.is_valid():
+                form.save()
+                return redirect("Perfil")
+            else:
+                e=form.errors
+                print(e)
+                return JsonResponse({"x":e})
+        return render(request, template_name, {"form":form, "User":UserSesion})
+    except:
+        return redirect("UNR")
     
 def Change(request):
-    return render(request,'UserInformation/ChangePassword.html')
+    try:
+        if request.session['pk']:
+            get_object = Usuario.objects.get(id_usuario=request.session['pk'])
+            form = Cambiar(instance=get_object)
+            imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            imagen = imagen.img_usuario
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen, "admin":request.session["Admin"]}
+        else: 
+            return redirect("SinPermisos")
+        if request.method=="POST":
+            password = request.POST.get('Apassword')
+            if password:
+                form = Cambiar(request.POST or None, request.FILES or None, instance=get_object)
+                if form.is_valid():
+                    form.save()
+                    return redirect("Perfil")
+                else:
+                    e=form.errors
+                    print(e)
+                    return JsonResponse({"x":e})
+        return render(request, 'UserInformation/ChangePassword.html', {"form":form, "User":UserSesion})
+    except:
+        return("UNR")
 def Admin(request):
     try:
         if request.session:

@@ -128,11 +128,25 @@ class QuitarServicioalCatalogo(DeleteView):
 
 
 def Carrito(request):
-    cliente=Usuario.objects.get(id_usuario=3)
+    cliente=Usuario.objects.get(username=request.session['username'])
     if cliente:
         pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
         items= pedido.pedidoitem_set.all()
-        duracion= sum([item.servicio_id.duracion for item in items])
+        serviciosx=[]
+        serviciosPerx=[]
+        if items:
+            for i in items:
+                if not i.servicio_id ==  None:
+                    serviciosx.append(i)
+                if not i.servicio_personalizado_id == None:
+                    serviciosPerx.append(i)
+
+            print("los que hay son")
+            print(serviciosx)
+        try:
+            duracion= sum([item.servicio_id.duracion for item in items])
+        except Exception as e:
+            duracion=0
         request.session["carrito"]=pedido.get_items_carrito
         request.session["duracion"]=duracion
         
@@ -149,7 +163,7 @@ def Carrito(request):
     except:
             return redirect("UNR")
 
-    contexto={"items":items, "pedido":pedido,"User":UserSesion}
+    contexto={"pedido":pedido,"User":UserSesion,"serviciosx":serviciosx,"serviciosPerx":serviciosPerx}
 
     return render(request, "Carrito.html",contexto)
 
@@ -158,7 +172,7 @@ def Carrito(request):
 
 def TerminarPedido(request):
     form=CitaForm
-    cliente=Usuario.objects.get(id_usuario=3)
+    cliente=Usuario.objects.get(username=request.session['username'])
     if cliente:
         pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
         items= pedido.pedidoitem_set.all()
@@ -199,6 +213,7 @@ class BuscarDisponibilidadEmpleado(View):
             dia=request.POST["dia"]
             dia=datetime.strptime(dia, "%d/%m/%Y")
             dia=dia.strftime("%Y-%m-%d")
+            print(dia)
             diasConsulta = models.Calendario.objects.filter(empleado_id=empleado).filter(dia=dia)
             
 
@@ -227,16 +242,6 @@ class BuscarDisponibilidadEmpleado(View):
                 for i in horasNoDisponibles:
                     res = [x for x in horas if (x < horasNoDisponibles[i]["horaInicio"] or x > horasNoDisponibles[i]["horaFin"])]
 
-            # duracion=request.session["duracion"]
-            # for i in res:
-            #     posibleHoraFin
-            # # print("duracion ")
-            # # print(request.session["duracion"])
-            # # print("total de horas")
-            # # print(horas)
-            # # print("horas no disponibles")
-            # # print(horasNoDisponibles)
-            # # print("horas que quedan")
             print(res)
             
             return JsonResponse({"horasDisponibles":res})
@@ -246,8 +251,9 @@ class Calendario(TemplateView):
     template_name = "Calendario.html"
     def get(self, request, *args, **kwargs):
         try:
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
             if request.session:
-                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = Usuario.objects.get(username=request.session['pk'])
                 imagen = imagen.img_usuario
                 UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
                 return render(request, self.template_name, {"User":UserSesion})
@@ -259,7 +265,17 @@ class ServiciosPersonalizados(CreateView):
     form_class = Servicio_PersonalizadoForm
     template_name = "AddservicioPer.html"
     success_url=reverse_lazy("Ventas:catalogo")
-    
+
+
+    def form_valid(self, form, *args, **kwargs):
+        objeto=form.save()
+        cliente = Usuario.objects.get(username=self.request.session['username'])
+        pedido,creado = models.Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
+        itemPedio = models.PedidoItem.objects.get_or_create(pedido_id=pedido,servicio_personalizado_id=objeto)
+        pedido.esPersonalizado = True
+        pedido.save()
+
+        return redirect("Ventas:carrito")
         
     
 
@@ -297,7 +313,7 @@ class AdminVentas(TemplateView):
             'servicios':posts,
             'paginas':paginas,
             'pagina_actual':pagina_actual,
-            "User":UserSesion
+            "User":UserSesion,
         }
         
         return render(request, self.template_name, context)
@@ -424,15 +440,17 @@ class EditarServicio(UpdateView):#actualizar
     template_name = "EditarServicio.html" 
     success_url = reverse_lazy('Ventas:listarServicios')
     
-    def get(self, request, *args, **kwargs):
+    def get_context_data(self, *args, **kwargs):
+        context = super(EditarServicio, self).get_context_data(**kwargs)
         try:
-            if request.session:
-                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+            if self.request.session:
+                imagen = Usuario.objects.get(id_usuario=self.request.session['pk'])
                 imagen = imagen.img_usuario
-                UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
-                return render(request, self.template_name, {"User":UserSesion,"form":self.form_class})
+                UserSesion = {"username":self.request.session['username'], "rol":self.request.session['rol'], "imagen":imagen}
+                context["User"]=UserSesion
         except:
-            return redirect("UNR")
+            return context
+       
     def form_valid(self, form, **kwargs):
         objeto=form.save()
         if objeto.estado == False:
@@ -453,7 +471,7 @@ class ListarServicio(ListView):#listar
                 imagen = Usuario.objects.get(id_usuario=request.session['pk'])
                 imagen = imagen.img_usuario
                 UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
-                return render(request, self.template_name, {"User":UserSesion,self.context_object_name:self.queryset})
+                return render(request, self.template_name, {"User":UserSesion, self.context_object_name:self.queryset})
         except:
             return redirect("UNR")
 
