@@ -12,14 +12,12 @@
 </head>{% endblock head %}
 
 {% block Contenido %}
-<h1>Agrega un servicio personalizado</h1>
-<br><br><br><br>
-{% if form.errors %}
-    si 
-    {% else %}
-        no
-{% endif %}
+
+
 <div class="container">
+    
+    <h1>Agrega un servicio personalizado</h1>
+    <br>
     <form action="{%url 'Ventas:personalizar'%}" enctype="multipart/form-data" method="post">
         {% csrf_token %}
     <div class="row">
@@ -38,7 +36,13 @@
     <div class="form-floating container descripcion" style="width:90vw;">   
        {{form.descripcion|as_crispy_field}}
       </div>
-      <button class="btn btn-block btn-success  AgregarServPersonCarrito"  type="submit">  Agregar al Carrito</button>
+      <input class="btn btn-block btn-success  AgregarServPersonCarrito" name="accion" type="submit" value="Agregar al Carrito">  
     </form>
 </div>
+
+{% if form.errors %}
+    {{form.errors}}
+{% endif %}
+    
+<br><br>
 {% endblock Contenido %}

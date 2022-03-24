@@ -128,11 +128,25 @@ class QuitarServicioalCatalogo(DeleteView):
 
 
 def Carrito(request):
-    cliente=Usuario.objects.get(id_usuario=3)
+    cliente=Usuario.objects.get(username=request.session['username'])
     if cliente:
         pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
         items= pedido.pedidoitem_set.all()
-        duracion= sum([item.servicio_id.duracion for item in items])
+        serviciosx=[]
+        serviciosPerx=[]
+        if items:
+            for i in items:
+                if not i.servicio_id ==  None:
+                    serviciosx.append(i)
+                if not i.servicio_personalizado_id == None:
+                    serviciosPerx.append(i)
+
+            print("los que hay son")
+            print(serviciosx)
+        try:
+            duracion= sum([item.servicio_id.duracion for item in items])
+        except Exception as e:
+            duracion=0
         request.session["carrito"]=pedido.get_items_carrito
         request.session["duracion"]=duracion
         
@@ -149,7 +163,7 @@ def Carrito(request):
     except:
             return redirect("UNR")
 
-    contexto={"items":items, "pedido":pedido,"User":UserSesion}
+    contexto={"pedido":pedido,"User":UserSesion,"serviciosx":serviciosx,"serviciosPerx":serviciosPerx}
 
     return render(request, "Carrito.html",contexto)
 
@@ -158,7 +172,7 @@ def Carrito(request):
 
 def TerminarPedido(request):
     form=CitaForm
-    cliente=Usuario.objects.get(id_usuario=3)
+    cliente=Usuario.objects.get(username=request.session['username'])
     if cliente:
         pedido,creado = Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
         items= pedido.pedidoitem_set.all()
@@ -199,6 +213,7 @@ class BuscarDisponibilidadEmpleado(View):
             dia=request.POST["dia"]
             dia=datetime.strptime(dia, "%d/%m/%Y")
             dia=dia.strftime("%Y-%m-%d")
+            print(dia)
             diasConsulta = models.Calendario.objects.filter(empleado_id=empleado).filter(dia=dia)
             
 
@@ -217,7 +232,8 @@ class BuscarDisponibilidadEmpleado(View):
                    
            
             horas = [
-                "00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","19:00","20:00","21:00","22:00","23:00",
+                "00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00","13:00","14:00",
+                "15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00",
             ]
 
             if len(horasNoDisponibles)==0:
@@ -235,8 +251,9 @@ class Calendario(TemplateView):
     template_name = "Calendario.html"
     def get(self, request, *args, **kwargs):
         try:
+            UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
             if request.session:
-                imagen = Usuario.objects.get(id_usuario=request.session['pk'])
+                imagen = Usuario.objects.get(username=request.session['pk'])
                 imagen = imagen.img_usuario
                 UserSesion = {"username":request.session['username'], "rol":request.session['rol'], "imagen":imagen}
                 return render(request, self.template_name, {"User":UserSesion})
@@ -248,7 +265,17 @@ class ServiciosPersonalizados(CreateView):
     form_class = Servicio_PersonalizadoForm
     template_name = "AddservicioPer.html"
     success_url=reverse_lazy("Ventas:catalogo")
-    
+
+
+    def form_valid(self, form, *args, **kwargs):
+        objeto=form.save()
+        cliente = Usuario.objects.get(username=self.request.session['username'])
+        pedido,creado = models.Pedido.objects.get_or_create(cliente_id=cliente, completado=False)
+        itemPedio = models.PedidoItem.objects.get_or_create(pedido_id=pedido,servicio_personalizado_id=objeto)
+        pedido.esPersonalizado = True
+        pedido.save()
+
+        return redirect("Ventas:carrito")
         
     
 
