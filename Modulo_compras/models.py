@@ -65,14 +65,12 @@ class Producto(models.Model):
 class Compra(models.Model):
     id_compras=models.AutoField("id_compra",primary_key=True, unique=True)
     producto=models.ManyToManyField(Producto)
-    descripcion=models.TextField('descripcion',blank=False, null=False)
-    total=models.IntegerField('total',blank=False, null=False )
     estado=models.BooleanField('estado', default=True)
 
     class Meta:
         verbose_name ='Compra'
         verbose_name_plural = 'Compras'
-        ordering = ['descripcion']
+        ordering = ['id_compras']
         db_table = 'Compra'
 
     def __str__(self):
